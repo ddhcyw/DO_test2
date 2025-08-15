@@ -3,7 +3,7 @@ using System.IO;
 
 public class PhotoCapture : MonoBehaviour
 {
-    public Camera photoCamera;         // ¥Î©ó©ç·ÓªºÄá¼v¾÷
+    public Camera photoCamera;         // ï¿½Î©ï¿½ï¿½Óªï¿½ï¿½ï¿½vï¿½ï¿½
     public GameObject cmVcam;          // Cinemachine Vcam
     public KeyCode captureKey = KeyCode.C;
     public string savePath = "Screenshots";
@@ -21,8 +21,8 @@ public class PhotoCapture : MonoBehaviour
             Directory.CreateDirectory(savePath);
         }
 
-        // ¸T¥Î photoCamera¡A¨¾¤îÂĞ»\µe­±
         photoCamera.enabled = false;
+
     }
 
     void Update()
@@ -37,15 +37,15 @@ public class PhotoCapture : MonoBehaviour
     {
         if (cmVcam != null)
         {
-            // Àò¨ú CM vcam1 ªº Transform
+            // CM vcam1 Transform
             Transform vcamTransform = cmVcam.transform;
 
-            // ±N photoCamera ªº¦ì¸m»P±ÛÂà¦P¨B¬° vcam1
+            // photoCamera ä½ç½®èˆ‡æ—‹è½‰å°é½Š vcam1
             photoCamera.transform.position = vcamTransform.position;
             photoCamera.transform.rotation = vcamTransform.rotation;
         }
 
-        // ±Ò¥Î photoCamera ¶i¦æ©ç·Ó
+        // photoCamera
         photoCamera.enabled = true;
 
         string timestamp = System.DateTime.Now.ToString("yyyyMMdd_HHmmss");
@@ -60,24 +60,24 @@ public class PhotoCapture : MonoBehaviour
 
         Texture2D screenshot = new Texture2D(width, height, TextureFormat.RGB24, false);
 
-        // ´è¬V¨ÃÅª¨ú¹³¯À
+        // æ“·å–ç•«é¢
         photoCamera.Render();
         RenderTexture.active = renderTexture;
         screenshot.ReadPixels(new Rect(0, 0, width, height), 0, 0);
         screenshot.Apply();
 
-        // «O¦s¹Ï¤ù
+        // å„²å­˜æˆªåœ–
         byte[] bytes = screenshot.EncodeToPNG();
         File.WriteAllBytes(filePath, bytes);
         Debug.Log($"Screenshot saved to: {filePath}");
 
-        // ²M²z¸ê·½
+        // ï¿½Mï¿½zï¿½ê·½
         photoCamera.targetTexture = null;
         RenderTexture.active = null;
         Destroy(renderTexture);
         Destroy(screenshot);
 
-        // ©ç·Ó§¹¦¨«á¸T¥Î photoCamera¡AÄ~Äò¨Ï¥Î Cinemachine ±±¨î
+        // ï¿½ï¿½Ó§ï¿½ï¿½ï¿½ï¿½ï¿½Tï¿½ï¿½ photoCameraï¿½Aï¿½~ï¿½ï¿½Ï¥ï¿½ Cinemachine ï¿½ï¿½ï¿½ï¿½
         photoCamera.enabled = false;
     }
 }
