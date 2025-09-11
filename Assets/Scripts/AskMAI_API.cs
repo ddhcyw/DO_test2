@@ -1,127 +1,206 @@
-using System.Collections;
+ï»¿using System.Collections;
+using System.Collections.Generic; // ç”¨æ–¼ List
+using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 using TMPro;
 using UnityEngine.UI;
-using System.Text.RegularExpressions;
+
+#region Data Structures for API
+// ç”¨æ–¼åºåˆ—åŒ–å–®æ¢å°è©±è¨Šæ¯
+[System.Serializable]
+public class ChatMessage
+{
+    public string role;
+    public string content;
+
+    public ChatMessage(string role, string content)
+    {
+        this.role = role;
+        this.content = content;
+    }
+}
+
+// ç”¨æ–¼åºåˆ—åŒ–è¦ç™¼é€åˆ°ä¼ºæœå™¨çš„å°è©±åˆ—è¡¨
+[System.Serializable]
+public class ChatPayload
+{
+    public List<ChatMessage> messages;
+}
+
+// ç”¨æ–¼è§£ææœ¬åœ° Flask (Qwen) ä¼ºæœå™¨å›æ‡‰çš„è³‡æ–™çµæ§‹
+[System.Serializable]
+public class QwenResponse
+{
+    public string response;
+}
+#endregion
 
 public class AskMAI_API : MonoBehaviour
 {
-    [Header("¦øªA¾¹³]©w")]
-    public bool useLocalServer = false;
-    public bool isDemoMode = false;
-
-    [Header("API ³]©w")]
+    [Header("ä¼ºæœå™¨è¨­å®š")]
+    [Tooltip("æœ¬åœ° Flask ä¼ºæœå™¨çš„ç¶²å€")]
     public string localURL = "http://127.0.0.1:8000/ask";
-    public string huggingfaceURL = "https://api-inference.huggingface.co/models/deepseek-ai/DeepSeek-V3";
-    public string huggingfaceToken = "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";
+    
 
-    [Header("UI ¤¸¥ó")]
-    public GameObject dialoguePanel;
+    [Header("UI å…ƒä»¶")]
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
     public TMP_InputField inputField;
     public Button sendButton;
+    [Tooltip("å¯é¸ï¼šå°è©±å…§å®¹çš„æ»¾å‹•è¦–åœ–ï¼Œç”¨æ–¼é¡¯ç¤ºå®Œæ•´æ­·å²")]
+    public ScrollRect dialogueScrollView;
+
+    // ç”¨æ–¼å„²å­˜å°è©±æ­·å²
+    private List<ChatMessage> conversationHistory = new List<ChatMessage>();
 
     void Start()
     {
-        if (nameText != null)
-            nameText.text = "MAI";
+        if (nameText != null) nameText.text = "MAI";
+        sendButton?.onClick.AddListener(OnSend);
+        if (inputField != null)
+        {
+            inputField.ActivateInputField();
+            inputField.Select();
+        }
 
-        sendButton?.onClick.AddListener(() => Ask(inputField.text));
+        // --- é—œéµä¿®æ”¹é» ---
+        // 1. å»ºç«‹åˆå§‹çš„å•å€™èªè¨Šæ¯
+        ChatMessage initialMessage = new ChatMessage("assistant", "ä½ å¥½ï¼æˆ‘æ˜¯ MAIï¼Œæœ‰ä»€éº¼å¯ä»¥å¹«ä½ çš„å—ï¼Ÿ");
+
+        // 2. å°‡é€™å¥å•å€™èªåŠ å…¥åˆ°å°è©±æ­·å²ä¸­é€²è¡Œè¿½è¹¤
+        conversationHistory.Add(initialMessage);
+
+        // 3. å‘¼å«çµ±ä¸€çš„æ›´æ–°å‡½å¼ä¾†é¡¯ç¤ºå…§å®¹
+        UpdateDialogueDisplay();
     }
 
     void Update()
     {
         if (inputField != null && inputField.isFocused && Input.GetKeyDown(KeyCode.Return))
         {
-            if (!string.IsNullOrWhiteSpace(inputField.text))
-            {
-                Ask(inputField.text);
-            }
+            OnSend();
         }
     }
 
-    public void Ask(string playerText)
+    public void OnSend()
     {
-        if (string.IsNullOrWhiteSpace(playerText)) return;
+        string userInput = inputField.text.Trim();
+        if (string.IsNullOrEmpty(userInput) || !sendButton.interactable) return;
 
+        // å°‡ä½¿ç”¨è€…çš„è¼¸å…¥åŠ å…¥æ­·å²ç´€éŒ„
+        conversationHistory.Add(new ChatMessage("user", userInput));
+        UpdateDialogueDisplay(); // æ›´æ–°ç•«é¢é¡¯ç¤º
+
+        // æ¸…ç©ºè¼¸å…¥æ¡†ä¸¦ç¦ç”¨æŒ‰éˆ•ï¼Œé˜²æ­¢é‡è¤‡ç™¼é€
         inputField.text = "";
-        dialogueText.text = "«ä¦Ò¤¤...";
+        SetInteraction(false);
 
-        if (isDemoMode)
-        {
-            string response = GetDemoResponse(playerText);
-            dialogueText.text = "MAI¡G" + response;
-            return;
-        }
-
-        string prompt = "§A¬O¤@¦ì¿Ë¤Áªº AI §U¤â MAI¡A½Ğ¥ÎÁcÅé¤¤¤å¦^µª¡G" + playerText;
-        Debug.Log("°e¥Xªº prompt¡G\n" + prompt);
-        StartCoroutine(SendToServer(prompt));
+        // ** é—œéµä¿®æ”¹ **
+        // å°‡æ•´å€‹å°è©±æ­·å²å‚³é€åˆ°ä¼ºæœå™¨
+        StartCoroutine(SendRequestToServer(conversationHistory));
     }
 
-    private string GetDemoResponse(string input)
+    IEnumerator SendRequestToServer(List<ChatMessage> history)
     {
-        input = input.Trim().ToLower();
+        string apiURL = localURL; // æ­¤åŠŸèƒ½åƒ…é‡å°æœ¬åœ°ä¼ºæœå™¨å„ªåŒ–
 
-        if (Regex.IsMatch(input, "§A¬O½Ö"))
-        {
-            return "§Ú¬O³o­Óºô¸ô«°ªºÂQ¾É¡A¬İ§A³o°Æ¼Ë¤l......¬O±q²{¹ê¥@¬É¨Óªº§a";
-        }
-        else if (Regex.IsMatch(input, "«ç»ò¦^®a"))
-        {
-            return "§A¥i¥H·f­¼­¸²î¡u­^¯S¯I¸¹¡v¦^¥h¡A¦ı¤£©¯ªº¬O¥¦²{¦b¯à¶q¤£¨¬";
-        }
-        else if (Regex.IsMatch(input, "«ç»ò¿ì"))
-        {
-            return "­^¯S¯I«°³Ìªñ¤£¤Ó¦w¹ç¡A¥²¶·²b¤Æ·o¶ÃªºÁô±w¤~¯àÀò¨ú­¸²î¯à¶q¡A§O¾á¤ß!§Ú·|¥ş¤OÀ°§U§Aªº";
-        }
-        else
-        {
-            return "©êºp¡A§Ú¤£¤Ó©ú¥Õ§Aªº°İÃD¡C";
-        }
-    }
+        // --- æ§‹å»º JSON Payload ---
+        // ä¼ºæœå™¨ç¾åœ¨æœŸæœ›çš„æ ¼å¼: {"messages": [{"role": "user", "content": "..."}, ...]}
+        ChatPayload payload = new ChatPayload { messages = history };
+        string jsonPayload = JsonUtility.ToJson(payload);
 
-    IEnumerator SendToServer(string prompt)
-    {
-        string apiURL = useLocalServer ? localURL : huggingfaceURL;
-        string escapedPrompt = prompt.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n");
-        string json = "{\"inputs\": \"" + escapedPrompt + "\"}";
-
-        byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(json);
-
+        // --- å»ºç«‹ä¸¦è¨­å®š UnityWebRequest ---
         UnityWebRequest req = new UnityWebRequest(apiURL, "POST");
+        byte[] jsonBytes = Encoding.UTF8.GetBytes(jsonPayload);
         req.uploadHandler = new UploadHandlerRaw(jsonBytes);
         req.downloadHandler = new DownloadHandlerBuffer();
         req.SetRequestHeader("Content-Type", "application/json");
 
-        if (!useLocalServer && !string.IsNullOrEmpty(huggingfaceToken))
-            req.SetRequestHeader("Authorization", "Bearer " + huggingfaceToken);
-
         yield return req.SendWebRequest();
 
+        // --- è™•ç†å›æ‡‰ ---
         if (req.result == UnityWebRequest.Result.Success)
         {
-            string res = req.downloadHandler.text;
-            string answer = ExtractPlainText(res);
-            dialogueText.text = "MAI¡G" + Regex.Unescape(answer);
-            Debug.Log("MAI ¦^ÂĞ¡G" + answer);
+            string rawResponse = req.downloadHandler.text;
+            string reply = ParseLocalResponse(rawResponse);
+
+            // å°‡ MAI çš„å›è¦†åŠ å…¥æ­·å²ç´€éŒ„
+            conversationHistory.Add(new ChatMessage("assistant", reply));
+            UpdateDialogueDisplay(); // æ›´æ–°ç•«é¢é¡¯ç¤º
         }
         else
         {
-            dialogueText.text = "MAI ¦^À³¥¢±Ñ¡]" + req.responseCode + ")";
-            Debug.LogError("API ½Ğ¨D¥¢±Ñ: " + req.error);
+            dialogueText.text += "\n<color=red>MAI å›æ‡‰å¤±æ•—...</color>";
+            Debug.LogError($"API è«‹æ±‚éŒ¯èª¤: {req.error}\nå›æ‡‰å…§å®¹: {req.downloadHandler.text}");
         }
 
-        inputField.ActivateInputField();
+        // é‡æ–°å•Ÿç”¨ UI
+        SetInteraction(true);
     }
 
-    string ExtractPlainText(string json)
+    /// <summary>
+    /// æ›´æ–°å°è©±æ¡†ä¸­é¡¯ç¤ºçš„æ–‡å­—
+    /// </summary>
+    private void UpdateDialogueDisplay()
     {
-        int i = json.IndexOf(":") + 2;
-        int j = json.LastIndexOf("\"");
-        if (i < 2 || j < i) return "µLªk¸ÑªR MAI ¦^ÂĞ";
-        return json.Substring(i, j - i);
+        StringBuilder sb = new StringBuilder();
+        foreach (var message in conversationHistory)
+        {
+            if (message.role == "user")
+            {
+                sb.AppendLine($"<b><color=#2E86C1>ä½ ï¼š</color></b>{message.content}");
+            }
+            else
+            {
+                sb.AppendLine($"<b><color=#AF7AC5>MAIï¼š</color></b>{message.content}");
+            }
+            sb.AppendLine(); // å¢åŠ é–“è·
+        }
+        dialogueText.text = sb.ToString();
+
+        // å¦‚æœæœ‰è¨­å®š ScrollViewï¼Œè‡ªå‹•æ»¾å‹•åˆ°åº•éƒ¨
+        StartCoroutine(ForceScrollDown());
+    }
+
+    IEnumerator ForceScrollDown()
+    {
+        // ç­‰å¾…ä¸€å¹€è®“ UI æ›´æ–°
+        yield return new WaitForEndOfFrame();
+        if (dialogueScrollView != null)
+        {
+            dialogueScrollView.verticalNormalizedPosition = 0f;
+        }
+    }
+
+    /// <summary>
+    /// æ§åˆ¶ UI äº’å‹•æ€§
+    /// </summary>
+    private void SetInteraction(bool isInteractable)
+    {
+        sendButton.interactable = isInteractable;
+        inputField.interactable = isInteractable;
+        if (isInteractable)
+        {
+            inputField.ActivateInputField();
+            inputField.Select();
+        }
+    }
+
+    /// <summary>
+    /// è§£æä¾†è‡ªæœ¬åœ° Flask ä¼ºæœå™¨çš„ JSON å›æ‡‰
+    /// </summary>
+    string ParseLocalResponse(string json)
+    {
+        try
+        {
+            QwenResponse res = JsonUtility.FromJson<QwenResponse>(json);
+            return res.response.Trim();
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError("è§£ææœ¬åœ°å›æ‡‰å¤±æ•—: " + ex.Message + "\næ”¶åˆ°çš„ JSON: " + json);
+            return "(ç„¡æ³•è§£æ MAI æœ¬åœ°å›æ‡‰)";
+        }
     }
 }

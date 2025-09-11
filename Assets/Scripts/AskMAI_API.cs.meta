@@ -3,7 +3,12 @@ guid: dd84aba6729074e468bb8ebd00fc8e48
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - dialoguePanel: {fileID: 100000, guid: a6e39ced0ea046bcb636c3f0b2e2a745, type: 3}
+  - nameText: {instanceID: 0}
+  - dialogueText: {instanceID: 0}
+  - inputField: {instanceID: 0}
+  - sendButton: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
