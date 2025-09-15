@@ -14,14 +14,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // 取得 WASD 或 方向鍵輸入
+       
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
     }
 
     void FixedUpdate()
     {
-        // 實際移動
+        
         rb.velocity = moveInput.normalized * moveSpeed;
     }
 }

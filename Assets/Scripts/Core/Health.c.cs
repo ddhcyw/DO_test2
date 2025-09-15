@@ -16,5 +16,6 @@ public class Health : MonoBehaviour
     void Die()
     {
         Destroy(gameObject); // 之後可換死亡特效
+        Debug.Log($"{name} died");
     }
 }
