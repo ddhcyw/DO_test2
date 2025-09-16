@@ -17,8 +17,8 @@ TagManager:
   - Hurtbox
   - Hitbox
   - Obstacle
-  - 
-  - 
+  - Background
+  - Characters
   - 
   - 
   - 
@@ -43,4 +43,10 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Characters
+    uniqueID: 2604660323
+    locked: 0
+  - name: Hurtbox
+    uniqueID: 4084718235
     locked: 0
