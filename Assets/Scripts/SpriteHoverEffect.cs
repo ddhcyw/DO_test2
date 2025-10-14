@@ -8,6 +8,15 @@ public class SpriteHoverEffect : MonoBehaviour
     // 滑鼠懸停時要顯示
     public GameObject hoverStateObject;
     public GameObject hoverDioObject;
+    public GameObject chatPanel;
+
+    void OnMouseDown()
+    {
+        if (chatPanel != null)
+        {
+            chatPanel.SetActive(true);
+        }
+    }
 
     void Start()
     {
