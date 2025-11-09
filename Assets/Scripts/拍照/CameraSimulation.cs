@@ -9,23 +9,26 @@ public class CameraSimulation : MonoBehaviour, IPointerDownHandler, IDragHandler
     public Button takePictureButton;
     public Button photoEffectButton;
 
-    // === 內部變數 (儲存「即將」要用的照片) ===
+    // === 內部變數 ===
     private Item finalPhotoItemToAdd;
     private Sprite finalCollectedPhotoSpriteToAdd;
-    private bool isShowingPhotoEffect = false; // 狀態旗標
+    private bool isShowingPhotoEffect = false;
+    private Canvas rootCanvas; // 儲存根 Canvas
 
     void Start()
     {
+        rootCanvas = GetComponentInParent<Canvas>();
+
         if (photoEffectButton != null)
         {
             photoEffectButton.gameObject.SetActive(false);
         }
 
-        // 修正「點擊穿透」問題
+        // 修正「點擊穿透」
         if (takePictureButton != null)
         {
-            takePictureButton.interactable = false; // 先禁用
-            StartCoroutine(EnableButtonAfterDelay()); // 延遲啟用
+            takePictureButton.interactable = false;
+            StartCoroutine(EnableButtonAfterDelay());
         }
 
         if (photoEffectButton != null)
@@ -75,20 +78,29 @@ public class CameraSimulation : MonoBehaviour, IPointerDownHandler, IDragHandler
         }
 
         // --- 顯示示意圖 (只有在成功拍到時才會執行到這裡) ---
-        if (photoEffectButton != null)
+        if (photoEffectButton != null && rootCanvas != null)
         {
-            // 將示意圖 Sprite 設置到按鈕的 Image 上
+            isShowingPhotoEffect = true;
+
+            //將 photoEffectButton 從觀景窗「拔」出來
+            //並將它設為 rootCanvas 的子物件，這樣它才能全螢幕
+            photoEffectButton.transform.SetParent(rootCanvas.transform, false);
+
+            //取得 RectTransform 並強制設為全螢幕
+            RectTransform rt = photoEffectButton.GetComponent<RectTransform>();
+            rt.anchorMin = new Vector2(0, 0); // 左下角
+            rt.anchorMax = new Vector2(1, 1); // 右上角
+            rt.offsetMin = Vector2.zero;      // Left, Bottom
+            rt.offsetMax = Vector2.zero;      // Right, Top
+
+            //設定示意圖並顯示
             photoEffectButton.image.sprite = spriteToShow;
             photoEffectButton.gameObject.SetActive(true);
-            isShowingPhotoEffect = true; // 設定旗標
 
-            // 隱藏原本的「拍照」按鈕
+            //隱藏原本的「觀景窗」UI (但不要銷毀，CloseSimulation 會處理)
+            //我們透過禁用 Image 和 Button 來隱藏它，而不是 SetActive(false)
             takePictureButton.gameObject.SetActive(false);
-        }
-        else
-        {
-            // Failsafe: 萬一沒有設定 photoEffectButton，直接處理照片
-            ProcessAndCloseSimulation();
+            GetComponent<Image>().enabled = false; // 隱藏觀景窗背景
         }
     }
 
@@ -123,6 +135,11 @@ public class CameraSimulation : MonoBehaviour, IPointerDownHandler, IDragHandler
     private void CloseSimulation()
     {
         Destroy(gameObject);
+        //銷毀「全螢幕示意圖」物件
+        if (photoEffectButton != null)
+        {
+            Destroy(photoEffectButton.gameObject);
+        }
     }
 
 

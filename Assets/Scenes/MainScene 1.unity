@@ -4100,8 +4100,8 @@ MonoBehaviour:
   playerMove: {fileID: 767660320}
   playerFight: {fileID: 767660319}
   dialogue: {fileID: 1176266015}
-  mai: {fileID: 0}
-  enemiesRoot: {fileID: 0}
+  mai: {fileID: 908556397}
+  enemiesRoot: {fileID: 1660530556}
   maiHelpArea: {fileID: 1328632740}
 --- !u!4 &1416653359
 Transform:
