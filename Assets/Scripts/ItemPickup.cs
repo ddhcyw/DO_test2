@@ -18,11 +18,11 @@ public class ItemPickup : MonoBehaviour
     {
         if (item == null)
         {
-            Debug.LogWarning("¦a¤Wªºª««~ " + gameObject.name + " ¨S¦³³]©w Item ¸ê®Æ¡I");
+            Debug.LogWarning("ï¿½aï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½~ " + gameObject.name + " ï¿½Sï¿½ï¿½ï¿½]ï¿½w Item ï¿½ï¿½Æ¡I");
             return;
         }
 
-        //©I¥s InventoryManager ªº Add ¤èªk
+        
         bool wasAdded = InventoryManager.Instance.Add(item);
 
         if (wasAdded)
