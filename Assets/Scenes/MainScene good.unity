@@ -1584,7 +1584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMove: {fileID: 1119875316}
   playerFight: {fileID: 1119875321}
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 1040267700}
   maiHelpArea: {fileID: 1019505270}
   enemiesRoot: {fileID: 518781059}
 --- !u!4 &594699601
