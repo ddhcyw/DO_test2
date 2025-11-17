@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class GameFlow : MonoBehaviour
 {
-    // === 狀態定義 ===
-    public enum GameState { Exploring, Talking, Fighting }
-    public static GameState CurrentState { get; private set; } = GameState.Exploring;
+    public static GameFlow Instance;
 
-    // === 欄位設定 ===
+    public enum GameState { Exploring, Talking, Fighting }
+    public GameState CurrentState { get; private set; } = GameState.Exploring;
+
     [Header("角色控制")]
     public PlayerController playerMove;
     public PlayerControllerFight playerFight;
@@ -15,73 +15,43 @@ public class GameFlow : MonoBehaviour
     public DialogueController dialogue;
 
     [Header("場景物件")]
-    public GameObject mai;             // MAI 機器人
-    public GameObject enemiesRoot;     // 數據蟲父物件（包含所有敵人）
-    public GameObject maiHelpArea;     // MAI 幫助區域
+    public GameObject maiHelpArea;   // MAI 幫助區
+    public GameObject enemiesRoot;   // 數據蟲父物件（預設 Hidden）
 
-    // === 狀態切換 ===
-    public static void SetState(GameState newState)
+    void Awake()
     {
-        CurrentState = newState;
-        Debug.Log($"🎮 遊戲狀態切換為：{newState}");
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    void Start()
-    {
-        // 初始狀態：探索模式
-        SwitchToExploring();
-    }
-
-    // 探索模式
-    public void SwitchToExploring()
-    {
-        SetState(GameState.Exploring);
-
-        if (playerMove) playerMove.enabled = true;
-        if (playerFight) playerFight.enabled = false;
-
-        if (dialogue) dialogue.root.SetActive(false);
-
-        if (mai) mai.SetActive(true);
-        if (maiHelpArea) maiHelpArea.SetActive(true);
-        if (enemiesRoot) enemiesRoot.SetActive(false);
-    }
-
-    // 對話模式
-    public void SwitchToTalking()
-    {
-        SetState(GameState.Talking);
-
-        if (playerMove) playerMove.enabled = false;
-        if (playerFight) playerFight.enabled = false;
-
-        if (dialogue) dialogue.root.SetActive(true);
-        if (maiHelpArea) maiHelpArea.SetActive(false);
-    }
-
-    // 戰鬥模式
-    public void SwitchToFighting()
-    {
-        SetState(GameState.Fighting);
-
-        if (playerMove) playerMove.enabled = false;
-        if (playerFight) playerFight.enabled = true;
-
-        if (dialogue) dialogue.root.SetActive(false);
-
-        if (mai) mai.SetActive(false);
-        if (maiHelpArea) maiHelpArea.SetActive(false);
-        if (enemiesRoot) enemiesRoot.SetActive(true);
-    }
-
-    // === 供外部事件呼叫（例如 DialogueController） ===
+    // ================= 對話開始 =================
     public void OnDialogueStarted()
     {
-        SwitchToTalking();
+        Debug.Log("🟦 GameFlow.OnDialogueStarted()");
+
+        CurrentState = GameState.Talking;
+
+        if (playerMove)  playerMove.enabled  = false;
+        if (playerFight) playerFight.enabled = false;
+
+        if (maiHelpArea) maiHelpArea.SetActive(false);
     }
 
+    // ================= 對話結束 =================
     public void OnDialogueFinished()
     {
-        SwitchToFighting();
+        Debug.Log("🟥 GameFlow.OnDialogueFinished()");
+
+        if (enemiesRoot) enemiesRoot.SetActive(true);
+
+        CurrentState = GameState.Fighting;
+
+        if (playerFight) playerFight.enabled = true;
     }
 }
