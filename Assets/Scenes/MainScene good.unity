@@ -5330,6 +5330,7 @@ GameObject:
   - component: {fileID: 1286449380}
   - component: {fileID: 1286449382}
   - component: {fileID: 1286449381}
+  - component: {fileID: 1286449383}
   m_Layer: 0
   m_Name: Mai
   m_TagString: Untagged
@@ -5462,6 +5463,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: {fileID: 1040267700}
+  inkKnotName: bridge_intro
+--- !u!114 &1286449383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286449378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05f15f0fb60527f49981b2eb6065d68a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueId: bridge_intro
   inkKnotName: bridge_intro
 --- !u!1 &1307263427
 GameObject:
@@ -7509,6 +7524,7 @@ GameObject:
   - component: {fileID: 1840474035}
   - component: {fileID: 1840474034}
   - component: {fileID: 1840474033}
+  - component: {fileID: 1840474036}
   - component: {fileID: 1840474032}
   m_Layer: 0
   m_Name: Mai (1)
@@ -7643,6 +7659,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1840474036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840474031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05f15f0fb60527f49981b2eb6065d68a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueId: rocket_scene
+  inkKnotName: rocket_scene
 --- !u!1 &1842560525
 GameObject:
   m_ObjectHideFlags: 0

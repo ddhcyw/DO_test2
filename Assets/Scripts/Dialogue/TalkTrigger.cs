@@ -1,31 +1,48 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class TalkTrigger : MonoBehaviour
 {
-    public string dialogueId;   // 例如 "MAI1", "MAI2"
-    public string inkKnotName;  // Ink 裡面對應的 knot 名
+    [Header("對話系統")]
+    // 指向場景裡的 DialogueController（通常在 DialogueSystemRoot 上）
+    public DialogueController dialogue;
 
-    bool used = false;
+    [Header("Ink 設定")]
+    // 要播放的 Ink knot 名稱（例如 bridge_intro / rocket_scene / training_finish）
+    public string inkKnotName = "bridge_intro";
+
+    [Tooltip("這個對話結束後是否要生出練習用 Databug")]
+    public bool spawnTrainingBugAfterDialogue = false;
+
+    bool triggered = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (used) return;
+        if (triggered) return;
         if (!other.CompareTag("Player")) return;
 
-        // 只有在 Exploring 時才觸發
-        if (GameFlow.Instance.CurrentState != GameFlow.GameState.Exploring)
+        if (!dialogue)
+        {
+            Debug.LogError("TalkTrigger: DialogueController 沒有指定！");
             return;
+        }
 
-        // 限制劇情順序
-        var stage = GameFlow.Instance.CurrentStage;
-        if (dialogueId == "MAI1" && stage != GameFlow.StoryStage.None)
+        // 如果有 GameFlow，而且目前不是在探索狀態，就先不要插隊開對話
+        if (GameFlow.Instance &&
+            GameFlow.Instance.CurrentState != GameFlow.GameState.Exploring)
+        {
             return;
+        }
 
-        if (dialogueId == "MAI2" && stage != GameFlow.StoryStage.MetMai1)
-            return;
+        triggered = true;
 
-        used = true;
+        // 如果這個對話結束後要生 Databug，就先通知 GameFlow
+        if (spawnTrainingBugAfterDialogue && GameFlow.Instance)
+        {
+            GameFlow.Instance.SetSpawnTrainingBugAfterDialogue();
+        }
 
-        GameFlow.Instance.StartStoryDialogue(dialogueId, inkKnotName);
+        // 開啟指定 knot 的 Ink 對話
+        dialogue.StartInkDialogue(inkKnotName);
     }
 }
