@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using System.Text.RegularExpressions;
+using Ink.Runtime;   // ★★★ 新增的：Ink 支援
 
 public class DialogueController : MonoBehaviour
 {
@@ -9,11 +10,10 @@ public class DialogueController : MonoBehaviour
     public GameFlow gameFlow;
 
     [Header("UI")]
-    [Tooltip("整個對話面板，例如 Canvas 下的 DialoguePanel")]
-    public GameObject panelRoot;          // DialoguePanel
-    public TMP_Text nameText;             // NameText
-    public TMP_Text bodyText;             // BodyText
-    public GameObject continueHint;       // ContinueHint (可以是小圖示)
+    public GameObject panelRoot;         // DialoguePanel
+    public TMP_Text nameText;            // NameText
+    public TMP_Text bodyText;            // BodyText
+    public GameObject continueHint;      // ContinueHint（小箭頭）
 
     [Header("Typing")]
     public bool typewriter = true;
@@ -23,6 +23,9 @@ public class DialogueController : MonoBehaviour
     string lastSpeaker = "";
     static readonly Regex SPEAKER = new(@"^\s*([^:：]+)\s*[:：]\s*(.*)$");
 
+    // ============================================================
+    // 🔵 Mock 對話（保留給你測試用）
+    // ============================================================
     int _mockIndex = 0;
     readonly string[] _mockLines =
     {
@@ -40,9 +43,15 @@ public class DialogueController : MonoBehaviour
         "MAI: 如果你願意讓麻伊幫忙的話，就到橋的另一邊找我吧！麻伊先去準備一些能幫助你的工具！"
     };
 
-    // ----------------------------------------------------
-    // 初始化：一開始關掉對話 UI
-    // ----------------------------------------------------
+    // ============================================================
+    // 🔶 Ink 對話整合
+    // ============================================================
+    [Header("Ink Dialogue")]
+    public bool useInk = false;          // ★ 是否使用 Ink
+    public TextAsset inkJSONAsset;       // ★ Ink JSON
+    Story inkStory;                      // ★ Ink Story 物件
+
+    // ============================================================
     void Awake()
     {
         if (panelRoot)
@@ -52,9 +61,9 @@ public class DialogueController : MonoBehaviour
             continueHint.SetActive(false);
     }
 
-    // ----------------------------------------------------
-    // 給外部呼叫：開始一整段對話
-    // ----------------------------------------------------
+    // ============================================================
+    // 🔷 外部呼叫：開始對話
+    // ============================================================
     public void StartDialogue()
     {
         Debug.Log("🟦 DialogueController.StartDialogue");
@@ -65,43 +74,45 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        // 重設狀態
-        _mockIndex = 0;
-        lastSpeaker = "";
-        if (typingCo != null)
-        {
-            StopCoroutine(typingCo);
-            typingCo = null;
-        }
+        // 開啟 UI
+        panelRoot.SetActive(true);
+        continueHint.SetActive(false);
+        bodyText.text = "";
+        nameText.text = "";
 
-        panelRoot.SetActive(true);            // 開啟整個 DialoguePanel
-        if (continueHint) continueHint.SetActive(false);
-        if (bodyText) bodyText.text = "";
-        if (nameText) nameText.text = "";
-
-        // 通知 GameFlow 進入「Talking」狀態（會鎖玩家移動、關掉 MAI 幫助區）
         if (gameFlow)
             gameFlow.OnDialogueStarted();
 
-        // 確保 UI 已經 active 再開始顯示文字
+        // ★ 若使用 Ink，先初始化對話
+        if (useInk && inkJSONAsset != null)
+        {
+            inkStory = new Story(inkJSONAsset.text);
+            ContinueInk();
+            return;
+        }
+
+        // ★ 若不用 Ink → 使用 mock 對話
+        _mockIndex = 0;
+        lastSpeaker = "";
+
+        if (typingCo != null)
+            StopCoroutine(typingCo);
+
         StartCoroutine(StartAfterUIReady());
     }
 
     IEnumerator StartAfterUIReady()
     {
-        // 等一 frame，讓 Unity 把 active 狀態更新完
         yield return null;
-
-        // 再保險：直到整個階層都 active 才開始
         while (!panelRoot.activeInHierarchy)
             yield return null;
 
-        Advance();
+        Advance(); // mock 對話
     }
 
-    // ----------------------------------------------------
-    // Update：按滑鼠左鍵 / 空白鍵 → 下一句
-    // ----------------------------------------------------
+    // ============================================================
+    // 🔷 Update：按空白/滑鼠 → 下一句
+    // ============================================================
     void Update()
     {
         if (!panelRoot || !panelRoot.activeSelf)
@@ -110,75 +121,115 @@ public class DialogueController : MonoBehaviour
         if (continueHint && continueHint.activeSelf &&
             (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)))
         {
+            // 若正在打字 → 跳到完整句子
+            if (typingCo != null)
+            {
+                StopCoroutine(typingCo);
+                typingCo = null;
+                continueHint.SetActive(true);
+                return;
+            }
+
+            // ★ Ink 下一句
+            if (useInk && inkStory != null)
+            {
+                ContinueInk();
+                return;
+            }
+
+            // ★ Mock 下一句
             Advance();
         }
     }
 
-    // ----------------------------------------------------
-    // 讀取下一句台詞
-    // ----------------------------------------------------
+    // ============================================================
+    // 🔵 Mock 對話：下一句
+    // ============================================================
     void Advance()
     {
-        // 1. 如果正在打字 → 直接跳完本句
         if (typingCo != null)
         {
             StopCoroutine(typingCo);
             typingCo = null;
 
-            // 補上完整句子
             if (_mockIndex > 0 && _mockIndex <= _mockLines.Length)
             {
                 string lastLine = _mockLines[_mockIndex - 1];
                 var mLast = SPEAKER.Match(lastLine);
                 string fullText = mLast.Success ? mLast.Groups[2].Value : lastLine;
-                if (bodyText) bodyText.text = fullText;
+                bodyText.text = fullText;
             }
 
-            if (continueHint) continueHint.SetActive(true);
+            continueHint.SetActive(true);
             return;
         }
 
-        // 2. 對話已經講完 → 結束
         if (_mockIndex >= _mockLines.Length)
         {
             End();
             return;
         }
 
-        // 3. 讀下一句
         string line = _mockLines[_mockIndex++];
-
         var m = SPEAKER.Match(line);
-        string who = lastSpeaker;
-        string text = line;
 
-        if (m.Success)
-        {
-            who = m.Groups[1].Value.Trim();
-            text = m.Groups[2].Value;
-            lastSpeaker = who;
-        }
+        string who = m.Success ? m.Groups[1].Value.Trim() : lastSpeaker;
+        string text = m.Success ? m.Groups[2].Value : line;
 
-        if (nameText) nameText.text = who;
+        lastSpeaker = who;
+        nameText.text = who;
 
         if (!typewriter)
         {
-            if (bodyText) bodyText.text = text;
-            if (continueHint) continueHint.SetActive(true);
+            bodyText.text = text;
+            continueHint.SetActive(true);
         }
         else
         {
-            if (continueHint) continueHint.SetActive(false);
+            continueHint.SetActive(false);
             typingCo = StartCoroutine(TypeText(text));
         }
     }
 
-    // ----------------------------------------------------
-    // 打字機效果
-    // ----------------------------------------------------
+    // ============================================================
+    // 🔶 Ink：下一句
+    // ============================================================
+    void ContinueInk()
+    {
+        if (!inkStory.canContinue)
+        {
+            End();
+            return;
+        }
+
+        string line = inkStory.Continue().Trim();
+
+        // 格式：名字: 台詞
+        int idx = line.IndexOf(':');
+        string who = idx > 0 ? line.Substring(0, idx).Trim() : "";
+        string text = idx > 0 ? line.Substring(idx + 1).Trim() : line;
+
+        nameText.text = who;
+        bodyText.text = "";
+
+        if (typewriter)
+        {
+            continueHint.SetActive(false);
+            typingCo = StartCoroutine(TypeText(text));
+        }
+        else
+        {
+            bodyText.text = text;
+            continueHint.SetActive(true);
+        }
+    }
+
+    // ============================================================
+    // 🟡 打字效果
+    // ============================================================
     IEnumerator TypeText(string t)
     {
-        if (bodyText) bodyText.text = "";
+        bodyText.text = "";
 
         float time = 0f;
         int shown = 0;
@@ -192,31 +243,26 @@ public class DialogueController : MonoBehaviour
             if (want != shown)
             {
                 shown = want;
-                if (bodyText)
-                    bodyText.text = t[..shown];
+                bodyText.text = t[..shown];
             }
 
             yield return null;
         }
 
         typingCo = null;
-        if (continueHint) continueHint.SetActive(true);
+        continueHint.SetActive(true);
     }
 
-    // ----------------------------------------------------
-    // 結束對話
-    // ----------------------------------------------------
+    // ============================================================
+    // 🔴 對話結束
+    // ============================================================
     void End()
     {
         Debug.Log("🟥 Dialogue 結束");
 
-        if (panelRoot)
-            panelRoot.SetActive(false);
+        panelRoot.SetActive(false);
+        continueHint.SetActive(false);
 
-        if (continueHint)
-            continueHint.SetActive(false);
-
-        // 告訴 GameFlow：對話結束 → 進入戰鬥、開啟敵人
         if (gameFlow)
             gameFlow.OnDialogueFinished();
     }
