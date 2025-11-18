@@ -3655,7 +3655,7 @@ GameObject:
   - component: {fileID: 1119875319}
   - component: {fileID: 1119875318}
   - component: {fileID: 1119875317}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: "\u4E3B\u89D2"
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3807,7 +3807,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 2.4125, y: 3.74}
     newSize: {x: 2.4125, y: 3.74}
     adaptiveTilingThreshold: 0.5
@@ -4493,7 +4493,7 @@ GameObject:
   - component: {fileID: 1286449380}
   - component: {fileID: 1286449382}
   - component: {fileID: 1286449381}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Mai
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4602,7 +4602,7 @@ BoxCollider2D:
   m_Offset: {x: -0.017509937, y: 0.09639931}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 2.8257143, y: 2.817143}
     newSize: {x: 2.8257143, y: 2.817143}
     adaptiveTilingThreshold: 0.5
