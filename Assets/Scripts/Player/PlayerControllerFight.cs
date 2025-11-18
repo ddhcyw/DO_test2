@@ -4,11 +4,20 @@ using UnityEngine;
 public class PlayerControllerFight : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public LayerMask blockMask; // 勾 Obstacle + Hurtbox
+    public LayerMask blockMask;
+
     Rigidbody2D rb;
     Vector2 input;
     ContactFilter2D filter;
     RaycastHit2D[] hits = new RaycastHit2D[4];
+
+    private bool canMove = true;  // ★新增
+
+    public void EnableMovement(bool active)
+    {
+        canMove = active;
+        if (!active) rb.velocity = Vector2.zero;
+    }
 
     void Awake()
     {
@@ -26,6 +35,12 @@ public class PlayerControllerFight : MonoBehaviour
 
     void Update()
     {
+        if (!canMove)
+        {
+            input = Vector2.zero;
+            return;
+        }
+
         input = new Vector2(
             Input.GetAxisRaw("Horizontal"),
             Input.GetAxisRaw("Vertical")
@@ -34,14 +49,23 @@ public class PlayerControllerFight : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 delta = input * moveSpeed * Time.fixedDeltaTime;
-        if (delta.sqrMagnitude <= 0f) { rb.velocity = Vector2.zero; return; }
+        if (!canMove)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
 
-        // 以移動方向做形體投射，預測會不會撞到（Obstacle/Hurtbox）
+        Vector2 delta = input * moveSpeed * Time.fixedDeltaTime;
+
+        if (delta.sqrMagnitude <= 0f)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
         int hitCount = rb.Cast(delta.normalized, filter, hits, delta.magnitude);
         if (hitCount > 0)
         {
-            // 只走到碰撞點前（保留一點安全距離）
             float allowed = hits[0].fraction * delta.magnitude;
             delta = delta.normalized * Mathf.Max(0f, allowed - 0.01f);
         }
