@@ -1585,7 +1585,7 @@ MonoBehaviour:
   playerMove: {fileID: 1119875316}
   playerFight: {fileID: 1119875321}
   dialogue: {fileID: 1040267700}
-  maiHelpArea: {fileID: 1019505270}
+  maiHelpArea: {fileID: 820610907}
   enemiesRoot: {fileID: 518781059}
 --- !u!4 &594699601
 Transform:
@@ -3804,7 +3804,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1.7290862}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -3815,7 +3815,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4125, y: 3.74}
+  m_Size: {x: 2.4125, y: 3.473987}
   m_EdgeRadius: 0
 --- !u!114 &1119875319
 MonoBehaviour:
@@ -4599,7 +4599,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.017509937, y: 0.09639931}
+  m_Offset: {x: -0.017509937, y: 1.3737869}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -4610,7 +4610,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4755235, y: 2.6243443}
+  m_Size: {x: 2.4755235, y: 2.4704418}
   m_EdgeRadius: 0
 --- !u!114 &1286449382
 MonoBehaviour:
