@@ -1,7 +1,9 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using Ink.Runtime; 
+using Ink.Runtime;
+using Core;   // 使用 TrainingManager
+
 public class DialogueController : MonoBehaviour
 {
     [Header("GameFlow Reference")]
@@ -27,20 +29,16 @@ public class DialogueController : MonoBehaviour
 
     void Awake()
     {
-        // 遊戲開始時隱藏對話框
         if (panelRoot) panelRoot.SetActive(false);
         if (continueHint) continueHint.SetActive(false);
     }
 
     void Update()
     {
-        // 如果面板沒開，就不偵測輸入
         if (!panelRoot || !panelRoot.activeSelf) return;
 
-        // 偵測滑鼠左鍵或空白鍵
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
-            // 情況 1: 正在打字中 -> 瞬間顯示全句
             if (typingCo != null)
             {
                 StopCoroutine(typingCo);
@@ -48,7 +46,6 @@ public class DialogueController : MonoBehaviour
                 if (bodyText) bodyText.text = currentLineText;
                 if (continueHint) continueHint.SetActive(true);
             }
-            // 情況 2: 已經顯示完畢 -> 下一句
             else
             {
                 ContinueInk();
@@ -69,13 +66,11 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        // 1. 建立新的 Story 實例
         inkStory = new Story(inkJSONAsset.text);
+        inkStory.allowExternalFunctionFallbacks = true;
 
-        // 2. 綁定外部函數 (這是與 GameFlow 溝通的關鍵)
         BindExternal();
 
-        // 3. 跳轉到指定的節點 (Knot)
         if (!string.IsNullOrEmpty(knotName))
         {
             try
@@ -88,7 +83,6 @@ public class DialogueController : MonoBehaviour
             }
         }
 
-        // 4. 開啟 UI 並通知 GameFlow
         panelRoot.SetActive(true);
         if (continueHint) continueHint.SetActive(false);
         if (nameText) nameText.text = "";
@@ -96,7 +90,6 @@ public class DialogueController : MonoBehaviour
 
         if (gameFlow) gameFlow.OnDialogueStarted();
 
-        // 5. 開始顯示第一句
         ContinueInk();
     }
 
@@ -105,57 +98,82 @@ public class DialogueController : MonoBehaviour
     // ============================================================
     void BindExternal()
     {
-        if (gameFlow == null)
+        if (inkStory == null)
         {
-            Debug.LogError("DialogueController: GameFlow 未指定，無法綁定外部函數！");
+            Debug.LogError("DialogueController: inkStory 還沒建立就嘗試綁定 external");
             return;
         }
 
-        // 綁定 GDD 需求的指令：
+        if (gameFlow == null)
+        {
+            Debug.LogWarning("DialogueController: GameFlow 未指定，僅會呼叫 TrainingManager 的外部功能");
+        }
 
         // 1. 給予相機 (~ give_camera())
-        inkStory.BindExternalFunction("give_camera", () => {
-            gameFlow.GiveCamera();
+        inkStory.BindExternalFunction("give_camera", () =>
+        {
+            if (gameFlow != null)
+                gameFlow.GiveCamera();
+
+            if (TrainingManager.Instance != null)
+                TrainingManager.Instance.OnGiveCamera();
         });
 
         // 2. 顯示任務指示 (~ show_objective("目標", "提示"))
-        inkStory.BindExternalFunction("show_objective", (string target, string hint) => {
-            gameFlow.ShowObjectiveUI(target, hint);
+        inkStory.BindExternalFunction("show_objective", (string target, string hint) =>
+        {
+            if (gameFlow != null)
+                gameFlow.ShowObjectiveUI(target, hint);
+
+            if (TrainingManager.Instance != null)
+                TrainingManager.Instance.ShowObjective(target, hint);
         });
 
-        // 3. 產生怪物波次 / 設置戰鬥 (~ spawn_wave())
-        inkStory.BindExternalFunction("spawn_wave", () => {
-            gameFlow.SetSpawnTrainingBugAfterDialogue();
+        // 3. 產生練習場怪物 (~ spawn_wave())
+        inkStory.BindExternalFunction("spawn_wave", () =>
+        {
+            // 生成練習用數據蟲
+            if (TrainingManager.Instance != null)
+            {
+                TrainingManager.Instance.StartTraining();
+            }
+            else if (gameFlow != null)
+            {
+                gameFlow.SetSpawnTrainingBugAfterDialogue();
+            }
+            else
+            {
+                Debug.LogWarning("spawn_wave 被呼叫，但場景中沒有 TrainingManager 或 GameFlow。");
+            }
+
+            // 這個節點我們就是要「生完怪 → 收對話 → 讓玩家動」
+            EndDialogue();
         });
     }
+
 
     // ============================================================
     //  讀取下一句對話
     // ============================================================
     void ContinueInk()
     {
-        // 如果故事沒了，或無法繼續
         if (inkStory == null || !inkStory.canContinue)
         {
             EndDialogue();
             return;
         }
 
-        // 讀取下一行文字
         string line = inkStory.Continue().Trim();
 
-        // 解析 "名字: 台詞" 格式
-        // 例如 "MAI嚮導: 你好！" -> who="MAI嚮導", text="你好！"
         string who = "";
         string text = line;
 
-        int colonIndex = line.IndexOf(':'); // 尋找全形或半形冒號，這裡假設是用半形 ':'
+        int colonIndex = line.IndexOf(':');
         if (colonIndex > 0)
         {
             who = line.Substring(0, colonIndex).Trim();
             text = line.Substring(colonIndex + 1).Trim();
         }
-        // 如果您 Ink 裡用全形冒號 '：'，可以加一個檢查：
         else if ((colonIndex = line.IndexOf('：')) > 0)
         {
             who = line.Substring(0, colonIndex).Trim();
@@ -164,11 +182,9 @@ public class DialogueController : MonoBehaviour
 
         currentLineText = text;
 
-        // 更新 UI
         if (nameText) nameText.text = who;
-        if (bodyText) bodyText.text = ""; // 先清空，準備打字
+        if (bodyText) bodyText.text = "";
 
-        // 執行打字或直接顯示
         if (typewriter)
         {
             if (continueHint) continueHint.SetActive(false);
@@ -194,8 +210,7 @@ public class DialogueController : MonoBehaviour
         while (charIndex < totalChars)
         {
             t += Time.deltaTime * Mathf.Max(1, charsPerSecond);
-            charIndex = Mathf.FloorToInt(t);
-            charIndex = Mathf.Clamp(charIndex, 0, totalChars);
+            charIndex = Mathf.Clamp(Mathf.FloorToInt(t), 0, totalChars);
 
             if (bodyText)
                 bodyText.text = content.Substring(0, charIndex);
@@ -203,7 +218,6 @@ public class DialogueController : MonoBehaviour
             yield return null;
         }
 
-        // 打字完成
         if (bodyText) bodyText.text = content;
         typingCo = null;
         if (continueHint) continueHint.SetActive(true);
@@ -217,10 +231,10 @@ public class DialogueController : MonoBehaviour
         Debug.Log("🟥 DialogueController: 對話結束");
 
         if (panelRoot) panelRoot.SetActive(false);
+        if (continueHint) continueHint.SetActive(false);
 
-        inkStory = null; // 清除故事狀態
+        inkStory = null;
 
-        // 通知 GameFlow 對話已結束 (可能會觸發戰鬥等)
         if (gameFlow) gameFlow.OnDialogueFinished();
     }
 }
