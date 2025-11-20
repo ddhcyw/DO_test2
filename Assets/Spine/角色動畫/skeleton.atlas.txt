@@ -1,0 +1,160 @@
+
+skeleton.png
+size: 1765,831
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+右手1
+  rotate: true
+  xy: 1092, 426
+  size: 220, 239
+  orig: 3508, 2480
+  offset: 2430, 853
+  index: -1
+右手2
+  rotate: true
+  xy: 2, 2
+  size: 166, 190
+  orig: 3508, 2480
+  offset: 2563, 1006
+  index: -1
+右手3
+  rotate: true
+  xy: 413, 14
+  size: 154, 216
+  orig: 3508, 2480
+  offset: 2593, 1081
+  index: -1
+右手4
+  rotate: false
+  xy: 1653, 727
+  size: 105, 102
+  orig: 3508, 2480
+  offset: 2673, 1239
+  index: -1
+右腳1
+  rotate: false
+  xy: 1371, 2
+  size: 173, 236
+  orig: 3508, 2480
+  offset: 2631, 776
+  index: -1
+右腳2
+  rotate: true
+  xy: 1546, 144
+  size: 239, 167
+  orig: 3508, 2480
+  offset: 2552, 647
+  index: -1
+右腳3
+  rotate: true
+  xy: 527, 184
+  size: 150, 219
+  orig: 3508, 2480
+  offset: 2632, 721
+  index: -1
+左手1
+  rotate: true
+  xy: 1333, 430
+  size: 183, 212
+  orig: 3508, 2480
+  offset: 2985, 963
+  index: -1
+左手2
+  rotate: true
+  xy: 194, 3
+  size: 165, 217
+  orig: 3508, 2480
+  offset: 2968, 1037
+  index: -1
+左手3
+  rotate: true
+  xy: 1547, 385
+  size: 228, 216
+  orig: 3508, 2480
+  offset: 3049, 822
+  index: -1
+左手4
+  rotate: true
+  xy: 748, 193
+  size: 141, 129
+  orig: 3508, 2480
+  offset: 2916, 1201
+  index: -1
+左腳1
+  rotate: true
+  xy: 1073, 8
+  size: 204, 296
+  orig: 3508, 2480
+  offset: 2823, 717
+  index: -1
+左腳2
+  rotate: false
+  xy: 1092, 648
+  size: 267, 181
+  orig: 3508, 2480
+  offset: 2814, 580
+  index: -1
+左腳3
+  rotate: true
+  xy: 1309, 240
+  size: 184, 226
+  orig: 3508, 2480
+  offset: 2847, 645
+  index: -1
+相機
+  rotate: true
+  xy: 1092, 228
+  size: 196, 215
+  orig: 3508, 2480
+  offset: 2670, 928
+  index: -1
+身體
+  rotate: false
+  xy: 527, 336
+  size: 374, 493
+  orig: 3508, 2480
+  offset: 2644, 891
+  index: -1
+頭1
+  rotate: true
+  xy: 903, 407
+  size: 422, 167
+  orig: 3508, 2480
+  offset: 2647, 1773
+  index: -1
+頭2
+  rotate: true
+  xy: 860, 4
+  size: 187, 211
+  orig: 3508, 2480
+  offset: 2612, 1559
+  index: -1
+頭3
+  rotate: true
+  xy: 1371, 615
+  size: 214, 280
+  orig: 3508, 2480
+  offset: 2698, 1488
+  index: -1
+頭4
+  rotate: true
+  xy: 631, 5
+  size: 177, 227
+  orig: 3508, 2480
+  offset: 2537, 1537
+  index: -1
+頭5
+  rotate: false
+  xy: 879, 214
+  size: 211, 120
+  orig: 3508, 2480
+  offset: 2600, 1451
+  index: -1
+頭7
+  rotate: true
+  xy: 2, 170
+  size: 659, 523
+  orig: 3508, 2480
+  offset: 2542, 1316
+  index: -1
