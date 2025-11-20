@@ -8,6 +8,7 @@ public class DialogueController : MonoBehaviour
 {
     [Header("GameFlow Reference")]
     public GameFlow gameFlow; // 用來呼叫外部指令
+    public bool IsPlaying => panelRoot != null && panelRoot.activeSelf;
 
     [Header("UI Components")]
     public GameObject panelRoot;    // 對話面板 (DialoguePanel)
