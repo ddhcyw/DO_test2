@@ -106,25 +106,14 @@ public class OpeningSequenceManager : MonoBehaviour
         Debug.Log("開場結束，進入遊戲！");
 
         // 1. 解鎖玩家控制
-        if (gameFlow)
-        {
-            gameFlow.playerMove.enabled = true;
-            // GameFlow 的狀態預設就是 Exploring
-        }
+        if (gameFlow) gameFlow.playerMove.enabled = true;
 
-        // 2. 確保 MAI 幫助區保持關閉 (直到玩家自己去觸發 InteractZone)
-        if (maiHelpArea) maiHelpArea.SetActive(false);
+        // *** 修正：開場結束後，要「顯示」常駐的幫助區 ***
+        if (maiHelpArea) maiHelpArea.SetActive(true);
 
-        // 3. 銷毀或隱藏開場 UI
-        if (uiRoot)
-        {
-            // Destroy(uiRoot); // 如果你想完全刪除
-            uiRoot.SetActive(false); // 或者只是隱藏
-        }
-        //if (dimmerObject) dimmerObject.SetActive(false);
+        // 3. 關閉開場 UI
+        if (uiRoot) uiRoot.SetActive(false);
 
-       
-        // 4. 銷毀這個腳本物件 (不再需要偵測點擊了)
         Destroy(gameObject);
     }
 }
