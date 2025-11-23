@@ -94,4 +94,12 @@ public class InventoryUI : MonoBehaviour
             }
         }
     }
+    private void OnDestroy()
+    {
+        // 當這個 UI 被銷毀時 (例如切換場景)，記得告訴 Manager「我不在了，別再通知我」
+        if (inventoryManager != null)
+        {
+            inventoryManager.OnInventoryChanged -= UpdateUI;
+        }
+    }
 }
