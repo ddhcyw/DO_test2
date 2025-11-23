@@ -1,0 +1,62 @@
+
+NPC2.png
+size: 1853,1269
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+管理員1
+  rotate: true
+  xy: 1537, 134
+  size: 485, 206
+  orig: 3508, 2480
+  offset: 1449, 1677
+  index: -1
+管理員2
+  rotate: false
+  xy: 1496, 621
+  size: 311, 146
+  orig: 3508, 2480
+  offset: 1546, 1594
+  index: -1
+管理員3
+  rotate: false
+  xy: 2, 550
+  size: 897, 717
+  orig: 3508, 2480
+  offset: 1207, 1432
+  index: -1
+管理員4
+  rotate: true
+  xy: 1496, 769
+  size: 498, 355
+  orig: 3508, 2480
+  offset: 1216, 1129
+  index: -1
+管理員5
+  rotate: false
+  xy: 901, 529
+  size: 593, 738
+  orig: 3508, 2480
+  offset: 1400, 795
+  index: -1
+管理員6
+  rotate: false
+  xy: 574, 19
+  size: 317, 529
+  orig: 3508, 2480
+  offset: 1728, 926
+  index: -1
+管理員7
+  rotate: true
+  xy: 2, 2
+  size: 546, 570
+  orig: 3508, 2480
+  offset: 1764, 405
+  index: -1
+管理員8
+  rotate: true
+  xy: 893, 30
+  size: 497, 642
+  orig: 3508, 2480
+  offset: 1432, 334
+  index: -1

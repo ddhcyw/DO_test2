@@ -1,0 +1,111 @@
+
+NPC.png
+size: 2033,1865
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+小綠1
+  rotate: false
+  xy: 1544, 1054
+  size: 453, 268
+  orig: 3508, 2480
+  offset: 1578, 1365
+  index: -1
+小綠2
+  rotate: false
+  xy: 2, 1237
+  size: 905, 626
+  orig: 3508, 2480
+  offset: 1354, 1232
+  index: -1
+小綠3
+  rotate: true
+  xy: 909, 1299
+  size: 564, 633
+  orig: 3508, 2480
+  offset: 1529, 685
+  index: -1
+小綠4
+  rotate: true
+  xy: 909, 1033
+  size: 264, 615
+  orig: 3508, 2480
+  offset: 1950, 633
+  index: -1
+小綠5
+  rotate: true
+  xy: 858, 754
+  size: 277, 600
+  orig: 3508, 2480
+  offset: 1391, 645
+  index: -1
+小綠6
+  rotate: false
+  xy: 1544, 1324
+  size: 366, 539
+  orig: 3508, 2480
+  offset: 1406, 343
+  index: -1
+小綠7
+  rotate: true
+  xy: 783, 88
+  size: 361, 511
+  orig: 3508, 2480
+  offset: 1845, 347
+  index: -1
+小藍1
+  rotate: true
+  xy: 858, 451
+  size: 301, 526
+  orig: 3508, 2480
+  offset: 1810, 974
+  index: -1
+小藍2
+  rotate: false
+  xy: 1567, 2
+  size: 306, 524
+  orig: 3508, 2480
+  offset: 1399, 978
+  index: -1
+小藍3
+  rotate: false
+  xy: 1875, 786
+  size: 156, 266
+  orig: 3508, 2480
+  offset: 1358, 1831
+  index: -1
+小藍4
+  rotate: true
+  xy: 1296, 33
+  size: 416, 269
+  orig: 3508, 2480
+  offset: 1554, 1444
+  index: -1
+小藍5
+  rotate: false
+  xy: 2, 610
+  size: 854, 625
+  orig: 3508, 2480
+  offset: 1329, 1309
+  index: -1
+小藍6
+  rotate: false
+  xy: 430, 80
+  size: 351, 528
+  orig: 3508, 2480
+  offset: 1806, 384
+  index: -1
+小藍7
+  rotate: false
+  xy: 1526, 528
+  size: 347, 524
+  orig: 3508, 2480
+  offset: 1376, 378
+  index: -1
+小藍8
+  rotate: false
+  xy: 2, 5
+  size: 426, 603
+  orig: 3508, 2480
+  offset: 1544, 763
+  index: -1
