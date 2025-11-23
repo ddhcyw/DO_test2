@@ -60,11 +60,8 @@ MAI: 「你放心！遇到問題的時候，麻伊會全力在你身旁幫助你
 
 ~ give_camera() 
 ~ show_objective("拿起相機吧！") 
-
 MAI: 「這個是『網路風險蒐證相機』...」
-
 -> END
-
 === camera_pickup ===
 
 
