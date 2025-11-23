@@ -2,7 +2,6 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using Ink.Runtime;
-using Core;   // 使用 TrainingManager
 
 public class DialogueController : MonoBehaviour
 {
@@ -24,9 +23,9 @@ public class DialogueController : MonoBehaviour
     public TextAsset inkJSONAsset; // Ink 編譯後的 .json 檔案
 
     // 內部變數
-    private Story inkStory;
-    private Coroutine typingCo;
-    private string currentLineText = "";
+    Story inkStory;
+    Coroutine typingCo;
+    string currentLineText = "";
 
     void Awake()
     {
@@ -105,19 +104,13 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        if (gameFlow == null)
-        {
-            Debug.LogWarning("DialogueController: GameFlow 未指定，僅會呼叫 TrainingManager 的外部功能");
-        }
-
         // 1. 給予相機 (~ give_camera())
         inkStory.BindExternalFunction("give_camera", () =>
         {
             if (gameFlow != null)
                 gameFlow.GiveCamera();
-
-            if (TrainingManager.Instance != null)
-                TrainingManager.Instance.OnGiveCamera();
+            else
+                Debug.LogWarning("give_camera 被呼叫，但場景中沒有 GameFlow。");
         });
 
         // 2. 顯示任務指示 (~ show_objective("目標", "提示"))
@@ -125,33 +118,20 @@ public class DialogueController : MonoBehaviour
         {
             if (gameFlow != null)
                 gameFlow.ShowObjectiveUI(target, hint);
-
-            if (TrainingManager.Instance != null)
-                TrainingManager.Instance.ShowObjective(target, hint);
+            else
+                Debug.LogWarning("show_objective 被呼叫，但場景中沒有 GameFlow。");
         });
 
         // 3. 產生練習場怪物 (~ spawn_wave())
         inkStory.BindExternalFunction("spawn_wave", () =>
         {
-            // 生成練習用數據蟲
-            if (TrainingManager.Instance != null)
-            {
-                TrainingManager.Instance.StartTraining();
-            }
-            else if (gameFlow != null)
-            {
+            if (gameFlow != null)
                 gameFlow.SetSpawnTrainingBugAfterDialogue();
-            }
             else
-            {
-                Debug.LogWarning("spawn_wave 被呼叫，但場景中沒有 TrainingManager 或 GameFlow。");
-            }
-
-            // 這個節點我們就是要「生完怪 → 收對話 → 讓玩家動」
-            EndDialogue();
+                Debug.LogWarning("spawn_wave 被呼叫，但場景中沒有 GameFlow。");
+            // 不在這裡 EndDialogue，讓 Ink 流程正常走到 END 再結束
         });
     }
-
 
     // ============================================================
     //  讀取下一句對話
