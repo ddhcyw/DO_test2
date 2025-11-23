@@ -1,6 +1,7 @@
 ﻿EXTERNAL give_camera()
 EXTERNAL show_objective(content)
 EXTERNAL spawn_wave()
+EXTERNAL get_camera_item()
 
 // 1. 對話一：在橋邊遇到 MAI1
 === bridge_intro ===
@@ -55,25 +56,28 @@ MAI: 「只要向網路城的居民收集能量源，很快火箭就能啟動了
 
 MAI: 「不過，最近的網路城被各種『隱患』困擾著……。希望居民們不會因此拒絕。」
 
-旁白: 「主角一臉擔心地看著 MAI。」
-
 MAI: 「你放心！遇到問題的時候，麻伊會全力在你身旁幫助你的。」
 
-~ give_camera() // 呼叫 GameFlow.GiveCamera()
-~ show_objective("拿起相機吧！")
+~ give_camera() 
+~ show_objective("拿起相機吧！") 
 
-MAI: 「這個是『網路風險蒐證相機』，是非常可靠的武器歐！」
-MAI: 「既可以用來蒐集資訊，也可以用來對付危險的『隱患』。」
-
-主角: 「這個東西真的能幫到我嗎？」
-
-MAI: 「當然！來吧，我們先去練習場。等你學會怎麼使用它，我們就能出發去找能量了！」
-主角: 「好吧……我會努力的！」
-~ spawn_wave()
+MAI: 「這個是『網路風險蒐證相機』...」
 
 -> END
 
+=== camera_pickup ===
+
+
+// 呼叫 Unity：進背包 + 開大圖
+~ get_camera_item()
+~ spawn_wave()
+
+// 更新任務提示
 ~ show_objective("對準蟲蟲按F試試！")
+
+-> END
+
+
 
 // 3. 對話三：練習完成後
 === training_finish ===
