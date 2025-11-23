@@ -112,14 +112,11 @@ public class DialogueController : MonoBehaviour
             else
                 Debug.LogWarning("give_camera 被呼叫，但場景中沒有 GameFlow。");
         });
+        inkStory.BindExternalFunction("get_camera_item", () => gameFlow.GetCameraItem());
 
-        // 2. 顯示任務指示 (~ show_objective("目標", "提示"))
-        inkStory.BindExternalFunction("show_objective", (string target, string hint) =>
-        {
-            if (gameFlow != null)
-                gameFlow.ShowObjectiveUI(target, hint);
-            else
-                Debug.LogWarning("show_objective 被呼叫，但場景中沒有 GameFlow。");
+        // 2. 顯示任務指示 (~ show_objective("提示"))
+        inkStory.BindExternalFunction("show_objective", (string content) => {
+            gameFlow.ShowObjectiveUI(content);
         });
 
         // 3. 產生練習場怪物 (~ spawn_wave())
@@ -131,6 +128,11 @@ public class DialogueController : MonoBehaviour
                 Debug.LogWarning("spawn_wave 被呼叫，但場景中沒有 GameFlow。");
             // 不在這裡 EndDialogue，讓 Ink 流程正常走到 END 再結束
         });
+        //---圖像廣場---
+        inkStory.BindExternalFunction("show_flyer", () => gameFlow.ShowFlyerInScene());
+        inkStory.BindExternalFunction("get_flyer", () => gameFlow.GetFlyerItem());
+        inkStory.BindExternalFunction("destroy_flyer", () => gameFlow.DestroyFlyerObject());
+        inkStory.BindExternalFunction("get_portfolio", () => gameFlow.GetPortfolioItem());
     }
 
     // ============================================================

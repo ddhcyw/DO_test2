@@ -33,11 +33,13 @@ public class ObjectiveManager : MonoBehaviour
     }
 
     // 顯示新的任務指示
-    public void ShowObjective(string target, string hint)
+    public void ShowObjective(string content)
     {
-        // 覆蓋掉預設的幫助訊息
-        if (targetText) targetText.text = target;
+        // 直接顯示傳入的內容
+        if (targetText) targetText.text = content;
 
+        // 確保面板開啟
+        if (panelRoot) panelRoot.SetActive(true);
     }
 
     // 4. (新增) 清除任務並顯示預設幫助訊息

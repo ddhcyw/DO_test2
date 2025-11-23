@@ -1,5 +1,5 @@
 ﻿EXTERNAL give_camera()
-EXTERNAL show_objective(target, hint)
+EXTERNAL show_objective(content)
 EXTERNAL spawn_wave()
 
 // 1. 對話一：在橋邊遇到 MAI1
@@ -24,7 +24,7 @@ MAI: 「身為網路城裡專業的嚮導，麻伊非常願意指引你回家的
 
 MAI: 「如果你願意讓麻伊嚮導幫助你的話，就到橋的另一邊找我吧！我先去預備可以幫助你的工具。」
 
-
+~ show_objective("找到和麻伊很像的機器！")
 -> END
 
 
@@ -60,6 +60,7 @@ MAI: 「不過，最近的網路城被各種『隱患』困擾著……。希望
 MAI: 「你放心！遇到問題的時候，麻伊會全力在你身旁幫助你的。」
 
 ~ give_camera() // 呼叫 GameFlow.GiveCamera()
+~ show_objective("拿起相機吧！")
 
 MAI: 「這個是『網路風險蒐證相機』，是非常可靠的武器歐！」
 MAI: 「既可以用來蒐集資訊，也可以用來對付危險的『隱患』。」
@@ -69,9 +70,10 @@ MAI: 「既可以用來蒐集資訊，也可以用來對付危險的『隱患』
 MAI: 「當然！來吧，我們先去練習場。等你學會怎麼使用它，我們就能出發去找能量了！」
 主角: 「好吧……我會努力的！」
 ~ spawn_wave()
+
 -> END
 
-
+~ show_objective("對準蟲蟲按F試試！")
 
 // 3. 對話三：練習完成後
 === training_finish ===

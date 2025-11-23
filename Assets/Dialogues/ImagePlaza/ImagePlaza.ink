@@ -3,16 +3,18 @@ EXTERNAL show_flyer()      // 讓傳單出現在場景上
 EXTERNAL get_flyer()       // 把傳單加入背包
 EXTERNAL destroy_flyer()   // 讓場景上的傳單消失
 EXTERNAL get_portfolio()   // 把作品集加入背包
-EXTERNAL show_objective(target, hint)
+EXTERNAL show_objective(content)
 
-~ show_objective("走到數據橋的另一側", "你可以按「地圖」鍵查看位置。")
+~ show_objective("探索地圖，找到需要幫助的人吧！")
 
 // 1. 第一次與莉亞對話
 === plaza_leah ===
 莉亞: 「歡迎來到莉亞的作品展！」
 莉亞: 「我是攝影師莉亞，是社交區的攝影師，希望我的作品能夠帶給居民溫暖與歡笑！」
 莉亞: 「這次我在圖像廣場一共展覽了三張作品，你可以去看看，可以的話也可以和我分享你的心得呦！」
+~ show_objective("去看看莉亞的展覽吧！")
 ~ show_flyer()
+~ show_objective("地上好像有奇怪的東西...")
 
 -> END
 
@@ -27,7 +29,7 @@ EXTERNAL show_objective(target, hint)
 ~ get_flyer()
 
 ~ destroy_flyer()
-
+~ show_objective("把傳單拖曳給莉亞看看！")
 -> END
 
 

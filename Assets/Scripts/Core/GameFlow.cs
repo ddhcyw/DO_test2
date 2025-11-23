@@ -21,9 +21,19 @@ public class GameFlow : MonoBehaviour
     [Header("任務 / 道具")]
     public ObjectiveManager objectiveManager;    // 任務指示管理器
     public GameObject cameraSceneObject;         // 場景上的相機互動物件
+    public GameObject cameraCloseupUI;
+    public Item cameraItemAsset;
 
     [Header("練習場流程")]
     public string trainingFinishKnot = "training_finish";  // 練習結束後要播的 Ink 節點名
+
+    [Header("圖像廣場設定")]
+    public GameObject flyerObject;
+    public Item flyerItemData;
+    public GameObject flyerCloseupUI;
+    public Item portfolioItemData;
+    public GameObject portfolioCloseupUI;
+
 
     bool practiceStarted = false;       // 用於追蹤怪物是否已生成且未被清除
     string pendingActionAfterDialogue = "";  // 對話結束後要做的動作（例如 SpawnTrainingBug）
@@ -99,11 +109,11 @@ public class GameFlow : MonoBehaviour
     // ================= Ink 外部指令接收器 =================
 
     // ~ show_objective("目標", "提示")
-    public void ShowObjectiveUI(string target, string hint)
+    public void ShowObjectiveUI(string content)
     {
-        Debug.Log($"Setting Objective: {target}");
+        Debug.Log($"Setting Objective: {content}");
         if (objectiveManager)
-            objectiveManager.ShowObjective(target, hint);
+            objectiveManager.ShowObjective(content);
     }
 
     // ~ give_camera()
@@ -117,6 +127,26 @@ public class GameFlow : MonoBehaviour
         else
         {
             Debug.LogError("GameFlow: cameraSceneObject 沒有指定！");
+        }
+    }
+    public void GetCameraItem()
+    {
+        if (cameraItemAsset != null)
+        {
+            // 1. 加入背包
+            InventoryManager.Instance.Add(cameraItemAsset);
+
+            // 2. 顯示大圖
+            if (cameraCloseupUI != null)
+            {
+                cameraCloseupUI.SetActive(true);
+            }
+
+            // 3. 讓地上的物件消失
+            if (cameraSceneObject != null)
+            {
+                cameraSceneObject.SetActive(false);
+            }
         }
     }
 
@@ -166,4 +196,56 @@ public class GameFlow : MonoBehaviour
     {
         Debug.Log("Opening World Map for selection...");
     }
+    //---圖像廣場---
+    // 1. 顯示傳單 (由 plaza_leah 呼叫)
+    public void ShowFlyerInScene()
+    {
+        if (flyerObject)
+        {
+            flyerObject.SetActive(true);
+            Debug.Log("傳單出現在地上了！");
+        }
+    }
+
+    // 2. 獲得傳單 (由 plaza_flyer_pickup 呼叫)
+    public void GetFlyerItem()
+    {
+        if (flyerItemData)
+        {
+            InventoryManager.Instance.Add(flyerItemData);
+            if (flyerCloseupUI != null)
+            {
+                flyerCloseupUI.SetActive(true);
+            }
+        }
+    }
+
+    // 3. 銷毀傳單 (由 plaza_flyer_pickup 結束時呼叫)
+    public void DestroyFlyerObject()
+    {
+        if (flyerObject)
+        {
+            // 只是隱藏它，或者 Destroy 都可以
+            flyerObject.SetActive(false);
+            // Destroy(flyerObject); 
+        }
+    }
+    // 4. 獲得作品集 (由 plaza_leah_flyer 呼叫)
+    public void GetPortfolioItem()
+    {
+        if (portfolioItemData != null)
+        {
+            bool success = InventoryManager.Instance.Add(portfolioItemData);
+            if (portfolioCloseupUI != null)
+            {
+                portfolioCloseupUI.SetActive(true);
+            }
+            if (success) Debug.Log("獲得作品集！");
+        }
+        else
+        {
+            Debug.LogError("GameFlow: portfolioItemData 未設定！");
+        }
+    }
+
 }
