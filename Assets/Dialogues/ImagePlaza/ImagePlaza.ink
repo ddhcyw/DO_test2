@@ -4,6 +4,7 @@ EXTERNAL get_flyer()       // 把傳單加入背包
 EXTERNAL destroy_flyer()   // 讓場景上的傳單消失
 EXTERNAL get_portfolio()   // 把作品集加入背包
 EXTERNAL show_objective(content)
+EXTERNAL change_scene(sceneName)
 
 ~ show_objective("探索地圖，找到需要幫助的人吧！")
 
@@ -52,6 +53,6 @@ MAI: 「莉亞小姐，不用擔心，我們會去幫你看看，把這件事調
 
 MAI: 「那我們現在就前往幻影巷吧！」
 
-
+~ change_scene("幻影巷Scene")
 
 -> END

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameFlow : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class GameFlow : MonoBehaviour
 
     public enum GameState { Exploring, Talking, Fighting }
     public GameState CurrentState { get; private set; } = GameState.Exploring;
+
+    private string sceneToLoadAfterDialogue = "";
 
     [Header("角色控制")]
     public PlayerController playerMove;
@@ -33,6 +36,9 @@ public class GameFlow : MonoBehaviour
     public GameObject flyerCloseupUI;
     public Item portfolioItemData;
     public GameObject portfolioCloseupUI;
+
+    [Header("幻影巷設定")]
+    public GameObject compareMinigamePanel; // 找碴遊戲的 UI Panel
 
 
     bool practiceStarted = false;       // 用於追蹤怪物是否已生成且未被清除
@@ -89,23 +95,41 @@ public class GameFlow : MonoBehaviour
 
     public void OnDialogueFinished()
     {
-        Debug.Log("GameFlow.OnDialogueFinished()");
+        Debug.Log("🟥 對話結束");
 
-        // 如果 Ink 剛剛叫了 ~ spawn_wave()
-        if (pendingActionAfterDialogue == "SpawnTrainingBug")
+        // 優先檢查：是否有要切換場景？
+        if (!string.IsNullOrEmpty(sceneToLoadAfterDialogue))
         {
-            pendingActionAfterDialogue = "";
-            SpawnTrainingBug();
-            return;
+            string targetScene = sceneToLoadAfterDialogue;
+            sceneToLoadAfterDialogue = ""; // 清空
+
+            Debug.Log($"切換場景至: {targetScene}");
+            SceneManager.LoadScene(targetScene);
+            return; // 切換場景後就不用做後面的恢復狀態了
         }
 
-        // 其他：回到 Exploring
-        CurrentState = GameState.Exploring;
+        // 檢查是否有「待辦事項」 (例如：進入戰鬥)
+        if (pendingActionAfterDialogue == "SpawnTrainingBug")
+        {
+            {
+                pendingActionAfterDialogue = "";
+                SpawnTrainingBug();
+                return;
+            }
 
-        if (playerMove) playerMove.enabled = true;
-        if (playerFight) playerFight.enabled = false;
+            // 其他：回到 Exploring
+            CurrentState = GameState.Exploring;
+
+            if (playerMove) playerMove.enabled = true;
+            if (playerFight) playerFight.enabled = false;
+        }
     }
-
+    // 新增一個公開方法供 Ink 呼叫
+    public void SetSceneToLoad(string sceneName)
+    {
+        sceneToLoadAfterDialogue = sceneName;
+        Debug.Log($"已預約對話結束後前往: {sceneName}");
+    }
     // ================= Ink 外部指令接收器 =================
 
     // ~ show_objective("目標", "提示")
@@ -245,6 +269,21 @@ public class GameFlow : MonoBehaviour
         else
         {
             Debug.LogError("GameFlow: portfolioItemData 未設定！");
+        }
+    }
+    //---幻影巷---
+    public void StartCompareMinigame()
+    {
+        Debug.Log("開啟找碴小遊戲");
+        if (compareMinigamePanel != null)
+        {
+            compareMinigamePanel.SetActive(true);
+
+            // (可選) 如果小遊戲開始時要暫停對話或隱藏其他 UI，可以在這裡寫
+        }
+        else
+        {
+            Debug.LogError("GameFlow: compareMinigamePanel 未設定！");
         }
     }
 

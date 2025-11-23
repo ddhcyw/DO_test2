@@ -30,6 +30,19 @@ public class NpcInteraction : MonoBehaviour
             // 移除物品 (如果需要)
             InventoryManager.Instance.Remove(item);
         }
+        else if (item.name == "Portfolio" && npcName == "Dandadan")
+        {
+            Debug.Log($"將作品集交給了 {npcName}");
+
+            if (dialogueController != null)
+            {
+                // 播放膽大黨的對話
+                dialogueController.StartInkDialogue("dandadan_portfolio");
+            }
+
+            // 從背包移除作品集 
+            InventoryManager.Instance.Remove(item);
+        }
         else
         {
             Debug.Log($"{npcName} 對 {item.name} 沒有興趣。");
