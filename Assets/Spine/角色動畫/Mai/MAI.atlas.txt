@@ -1,0 +1,103 @@
+
+MAI.png
+size: 1949,1974
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+悲傷1
+  rotate: false
+  xy: 2, 1896
+  size: 573, 76
+  orig: 2048, 2048
+  offset: 944, 1059
+  index: -1
+悲傷2
+  rotate: false
+  xy: 2, 1636
+  size: 624, 216
+  orig: 2048, 2048
+  offset: 943, 1074
+  index: -1
+正常
+  rotate: false
+  xy: 628, 1522
+  size: 626, 233
+  orig: 2048, 2048
+  offset: 941, 1075
+  index: -1
+生氣
+  rotate: false
+  xy: 1227, 1757
+  size: 631, 215
+  orig: 2048, 2048
+  offset: 939, 1074
+  index: -1
+耳機1
+  rotate: false
+  xy: 577, 1854
+  size: 416, 118
+  orig: 2048, 2048
+  offset: 793, 987
+  index: -1
+耳機2
+  rotate: false
+  xy: 2, 541
+  size: 1149, 703
+  orig: 2048, 2048
+  offset: 647, 1071
+  index: -1
+身體1
+  rotate: true
+  xy: 1182, 1006
+  size: 513, 632
+  orig: 2048, 2048
+  offset: 438, 360
+  index: -1
+身體3
+  rotate: true
+  xy: 2, 1267
+  size: 367, 509
+  orig: 2048, 2048
+  offset: 1395, 436
+  index: -1
+開心
+  rotate: false
+  xy: 513, 1246
+  size: 667, 274
+  orig: 2048, 2048
+  offset: 918, 1057
+  index: -1
+驚嚇
+  rotate: false
+  xy: 1256, 1521
+  size: 629, 234
+  orig: 2048, 2048
+  offset: 942, 1074
+  index: -1
+鼠標1
+  rotate: true
+  xy: 995, 1777
+  size: 195, 230
+  orig: 2048, 2048
+  offset: 118, 1451
+  index: -1
+鼠標2
+  rotate: true
+  xy: 1153, 2
+  size: 1002, 794
+  orig: 2048, 2048
+  offset: 254, 1009
+  index: -1
+
+MAI2.png
+size: 1109,1445
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+身體2
+  rotate: false
+  xy: 2, 2
+  size: 1105, 1441
+  orig: 2048, 2048
+  offset: 600, 208
+  index: -1
