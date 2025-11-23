@@ -97,32 +97,33 @@ public class GameFlow : MonoBehaviour
     {
         Debug.Log("🟥 對話結束");
 
-        // 優先檢查：是否有要切換場景？
+        // 1. 優先檢查：是否有要切換場景？
         if (!string.IsNullOrEmpty(sceneToLoadAfterDialogue))
         {
             string targetScene = sceneToLoadAfterDialogue;
-            sceneToLoadAfterDialogue = ""; // 清空
-
+            sceneToLoadAfterDialogue = "";
             Debug.Log($"切換場景至: {targetScene}");
             SceneManager.LoadScene(targetScene);
-            return; // 切換場景後就不用做後面的恢復狀態了
+            return;
         }
 
-        // 檢查是否有「待辦事項」 (例如：進入戰鬥)
+        // 2. 檢查是否有「待辦事項」 (例如：進入戰鬥)
         if (pendingActionAfterDialogue == "SpawnTrainingBug")
         {
-            {
-                pendingActionAfterDialogue = "";
-                SpawnTrainingBug();
-                return;
-            }
-
-            // 其他：回到 Exploring
-            CurrentState = GameState.Exploring;
-
-            if (playerMove) playerMove.enabled = true;
-            if (playerFight) playerFight.enabled = false;
+            pendingActionAfterDialogue = "";
+            SpawnTrainingBug();
+            return; // 如果是戰鬥，就從這裡離開，不執行下面的恢復邏輯
         }
+
+        // *** 3. (修正) 其他普通對話：回到 Exploring ***
+        // 這段必須在 if 外面，這樣普通對話結束後才會執行
+        CurrentState = GameState.Exploring;
+
+        if (playerMove) playerMove.enabled = true;
+        if (playerFight) playerFight.enabled = false;
+
+        // 恢復顯示常駐幫助區
+        if (maiHelpArea) maiHelpArea.SetActive(true);
     }
     // 新增一個公開方法供 Ink 呼叫
     public void SetSceneToLoad(string sceneName)

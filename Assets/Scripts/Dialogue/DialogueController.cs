@@ -41,6 +41,7 @@ public class DialogueController : MonoBehaviour
         {
             if (typingCo != null)
             {
+                // 如果正在打字，瞬間顯示全句
                 StopCoroutine(typingCo);
                 typingCo = null;
                 if (bodyText) bodyText.text = currentLineText;
@@ -48,12 +49,15 @@ public class DialogueController : MonoBehaviour
             }
             else
             {
+                // 如果已經顯示完畢，讀下一句
                 ContinueInk();
             }
         }
     }
 
-    // 啟動對話
+    // ============================================================
+    //  啟動對話 (由 GameFlow 或 InteractZone 呼叫)
+    // ============================================================
     public void StartInkDialogue(string knotName)
     {
         Debug.Log($"🟦 DialogueController: 啟動對話節點 '{knotName}'");
@@ -64,11 +68,14 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
+        // 1. 建立新的 Story
         inkStory = new Story(inkJSONAsset.text);
         inkStory.allowExternalFunctionFallbacks = true;
 
+        // 2. 綁定外部函數 (關鍵步驟)
         BindExternal();
 
+        // 3. 跳轉到指定節點
         if (!string.IsNullOrEmpty(knotName))
         {
             try
@@ -81,6 +88,7 @@ public class DialogueController : MonoBehaviour
             }
         }
 
+        // 4. 開啟 UI 並通知 GameFlow
         panelRoot.SetActive(true);
         if (continueHint) continueHint.SetActive(false);
         if (nameText) nameText.text = "";
@@ -88,47 +96,65 @@ public class DialogueController : MonoBehaviour
 
         if (gameFlow) gameFlow.OnDialogueStarted();
 
+        // 5. 開始顯示第一句
         ContinueInk();
     }
 
-    // 綁定外部函數
+    // ============================================================
+    //  綁定外部函數 (Ink -> C#)
+    // ============================================================
     void BindExternal()
     {
-        if (inkStory == null)
+        if (inkStory == null) return;
+
+        if (gameFlow == null)
         {
-            Debug.LogError("DialogueController: inkStory 還沒建立就嘗試綁定 external");
+            Debug.LogError("DialogueController: GameFlow 未指定，無法執行外部指令！");
             return;
         }
 
-        inkStory.BindExternalFunction("give_camera", () =>
-        {
-            if (gameFlow != null)
-                gameFlow.GiveCamera();
-            else
-                Debug.LogWarning("give_camera 被呼叫，但場景中沒有 GameFlow。");
-        });
+        // --- 新手區指令 ---
+
+        // 1. 給予相機 (讓相機出現在場景中)
+        inkStory.BindExternalFunction("give_camera", () => gameFlow.GiveCamera());
+
+        // 2. 撿起相機 (進背包 + 開大圖)
         inkStory.BindExternalFunction("get_camera_item", () => gameFlow.GetCameraItem());
 
-        inkStory.BindExternalFunction("show_objective", (string content) => {
-            gameFlow.ShowObjectiveUI(content);
-        });
+        // 3. 顯示任務指示
+        inkStory.BindExternalFunction("show_objective", (string content) => gameFlow.ShowObjectiveUI(content));
 
-        inkStory.BindExternalFunction("spawn_wave", () =>
-        {
-            if (gameFlow != null)
-                gameFlow.SetSpawnTrainingBugAfterDialogue();
-            else
-                Debug.LogWarning("spawn_wave 被呼叫，但場景中沒有 GameFlow。");
-        });
+        // 4. 產生練習場怪物 (對話結束後生怪)
+        inkStory.BindExternalFunction("spawn_wave", () => gameFlow.SetSpawnTrainingBugAfterDialogue());
 
-        // 圖像廣場
+        // --- 通用指令 ---
+
+        // 5. 切換場景
+        inkStory.BindExternalFunction("change_scene", (string sceneName) => gameFlow.SetSceneToLoad(sceneName));
+
+        // --- 圖像廣場指令 ---
+
+        // 6. 顯示地上的傳單
         inkStory.BindExternalFunction("show_flyer", () => gameFlow.ShowFlyerInScene());
+
+        // 7. 獲得傳單 (進背包 + 開大圖)
         inkStory.BindExternalFunction("get_flyer", () => gameFlow.GetFlyerItem());
+
+        // 8. 銷毀地上的傳單
         inkStory.BindExternalFunction("destroy_flyer", () => gameFlow.DestroyFlyerObject());
+
+        // 9. 獲得作品集 (進背包 + 開大圖)
         inkStory.BindExternalFunction("get_portfolio", () => gameFlow.GetPortfolioItem());
+
+        // --- 幻影巷指令 ---
+
+        // 10. 開啟找碴小遊戲
+        inkStory.BindExternalFunction("start_compare_minigame", () => gameFlow.StartCompareMinigame());
     }
 
-    // 讀取下一句對話（已加入「跳過空行」邏輯）
+    // ============================================================
+    //  讀取下一句對話
+    // ============================================================
     void ContinueInk()
     {
         if (inkStory == null)
@@ -137,23 +163,33 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        // 連續吃掉「只有指令、沒有文字」的步驟
+        // 連續執行邏輯行，直到遇到文字或結束
         string line = null;
-
-        while (inkStory.canContinue && string.IsNullOrWhiteSpace(line))
+        while (inkStory.canContinue)
         {
             line = inkStory.Continue();
-            if (line != null)
+            if (!string.IsNullOrWhiteSpace(line))
+            {
                 line = line.Trim();
+                break; // 找到文字了，跳出迴圈準備顯示
+            }
         }
 
-        // 如果已經沒有文字可以顯示，就結束對話
+        // 如果跑完迴圈還是沒文字，且故事也不能繼續了，就結束
+        if (string.IsNullOrWhiteSpace(line) && !inkStory.canContinue)
+        {
+            EndDialogue();
+            return;
+        }
+
+        // 如果剛好讀到最後一行是空的 (罕見情況)，就直接結束
         if (string.IsNullOrWhiteSpace(line))
         {
             EndDialogue();
             return;
         }
 
+        // 解析 "名字: 台詞"
         string who = "";
         string text = line;
 
@@ -174,6 +210,7 @@ public class DialogueController : MonoBehaviour
         if (nameText) nameText.text = who;
         if (bodyText) bodyText.text = "";
 
+        // 執行顯示
         if (typewriter)
         {
             if (continueHint) continueHint.SetActive(false);
@@ -187,6 +224,9 @@ public class DialogueController : MonoBehaviour
         }
     }
 
+    // ============================================================
+    //  打字機協程
+    // ============================================================
     IEnumerator TypeText(string content)
     {
         float t = 0;
@@ -209,6 +249,9 @@ public class DialogueController : MonoBehaviour
         if (continueHint) continueHint.SetActive(true);
     }
 
+    // ============================================================
+    //  結束對話
+    // ============================================================
     void EndDialogue()
     {
         Debug.Log("🟥 DialogueController: 對話結束");
@@ -218,6 +261,7 @@ public class DialogueController : MonoBehaviour
 
         inkStory = null;
 
+        // 通知 GameFlow 對話已結束 (可能會觸發戰鬥、切換場景等)
         if (gameFlow) gameFlow.OnDialogueFinished();
     }
 }

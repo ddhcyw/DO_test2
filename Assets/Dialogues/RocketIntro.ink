@@ -2,6 +2,7 @@
 EXTERNAL show_objective(content)
 EXTERNAL spawn_wave()
 EXTERNAL get_camera_item()
+EXTERNAL change_scene(sceneName)
 
 // 1. 對話一：在橋邊遇到 MAI1
 === bridge_intro ===
@@ -60,8 +61,11 @@ MAI: 「你放心！遇到問題的時候，麻伊會全力在你身旁幫助你
 
 ~ give_camera() 
 ~ show_objective("拿起相機吧！") 
+
 MAI: 「這個是『網路風險蒐證相機』...」
+
 -> END
+
 === camera_pickup ===
 
 
@@ -81,5 +85,5 @@ MAI: 「這個是『網路風險蒐證相機』...」
 MAI: 「太好了咕！看來你已經學會如何使用相機了！」
 
 MAI: 「準備好了嗎？讓我們一起出發吧！要跟緊哦！」
-
+~ change_scene("湖中怪屋Scene")
 -> END
