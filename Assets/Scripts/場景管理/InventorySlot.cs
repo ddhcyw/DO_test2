@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerClickHandler
 {
@@ -78,14 +79,43 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             Destroy(dragIcon);
         }
 
-        // 關鍵修正 4: 
-        // 只有在拖放「失敗」時，才恢復原始圖示
-        if (!dropSuccessful)
+        // --- 新增：檢測是否拖曳到了 NPC 身上 ---
+        if (!dropSuccessful && item != null) // 如果沒有成功放入另一個格子，且手上有物品
         {
-            icon.enabled = (item != null && item.icon != null);
+            // 發射射線尋找滑鼠位置下的物件
+            PointerEventData pointerData = new PointerEventData(EventSystem.current)
+            {
+                position = Input.mousePosition
+            };
+
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerData, results);
+
+            foreach (RaycastResult result in results)
+            {
+                // 檢查該物件是否有 NpcInteraction 腳本
+                NpcInteraction npc = result.gameObject.GetComponent<NpcInteraction>();
+                if (npc != null)
+                {
+                    // 找到了 NPC！呼叫 NPC 的互動方法
+                    npc.OnItemDropped(item);
+
+                    // (可選) 互動成功後，可以在這裡清空這個格子 (如果是一次性道具)
+                    InventoryManager.Instance.Remove(item); 
+                    break; // 找到一個就停止
+                }
+            }
+        }
+        // -------------------------------------
+
+        // 恢復圖示顯示 (如果沒被銷毀的話)
+        if (this.item != null) // 多加一層檢查，以防 Item 在上面被移除了
+        {
+            icon.enabled = (item.icon != null);
         }
 
         dragIcon = null;
+        dropSuccessful = false; // 重置旗標
     }
 
     public void OnDrop(PointerEventData eventData)

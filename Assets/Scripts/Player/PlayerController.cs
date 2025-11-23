@@ -9,10 +9,14 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 input;
+
+    public Vector2 InputVector => input;   // 給動畫腳本讀取的移動向量
+
     private ContactFilter2D filter;
     private RaycastHit2D[] hits = new RaycastHit2D[4];
 
-    private bool canMove = true;  // ★新增：可否移動
+    private bool canMove = true;
+    public bool CanMove => canMove;
 
     public void EnableMovement(bool active)
     {

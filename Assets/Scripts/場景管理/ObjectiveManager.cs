@@ -36,7 +36,7 @@ public class ObjectiveManager : MonoBehaviour
     public void ShowObjective(string target, string hint)
     {
         // 覆蓋掉預設的幫助訊息
-        if (targetText) targetText.text = "[目標] " + target;
+        if (targetText) targetText.text = target;
 
     }
 

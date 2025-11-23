@@ -1,19 +1,19 @@
 using UnityEngine;
-using Core;
 
 public class PlayerCameraAttack : MonoBehaviour
 {
     [Header("攻擊設定")]
-    public float attackRange = 2f;
-    public LayerMask bugLayerMask;        // 只打得到 Databug 的 Layer
-    public Transform cameraOrigin;        // 發射射線的位置（角色中間或相機位置）
+    public KeyCode attackKey = KeyCode.K;
+    public float attackRadius = 1.5f;       // 攻擊半徑
+    public LayerMask bugLayerMask;          // 只打得到 Databug 的 Layer
+    public Transform attackCenter;          // 攻擊中心點（可指定到玩家胸口位置）
 
     [Header("相機持有狀態")]
-    public bool hasCamera = true;         // 如果是由 Inventory 控制，就讓別的系統來改這個值
+    public bool hasCamera = true;           // 如果之後有物品欄，就由那邊控制
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(attackKey))
         {
             TryShoot();
         }
@@ -23,40 +23,47 @@ public class PlayerCameraAttack : MonoBehaviour
     {
         if (!hasCamera)
         {
-            Debug.Log("PlayerCameraAttack: 攻擊時沒有相機");
+            Debug.Log("PlayerCameraAttack: 沒有相機，不能攻擊");
             return;
         }
 
-        if (!cameraOrigin)
-            cameraOrigin = transform;
+        if (!attackCenter)
+            attackCenter = transform;
 
-        // 這裡簡單用面朝右/左來決定方向，如果你有自己的 facingDir 就改成那個
-        Vector2 dir = transform.right; // 假設角色向右是正方向
+        Vector2 center = attackCenter.position;
 
-        RaycastHit2D hit = Physics2D.Raycast(
-            cameraOrigin.position,
-            dir,
-            attackRange,
-            bugLayerMask
-        );
+        // 範圍判定：以玩家附近畫一個圓，偵測所有敵人
+        Collider2D[] hits = Physics2D.OverlapCircleAll(center, attackRadius, bugLayerMask);
 
-        if (hit.collider != null)
+        if (hits.Length == 0)
         {
-            // 敵人可能掛在子物件 Collider 上，所以用 GetComponentInParent
-            TrainingBug bug = hit.collider.GetComponentInParent<TrainingBug>();
-            if (bug != null)
+            Debug.Log("PlayerCameraAttack: 這一圈沒有蟲蟲被拍到");
+            return;
+        }
+
+        // 先做最單純的版本：有打到就直接淨化（Destroy）
+        foreach (var hit in hits)
+        {
+            // 如果怪是用 Tag 管理，也可以再加一層判斷
+            if (hit.CompareTag("Enemy"))
             {
-                bug.HitByCamera();
-                Debug.Log("PlayerCameraAttack: 成功拍到數據蟲");
+                Debug.Log($"PlayerCameraAttack: 淨化 {hit.name}");
+                Destroy(hit.gameObject);
             }
             else
             {
-                Debug.Log("PlayerCameraAttack: 打到的東西沒有 TrainingBug 組件");
+                // 如果之後有 Health / Photographable，可以在這裡改成扣血或觸發特效
+                Debug.Log($"PlayerCameraAttack: 打到 {hit.name}，但沒有 Enemy Tag，先忽略");
             }
         }
-        else
-        {
-            Debug.Log("PlayerCameraAttack: 目前沒有蟲蟲被拍到");
-        }
+
+        // TODO: 在這裡播放拍照動畫 / 相機特效
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        if (!attackCenter) attackCenter = transform;
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(attackCenter.position, attackRadius);
     }
 }
