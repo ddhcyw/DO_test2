@@ -1,0 +1,188 @@
+
+Lia.png
+size: 2002,1079
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+右手2
+  rotate: false
+  xy: 1542, 217
+  size: 157, 182
+  orig: 3508, 2480
+  offset: 1365, 993
+  index: -1
+右手3
+  rotate: true
+  xy: 1503, 73
+  size: 142, 179
+  orig: 3508, 2480
+  offset: 1402, 1098
+  index: -1
+右手4
+  rotate: true
+  xy: 1826, 94
+  size: 106, 110
+  orig: 3508, 2480
+  offset: 1490, 1225
+  index: -1
+右手4-1
+  rotate: false
+  xy: 1769, 658
+  size: 230, 248
+  orig: 3508, 2480
+  offset: 1235, 848
+  index: -1
+右腳2
+  rotate: true
+  xy: 1611, 440
+  size: 213, 183
+  orig: 3508, 2480
+  offset: 1383, 668
+  index: -1
+右腳3
+  rotate: true
+  xy: 1701, 203
+  size: 138, 146
+  orig: 3508, 2480
+  offset: 1435, 729
+  index: -1
+右腳5-1
+  rotate: false
+  xy: 556, 2
+  size: 142, 224
+  orig: 3508, 2480
+  offset: 1445, 789
+  index: -1
+左手2
+  rotate: true
+  xy: 1796, 495
+  size: 161, 204
+  orig: 3508, 2480
+  offset: 1752, 1062
+  index: -1
+左手2-1
+  rotate: false
+  xy: 1330, 218
+  size: 210, 181
+  orig: 3508, 2480
+  offset: 1763, 999
+  index: -1
+左手3
+  rotate: false
+  xy: 1330, 401
+  size: 279, 252
+  orig: 3508, 2480
+  offset: 1851, 812
+  index: -1
+左手4
+  rotate: false
+  xy: 1849, 202
+  size: 140, 139
+  orig: 3508, 2480
+  offset: 1708, 1210
+  index: -1
+左腳2
+  rotate: false
+  xy: 700, 33
+  size: 258, 193
+  orig: 3508, 2480
+  offset: 1586, 588
+  index: -1
+左腳3
+  rotate: false
+  xy: 1136, 85
+  size: 170, 188
+  orig: 3508, 2480
+  offset: 1628, 666
+  index: -1
+左腳5-1
+  rotate: false
+  xy: 960, 16
+  size: 174, 210
+  orig: 3508, 2480
+  offset: 1621, 732
+  index: -1
+身體2
+  rotate: true
+  xy: 1197, 655
+  size: 422, 570
+  orig: 3508, 2480
+  offset: 1536, 782
+  index: -1
+身體3
+  rotate: true
+  xy: 559, 228
+  size: 354, 503
+  orig: 3508, 2480
+  offset: 1464, 900
+  index: -1
+身體3-1
+  rotate: true
+  xy: 1796, 343
+  size: 150, 204
+  orig: 3508, 2480
+  offset: 1502, 940
+  index: -1
+身體4
+  rotate: false
+  xy: 1064, 275
+  size: 264, 307
+  orig: 3508, 2480
+  offset: 1579, 1045
+  index: -1
+頭1-1
+  rotate: false
+  xy: 2, 68
+  size: 378, 278
+  orig: 3508, 2480
+  offset: 1394, 1595
+  index: -1
+頭2
+  rotate: true
+  xy: 1684, 3
+  size: 90, 123
+  orig: 3508, 2480
+  offset: 1349, 1469
+  index: -1
+頭3
+  rotate: true
+  xy: 1684, 95
+  size: 106, 140
+  orig: 3508, 2480
+  offset: 1477, 1439
+  index: -1
+頭4
+  rotate: true
+  xy: 1308, 58
+  size: 158, 193
+  orig: 3508, 2480
+  offset: 1365, 1540
+  index: -1
+頭5
+  rotate: false
+  xy: 382, 84
+  size: 172, 262
+  orig: 3508, 2480
+  offset: 1465, 1472
+  index: -1
+頭6
+  rotate: true
+  xy: 1769, 908
+  size: 169, 231
+  orig: 3508, 2480
+  offset: 1310, 1506
+  index: -1
+頭7
+  rotate: false
+  xy: 559, 584
+  size: 636, 493
+  orig: 3508, 2480
+  offset: 1297, 1326
+  index: -1
+頭8
+  rotate: false
+  xy: 2, 348
+  size: 555, 729
+  orig: 3508, 2480
+  offset: 1715, 1152
+  index: -1

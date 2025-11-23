@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
-  m_Name: MAI_Atlas
+  m_Name: Lia_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: 1ada80bb455ce2945a2af6c03c0cf3bc, type: 3}
+  atlasFile: {fileID: 4900000, guid: 36f4e726ef5ab8647a0a5d32bf2d1005, type: 3}
   materials:
-  - {fileID: 2100000, guid: d238b3ada47b64445af5e3e9325d5e16, type: 2}
-  - {fileID: 2100000, guid: acfb29f7379688240af2e8056c5838e8, type: 2}
+  - {fileID: 2100000, guid: fcf017919f36b0145817d9e080b370c4, type: 2}
