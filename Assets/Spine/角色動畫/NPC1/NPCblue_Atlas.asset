@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
-  m_Name: NPC_Atlas
+  m_Name: NPCblue_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: 7da784ffed0690d409a9535e9df995a9, type: 3}
+  atlasFile: {fileID: 4900000, guid: 8a36beffd65a85548886275802ed35c0, type: 3}
   materials:
-  - {fileID: 2100000, guid: e1c864566bdccf340beaab0d547abce0, type: 2}
+  - {fileID: 2100000, guid: eea071f5e0499b343b9cc903cb027093, type: 2}
