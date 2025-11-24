@@ -1,0 +1,62 @@
+
+cheapbuy.png
+size: 1263,1052
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+購便宜1
+  rotate: false
+  xy: 892, 32
+  size: 369, 363
+  orig: 3508, 2480
+  offset: 1647, 1251
+  index: -1
+購便宜2
+  rotate: false
+  xy: 707, 42
+  size: 183, 184
+  orig: 3508, 2480
+  offset: 1630, 974
+  index: -1
+購便宜3
+  rotate: true
+  xy: 1181, 766
+  size: 284, 80
+  orig: 3508, 2480
+  offset: 1691, 1185
+  index: -1
+購便宜4
+  rotate: true
+  xy: 737, 337
+  size: 58, 62
+  orig: 3508, 2480
+  offset: 1823, 1145
+  index: -1
+購便宜5
+  rotate: true
+  xy: 2, 228
+  size: 822, 733
+  orig: 3508, 2480
+  offset: 1312, 790
+  index: -1
+購便宜6
+  rotate: true
+  xy: 2, 2
+  size: 224, 395
+  orig: 3508, 2480
+  offset: 1985, 1191
+  index: -1
+購便宜7
+  rotate: true
+  xy: 399, 3
+  size: 223, 306
+  orig: 3508, 2480
+  offset: 1876, 1367
+  index: -1
+購便宜8
+  rotate: true
+  xy: 737, 397
+  size: 653, 442
+  orig: 3508, 2480
+  offset: 1504, 1252
+  index: -1
