@@ -1,5 +1,8 @@
 ﻿// LakeArea.ink
 EXTERNAL change_scene(sceneName)
+EXTERNAL show_objective(content)
+
+~ show_objective("好像掉到奇怪的地方...")
 
 // ===================== 湖中怪屋：NPC1 =====================
 === lake_npc1 ===
@@ -59,4 +62,5 @@ MAI: 「你覺得呢？」
 
 
 === lake_end_prepare_help ===
+~ change_scene("圖像廣場Scene")
 -> END

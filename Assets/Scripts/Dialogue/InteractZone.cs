@@ -11,6 +11,8 @@ public class InteractZone : MonoBehaviour
     // 這個區域要播放的 Ink knot 名稱（例如 bridge_intro、rocket_scene、training_finish）
     public string inkKnotName = "bridge_intro";
 
+    public GameObject dimmerObject;
+
     bool triggered = false;
 
     void OnTriggerEnter2D(Collider2D other)
@@ -22,6 +24,10 @@ public class InteractZone : MonoBehaviour
         {
             Debug.LogError("InteractZone: dialogue 沒有指定！");
             return;
+        }
+        if (dimmerObject != null)
+        {
+            dimmerObject.SetActive(false); 
         }
 
         triggered = true;

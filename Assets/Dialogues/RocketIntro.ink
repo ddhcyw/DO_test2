@@ -3,8 +3,9 @@ EXTERNAL show_objective(content)
 EXTERNAL spawn_wave()
 EXTERNAL get_camera_item()
 EXTERNAL change_scene(sceneName)
+EXTERNAL start_compare_minigame()
 
-~ show_objective("按E查看背包！")
+
 // 1. 對話一：在橋邊遇到 MAI1
 === bridge_intro ===
 MAI: 「哈囉！我是AI嚮導麻伊！」
@@ -26,6 +27,7 @@ MAI: 「身為網路城裡專業的嚮導，麻伊非常願意指引你回家的
 主角: 「好……！太感謝你了！」
 
 MAI: 「如果你願意讓麻伊嚮導幫助你的話，就到橋的另一邊找我吧！我先去預備可以幫助你的工具。」
+~ start_compare_minigame()
 
 ~ show_objective("找到和麻伊很像的機器！")
 -> END
@@ -64,6 +66,7 @@ MAI: 「你放心！遇到問題的時候，麻伊會全力在你身旁幫助你
 ~ show_objective("拿起相機吧！") 
 
 MAI: 「這個是『網路風險蒐證相機』...」
+~ show_objective("按E查看背包！")
 
 -> END
 

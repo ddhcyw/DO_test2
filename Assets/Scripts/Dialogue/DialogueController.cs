@@ -108,6 +108,7 @@ public class DialogueController : MonoBehaviour
     // ============================================================
     void BindExternal()
     {
+        
         if (inkStory == null) return;
 
         if (gameFlow == null)
@@ -124,6 +125,7 @@ public class DialogueController : MonoBehaviour
 
         // 通用
         inkStory.BindExternalFunction("change_scene", (string sceneName) => gameFlow.SetSceneToLoad(sceneName));
+        
 
         // 圖像廣場
         inkStory.BindExternalFunction("show_flyer", () => gameFlow.ShowFlyerInScene());
