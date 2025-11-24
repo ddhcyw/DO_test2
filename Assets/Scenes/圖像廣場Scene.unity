@@ -3234,10 +3234,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: "MAI\u5E6B\u52A9\u5340"
       objectReference: {fileID: 0}
-    - target: {fileID: 8306442549217216340, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3742,6 +3738,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 957150810}
     m_Modifications:
+    - target: {fileID: 1071649757405164310, guid: 278ab0e18c55dd64fab3f717a5a0802f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071649757405164310, guid: 278ab0e18c55dd64fab3f717a5a0802f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071649757405164310, guid: 278ab0e18c55dd64fab3f717a5a0802f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071649757405164310, guid: 278ab0e18c55dd64fab3f717a5a0802f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -110
+      objectReference: {fileID: 0}
     - target: {fileID: 1334064968234052063, guid: 278ab0e18c55dd64fab3f717a5a0802f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3849,6 +3861,18 @@ PrefabInstance:
     - target: {fileID: 2024083670066283653, guid: 278ab0e18c55dd64fab3f717a5a0802f, type: 3}
       propertyPath: m_Name
       value: DialoguePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158595220220048669, guid: 278ab0e18c55dd64fab3f717a5a0802f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158595220220048669, guid: 278ab0e18c55dd64fab3f717a5a0802f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 220
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976374995151949396, guid: 278ab0e18c55dd64fab3f717a5a0802f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7327610188281589996, guid: 278ab0e18c55dd64fab3f717a5a0802f, type: 3}
       propertyPath: m_margin.x
