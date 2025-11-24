@@ -1,8 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using Ink.Runtime;
+using UnityEngine.UI;   // ← 一定要有，Button 用得到
 
 public class DialogueController : MonoBehaviour
 {
@@ -17,8 +17,8 @@ public class DialogueController : MonoBehaviour
     public GameObject continueHint; // 繼續對話的小箭頭/提示
 
     [Header("Choice UI")]
-    public RectTransform choicesRoot;       // 選項容器 (例如 DialoguePanel 底下的 ChoicesRoot)
-    public GameObject choiceButtonPrefab;   // 剛做好的 ChoiceButton prefab
+    public RectTransform choicesRoot;      // 放選項按鈕的容器
+    public GameObject choiceButtonPrefab;  // 選項按鈕 Prefab（白色框 + TMP 文字）
 
     [Header("Typing Settings")]
     public bool typewriter = true;      // 是否開啟打字機效果
@@ -31,21 +31,21 @@ public class DialogueController : MonoBehaviour
     Story inkStory;
     Coroutine typingCo;
     string currentLineText = "";
-    bool isShowingChoices = false;
 
     void Awake()
     {
         if (panelRoot) panelRoot.SetActive(false);
         if (continueHint) continueHint.SetActive(false);
-        if (choicesRoot) choicesRoot.gameObject.SetActive(false);
+        ClearChoices();
     }
 
     void Update()
     {
         if (!panelRoot || !panelRoot.activeSelf) return;
 
-        // 有選項時，不要讓滑鼠點擊去觸發「下一句」
-        if (isShowingChoices) return;
+        // 如果現在有 Ink 選項，就讓 UI Button 處理，不要吃滑鼠點擊繼續對話
+        if (inkStory != null && inkStory.currentChoices.Count > 0)
+            return;
 
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
@@ -78,14 +78,14 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        // 1. 建立新的 Story
+        // 建立新的 Story
         inkStory = new Story(inkJSONAsset.text);
         inkStory.allowExternalFunctionFallbacks = true;
 
-        // 2. 綁定外部函數
+        // 綁定外部函數
         BindExternal();
 
-        // 3. 跳轉到指定節點
+        // 跳轉到指定節點
         if (!string.IsNullOrEmpty(knotName))
         {
             try
@@ -98,18 +98,15 @@ public class DialogueController : MonoBehaviour
             }
         }
 
-        // 4. 開啟 UI 並通知 GameFlow
+        // 開啟 UI
         panelRoot.SetActive(true);
         if (continueHint) continueHint.SetActive(false);
         if (nameText) nameText.text = "";
         if (bodyText) bodyText.text = "";
-
         ClearChoices();
-        isShowingChoices = false;
 
         if (gameFlow) gameFlow.OnDialogueStarted();
 
-        // 5. 開始顯示第一句
         ContinueInk();
     }
 
@@ -122,7 +119,7 @@ public class DialogueController : MonoBehaviour
 
         if (gameFlow == null)
         {
-            Debug.LogError("DialogueController: GameFlow 未指定，無法執行外部指令！");
+            Debug.LogWarning("DialogueController: GameFlow 未指定，外部指令會失效。");
             return;
         }
 
@@ -135,18 +132,18 @@ public class DialogueController : MonoBehaviour
         // --- 通用指令 ---
         inkStory.BindExternalFunction("change_scene", (string sceneName) => gameFlow.SetSceneToLoad(sceneName));
 
-        // --- 圖像廣場指令 ---
+        // --- 圖像廣場 ---
         inkStory.BindExternalFunction("show_flyer", () => gameFlow.ShowFlyerInScene());
         inkStory.BindExternalFunction("get_flyer", () => gameFlow.GetFlyerItem());
         inkStory.BindExternalFunction("destroy_flyer", () => gameFlow.DestroyFlyerObject());
         inkStory.BindExternalFunction("get_portfolio", () => gameFlow.GetPortfolioItem());
 
-        // --- 幻影巷指令 ---
+        // --- 幻影巷 ---
         inkStory.BindExternalFunction("start_compare_minigame", () => gameFlow.StartCompareMinigame());
     }
 
     // ============================================================
-    //  讀取下一句對話（包含處理選項）
+    //  讀取下一句對話
     // ============================================================
     void ContinueInk()
     {
@@ -156,51 +153,40 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        // 如果這一刻就已經有選項了，先顯示選項
-        if (inkStory.currentChoices.Count > 0)
-        {
-            ShowChoices();
-            return;
-        }
+        // 進下一句前，先把舊選項清掉
+        ClearChoices();
 
         string line = null;
 
-        // 連續執行，略過只呼叫 external、沒有文字的行
+        // 連續執行邏輯行，直到遇到文字或故事結束
         while (inkStory.canContinue)
         {
             line = inkStory.Continue();
-
             if (!string.IsNullOrWhiteSpace(line))
             {
                 line = line.Trim();
                 break;
             }
-
-            // 這次 Continue 沒拿到字，但產生了選項
-            if (inkStory.currentChoices.Count > 0)
-            {
-                line = null;
-                break;
-            }
         }
 
-        // 沒文字可以顯示時，看是結束還是進入選項
-        if (string.IsNullOrWhiteSpace(line))
+        // 沒文字且不能再繼續：可能已到結尾
+        if (string.IsNullOrWhiteSpace(line) && !inkStory.canContinue)
         {
+            // 如果這時候有 choices，就開選項
             if (inkStory.currentChoices.Count > 0)
             {
-                ShowChoices();
+                RefreshChoicesUI();
                 return;
             }
 
-            if (!inkStory.canContinue)
-            {
-                EndDialogue();
-                return;
-            }
+            EndDialogue();
+            return;
+        }
 
-            // 還可以 continue，但這次沒字，多半是 external，保險再叫一次
-            ContinueInk();
+        // 保險：如果還是空行就結束
+        if (string.IsNullOrWhiteSpace(line))
+        {
+            EndDialogue();
             return;
         }
 
@@ -225,7 +211,7 @@ public class DialogueController : MonoBehaviour
         if (nameText) nameText.text = who;
         if (bodyText) bodyText.text = "";
 
-        // 打字機或直接顯示
+        // 顯示文字
         if (typewriter)
         {
             if (continueHint) continueHint.SetActive(false);
@@ -237,6 +223,73 @@ public class DialogueController : MonoBehaviour
             if (bodyText) bodyText.text = text;
             if (continueHint) continueHint.SetActive(true);
         }
+
+        // 這句話後面如果跟著 Ink 選項，就生出按鈕
+        if (inkStory.currentChoices.Count > 0)
+        {
+            RefreshChoicesUI();
+        }
+    }
+
+    // ============================================================
+    //  選項 UI
+    // ============================================================
+    void RefreshChoicesUI()
+    {
+        if (choicesRoot == null || choiceButtonPrefab == null)
+        {
+            Debug.LogWarning("DialogueController: 沒有設定 choicesRoot 或 choiceButtonPrefab，無法顯示選項。");
+            return;
+        }
+
+        ClearChoices();
+
+        var currentChoices = inkStory.currentChoices;
+        for (int i = 0; i < currentChoices.Count; i++)
+        {
+            var choice = currentChoices[i];
+
+            // 生成按鈕
+            GameObject btnGO = Instantiate(choiceButtonPrefab, choicesRoot, false);
+
+            // 設文字
+            var label = btnGO.GetComponentInChildren<TMP_Text>();
+            if (label != null)
+                label.text = choice.text;
+
+            // 綁定按鈕事件
+            int choiceIndex = i;
+            var uiButton = btnGO.GetComponent<Button>();
+            if (uiButton != null)
+            {
+                uiButton.onClick.AddListener(() => OnClickChoice(choiceIndex));
+            }
+        }
+    }
+
+    void ClearChoices()
+    {
+        if (choicesRoot == null) return;
+
+        for (int i = choicesRoot.childCount - 1; i >= 0; i--)
+        {
+            Destroy(choicesRoot.GetChild(i).gameObject);
+        }
+    }
+
+    void OnClickChoice(int index)
+    {
+        if (inkStory == null) return;
+
+        Debug.Log($"[Dialogue] Choice clicked index = {index}");
+
+        inkStory.ChooseChoiceIndex(index);
+
+        // 清掉舊的選項
+        ClearChoices();
+
+        // 往下繼續劇本
+        ContinueInk();
     }
 
     // ============================================================
@@ -261,77 +314,7 @@ public class DialogueController : MonoBehaviour
 
         if (bodyText) bodyText.text = content;
         typingCo = null;
-
-        if (!isShowingChoices && continueHint) continueHint.SetActive(true);
-    }
-
-    // ============================================================
-    //  選項 UI
-    // ============================================================
-    void ShowChoices()
-    {
-        if (choicesRoot == null || choiceButtonPrefab == null)
-        {
-            Debug.LogWarning("DialogueController: 沒有設定 choicesRoot 或 choiceButtonPrefab，無法顯示選項。");
-            return;
-        }
-
-        ClearChoices();
-
-        var choices = inkStory.currentChoices;
-        if (choices.Count == 0) return;
-
-        isShowingChoices = true;
-        choicesRoot.gameObject.SetActive(true);
-        if (continueHint) continueHint.SetActive(false);
-
-        for (int i = 0; i < choices.Count; i++)
-        {
-            var choice = choices[i];
-
-            GameObject btnGO = Instantiate(choiceButtonPrefab, choicesRoot);
-            btnGO.name = $"ChoiceButton_{i}";
-
-            Button btn = btnGO.GetComponent<Button>();
-            if (btn == null)
-            {
-                Debug.LogError("DialogueController: ChoiceButton prefab 上沒有 Button 組件。");
-                continue;
-            }
-
-            TMP_Text txt = btnGO.GetComponentInChildren<TMP_Text>();
-            if (txt != null)
-                txt.text = choice.text;
-
-            int index = i; // local copy
-            btn.onClick.AddListener(() => OnClickChoice(index));
-        }
-    }
-
-    void ClearChoices()
-    {
-        if (choicesRoot == null) return;
-
-        foreach (Transform child in choicesRoot)
-        {
-            Destroy(child.gameObject);
-        }
-
-        choicesRoot.gameObject.SetActive(false);
-        isShowingChoices = false;
-    }
-
-    void OnClickChoice(int index)
-    {
-        if (inkStory == null) return;
-
-        Debug.Log($"DialogueController: 選擇了選項 {index}");
-        inkStory.ChooseChoiceIndex(index);
-
-        ClearChoices();
-
-        // 選完後繼續劇情
-        ContinueInk();
+        if (continueHint) continueHint.SetActive(true);
     }
 
     // ============================================================
@@ -347,7 +330,6 @@ public class DialogueController : MonoBehaviour
         ClearChoices();
         inkStory = null;
 
-        // 通知 GameFlow 對話已結束 (可能會觸發戰鬥、切換場景等)
         if (gameFlow) gameFlow.OnDialogueFinished();
     }
 }
