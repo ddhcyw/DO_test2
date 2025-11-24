@@ -530,7 +530,7 @@ GameObject:
   m_Layer: 0
   m_Name: LakeHouse
   m_TagString: Untagged
-  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -827,7 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 62d5f777f6d8b644d832cc05d16847c9, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 8eefde792f39a4f4da9fbc27dbbe815a, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -849,7 +849,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: guardidle
+  _animationName: greenidle
   loop: 1
   timeScale: 1
 --- !u!23 &507168568
@@ -872,7 +872,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8eb88f3bf4d31d34eb2280b244b56174, type: 2}
+  - {fileID: 2100000, guid: 4fa6bacc116bece4d805c5a67ee6e8eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -915,7 +915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 0}
-  idleAnimationName: guardidle
+  idleAnimationName: greenidle
 --- !u!1 &554556455
 GameObject:
   m_ObjectHideFlags: 0

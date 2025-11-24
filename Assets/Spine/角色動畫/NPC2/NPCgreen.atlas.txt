@@ -1,0 +1,55 @@
+
+NPCgreen.png
+size: 2011,1005
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+小綠1
+  rotate: true
+  xy: 1741, 550
+  size: 453, 268
+  orig: 3508, 2480
+  offset: 1578, 1365
+  index: -1
+小綠2
+  rotate: true
+  xy: 2, 98
+  size: 905, 626
+  orig: 3508, 2480
+  offset: 1354, 1232
+  index: -1
+小綠3
+  rotate: false
+  xy: 630, 370
+  size: 564, 633
+  orig: 3508, 2480
+  offset: 1529, 685
+  index: -1
+小綠4
+  rotate: false
+  xy: 1196, 388
+  size: 264, 615
+  orig: 3508, 2480
+  offset: 1950, 633
+  index: -1
+小綠5
+  rotate: false
+  xy: 1462, 403
+  size: 277, 600
+  orig: 3508, 2480
+  offset: 1391, 645
+  index: -1
+小綠6
+  rotate: true
+  xy: 630, 2
+  size: 366, 539
+  orig: 3508, 2480
+  offset: 1406, 343
+  index: -1
+小綠7
+  rotate: true
+  xy: 1171, 7
+  size: 361, 511
+  orig: 3508, 2480
+  offset: 1845, 347
+  index: -1
