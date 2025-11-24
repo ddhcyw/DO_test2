@@ -2474,7 +2474,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 321503911
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ae3e4c6026a7a4d4ea99e631d6337000, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2791,7 +2791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &509947454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3109,7 +3109,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 321503911
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 6910502195deff64abe9453aaf5823b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5666,9 +5666,29 @@ PrefabInstance:
       value: SceneManager
       objectReference: {fileID: 0}
     - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 2138959469}
+    - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
+      propertyPath: playerMove
+      value: 
+      objectReference: {fileID: 1916917603}
+    - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
       propertyPath: compareMinigamePanel
       value: 
       objectReference: {fileID: 1739845956}
+    - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
+      propertyPath: minigamePanel_Dandadan
+      value: 
+      objectReference: {fileID: 1739845956}
+    - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
+      propertyPath: minigamePanel_CheapBuyer
+      value: 
+      objectReference: {fileID: 575159112}
+    - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
+      propertyPath: minigamePanel_GoodFortune
+      value: 
+      objectReference: {fileID: 484565457}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5980,8 +6000,8 @@ Transform:
   m_GameObject: {fileID: 1916917598}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8, y: 0.11, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.456, y: 0.11, z: 0}
+  m_LocalScale: {x: 1.2852, y: 1.2852, z: 1.2852}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2053850970}

@@ -27,6 +27,9 @@ public class GameFlow : MonoBehaviour
     public GameObject cameraCloseupUI;
     public Item cameraItemAsset;
 
+    [Header("MAI幫助區設定")]
+    public GameObject MAIHalpPanel;
+
     [Header("練習場流程")]
     public string trainingFinishKnot = "training_finish";  // 練習結束後要播的 Ink 節點名
 
@@ -38,7 +41,9 @@ public class GameFlow : MonoBehaviour
     public GameObject portfolioCloseupUI;
 
     [Header("幻影巷設定")]
-    public GameObject compareMinigamePanel; // 找碴遊戲的 UI Panel
+    public GameObject minigamePanel_Dandadan;   // 膽大檔的面板
+    public GameObject minigamePanel_GoodFortune; // 好信福的面板
+    public GameObject minigamePanel_CheapBuyer;  // 購便宜的面板
 
 
     bool practiceStarted = false;       // 用於追蹤怪物是否已生成且未被清除
@@ -273,18 +278,43 @@ public class GameFlow : MonoBehaviour
         }
     }
     //---幻影巷---
-    public void StartCompareMinigame()
+    public void StartMAIHelp()
     {
-        Debug.Log("開啟找碴小遊戲");
-        if (compareMinigamePanel != null)
+        Debug.Log("幫助區出現");
+        if (MAIHalpPanel != null)
         {
-            compareMinigamePanel.SetActive(true);
+            MAIHalpPanel.SetActive(true);
 
-            // (可選) 如果小遊戲開始時要暫停對話或隱藏其他 UI，可以在這裡寫
         }
         else
         {
-            Debug.LogError("GameFlow: compareMinigamePanel 未設定！");
+            Debug.LogError("MAIHalpPanel 未設定！");
+        }
+    }
+    public void StartCompareMinigame(string id)
+    {
+        Debug.Log($"開啟找碴小遊戲，ID: {id}");
+
+        // 先關閉所有小遊戲面板 (防呆)
+        if (minigamePanel_Dandadan) minigamePanel_Dandadan.SetActive(false);
+        if (minigamePanel_GoodFortune) minigamePanel_GoodFortune.SetActive(false);
+        if (minigamePanel_CheapBuyer) minigamePanel_CheapBuyer.SetActive(false);
+
+        // 根據 ID 開啟對應的面板
+        switch (id)
+        {
+            case "dandadan":
+                if (minigamePanel_Dandadan) minigamePanel_Dandadan.SetActive(true);
+                break;
+            case "good_fortune":
+                if (minigamePanel_GoodFortune) minigamePanel_GoodFortune.SetActive(true);
+                break;
+            case "cheap_buyer":
+                if (minigamePanel_CheapBuyer) minigamePanel_CheapBuyer.SetActive(true);
+                break;
+            default:
+                Debug.LogError($"GameFlow: 找不到 ID 為 '{id}' 的小遊戲面板！");
+                break;
         }
     }
 
