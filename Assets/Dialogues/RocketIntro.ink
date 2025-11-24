@@ -4,6 +4,7 @@ EXTERNAL spawn_wave()
 EXTERNAL get_camera_item()
 EXTERNAL change_scene(sceneName)
 
+~ show_objective("按E查看背包！")
 // 1. 對話一：在橋邊遇到 MAI1
 === bridge_intro ===
 MAI: 「哈囉！我是AI嚮導麻伊！」
