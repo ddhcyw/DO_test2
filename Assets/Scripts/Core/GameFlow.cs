@@ -13,6 +13,10 @@ public class GameFlow : MonoBehaviour
     [Header("角色控制")]
     public PlayerController playerMove;
     public PlayerControllerFight playerFight;
+    // 新增：分開指定兩隻 MAI
+    [Header("新手區 MAI 物件")]
+    public GameObject bridgeMai;      // 橋邊那隻
+    public GameObject rocketMai;      // 火箭那隻
 
     [Header("對話系統")]
     public DialogueController dialogue;
@@ -317,5 +321,32 @@ public class GameFlow : MonoBehaviour
                 break;
         }
     }
+
+    public void HideMai(string id)
+    {
+        switch (id)
+        {
+            case "bridge":
+                if (bridgeMai != null)
+                    bridgeMai.SetActive(false);
+                break;
+
+            case "rocket":
+                if (rocketMai != null)
+                    rocketMai.SetActive(false);
+                break;
+
+            case "all":
+                // 如果之後有需要一次全部關掉可以用
+                if (bridgeMai != null) bridgeMai.SetActive(false);
+                if (rocketMai != null) rocketMai.SetActive(false);
+                break;
+
+            default:
+                Debug.LogWarning($"HideMai 收到未知 id: {id}");
+                break;
+        }
+    }
+
 
 }

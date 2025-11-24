@@ -1720,10 +1720,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMove: {fileID: 1119875316}
-  maiObjects:
+  playerFight: {fileID: 0}
+  MaiObjects:
   - {fileID: 1286449378}
   - {fileID: 1840474031}
-  playerFight: {fileID: 0}
   dialogue: {fileID: 1040267700}
   maiHelpArea: {fileID: 0}
   enemiesRoot: {fileID: 518781059}
@@ -1731,13 +1731,16 @@ MonoBehaviour:
   cameraSceneObject: {fileID: 589669602}
   cameraCloseupUI: {fileID: 43779310}
   cameraItemAsset: {fileID: 11400000, guid: b2ff2adaf4bdf6747b85d01ddd4f28f1, type: 2}
+  MAIHalpPanel: {fileID: 0}
   trainingFinishKnot: training_finish
   flyerObject: {fileID: 0}
   flyerItemData: {fileID: 0}
   flyerCloseupUI: {fileID: 0}
   portfolioItemData: {fileID: 0}
   portfolioCloseupUI: {fileID: 0}
-  compareMinigamePanel: {fileID: 1630341837}
+  minigamePanel_Dandadan: {fileID: 0}
+  minigamePanel_GoodFortune: {fileID: 0}
+  minigamePanel_CheapBuyer: {fileID: 0}
 --- !u!4 &594699601
 Transform:
   m_ObjectHideFlags: 0

@@ -122,6 +122,7 @@ public class DialogueController : MonoBehaviour
         inkStory.BindExternalFunction("get_camera_item", () => gameFlow.GetCameraItem());
         inkStory.BindExternalFunction("show_objective", (string content) => gameFlow.ShowObjectiveUI(content));
         inkStory.BindExternalFunction("spawn_wave", () => gameFlow.SetSpawnTrainingBugAfterDialogue());
+        inkStory.BindExternalFunction("hide_mai", (string id) => gameFlow.HideMai(id));
 
         // 通用
         inkStory.BindExternalFunction("change_scene", (string sceneName) => gameFlow.SetSceneToLoad(sceneName));
