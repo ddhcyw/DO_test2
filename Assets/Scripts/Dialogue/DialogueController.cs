@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using Ink.Runtime;
-using UnityEngine.UI;   // ← 一定要有，Button 用得到
+using UnityEngine.UI;
 
 public class DialogueController : MonoBehaviour
 {
@@ -12,25 +12,25 @@ public class DialogueController : MonoBehaviour
 
     [Header("UI Components")]
     public GameObject panelRoot;    // 對話面板 (DialoguePanel)
-    public TMP_Text nameText;       // 顯示名字的 Text
-    public TMP_Text bodyText;       // 顯示內容的 Text
-    public GameObject continueHint; // 繼續對話的小箭頭/提示
+    public TMP_Text nameText;       // 顯示名字
+    public TMP_Text bodyText;       // 顯示內容
+    public GameObject continueHint; // 繼續對話提示
 
     [Header("Choice UI")]
     public RectTransform choicesRoot;      // 放選項按鈕的容器
-    public GameObject choiceButtonPrefab;  // 選項按鈕 Prefab（白色框 + TMP 文字）
+    public GameObject choiceButtonPrefab;  // 選項按鈕 Prefab
 
     [Header("Typing Settings")]
-    public bool typewriter = true;      // 是否開啟打字機效果
-    public float charsPerSecond = 40f;  // 打字速度
+    public bool typewriter = true;
+    public float charsPerSecond = 40f;
 
     [Header("Ink Data")]
-    public TextAsset inkJSONAsset; // Ink 編譯後的 .json 檔案
+    public TextAsset inkJSONAsset;
 
-    // 內部變數
-    Story inkStory;
-    Coroutine typingCo;
-    string currentLineText = "";
+    // 內部狀態
+    private Story inkStory;
+    private Coroutine typingCo;
+    private string currentLineText = "";
 
     void Awake()
     {
@@ -43,7 +43,7 @@ public class DialogueController : MonoBehaviour
     {
         if (!panelRoot || !panelRoot.activeSelf) return;
 
-        // 如果現在有 Ink 選項，就讓 UI Button 處理，不要吃滑鼠點擊繼續對話
+        // 有選項時，交給 Button 處理滑鼠事件
         if (inkStory != null && inkStory.currentChoices.Count > 0)
             return;
 
@@ -51,7 +51,6 @@ public class DialogueController : MonoBehaviour
         {
             if (typingCo != null)
             {
-                // 如果正在打字，瞬間顯示全句
                 StopCoroutine(typingCo);
                 typingCo = null;
                 if (bodyText) bodyText.text = currentLineText;
@@ -59,14 +58,13 @@ public class DialogueController : MonoBehaviour
             }
             else
             {
-                // 如果已經顯示完畢，讀下一句
                 ContinueInk();
             }
         }
     }
 
     // ============================================================
-    //  啟動對話 (由 GameFlow 或 InteractZone 呼叫)
+    // 啟動對話
     // ============================================================
     public void StartInkDialogue(string knotName)
     {
@@ -78,14 +76,10 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        // 建立新的 Story
         inkStory = new Story(inkJSONAsset.text);
         inkStory.allowExternalFunctionFallbacks = true;
-
-        // 綁定外部函數
         BindExternal();
 
-        // 跳轉到指定節點
         if (!string.IsNullOrEmpty(knotName))
         {
             try
@@ -98,7 +92,6 @@ public class DialogueController : MonoBehaviour
             }
         }
 
-        // 開啟 UI
         panelRoot.SetActive(true);
         if (continueHint) continueHint.SetActive(false);
         if (nameText) nameText.text = "";
@@ -111,7 +104,7 @@ public class DialogueController : MonoBehaviour
     }
 
     // ============================================================
-    //  綁定外部函數 (Ink -> C#)
+    // Ink 外部函數
     // ============================================================
     void BindExternal()
     {
@@ -123,27 +116,27 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        // --- 新手區指令 ---
+        // 新手區
         inkStory.BindExternalFunction("give_camera", () => gameFlow.GiveCamera());
         inkStory.BindExternalFunction("get_camera_item", () => gameFlow.GetCameraItem());
         inkStory.BindExternalFunction("show_objective", (string content) => gameFlow.ShowObjectiveUI(content));
         inkStory.BindExternalFunction("spawn_wave", () => gameFlow.SetSpawnTrainingBugAfterDialogue());
 
-        // --- 通用指令 ---
+        // 通用
         inkStory.BindExternalFunction("change_scene", (string sceneName) => gameFlow.SetSceneToLoad(sceneName));
 
-        // --- 圖像廣場 ---
+        // 圖像廣場
         inkStory.BindExternalFunction("show_flyer", () => gameFlow.ShowFlyerInScene());
         inkStory.BindExternalFunction("get_flyer", () => gameFlow.GetFlyerItem());
         inkStory.BindExternalFunction("destroy_flyer", () => gameFlow.DestroyFlyerObject());
         inkStory.BindExternalFunction("get_portfolio", () => gameFlow.GetPortfolioItem());
 
-        // --- 幻影巷 ---
+        // 幻影巷
         inkStory.BindExternalFunction("start_compare_minigame", () => gameFlow.StartCompareMinigame());
     }
 
     // ============================================================
-    //  讀取下一句對話
+    // 讀取下一句
     // ============================================================
     void ContinueInk()
     {
@@ -153,12 +146,11 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        // 進下一句前，先把舊選項清掉
+        // 進下一句前清掉舊選項
         ClearChoices();
 
         string line = null;
 
-        // 連續執行邏輯行，直到遇到文字或故事結束
         while (inkStory.canContinue)
         {
             line = inkStory.Continue();
@@ -169,10 +161,9 @@ public class DialogueController : MonoBehaviour
             }
         }
 
-        // 沒文字且不能再繼續：可能已到結尾
+        // 沒文字且不能繼續：看有沒有選項
         if (string.IsNullOrWhiteSpace(line) && !inkStory.canContinue)
         {
-            // 如果這時候有 choices，就開選項
             if (inkStory.currentChoices.Count > 0)
             {
                 RefreshChoicesUI();
@@ -183,14 +174,13 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        // 保險：如果還是空行就結束
         if (string.IsNullOrWhiteSpace(line))
         {
             EndDialogue();
             return;
         }
 
-        // 解析 "名字: 台詞"
+        // 解析「名字: 台詞」
         string who = "";
         string text = line;
 
@@ -211,7 +201,6 @@ public class DialogueController : MonoBehaviour
         if (nameText) nameText.text = who;
         if (bodyText) bodyText.text = "";
 
-        // 顯示文字
         if (typewriter)
         {
             if (continueHint) continueHint.SetActive(false);
@@ -224,7 +213,7 @@ public class DialogueController : MonoBehaviour
             if (continueHint) continueHint.SetActive(true);
         }
 
-        // 這句話後面如果跟著 Ink 選項，就生出按鈕
+        // 這句之後如果有選項，顯示選項
         if (inkStory.currentChoices.Count > 0)
         {
             RefreshChoicesUI();
@@ -232,7 +221,7 @@ public class DialogueController : MonoBehaviour
     }
 
     // ============================================================
-    //  選項 UI
+    // 選項 UI
     // ============================================================
     void RefreshChoicesUI()
     {
@@ -245,24 +234,28 @@ public class DialogueController : MonoBehaviour
         ClearChoices();
 
         var currentChoices = inkStory.currentChoices;
+
+        Debug.Log($"[Dialogue] 生成 {currentChoices.Count} 個選項");
+
         for (int i = 0; i < currentChoices.Count; i++)
         {
             var choice = currentChoices[i];
 
-            // 生成按鈕
             GameObject btnGO = Instantiate(choiceButtonPrefab, choicesRoot, false);
 
-            // 設文字
             var label = btnGO.GetComponentInChildren<TMP_Text>();
             if (label != null)
                 label.text = choice.text;
 
-            // 綁定按鈕事件
             int choiceIndex = i;
             var uiButton = btnGO.GetComponent<Button>();
             if (uiButton != null)
             {
                 uiButton.onClick.AddListener(() => OnClickChoice(choiceIndex));
+            }
+            else
+            {
+                Debug.LogError("ChoiceButton prefab 上沒有 Button 組件！");
             }
         }
     }
@@ -284,16 +277,12 @@ public class DialogueController : MonoBehaviour
         Debug.Log($"[Dialogue] Choice clicked index = {index}");
 
         inkStory.ChooseChoiceIndex(index);
-
-        // 清掉舊的選項
         ClearChoices();
-
-        // 往下繼續劇本
         ContinueInk();
     }
 
     // ============================================================
-    //  打字機協程
+    // 打字機
     // ============================================================
     IEnumerator TypeText(string content)
     {
@@ -318,7 +307,7 @@ public class DialogueController : MonoBehaviour
     }
 
     // ============================================================
-    //  結束對話
+    // 結束對話
     // ============================================================
     void EndDialogue()
     {
