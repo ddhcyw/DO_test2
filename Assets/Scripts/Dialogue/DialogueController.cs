@@ -134,7 +134,10 @@ public class DialogueController : MonoBehaviour
         inkStory.BindExternalFunction("get_portfolio", () => gameFlow.GetPortfolioItem());
 
         // 幻影巷
-        inkStory.BindExternalFunction("start_compare_minigame", () => gameFlow.StartCompareMinigame());
+        inkStory.BindExternalFunction("start_MAI_help", () => gameFlow.StartMAIHelp());
+        inkStory.BindExternalFunction("start_compare_minigame", (string id) => {
+            gameFlow.StartCompareMinigame(id);
+        });
     }
 
     // ============================================================
