@@ -39,9 +39,6 @@ public class NpcInteraction : MonoBehaviour
                 // 播放膽大黨的對話
                 dialogueController.StartInkDialogue("dandadan_portfolio");
             }
-
-            // 從背包移除作品集 
-            InventoryManager.Instance.Remove(item);
         }
         else
         {
