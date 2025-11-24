@@ -4,6 +4,7 @@ EXTERNAL spawn_wave()
 EXTERNAL get_camera_item()
 EXTERNAL change_scene(sceneName)
 EXTERNAL start_compare_minigame()
+EXTERNAL hide_mai()      // ★ 新增：呼叫 C# 裡關閉 MAI 的函式
 
 
 // 1. 對話一：在橋邊遇到 MAI1
@@ -27,8 +28,10 @@ MAI: 「身為網路城裡專業的嚮導，麻伊非常願意指引你回家的
 主角: 「好……！太感謝你了！」
 
 MAI: 「如果你願意讓麻伊嚮導幫助你的話，就到橋的另一邊找我吧！我先去預備可以幫助你的工具。」
-~ start_compare_minigame()
 
+// 這裡開始進入教學／事件，同時把場景裡的 MAI 關掉
+~ start_compare_minigame()
+~ hide_mai()
 ~ show_objective("找到和麻伊很像的機器！")
 -> END
 
@@ -62,29 +65,31 @@ MAI: 「不過，最近的網路城被各種『隱患』困擾著……。希望
 
 MAI: 「你放心！遇到問題的時候，麻伊會全力在你身旁幫助你的。」
 
-~ give_camera() 
-~ show_objective("拿起相機吧！") 
+// 給相機＋更新任務
+~ give_camera()
+~ show_objective("拿起相機吧！")
 
 MAI: 「這個是『網路風險蒐證相機』...」
-~ show_objective("按E查看背包！")
+
+// MAI 說完這句，就從場景消失，改成讓玩家自己操作背包
+~ hide_mai()
+~ show_objective("按 E 查看背包！")
 
 -> END
 
+
+
+// 3. 撿到相機：開背包＋刷怪練習
 === camera_pickup ===
-
-
-// 呼叫 Unity：進背包 + 開大圖
 ~ get_camera_item()
 ~ spawn_wave()
 
-// 更新任務提示
-~ show_objective("對準蟲蟲按F試試！")
-
+~ show_objective("對準蟲蟲按 F 試試！")
 -> END
 
 
 
-// 3. 對話三：練習完成後
+// 4. 對話三：練習完成後
 === training_finish ===
 MAI: 「太好了咕！看來你已經學會如何使用相機了！」
 
