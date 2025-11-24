@@ -1720,6 +1720,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMove: {fileID: 1119875316}
+  maiObjects:
+  - {fileID: 1286449378}
+  - {fileID: 1840474031}
   playerFight: {fileID: 0}
   dialogue: {fileID: 1040267700}
   maiHelpArea: {fileID: 0}
