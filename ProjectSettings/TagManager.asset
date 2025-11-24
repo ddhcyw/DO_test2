@@ -21,7 +21,7 @@ TagManager:
   - Background
   - Characters
   - Databug
-  - 
+  - Building
   - 
   - 
   - 
@@ -50,4 +50,7 @@ TagManager:
     locked: 0
   - name: Hurtbox
     uniqueID: 4084718235
+    locked: 0
+  - name: Foreground
+    uniqueID: 321503911
     locked: 0
