@@ -3,9 +3,8 @@ EXTERNAL show_objective(content)
 EXTERNAL spawn_wave()
 EXTERNAL get_camera_item()
 EXTERNAL change_scene(sceneName)
-EXTERNAL start_compare_minigame(id)
 EXTERNAL hide_mai(id)
-
+EXTERNAL start_MAI_help()
 
 
 
@@ -32,7 +31,7 @@ MAI: 「身為網路城裡專業的嚮導，麻伊非常願意指引你回家的
 MAI: 「如果你願意讓麻伊嚮導幫助你的話，就到橋的另一邊找我吧！我先去預備可以幫助你的工具。」
 
 // 這裡開始進入教學／事件，同時把場景裡的 MAI 關掉
-~ start_compare_minigame("dandadan")
+~ start_MAI_help()
 ~ hide_mai("bridge")
 ~ show_objective("找到和麻伊很像的機器！")
 -> END

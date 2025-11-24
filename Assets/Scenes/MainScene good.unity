@@ -1721,9 +1721,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMove: {fileID: 1119875316}
   playerFight: {fileID: 0}
-  MaiObjects:
-  - {fileID: 1286449378}
-  - {fileID: 1840474031}
+  bridgeMai: {fileID: 0}
+  rocketMai: {fileID: 0}
   dialogue: {fileID: 1040267700}
   maiHelpArea: {fileID: 0}
   enemiesRoot: {fileID: 518781059}
@@ -1731,7 +1730,7 @@ MonoBehaviour:
   cameraSceneObject: {fileID: 589669602}
   cameraCloseupUI: {fileID: 43779310}
   cameraItemAsset: {fileID: 11400000, guid: b2ff2adaf4bdf6747b85d01ddd4f28f1, type: 2}
-  MAIHalpPanel: {fileID: 0}
+  MAIHalpPanel: {fileID: 1630341837}
   trainingFinishKnot: training_finish
   flyerObject: {fileID: 0}
   flyerItemData: {fileID: 0}

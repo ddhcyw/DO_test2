@@ -2251,7 +2251,7 @@ PrefabInstance:
     - target: {fileID: 2308862878269770520, guid: 24b5423b0821ad147b7cc79ae03a7c54, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 96d82b60b4c203346b11fbc38d150f97, type: 2}
+      objectReference: {fileID: 2100000, guid: e8350b6a84ffc5d4bb352a755b360750, type: 2}
     - target: {fileID: 2308862878269770520, guid: 24b5423b0821ad147b7cc79ae03a7c54, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4292196686
@@ -3392,7 +3392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &575159113
 RectTransform:
   m_ObjectHideFlags: 0
