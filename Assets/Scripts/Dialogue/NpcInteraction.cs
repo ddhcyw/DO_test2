@@ -16,7 +16,7 @@ public class NpcInteraction : MonoBehaviour
 
     public void OnItemDropped(Item item)
     {
-        if (item.name == "Flyer")
+        if (item.name == "傳單")
         {
             Debug.Log($"在 {npcName} 身上使用了 {item.name}！");
 
@@ -30,7 +30,7 @@ public class NpcInteraction : MonoBehaviour
             // 移除物品 (如果需要)
             InventoryManager.Instance.Remove(item);
         }
-        else if (item.name == "Portfolio" && npcName == "Dandadan")
+        else if (item.name == "莉亞的作品集" && npcName == "Dandadan")
         {
             Debug.Log($"將作品集交給了 {npcName}");
 
@@ -40,7 +40,7 @@ public class NpcInteraction : MonoBehaviour
                 dialogueController.StartInkDialogue("dandadan_portfolio");
             }
         }
-        else if (item.name == "Portfolio" && npcName == "good_fortune")
+        else if (item.name == "莉亞的作品集" && npcName == "good_fortune")
         {
             Debug.Log($"將作品集交給了 {npcName}");
 
@@ -49,7 +49,7 @@ public class NpcInteraction : MonoBehaviour
                 dialogueController.StartInkDialogue("good_fortune_portfolio");
             }
         }
-        else if (item.name == "Portfolio" && npcName == "cheap_buyer")
+        else if (item.name == "莉亞的作品集" && npcName == "cheap_buyer")
         {
             Debug.Log($"將作品集交給了 {npcName}");
 

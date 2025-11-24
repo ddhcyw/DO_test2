@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 584f212411f2f5b46834621c23d2c5d0, type: 3}
-  m_Name: camera
+  m_Name: "\u8389\u4E9E\u7684\u4F5C\u54C1\u96C6"
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: ef05f230b304e9d4fa18ea0ae576e5db, type: 3}
-  description: "\u76F8\u6A5F"
+  icon: {fileID: 21300000, guid: a28dcf71aab0d0b45854ec82553b8a5e, type: 3}
+  description: "\u5E6B\u52A9\u5C0D\u6BD4\u76DC\u7248\u4F5C\u54C1\uFF01"

@@ -140,16 +140,23 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        // 1. (修改) 只有在是左鍵點擊、有物品、且插槽類型是「HudToolbar」時
-        if (eventData.button == PointerEventData.InputButton.Left && item != null && slotType == SlotType.HudToolbar)
+        // 左鍵點擊 + 有物品
+        if (eventData.button == PointerEventData.InputButton.Left && item != null)
         {
-            // 呼叫物品自己的 "UseItem" 方法！
-            item.UseItem();
-        }
-        else if (item != null && slotType == SlotType.MenuToolbar)
-        {
-            // (可選) 玩家點擊了背包選單中的工具列，可以給個提示
-            Debug.Log("請將道具拖曳到主畫面工具列來使用。");
+            // 情況 1: 在主畫面工具列 -> 使用道具
+            if (slotType == SlotType.HudToolbar)
+            {
+                item.UseItem();
+            }
+            // 情況 2: 在背包選單內 -> 顯示道具資訊 (*** 新增這段 ***)
+            else if (slotType == SlotType.Inventory || slotType == SlotType.MenuToolbar)
+            {
+                // 呼叫我們剛剛寫的 UI 腳本來更新畫面
+                if (ItemDescriptionUI.Instance != null)
+                {
+                    ItemDescriptionUI.Instance.ShowDescription(item);
+                }
+            }
         }
     }
 }
