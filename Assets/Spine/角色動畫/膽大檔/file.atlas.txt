@@ -1,0 +1,90 @@
+
+file.png
+size: 1587,816
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+膽大檔1
+  rotate: true
+  xy: 1257, 43
+  size: 259, 328
+  orig: 3508, 2480
+  offset: 1381, 1322
+  index: -1
+膽大檔10
+  rotate: true
+  xy: 603, 3
+  size: 247, 324
+  orig: 3508, 2480
+  offset: 1452, 782
+  index: -1
+膽大檔2
+  rotate: false
+  xy: 929, 2
+  size: 86, 300
+  orig: 3508, 2480
+  offset: 1858, 964
+  index: -1
+膽大檔3
+  rotate: true
+  xy: 2, 8
+  size: 167, 204
+  orig: 3508, 2480
+  offset: 1415, 974
+  index: -1
+膽大檔4
+  rotate: false
+  xy: 208, 13
+  size: 393, 162
+  orig: 3508, 2480
+  offset: 1438, 1224
+  index: -1
+膽大檔4-2
+  rotate: true
+  xy: 1365, 401
+  size: 413, 184
+  orig: 3508, 2480
+  offset: 1439, 1219
+  index: -1
+膽大檔5
+  rotate: false
+  xy: 1365, 307
+  size: 75, 92
+  orig: 3508, 2480
+  offset: 1591, 1153
+  index: -1
+膽大檔5-2
+  rotate: true
+  xy: 1442, 318
+  size: 81, 80
+  orig: 3508, 2480
+  offset: 1583, 1183
+  index: -1
+膽大檔6
+  rotate: true
+  xy: 2, 177
+  size: 637, 474
+  orig: 3508, 2480
+  offset: 1400, 1100
+  index: -1
+膽大檔7
+  rotate: true
+  xy: 859, 304
+  size: 510, 504
+  orig: 3508, 2480
+  offset: 1619, 1194
+  index: -1
+膽大檔8
+  rotate: true
+  xy: 478, 252
+  size: 562, 379
+  orig: 3508, 2480
+  offset: 1459, 1139
+  index: -1
+膽大檔9
+  rotate: true
+  xy: 1017, 21
+  size: 281, 238
+  orig: 3508, 2480
+  offset: 1779, 868
+  index: -1

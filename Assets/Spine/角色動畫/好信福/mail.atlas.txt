@@ -1,0 +1,62 @@
+
+mail.png
+size: 2006,797
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+好信福1
+  rotate: false
+  xy: 1788, 487
+  size: 178, 160
+  orig: 3508, 2480
+  offset: 1887, 1077
+  index: -1
+好信福2
+  rotate: false
+  xy: 1788, 649
+  size: 193, 146
+  orig: 3508, 2480
+  offset: 1462, 1118
+  index: -1
+好信福3
+  rotate: false
+  xy: 1229, 460
+  size: 557, 335
+  orig: 3508, 2480
+  offset: 1505, 1051
+  index: -1
+好信福4
+  rotate: true
+  xy: 729, 69
+  size: 726, 498
+  orig: 3508, 2480
+  offset: 1409, 990
+  index: -1
+好信福5
+  rotate: false
+  xy: 1229, 104
+  size: 541, 354
+  orig: 3508, 2480
+  offset: 1522, 1117
+  index: -1
+好信福5-1
+  rotate: false
+  xy: 729, 13
+  size: 30, 54
+  orig: 3508, 2480
+  offset: 1775, 1244
+  index: -1
+好信福6
+  rotate: false
+  xy: 2, 2
+  size: 725, 793
+  orig: 3508, 2480
+  offset: 1411, 990
+  index: -1
+好信福7
+  rotate: true
+  xy: 1772, 118
+  size: 340, 232
+  orig: 3508, 2480
+  offset: 1586, 801
+  index: -1
