@@ -40,6 +40,24 @@ public class NpcInteraction : MonoBehaviour
                 dialogueController.StartInkDialogue("dandadan_portfolio");
             }
         }
+        else if (item.name == "Portfolio" && npcName == "good_fortune")
+        {
+            Debug.Log($"將作品集交給了 {npcName}");
+
+            if (dialogueController != null)
+            {
+                dialogueController.StartInkDialogue("good_fortune_portfolio");
+            }
+        }
+        else if (item.name == "Portfolio" && npcName == "cheap_buyer")
+        {
+            Debug.Log($"將作品集交給了 {npcName}");
+
+            if (dialogueController != null)
+            {
+                dialogueController.StartInkDialogue("cheap_buyer_portfolio");
+            }
+        }
         else
         {
             Debug.Log($"{npcName} 對 {item.name} 沒有興趣。");

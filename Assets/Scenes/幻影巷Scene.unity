@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2424be2eefe48a843adc730405b30568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: Dandadan
+  npcName: good_fortune
 --- !u!114 &46287708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4723,6 +4723,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1481412360 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6425201152596684732, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
+  m_PrefabInstance: {fileID: 1207661189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8496df02e824584bbee5aee2342fe01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1498268095
 GameObject:
   m_ObjectHideFlags: 0
@@ -5484,7 +5495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2424be2eefe48a843adc730405b30568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: Dandadan
+  npcName: cheap_buyer
 --- !u!114 &1817624580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5673,6 +5684,10 @@ PrefabInstance:
       propertyPath: playerMove
       value: 
       objectReference: {fileID: 1916917603}
+    - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
+      propertyPath: objectiveManager
+      value: 
+      objectReference: {fileID: 1481412360}
     - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
       propertyPath: compareMinigamePanel
       value: 
