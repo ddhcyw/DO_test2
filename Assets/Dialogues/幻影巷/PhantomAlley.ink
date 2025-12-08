@@ -144,3 +144,111 @@ MAI: 「冷靜下來，購便宜先生，我們也正在調查這件事。等到
 主角: 「獲得提示：投影機好像怪怪的，一直開開關關，像是有人在操控什麼...」
 
 -> END
+// ==== 作品集偷偷基地：共用變數 ====
+VAR clueComputer = false       // 線索：一直在下載他人作品的電腦
+VAR clueMachine  = false       // 線索：作品複製機做出模糊商品
+VAR clueCanvas   = false       // 線索：去掉浮水印、用同一張圖改作
+VAR allCluesReady = false      // 三個線索都齊全
+VAR blackLiaIntroDone = false  // 是否看過黑色利亞的第一次對話
+
+
+// ==== 進入基地時，MAI 提示 ====
+=== fakebase_intro ===
+MAI: 「咕！這裡應該就是假莉亞的基地了，我們先把證據集齊，把他的偷竊行為揭穿吧！」
+~ show_objective("在基地裡到處調查，蒐集假莉亞偷圖的證據。")
+-> END
+
+
+
+// ==== 點擊：電腦 ====
+=== fakebase_computer ===
+旁白: 「電腦不停地在運行，頁面停留在莉亞的作品網頁上。」
+旁白: 「你看到一個過勞的工人在將莉亞的作品畫面截圖、下載並列印。」
+旁白: 「看起來，他們是把別人的作品當成自己的原始素材在用。」
+
+~ clueComputer = true
+~ allCluesReady = clueComputer && clueMachine && clueCanvas
+
+旁白: 「獲得線索：一直在下載他人作品的電腦。」
+-> END
+
+
+
+// ==== 點擊：作品複製機 ====
+=== fakebase_copymachine ===
+旁白: 「機器似乎讀取了某些檔案，接著一幅幅一樣的作品被製作出來。」
+旁白: 「這些作品和原作品相比，解析度十分不清楚，細節都是模糊的。」
+
+~ clueMachine = true
+~ allCluesReady = clueComputer && clueMachine && clueCanvas
+
+旁白: 「獲得線索：作品細節模糊，機器製作的商品並非原作。」
+-> END
+
+
+
+// ==== 點擊：正在繪製的畫布 ====
+=== fakebase_canvas ===
+旁白: 「好多的畫布架排成一列，許多工人正忙著畫圖。」
+旁白: 「他們拿起機器複製好的作品，先把浮水印塗掉，再快速用畫筆改了幾筆，一幅看似新作品的畫作就完成了。」
+旁白: 「這些『新作品』其實都是從同一張作品改作而來。」
+
+~ clueCanvas = true
+~ allCluesReady = clueComputer && clueMachine && clueCanvas
+
+旁白: 「獲得線索：所有作品都從同一張圖改作，還刻意去掉了浮水印。」
+-> END
+
+
+
+// ==== 點擊：黑色利亞（作品集偷偷） ====
+=== fakebase_blacklia ===
+{ blackLiaIntroDone == false:
+    // 第一次和黑色利亞說話
+    ~ blackLiaIntroDone = true
+
+    作品集偷偷: 「愣在那裡幹嘛？還不快去工作！我還有很多商品要完成欸！」
+    旁白: 「黑色利亞連正眼都不想看你，忙著數自己的鈔票。」
+
+    -> END
+
+- else:
+    // 之後再點他，進入對質用的流程
+    作品集偷偷: 「……」
+    旁白: 「黑色利亞連正眼都不想看你，依舊專心數自己的鈔票。」
+
+    + 「請停止你的盜圖行為，假莉亞！」
+        -> fakebase_blacklia_accuse
+}
+
+
+
+=== fakebase_blacklia_accuse ===
+{ allCluesReady == false:
+
+    // 線索還沒收集齊，先被 MAI 擋下來
+    MAI: 「咕……現在還不能直接指控他，我們手上的證據還不夠。」
+    MAI: 「再仔細在基地裡多找找可疑的地方吧！」
+
+    ~ show_objective("在基地裡繼續搜尋線索，再回來對質假莉亞。")
+    -> END
+
+- else:
+
+    // 線索已經收集完，可以進入辯論環節
+    作品集偷偷: 「……蛤？盜圖？」
+    旁白: 「黑色利亞數鈔票的手停了下來。」
+
+    作品集偷偷: 「你在說什麼啊？這裡就是莉亞的工作室。」
+    作品集偷偷: 「我們這裡生產的作品，全部都是莉亞的原創作品。」
+    作品集偷偷: 「有本事就拿出證據啊？」
+
+    旁白: 「黑色利亞露出嘲諷的笑容。」
+
+    主角: 「當然！我們有證據！」
+
+    // 呼叫 Unity 開啟辯論小遊戲（ID 名稱你可以在 C# 裡對應）
+    ~ start_compare_minigame("portfolio_thief")
+
+    -> END
+}

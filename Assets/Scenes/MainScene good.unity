@@ -1508,7 +1508,7 @@ MonoBehaviour:
   m_text: "\u4E3B\u89D2"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfa8add73debdc64ba951b5d76d4a9fa, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: b3602bc00821b894fb5238bf5a45c806, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: e8350b6a84ffc5d4bb352a755b360750, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1539,7 +1539,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1568,7 +1568,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: -17.513306}
+  m_margin: {x: -140.45148, y: 0, z: -44.09543, w: -17.513306}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3030,14 +3030,14 @@ MonoBehaviour:
   m_text: "\u5C0D\u8A71\u958B\u59CB"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfa8add73debdc64ba951b5d76d4a9fa, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: e8350b6a84ffc5d4bb352a755b360750, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 831ac6f089e184b49aff264229feddc8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4292196686
-  m_fontColor: {r: 0.30588236, g: 0.7254902, b: 0.8352941, a: 1}
+    rgba: 4286275614
+  m_fontColor: {r: 0.11764706, g: 0.3764706, b: 0.48235294, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3090,7 +3090,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -647.9924, y: 0, z: -710.0852, w: -106.67197}
+  m_margin: {x: -672.48975, y: -19.597992, z: -710.0852, w: -123.00366}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
