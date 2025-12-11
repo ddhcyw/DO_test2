@@ -1620,6 +1620,10 @@ PrefabInstance:
       propertyPath: objectiveManager
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
+      propertyPath: panelToHideDuringDialogue
+      value: 
+      objectReference: {fileID: 1200921098}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2282,6 +2286,11 @@ PrefabInstance:
 --- !u!224 &1200921097 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 288130997315968326, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
+  m_PrefabInstance: {fileID: 1200921096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1200921098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8306442549217216340, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
   m_PrefabInstance: {fileID: 1200921096}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1202011060

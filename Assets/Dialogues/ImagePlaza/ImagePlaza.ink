@@ -5,6 +5,7 @@ EXTERNAL destroy_flyer()   // 讓場景上的傳單消失
 EXTERNAL get_portfolio()   // 把作品集加入背包
 EXTERNAL show_objective(content)
 EXTERNAL change_scene(sceneName)
+EXTERNAL add_clue(id)
 
 ~ show_objective("探索地圖，找到需要幫助的人吧！")
 
@@ -13,6 +14,7 @@ EXTERNAL change_scene(sceneName)
 莉亞: 「歡迎來到莉亞的作品展！」
 莉亞: 「我是攝影師莉亞，是社交區的攝影師，希望我的作品能夠帶給居民溫暖與歡笑！」
 莉亞: 「這次我在圖像廣場一共展覽了三張作品，你可以去看看，可以的話也可以和我分享你的心得呦！」
+
 ~ show_objective("去看看莉亞的展覽吧！")
 ~ show_flyer()
 ~ show_objective("地上好像有奇怪的東西...")
@@ -47,6 +49,7 @@ MAI: 「莉亞小姐，不用擔心，我們會去幫你看看，把這件事調
 莉亞: 「真的嗎？！你們真是大好人！」
 莉亞: 「為了保險起見，我把我之前的作品集借給你好了，希望能在調查時派上用場。」
 莉亞: 「真的很謝謝你們！」
+~ add_clue("LiaIntro")
 ~ get_portfolio()
 
 MAI: 「那我們現在就前往幻影巷吧！」

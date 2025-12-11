@@ -5,6 +5,7 @@ using UnityEngine.UI; // 必須引用 UI 命名空間
 
 public class ClueManager : MonoBehaviour
 {
+    public static ClueManager Instance { get; private set; }
     // 定義一個類別來儲存單個線索的資料
     [System.Serializable]
     public class ClueData
@@ -20,7 +21,19 @@ public class ClueManager : MonoBehaviour
     public List<ClueData> clueList;    // 在 Inspector 中設定所有的線索
     public GameObject detailPanel;     // 顯示大圖的面板 (初始應設為隱藏)
     public Image detailImageDisplay;   // 面板中用來顯示大圖的 Image 元件
-
+    void Awake()
+    {
+        // Singleton 設置
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // 切換場景時保留線索狀態
+        }
+    }
     void Start()
     {
         // 初始化：關閉詳細面板，並將所有按鈕設為不可互動（或鎖定圖示）

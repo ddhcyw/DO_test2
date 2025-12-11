@@ -21,6 +21,9 @@ public class GameFlow : MonoBehaviour
     [Header("對話系統")]
     public DialogueController dialogue;
 
+    [Header("UI Control")]
+    public GameObject panelToHideDuringDialogue;
+
     [Header("場景物件")]
     public GameObject maiHelpArea;
     public GameObject enemiesRoot;   // 這裡放置隱患怪物（練習用 Databug）
@@ -100,6 +103,10 @@ public class GameFlow : MonoBehaviour
         if (playerMove) playerMove.enabled = false;
         if (playerFight) playerFight.enabled = false;
         if (maiHelpArea) maiHelpArea.SetActive(false);
+        if (panelToHideDuringDialogue != null)
+        {
+            panelToHideDuringDialogue.SetActive(false);
+        }
     }
 
     public void OnDialogueFinished()
@@ -133,6 +140,11 @@ public class GameFlow : MonoBehaviour
 
         // 恢復顯示常駐幫助區
         if (maiHelpArea) maiHelpArea.SetActive(true);
+        
+        if (panelToHideDuringDialogue != null)
+        {
+            panelToHideDuringDialogue.SetActive(true);
+        }
     }
     // 新增一個公開方法供 Ink 呼叫
     public void SetSceneToLoad(string sceneName)
@@ -161,6 +173,19 @@ public class GameFlow : MonoBehaviour
         else
         {
             Debug.LogError("GameFlow: cameraSceneObject 沒有指定！");
+        }
+    }
+
+    // ~ add_clue("id")
+    public void AddClue(string clueID)
+    {
+        if (ClueManager.Instance != null)
+        {
+            ClueManager.Instance.UnlockClue(clueID);
+        }
+        else
+        {
+            Debug.LogError("GameFlow: 場景中找不到 ClueManager！");
         }
     }
     public void GetCameraItem()
