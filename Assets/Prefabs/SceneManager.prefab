@@ -46,10 +46,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMove: {fileID: 0}
   playerFight: {fileID: 0}
+  bridgeMai: {fileID: 0}
+  rocketMai: {fileID: 0}
   dialogue: {fileID: 0}
+  panelToHideDuringDialogue: {fileID: 0}
   maiHelpArea: {fileID: 0}
   enemiesRoot: {fileID: 0}
   objectiveManager: {fileID: 0}
   cameraSceneObject: {fileID: 0}
-  trainingBugPrefab: {fileID: 0}
-  trainingBugSpawnPoint: {fileID: 0}
+  cameraCloseupUI: {fileID: 0}
+  cameraItemAsset: {fileID: 0}
+  MAIHalpPanel: {fileID: 0}
+  trainingFinishKnot: training_finish
+  flyerObject: {fileID: 0}
+  flyerItemData: {fileID: 11400000, guid: 5f2ea8c7868caf8498db3fddd5eeb63e, type: 2}
+  flyerCloseupUI: {fileID: 0}
+  portfolioItemData: {fileID: 11400000, guid: 80ce69ff7e51e5b499a1882d262626ff, type: 2}
+  portfolioCloseupUI: {fileID: 0}
+  minigamePanel_Dandadan: {fileID: 0}
+  minigamePanel_GoodFortune: {fileID: 0}
+  minigamePanel_CheapBuyer: {fileID: 0}

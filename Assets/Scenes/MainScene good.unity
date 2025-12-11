@@ -1169,6 +1169,7 @@ MonoBehaviour:
   bridgeMai: {fileID: 0}
   rocketMai: {fileID: 0}
   dialogue: {fileID: 1040267700}
+  panelToHideDuringDialogue: {fileID: 1630341837}
   maiHelpArea: {fileID: 0}
   enemiesRoot: {fileID: 518781059}
   objectiveManager: {fileID: 2117173185}
@@ -3363,11 +3364,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1630341840}
   m_SourcePrefab: {fileID: 100100000, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
---- !u!224 &1347781478 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3184929443470216669, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
-  m_PrefabInstance: {fileID: 1347781477}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1347781479 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 288130997315968326, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
@@ -5151,10 +5147,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 7611151484918808579, guid: a7105a7a69003144faa71d2245656c92, type: 3}
-      propertyPath: mainToolbarParent
-      value: 
-      objectReference: {fileID: 1347781478}
     - target: {fileID: 8654954471855195950, guid: a7105a7a69003144faa71d2245656c92, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

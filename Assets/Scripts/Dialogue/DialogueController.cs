@@ -126,7 +126,10 @@ public class DialogueController : MonoBehaviour
 
         // 通用
         inkStory.BindExternalFunction("change_scene", (string sceneName) => gameFlow.SetSceneToLoad(sceneName));
-        
+        inkStory.BindExternalFunction("add_clue", (string id) => {
+            gameFlow.AddClue(id);
+        });
+
 
         // 圖像廣場
         inkStory.BindExternalFunction("show_flyer", () => gameFlow.ShowFlyerInScene());
