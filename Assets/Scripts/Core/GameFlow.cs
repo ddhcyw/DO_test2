@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using System.Collections.Generic;
 public class GameFlow : MonoBehaviour
 {
     public static GameFlow Instance;
@@ -10,6 +10,10 @@ public class GameFlow : MonoBehaviour
 
     private string sceneToLoadAfterDialogue = "";
 
+    [Header("Scene Start Dialogue")]
+    public bool playStartDialogueOnSceneStart = false;
+    public string startDialogueKnot = "";
+    public string startDialogueOnceKey = ""; // 可留空，不留空就只播一次
     [Header("角色控制")]
     public PlayerController playerMove;
     public PlayerControllerFight playerFight;
@@ -56,10 +60,29 @@ public class GameFlow : MonoBehaviour
     bool practiceStarted = false;       // 用於追蹤怪物是否已生成且未被清除
     string pendingActionAfterDialogue = "";  // 對話結束後要做的動作（例如 SpawnTrainingBug）
 
+    //作品集偷偷
+    private readonly HashSet<string> clues = new HashSet<string>();
+
     void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+    }
+    void Start()
+    {
+        Debug.Log("GameFlow.Start() fired: " + gameObject.name);
+        if (!playStartDialogueOnSceneStart) return;
+        if (string.IsNullOrEmpty(startDialogueKnot)) return;
+
+        // 如果有填 key，就做「只播一次」
+        if (!string.IsNullOrEmpty(startDialogueOnceKey))
+        {
+            if (PlayerPrefs.GetInt(startDialogueOnceKey, 0) == 1) return;
+            PlayerPrefs.SetInt(startDialogueOnceKey, 1);
+            PlayerPrefs.Save();
+        }
+
+        StartDialogue(startDialogueKnot);
     }
 
     void Update()
@@ -179,15 +202,9 @@ public class GameFlow : MonoBehaviour
     // ~ add_clue("id")
     public void AddClue(string clueID)
     {
-        if (ClueManager.Instance != null)
-        {
-            ClueManager.Instance.UnlockClue(clueID);
-        }
-        else
-        {
-            Debug.LogError("GameFlow: 場景中找不到 ClueManager！");
-        }
+        AddClueLocal(clueID);
     }
+
     public void GetCameraItem()
     {
         if (cameraItemAsset != null)
@@ -372,6 +389,29 @@ public class GameFlow : MonoBehaviour
                 break;
         }
     }
+    //作品集偷偷線索
+        public void AddClueLocal(string clueID)
+    {
+        if (string.IsNullOrEmpty(clueID)) return;
+        clues.Add(clueID);
+        Debug.Log($"Clue unlocked: {clueID}");
+    }
 
+    public bool HasClue(string clueID)
+    {
+        return !string.IsNullOrEmpty(clueID) && clues.Contains(clueID);
+    }
 
+    // 你基地要的三個線索 id（你可以改成你喜歡的命名）
+    public bool HasAllBaseClues()
+    {
+        return HasClue("clue_pc") && HasClue("clue_copy_machine") && HasClue("clue_canvas");
+    }
+
+    // 如果你要測試用，一鍵清掉
+    public void ClearAllClues()
+    {
+        clues.Clear();
+        Debug.Log("All clues cleared");
+    }
 }
