@@ -1135,71 +1135,17 @@ MonoBehaviour:
   dialogue: {fileID: 1040267700}
   inkKnotName: camera_pickup
   spawnTrainingBugAfterDialogue: 0
---- !u!1 &594699599
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 594699601}
-  - component: {fileID: 594699600}
-  m_Layer: 0
-  m_Name: SceneManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &594699600
+--- !u!114 &594699600 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+  m_PrefabInstance: {fileID: 3010839976168015844}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594699599}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3b70d3120fcbb14faedda21a4bec5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMove: {fileID: 1119875316}
-  playerFight: {fileID: 0}
-  bridgeMai: {fileID: 0}
-  rocketMai: {fileID: 0}
-  dialogue: {fileID: 1040267700}
-  maiHelpArea: {fileID: 0}
-  enemiesRoot: {fileID: 518781059}
-  objectiveManager: {fileID: 2117173185}
-  cameraSceneObject: {fileID: 589669602}
-  cameraCloseupUI: {fileID: 43779310}
-  cameraItemAsset: {fileID: 11400000, guid: b2ff2adaf4bdf6747b85d01ddd4f28f1, type: 2}
-  MAIHalpPanel: {fileID: 1630341837}
-  trainingFinishKnot: training_finish
-  flyerObject: {fileID: 0}
-  flyerItemData: {fileID: 0}
-  flyerCloseupUI: {fileID: 0}
-  portfolioItemData: {fileID: 0}
-  portfolioCloseupUI: {fileID: 0}
-  minigamePanel_Dandadan: {fileID: 0}
-  minigamePanel_GoodFortune: {fileID: 0}
-  minigamePanel_CheapBuyer: {fileID: 0}
---- !u!4 &594699601
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594699599}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 988.195, y: 540, z: -0.0067375996}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &617515533
 GameObject:
   m_ObjectHideFlags: 0
@@ -5139,6 +5085,91 @@ Transform:
   - {fileID: 813620070}
   m_Father: {fileID: 1842560526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3010839976168015844
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3503130067669473964, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 988.195
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503130067669473964, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503130067669473964, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0067375996
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503130067669473964, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503130067669473964, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503130067669473964, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503130067669473964, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503130067669473964, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503130067669473964, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503130067669473964, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862354696706050562, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: m_Name
+      value: SceneManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 1040267700}
+    - target: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: playerMove
+      value: 
+      objectReference: {fileID: 1119875316}
+    - target: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: enemiesRoot
+      value: 
+      objectReference: {fileID: 518781059}
+    - target: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: MAIHalpPanel
+      value: 
+      objectReference: {fileID: 1630341837}
+    - target: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: cameraCloseupUI
+      value: 
+      objectReference: {fileID: 43779310}
+    - target: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: objectiveManager
+      value: 
+      objectReference: {fileID: 2117173185}
+    - target: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: cameraSceneObject
+      value: 
+      objectReference: {fileID: 589669602}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 125eee708dc97bf409561264b132aa76, type: 3}
 --- !u!1001 &7901290956231636639
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5255,7 +5286,7 @@ SceneRoots:
   - {fileID: 759068544}
   - {fileID: 920085767}
   - {fileID: 148497840}
-  - {fileID: 594699601}
+  - {fileID: 3010839976168015844}
   - {fileID: 518781060}
   - {fileID: 1526292040}
   - {fileID: 1909362469}
