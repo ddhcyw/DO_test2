@@ -1,0 +1,153 @@
+
+worm.png
+size: 1894,1110
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+blue1
+  rotate: false
+  xy: 2, 257
+  size: 474, 424
+  orig: 3508, 2480
+  offset: 1174, 995
+  index: -1
+blue2
+  rotate: false
+  xy: 1363, 814
+  size: 402, 294
+  orig: 3508, 2480
+  offset: 1458, 1003
+  index: -1
+blue3
+  rotate: false
+  xy: 1130, 65
+  size: 250, 258
+  orig: 3508, 2480
+  offset: 1688, 1116
+  index: -1
+blue4
+  rotate: false
+  xy: 1282, 560
+  size: 258, 248
+  orig: 3508, 2480
+  offset: 1790, 1233
+  index: -1
+blue5
+  rotate: true
+  xy: 1542, 559
+  size: 253, 244
+  orig: 3508, 2480
+  offset: 1932, 1148
+  index: -1
+blue6
+  rotate: false
+  xy: 519, 142
+  size: 325, 248
+  orig: 3508, 2480
+  offset: 1999, 1057
+  index: -1
+eyes
+  rotate: false
+  xy: 519, 11
+  size: 268, 129
+  orig: 3508, 2480
+  offset: 1254, 1109
+  index: -1
+green1
+  rotate: false
+  xy: 2, 683
+  size: 474, 425
+  orig: 3508, 2480
+  offset: 1174, 996
+  index: -1
+green2
+  rotate: false
+  xy: 478, 392
+  size: 408, 294
+  orig: 3508, 2480
+  offset: 1453, 999
+  index: -1
+green3
+  rotate: false
+  xy: 1382, 304
+  size: 254, 253
+  orig: 3508, 2480
+  offset: 1688, 1120
+  index: -1
+green4
+  rotate: true
+  xy: 262, 2
+  size: 253, 255
+  orig: 3508, 2480
+  offset: 1787, 1227
+  index: -1
+green5
+  rotate: true
+  xy: 1641, 57
+  size: 253, 247
+  orig: 3508, 2480
+  offset: 1929, 1148
+  index: -1
+green6
+  rotate: false
+  xy: 955, 570
+  size: 325, 238
+  orig: 3508, 2480
+  offset: 1997, 1067
+  index: -1
+mouth
+  rotate: true
+  xy: 888, 618
+  size: 68, 48
+  orig: 3508, 2480
+  offset: 1357, 1132
+  index: -1
+red1
+  rotate: false
+  xy: 478, 688
+  size: 475, 420
+  orig: 3508, 2480
+  offset: 1173, 994
+  index: -1
+red2
+  rotate: false
+  xy: 955, 810
+  size: 406, 298
+  orig: 3508, 2480
+  offset: 1453, 996
+  index: -1
+red3
+  rotate: false
+  xy: 2, 2
+  size: 258, 253
+  orig: 3508, 2480
+  offset: 1680, 1118
+  index: -1
+red4
+  rotate: false
+  xy: 1382, 53
+  size: 257, 249
+  orig: 3508, 2480
+  offset: 1786, 1229
+  index: -1
+red5
+  rotate: false
+  xy: 1638, 312
+  size: 254, 245
+  orig: 3508, 2480
+  offset: 1930, 1148
+  index: -1
+red6
+  rotate: false
+  xy: 888, 325
+  size: 325, 243
+  orig: 3508, 2480
+  offset: 1999, 1064
+  index: -1
+warring
+  rotate: false
+  xy: 846, 72
+  size: 282, 251
+  orig: 3508, 2480
+  offset: 1220, 1227
+  index: -1

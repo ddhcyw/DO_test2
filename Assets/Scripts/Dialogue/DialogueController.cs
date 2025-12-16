@@ -26,6 +26,10 @@ public class DialogueController : MonoBehaviour
 
     [Header("Ink Data")]
     public TextAsset inkJSONAsset;
+    [Header("Scene Controllers")]
+    public RocketController rocketController;
+
+    public DialogueSequenceRunner sequenceRunner;
 
     // 內部狀態
     private Story inkStory;
@@ -61,6 +65,8 @@ public class DialogueController : MonoBehaviour
                 ContinueInk();
             }
         }
+        if (tempHidden) return;
+
     }
 
     // ============================================================
@@ -123,6 +129,13 @@ public class DialogueController : MonoBehaviour
         inkStory.BindExternalFunction("show_objective", (string content) => gameFlow.ShowObjectiveUI(content));
         inkStory.BindExternalFunction("spawn_wave", () => gameFlow.SetSpawnTrainingBugAfterDialogue());
         inkStory.BindExternalFunction("hide_mai", (string id) => gameFlow.HideMai(id));
+        inkStory.BindExternalFunction("play_ignite_anim", () => rocketController.PlayIgnite());
+        inkStory.BindExternalFunction("pause_dialogue", (float seconds) => {
+            if (sequenceRunner != null) sequenceRunner.PauseDialogue(seconds);
+            else Debug.LogError("DialogueController: sequenceRunner 沒有指定！");
+        });
+
+
 
         // 通用
         inkStory.BindExternalFunction("change_scene", (string sceneName) => gameFlow.SetSceneToLoad(sceneName));
@@ -220,13 +233,30 @@ public class DialogueController : MonoBehaviour
         {
             if (bodyText) bodyText.text = text;
             if (continueHint) continueHint.SetActive(true);
-        }
 
-        // 這句之後如果有選項，顯示選項
-        if (inkStory.currentChoices.Count > 0)
-        {
-            RefreshChoicesUI();
-        }
+            if (inkStory.currentChoices.Count > 0)
+                RefreshChoicesUI();
+        }        
+    }
+    // ============================================================
+    // 暫時隱藏對話框（不結束對話）     
+    bool tempHidden = false;
+
+    public void TempHide()
+    {
+        tempHidden = true;
+
+        if (typingCo != null) { StopCoroutine(typingCo); typingCo = null; }
+        ClearChoices();
+        if (continueHint) continueHint.SetActive(false);
+        if (panelRoot) panelRoot.SetActive(false);
+    }
+
+    public void TempShowAndContinue()
+    {
+        if (panelRoot) panelRoot.SetActive(true);
+        tempHidden = false;
+        ContinueInk();
     }
 
     // ============================================================
@@ -313,6 +343,13 @@ public class DialogueController : MonoBehaviour
         if (bodyText) bodyText.text = content;
         typingCo = null;
         if (continueHint) continueHint.SetActive(true);
+
+        // 在文字完整顯示後，才顯示選項
+        if (inkStory != null && inkStory.currentChoices.Count > 0)
+        {
+            RefreshChoicesUI();
+        }
+
     }
 
     // ============================================================
