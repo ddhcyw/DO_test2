@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+
 public class GameFlow : MonoBehaviour
 {
     public static GameFlow Instance;
@@ -14,10 +15,11 @@ public class GameFlow : MonoBehaviour
     public bool playStartDialogueOnSceneStart = false;
     public string startDialogueKnot = "";
     public string startDialogueOnceKey = ""; // 可留空，不留空就只播一次
+
     [Header("角色控制")]
     public PlayerController playerMove;
     public PlayerControllerFight playerFight;
-    // 新增：分開指定兩隻 MAI
+
     [Header("新手區 MAI 物件")]
     public GameObject bridgeMai;      // 橋邊那隻
     public GameObject rocketMai;      // 火箭那隻
@@ -56,18 +58,30 @@ public class GameFlow : MonoBehaviour
     public GameObject minigamePanel_GoodFortune; // 好信福的面板
     public GameObject minigamePanel_CheapBuyer;  // 購便宜的面板
 
+    [Header("作品集偷偷 - 辯論 Boss 戰")]
+    public GameObject debatePanel;      // 辯論主面板 (放三個按鈕)
+    public GameObject popupSuccess;     // 答對彈窗 (內含繼續按鈕)
+    public GameObject popupFail;        // 答錯彈窗 (內含確認按鈕)
 
-    bool practiceStarted = false;       // 用於追蹤怪物是否已生成且未被清除
-    string pendingActionAfterDialogue = "";  // 對話結束後要做的動作（例如 SpawnTrainingBug）
+    // 用於記錄這一回合的正確答案 (由 Ink 指定)
+    private string currentCorrectAnswer = "";
 
-    //作品集偷偷
+    // 用於追蹤怪物是否已生成且未被清除
+    bool practiceStarted = false;
+    string pendingActionAfterDialogue = "";  // 對話結束後要做的動作
+
+    // 線索資料庫 (使用 HashSet 避免重複)
     private readonly HashSet<string> clues = new HashSet<string>();
 
+    // ============================================================
+    // Unity Lifecycle
+    // ============================================================
     void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
+
     void Start()
     {
         Debug.Log("GameFlow.Start() fired: " + gameObject.name);
@@ -98,7 +112,9 @@ public class GameFlow : MonoBehaviour
         }
     }
 
-    // ================= 遊戲狀態管理核心 =================
+    // ============================================================
+    // 遊戲狀態與對話核心
+    // ============================================================
 
     public void StartDialogue(string knotName)
     {
@@ -117,8 +133,7 @@ public class GameFlow : MonoBehaviour
             dialogue.StartInkDialogue(knotName);
     }
 
-    // ================= 對話開始/結束 (由 DialogueController 呼叫) =================
-
+    // 由 DialogueController 呼叫
     public void OnDialogueStarted()
     {
         Debug.Log("GameFlow.OnDialogueStarted()");
@@ -132,6 +147,7 @@ public class GameFlow : MonoBehaviour
         }
     }
 
+    // 由 DialogueController 呼叫
     public void OnDialogueFinished()
     {
         Debug.Log("🟥 對話結束");
@@ -154,8 +170,7 @@ public class GameFlow : MonoBehaviour
             return; // 如果是戰鬥，就從這裡離開，不執行下面的恢復邏輯
         }
 
-        // *** 3. (修正) 其他普通對話：回到 Exploring ***
-        // 這段必須在 if 外面，這樣普通對話結束後才會執行
+        // 3. 其他普通對話：回到 Exploring
         CurrentState = GameState.Exploring;
 
         if (playerMove) playerMove.enabled = true;
@@ -163,19 +178,23 @@ public class GameFlow : MonoBehaviour
 
         // 恢復顯示常駐幫助區
         if (maiHelpArea) maiHelpArea.SetActive(true);
-        
+
         if (panelToHideDuringDialogue != null)
         {
             panelToHideDuringDialogue.SetActive(true);
         }
     }
+
     // 新增一個公開方法供 Ink 呼叫
     public void SetSceneToLoad(string sceneName)
     {
         sceneToLoadAfterDialogue = sceneName;
         Debug.Log($"已預約對話結束後前往: {sceneName}");
     }
-    // ================= Ink 外部指令接收器 =================
+
+    // ============================================================
+    // Ink 外部指令接收器 (External Functions)
+    // ============================================================
 
     // ~ show_objective("目標", "提示")
     public void ShowObjectiveUI(string content)
@@ -209,20 +228,9 @@ public class GameFlow : MonoBehaviour
     {
         if (cameraItemAsset != null)
         {
-            // 1. 加入背包
             InventoryManager.Instance.Add(cameraItemAsset);
-
-            // 2. 顯示大圖
-            if (cameraCloseupUI != null)
-            {
-                cameraCloseupUI.SetActive(true);
-            }
-
-            // 3. 讓地上的物件消失
-            if (cameraSceneObject != null)
-            {
-                cameraSceneObject.SetActive(false);
-            }
+            if (cameraCloseupUI != null) cameraCloseupUI.SetActive(true);
+            if (cameraSceneObject != null) cameraSceneObject.SetActive(false);
         }
     }
 
@@ -232,7 +240,9 @@ public class GameFlow : MonoBehaviour
         pendingActionAfterDialogue = "SpawnTrainingBug";
     }
 
-    // ================= 練習場戰鬥 =================
+    // ============================================================
+    // 練習場戰鬥邏輯
+    // ============================================================
 
     void SpawnTrainingBug()
     {
@@ -267,13 +277,10 @@ public class GameFlow : MonoBehaviour
             dialogue.StartInkDialogue(trainingFinishKnot);
     }
 
-    // 之後要用可以從這裡叫 World Map
-    public void ShowWorldMap()
-    {
-        Debug.Log("Opening World Map for selection...");
-    }
-    //---圖像廣場---
-    // 1. 顯示傳單 (由 plaza_leah 呼叫)
+    // ============================================================
+    // 圖像廣場 & 道具邏輯
+    // ============================================================
+
     public void ShowFlyerInScene()
     {
         if (flyerObject)
@@ -283,39 +290,26 @@ public class GameFlow : MonoBehaviour
         }
     }
 
-    // 2. 獲得傳單 (由 plaza_flyer_pickup 呼叫)
     public void GetFlyerItem()
     {
         if (flyerItemData)
         {
             InventoryManager.Instance.Add(flyerItemData);
-            if (flyerCloseupUI != null)
-            {
-                flyerCloseupUI.SetActive(true);
-            }
+            if (flyerCloseupUI != null) flyerCloseupUI.SetActive(true);
         }
     }
 
-    // 3. 銷毀傳單 (由 plaza_flyer_pickup 結束時呼叫)
     public void DestroyFlyerObject()
     {
-        if (flyerObject)
-        {
-            // 只是隱藏它，或者 Destroy 都可以
-            flyerObject.SetActive(false);
-            // Destroy(flyerObject); 
-        }
+        if (flyerObject) flyerObject.SetActive(false);
     }
-    // 4. 獲得作品集 (由 plaza_leah_flyer 呼叫)
+
     public void GetPortfolioItem()
     {
         if (portfolioItemData != null)
         {
             bool success = InventoryManager.Instance.Add(portfolioItemData);
-            if (portfolioCloseupUI != null)
-            {
-                portfolioCloseupUI.SetActive(true);
-            }
+            if (portfolioCloseupUI != null) portfolioCloseupUI.SetActive(true);
             if (success) Debug.Log("獲得作品集！");
         }
         else
@@ -323,30 +317,26 @@ public class GameFlow : MonoBehaviour
             Debug.LogError("GameFlow: portfolioItemData 未設定！");
         }
     }
-    //---幻影巷---
+
+    // ============================================================
+    // 幻影巷邏輯
+    // ============================================================
+
     public void StartMAIHelp()
     {
         Debug.Log("幫助區出現");
-        if (MAIHalpPanel != null)
-        {
-            MAIHalpPanel.SetActive(true);
-
-        }
-        else
-        {
-            Debug.LogError("MAIHalpPanel 未設定！");
-        }
+        if (MAIHalpPanel != null) MAIHalpPanel.SetActive(true);
+        else Debug.LogError("MAIHalpPanel 未設定！");
     }
+
     public void StartCompareMinigame(string id)
     {
         Debug.Log($"開啟找碴小遊戲，ID: {id}");
 
-        // 先關閉所有小遊戲面板 (防呆)
         if (minigamePanel_Dandadan) minigamePanel_Dandadan.SetActive(false);
         if (minigamePanel_GoodFortune) minigamePanel_GoodFortune.SetActive(false);
         if (minigamePanel_CheapBuyer) minigamePanel_CheapBuyer.SetActive(false);
 
-        // 根據 ID 開啟對應的面板
         switch (id)
         {
             case "dandadan":
@@ -369,28 +359,93 @@ public class GameFlow : MonoBehaviour
         switch (id)
         {
             case "bridge":
-                if (bridgeMai != null)
-                    bridgeMai.SetActive(false);
+                if (bridgeMai != null) bridgeMai.SetActive(false);
                 break;
-
             case "rocket":
-                if (rocketMai != null)
-                    rocketMai.SetActive(false);
+                if (rocketMai != null) rocketMai.SetActive(false);
                 break;
-
             case "all":
-                // 如果之後有需要一次全部關掉可以用
                 if (bridgeMai != null) bridgeMai.SetActive(false);
                 if (rocketMai != null) rocketMai.SetActive(false);
                 break;
-
             default:
                 Debug.LogWarning($"HideMai 收到未知 id: {id}");
                 break;
         }
     }
-    //作品集偷偷線索
-        public void AddClueLocal(string clueID)
+
+    // ============================================================
+    // 作品集偷偷 (辯論戰) 
+    // ============================================================
+
+    // 1. Ink 呼叫這個，設定這一回合的正確答案
+    public void StartDebateRound(string answerID)
+    {
+        Debug.Log($"辯論回合開始，正確答案是: {answerID}");
+        currentCorrectAnswer = answerID;
+
+        // 凍結對話 (不讓玩家點擊背景觸發下一句)，並開啟面板
+        if (dialogue) dialogue.enabled = false;
+
+        if (debatePanel) debatePanel.SetActive(true);
+        if (popupSuccess) popupSuccess.SetActive(false);
+        if (popupFail) popupFail.SetActive(false);
+
+        CurrentState = GameState.Talking;
+    }
+
+    // 2. UI 按鈕呼叫這個 (每個按鈕固定傳自己的 ID)
+    public void OnClickDebateButton(string clickedID)
+    {
+        if (clickedID == currentCorrectAnswer)
+        {
+            Debug.Log("答對了！(駁回)");
+            if (popupSuccess) popupSuccess.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("答錯了... (被黑霧吞噬)");
+            if (popupFail) popupFail.SetActive(true);
+        }
+    }
+
+    // 3. 答對確認 -> 回到 Ink 繼續下一句
+    public void OnDebateSuccessConfirm()
+    {
+        CloseDebateUI();
+        if (dialogue)
+        {
+            dialogue.enabled = true;
+            dialogue.StartInkDialogue("debate_round_success");
+        }
+    }
+
+    // 4. 答錯確認 -> 依照企劃，玩家失去記憶並傳送回幻影巷
+    public void OnDebateFailConfirm()
+    {
+        CloseDebateUI();
+
+        // 清除所有線索，讓玩家重來
+        ClearAllClues();
+
+        Debug.Log("辯論失敗，傳送回幻影巷...");
+
+        // 切換場景到幻影巷 
+        SceneManager.LoadScene("幻影巷Scene");
+    }
+
+    void CloseDebateUI()
+    {
+        if (debatePanel) debatePanel.SetActive(false);
+        if (popupSuccess) popupSuccess.SetActive(false);
+        if (popupFail) popupFail.SetActive(false);
+    }
+
+    // ============================================================
+    // 線索管理系統 (Clue System)
+    // ============================================================
+
+    public void AddClueLocal(string clueID)
     {
         if (string.IsNullOrEmpty(clueID)) return;
         clues.Add(clueID);
@@ -402,7 +457,7 @@ public class GameFlow : MonoBehaviour
         return !string.IsNullOrEmpty(clueID) && clues.Contains(clueID);
     }
 
-    // 你基地要的三個線索 id（你可以改成你喜歡的命名）
+    // 檢查是否收集齊全基地要的三個線索
     public bool HasAllBaseClues()
     {
         return HasClue("clue_pc") && HasClue("clue_copy_machine") && HasClue("clue_canvas");

@@ -1,6 +1,8 @@
 ﻿EXTERNAL start_compare_minigame(id)
+EXTERNAL add_clue(id)
 
 === phantom_alley_bold_file ===
+
 膽大檔: 「我的目標是收藏幻影巷的所有作品！成為社交區最酷的檔案夾～」
 主角: 「請問你有收藏到『莉亞的商品展』的作品嗎？」
 膽大檔: 「喔！那個最熱銷的莉亞商品，肯定有呀！我找一下喔……」
