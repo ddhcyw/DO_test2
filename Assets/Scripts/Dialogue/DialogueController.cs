@@ -27,6 +27,10 @@ public class DialogueController : MonoBehaviour
     [Header("Ink Data")]
     public TextAsset inkJSONAsset;
 
+    [Header("Scene Controllers")]
+    public RocketController rocketController;
+    public DialogueSequenceRunner sequenceRunner;
+
     // 內部狀態
     private Story inkStory;
     private Coroutine typingCo;
@@ -61,6 +65,7 @@ public class DialogueController : MonoBehaviour
                 ContinueInk();
             }
         }
+        if (tempHidden) return;
     }
 
     // ============================================================
@@ -233,7 +238,26 @@ public class DialogueController : MonoBehaviour
             RefreshChoicesUI();
         }
     }
+    // ============================================================
+    // 暫時隱藏對話框（不結束對話）     
+    bool tempHidden = false;
 
+    public void TempHide()
+    {
+        tempHidden = true;
+
+        if (typingCo != null) { StopCoroutine(typingCo); typingCo = null; }
+        ClearChoices();
+        if (continueHint) continueHint.SetActive(false);
+        if (panelRoot) panelRoot.SetActive(false);
+    }
+
+    public void TempShowAndContinue()
+    {
+        if (panelRoot) panelRoot.SetActive(true);
+        tempHidden = false;
+        ContinueInk();
+    }
     // ============================================================
     // 選項 UI
     // ============================================================
@@ -318,6 +342,12 @@ public class DialogueController : MonoBehaviour
         if (bodyText) bodyText.text = content;
         typingCo = null;
         if (continueHint) continueHint.SetActive(true);
+        
+         // 在文字完整顯示後，才顯示選項
+        if (inkStory != null && inkStory.currentChoices.Count > 0)
+        {
+            RefreshChoicesUI();
+        }
     }
 
     // ============================================================
