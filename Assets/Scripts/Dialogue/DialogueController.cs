@@ -97,10 +97,11 @@ public class DialogueController : MonoBehaviour
             }
         }
 
-        panelRoot.SetActive(true);
+        panelRoot.SetActive(false);
         if (continueHint) continueHint.SetActive(false);
         if (nameText) nameText.text = "";
         if (bodyText) bodyText.text = "";
+        
         ClearChoices();
 
         if (gameFlow) gameFlow.OnDialogueStarted();
@@ -342,7 +343,7 @@ public class DialogueController : MonoBehaviour
         if (bodyText) bodyText.text = content;
         typingCo = null;
         if (continueHint) continueHint.SetActive(true);
-        
+
          // 在文字完整顯示後，才顯示選項
         if (inkStory != null && inkStory.currentChoices.Count > 0)
         {
