@@ -128,6 +128,11 @@ public class DialogueController : MonoBehaviour
         inkStory.BindExternalFunction("show_objective", (string content) => gameFlow.ShowObjectiveUI(content));
         inkStory.BindExternalFunction("spawn_wave", () => gameFlow.SetSpawnTrainingBugAfterDialogue());
         inkStory.BindExternalFunction("hide_mai", (string id) => gameFlow.HideMai(id));
+        inkStory.BindExternalFunction("play_ignite_anim", () => rocketController.PlayIgnite());
+        inkStory.BindExternalFunction("pause_dialogue", (float seconds) => {
+            if (sequenceRunner != null) sequenceRunner.PauseDialogue(seconds);
+            else Debug.LogError("DialogueController: sequenceRunner 沒有指定！");
+        });
 
         // 通用
         inkStory.BindExternalFunction("change_scene", (string sceneName) => gameFlow.SetSceneToLoad(sceneName));
@@ -258,6 +263,7 @@ public class DialogueController : MonoBehaviour
         tempHidden = false;
         ContinueInk();
     }
+    
     // ============================================================
     // 選項 UI
     // ============================================================
