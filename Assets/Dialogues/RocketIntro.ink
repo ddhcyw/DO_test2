@@ -74,6 +74,7 @@ MAI: 沒錯！麻伊先試著啟動火箭，稍等一下歐！
 
 ~ show_objective("英特涅號，啟動！")
 ~ play_ignite_anim()
+~ pause_dialogue(1.2)
 
 旁白: （英特涅號發光，但很快又暗了下去。）
 
