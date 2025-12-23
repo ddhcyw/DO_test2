@@ -59,9 +59,9 @@ public class GameFlow : MonoBehaviour
     public GameObject minigamePanel_CheapBuyer;  // 購便宜的面板
 
     [Header("作品集偷偷 - 辯論 Boss 戰")]
-    public GameObject debatePanel;      // 辯論主面板 (放三個按鈕)
-    public GameObject popupSuccess;     // 答對彈窗 (內含繼續按鈕)
-    public GameObject popupFail;        // 答錯彈窗 (內含確認按鈕)
+    public GameObject debatePanel;      
+    public GameObject popupSuccess;    
+    public GameObject popupFail;       
 
     // 用於記錄這一回合的正確答案 (由 Ink 指定)
     private string currentCorrectAnswer = "";
@@ -409,29 +409,56 @@ public class GameFlow : MonoBehaviour
         }
     }
 
-    // 3. 答對確認 -> 回到 Ink 繼續下一句
+    // 3. 答對確認
     public void OnDebateSuccessConfirm()
     {
         CloseDebateUI();
         if (dialogue)
         {
             dialogue.enabled = true;
-            dialogue.StartInkDialogue("debate_round_success");
+
+            // 判斷剛才的正確答案是什麼，決定劇情去向
+            // 這樣就不怕 Ink 變數被重置了
+            if (currentCorrectAnswer == "copy_machine")
+            {
+                // 剛才解的是影印機 -> 去第一回合成功劇情
+                dialogue.StartInkDialogue("debate_success_1");
+            }
+            else if (currentCorrectAnswer == "canvas")
+            {
+                // 剛才解的是畫布 -> 去第二回合成功劇情
+                dialogue.StartInkDialogue("debate_success_2");
+            }
+            else if (currentCorrectAnswer == "pc")
+            {
+                // 剛才解的是電腦 -> 去第三回合成功劇情
+                dialogue.StartInkDialogue("debate_success_3");
+            }
+            else
+            {
+                Debug.LogWarning("未知的辯論進度，預設跳轉");
+                dialogue.StartInkDialogue("debate_success_1");
+            }
         }
     }
 
-    // 4. 答錯確認 -> 依照企劃，玩家失去記憶並傳送回幻影巷
+    // 4. 答錯確認
     public void OnDebateFailConfirm()
     {
         CloseDebateUI();
-
-        // 清除所有線索，讓玩家重來
         ClearAllClues();
 
-        Debug.Log("辯論失敗，傳送回幻影巷...");
-
-        // 切換場景到幻影巷 
-        SceneManager.LoadScene("幻影巷Scene");
+        if (dialogue)
+        {
+            dialogue.enabled = true;
+            SetSceneToLoad("幻影巷Scene");
+            Debug.Log("播放失敗劇情...");
+            dialogue.StartInkDialogue("debate_failed");
+        }
+        else
+        {
+            SceneManager.LoadScene("幻影巷Scene");
+        }
     }
 
     void CloseDebateUI()
@@ -450,6 +477,10 @@ public class GameFlow : MonoBehaviour
         if (string.IsNullOrEmpty(clueID)) return;
         clues.Add(clueID);
         Debug.Log($"Clue unlocked: {clueID}");
+        if (ClueManager.Instance != null)
+        {
+            ClueManager.Instance.UnlockClue(clueID);
+        }
     }
 
     public bool HasClue(string clueID)
