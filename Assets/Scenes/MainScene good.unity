@@ -1183,7 +1183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playStartDialogueOnSceneStart: 0
-  startDialogueKnot: 
+  startDialogueKnot: bridge_intro
   startDialogueOnceKey: 
   playerMove: {fileID: 1119875316}
   playerFight: {fileID: 0}
@@ -2912,9 +2912,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  blockMask:
-    serializedVersion: 2
-    m_Bits: 2561
+  accel: 25
+  decel: 35
 --- !u!50 &1119875317
 Rigidbody2D:
   serializedVersion: 4
