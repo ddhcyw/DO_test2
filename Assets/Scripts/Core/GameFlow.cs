@@ -145,6 +145,9 @@ public class GameFlow : MonoBehaviour
         {
             panelToHideDuringDialogue.SetActive(false);
         }
+
+        var pc = FindObjectOfType<PlayerController>();
+        if (pc != null) pc.EnableMovement(false);
     }
 
     // 由 DialogueController 呼叫
@@ -172,7 +175,9 @@ public class GameFlow : MonoBehaviour
 
         // 3. 其他普通對話：回到 Exploring
         CurrentState = GameState.Exploring;
-
+        var pc = FindObjectOfType<PlayerController>();
+        if (pc != null) pc.EnableMovement(true);
+        
         if (playerMove) playerMove.enabled = true;
         if (playerFight) playerFight.enabled = false;
 
