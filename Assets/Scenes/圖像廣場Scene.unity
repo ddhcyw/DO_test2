@@ -259,9 +259,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  blockMask:
-    serializedVersion: 2
-    m_Bits: 2561
+  accel: 20
+  decel: 60
 --- !u!114 &21981068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2941,7 +2940,7 @@ AudioSource:
   m_GameObject: {fileID: 1273978586}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5500628508324490188, guid: 5cea1256082bce94da6744713fcd3f23, type: 2}
   m_audioClip: {fileID: 8300000, guid: 1387a5cb018da88459483cbdc25c4477, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
