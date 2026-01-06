@@ -85,6 +85,8 @@ public class GameFlow : MonoBehaviour
     void Start()
     {
         Debug.Log("GameFlow.Start() fired: " + gameObject.name);
+        PlayerPrefs.SetString("SavedScene", SceneManager.GetActiveScene().name);
+        PlayerPrefs.Save();
         if (!playStartDialogueOnSceneStart) return;
         if (string.IsNullOrEmpty(startDialogueKnot)) return;
 

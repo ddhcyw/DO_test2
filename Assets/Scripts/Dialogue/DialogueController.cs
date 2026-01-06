@@ -3,6 +3,7 @@ using TMPro;
 using System.Collections;
 using Ink.Runtime;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DialogueController : MonoBehaviour
 {
@@ -46,6 +47,9 @@ public class DialogueController : MonoBehaviour
     void Update()
     {
         if (!panelRoot || !panelRoot.activeSelf) return;
+        // 如果遊戲暫停了 (例如打開了設定選單)，完全不處理任何輸入
+        if (Time.timeScale == 0) return;
+        
 
         // 有選項時，交給 Button 處理滑鼠事件
         if (inkStory != null && inkStory.currentChoices.Count > 0)
@@ -53,6 +57,8 @@ public class DialogueController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
             if (typingCo != null)
             {
                 StopCoroutine(typingCo);
