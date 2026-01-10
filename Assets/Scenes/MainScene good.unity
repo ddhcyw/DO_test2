@@ -826,6 +826,10 @@ PrefabInstance:
       propertyPath: skinName
       value: bluewarm
       objectReference: {fileID: 0}
+    - target: {fileID: 96020171837311726, guid: 859c353f60983c9409705c306e13badb, type: 3}
+      propertyPath: skeletonAnimation
+      value: 
+      objectReference: {fileID: 1584327764}
     - target: {fileID: 7779538120593463533, guid: 859c353f60983c9409705c306e13badb, type: 3}
       propertyPath: m_Name
       value: Databug_Training_pink
@@ -879,6 +883,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7779538120593463533, guid: 859c353f60983c9409705c306e13badb, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1584327770}
     - targetCorrespondingSourceObject: {fileID: 7779538120593463533, guid: 859c353f60983c9409705c306e13badb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1584327767}
@@ -2041,11 +2048,18 @@ PrefabInstance:
       propertyPath: skinName
       value: bluewarm
       objectReference: {fileID: 0}
+    - target: {fileID: 8460189214588678322, guid: 1894404ad9f7a314e9ba3a4a57ed68cc, type: 3}
+      propertyPath: skeletonAnimation
+      value: 
+      objectReference: {fileID: 1103555628}
     m_RemovedComponents:
     - {fileID: 728143367287486651, guid: 1894404ad9f7a314e9ba3a4a57ed68cc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 865294819504003553, guid: 1894404ad9f7a314e9ba3a4a57ed68cc, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1103555634}
     - targetCorrespondingSourceObject: {fileID: 865294819504003553, guid: 1894404ad9f7a314e9ba3a4a57ed68cc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1103555631}
@@ -3003,6 +3017,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78191411}
   m_Mesh: {fileID: 0}
+--- !u!114 &1103555634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78191411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d8981695789674598169438cc26089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkCount: 2
+  blinkInterval: 0.08
+  disableColliderOnHit: 1
 --- !u!1 &1118600812
 GameObject:
   m_ObjectHideFlags: 0
@@ -3575,6 +3604,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8075682468231158651, guid: 272163bc67b5b84429bd5428d0785a42, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 2031054908}
     - targetCorrespondingSourceObject: {fileID: 8075682468231158651, guid: 272163bc67b5b84429bd5428d0785a42, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2031054904}
@@ -4654,6 +4686,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584327761}
   m_Mesh: {fileID: 0}
+--- !u!114 &1584327770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584327761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d8981695789674598169438cc26089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkCount: 2
+  blinkInterval: 0.08
+  disableColliderOnHit: 1
 --- !u!1 &1630341837 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8306442549217216340, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
@@ -5989,6 +6036,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeleton: {fileID: 2031054902}
+--- !u!114 &2031054908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031054899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d8981695789674598169438cc26089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkCount: 2
+  blinkInterval: 1
+  disableColliderOnHit: 1
 --- !u!1 &2076806946
 GameObject:
   m_ObjectHideFlags: 0

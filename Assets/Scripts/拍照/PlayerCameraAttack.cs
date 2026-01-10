@@ -1,9 +1,10 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerCameraAttack : MonoBehaviour
 {
     [Header("攻擊設定")]
-    public KeyCode attackKey = KeyCode.K;
+    public KeyCode attackKey = KeyCode.F;
     public float attackRadius = 1.5f;
     public LayerMask bugLayerMask;
     public Transform attackCenter;
@@ -21,7 +22,7 @@ public class PlayerCameraAttack : MonoBehaviour
     {
         if (!hasCamera)
         {
-            Debug.Log("PlayerCameraAttack: 沒有相機，不能攻擊");
+            Debug.Log("[CameraAttack] 沒有相機，不能攻擊");
             return;
         }
 
@@ -33,34 +34,32 @@ public class PlayerCameraAttack : MonoBehaviour
 
         if (hits == null || hits.Length == 0)
         {
-            Debug.Log("PlayerCameraAttack: 這一圈沒有蟲蟲被拍到");
+            Debug.Log("[CameraAttack] 沒有拍到任何蟲");
             return;
         }
+
+        // 避免同一隻蟲被多個 collider 重複處理
+        HashSet<EnemyHitBlinkAndVanish2D> handled = new HashSet<EnemyHitBlinkAndVanish2D>();
 
         foreach (var hit in hits)
         {
             if (!hit) continue;
 
-            // 可選：用 Tag 再篩一次
-            if (!hit.CompareTag("Enemy"))
-                continue;
+            // 從 collider 往上找 EnemyHitBlinkAndVanish2D
+            var enemy = hit.GetComponentInParent<EnemyHitBlinkAndVanish2D>();
 
-            // 觸發「閃兩次後消失」
-            var blink = hit.GetComponent<EnemyHitBlinkAndVanish2D>();
-            if (blink != null)
-            {
-                Debug.Log($"PlayerCameraAttack: 淨化(閃爍) {hit.name}");
-                blink.TriggerVanishSequence();
-            }
-            else
-            {
-                // 保底：如果敵人沒掛閃爍腳本，就直接刪掉避免卡住
-                Debug.LogWarning($"PlayerCameraAttack: {hit.name} 沒有 EnemyHitBlinkAndVanish2D，改用 Destroy");
-                Destroy(hit.gameObject);
-            }
+            Debug.Log(
+                $"[CameraAttack] Hit: {hit.name}, " +
+                $"Parent: {hit.transform.parent?.name}, " +
+                $"HasVanishScript: {enemy != null}"
+            );
+
+            if (enemy == null) continue;
+            if (handled.Contains(enemy)) continue;
+
+            handled.Add(enemy);
+            enemy.TriggerVanishSequence();
         }
-
-        // TODO: 在這裡播放拍照動畫 / 相機閃光特效 / 音效
     }
 
     void OnDrawGizmosSelected()

@@ -1,81 +1,61 @@
 using System.Collections;
 using UnityEngine;
-using Spine;
 using Spine.Unity;
 
-[RequireComponent(typeof(SkeletonAnimation))]
 public class EnemyHitBlinkAndVanish2D : MonoBehaviour
 {
-    [Header("Blink")]
-    public int blinkTimes = 2;
+    public int blinkCount = 2;
     public float blinkInterval = 0.08f;
 
-    [Header("Disappear")]
-    public bool setInactive = true; // true: SetActive(false), false: Destroy
+    public bool disableColliderOnHit = true;
 
-    SkeletonAnimation sa;
-    Collider2D col2D;
-    Coroutine co;
-    bool isDying;
+    SkeletonAnimation skeletonAnimation;
+    Renderer[] renderers;
+
+    bool isVanishing;
 
     void Awake()
     {
-        sa = GetComponent<SkeletonAnimation>();
-        col2D = GetComponent<Collider2D>();
+        skeletonAnimation = GetComponentInChildren<SkeletonAnimation>();
+        renderers = GetComponentsInChildren<Renderer>(true);
     }
 
-    // 命中後呼叫
     public void TriggerVanishSequence()
     {
-        if (isDying) return;
-        isDying = true;
+        if (isVanishing) return;
+        isVanishing = true;
 
-        // 1) 防止連續再被打到
-        if (col2D) col2D.enabled = false;
+        Debug.Log($"[Vanish] Triggered on {name}");
 
-        // 如果你有敵人 AI/移動，也可以在這裡停掉腳本
-        // GetComponent<EnemyAI>()?.enabled = false;
-
-        if (co != null) StopCoroutine(co);
-        co = StartCoroutine(BlinkThenVanish());
-    }
-
-    IEnumerator BlinkThenVanish()
-    {
-        Skeleton sk = sa.Skeleton;
-        if (sk == null)
+        if (disableColliderOnHit)
         {
-            Vanish();
-            yield break;
+            foreach (var c in GetComponentsInChildren<Collider2D>())
+                c.enabled = false;
         }
 
-        SetAlpha(1f);
+        StartCoroutine(BlinkAndVanish());
+    }
 
-        for (int i = 0; i < blinkTimes; i++)
+    IEnumerator BlinkAndVanish()
+    {
+        // 確保 Spine 已初始化（避免 renderer 還沒 ready）
+        if (skeletonAnimation != null) skeletonAnimation.Initialize(true);
+
+        for (int i = 0; i < blinkCount; i++)
         {
-            SetAlpha(0f);
+            SetRenderers(false);
             yield return new WaitForSeconds(blinkInterval);
-
-            SetAlpha(1f);
+            SetRenderers(true);
             yield return new WaitForSeconds(blinkInterval);
         }
 
-        Vanish();
+        Destroy(gameObject);
     }
 
-    void SetAlpha(float a)
+    void SetRenderers(bool on)
     {
-        var c = sa.Skeleton.GetColor();
-        c.a = a;
-        sa.Skeleton.SetColor(c);
-
-        // 立刻刷新，避免延一幀才看到
-        sa.LateUpdate();
-    }
-
-    void Vanish()
-    {
-        if (setInactive) gameObject.SetActive(false);
-        else Destroy(gameObject);
+        if (renderers == null) return;
+        for (int i = 0; i < renderers.Length; i++)
+            if (renderers[i] != null) renderers[i].enabled = on;
     }
 }
