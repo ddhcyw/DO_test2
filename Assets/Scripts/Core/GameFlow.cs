@@ -261,14 +261,24 @@ public class GameFlow : MonoBehaviour
 
         Debug.Log("Starting training combat...");
 
-        enemiesRoot.SetActive(true);     // 場景裡預擺好的 Databug 出現
+        enemiesRoot.SetActive(true);
 
         CurrentState = GameState.Fighting;
         practiceStarted = true;
 
+        // 1) 解鎖 PlayerController 內部 movement flag（你之前在 OnDialogueStarted 鎖住了）
+        var pc = FindObjectOfType<PlayerController>();
+        if (pc != null) pc.EnableMovement(true);
+
+        // 2) 同步啟用兩個控制腳本
         if (playerMove) playerMove.enabled = true;
         if (playerFight) playerFight.enabled = true;
+
+        // 3) 若對話 UI / 面板還開著，也順便關掉（避免擋 input）
+        if (panelToHideDuringDialogue != null) panelToHideDuringDialogue.SetActive(true);
+        if (maiHelpArea) maiHelpArea.SetActive(true);
     }
+
 
     void OnTrainingFinished()
     {

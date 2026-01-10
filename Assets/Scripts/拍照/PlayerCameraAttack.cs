@@ -4,19 +4,17 @@ public class PlayerCameraAttack : MonoBehaviour
 {
     [Header("攻擊設定")]
     public KeyCode attackKey = KeyCode.K;
-    public float attackRadius = 1.5f;       // 攻擊半徑
-    public LayerMask bugLayerMask;          // 只打得到 Databug 的 Layer
-    public Transform attackCenter;          // 攻擊中心點（可指定到玩家胸口位置）
+    public float attackRadius = 1.5f;
+    public LayerMask bugLayerMask;
+    public Transform attackCenter;
 
     [Header("相機持有狀態")]
-    public bool hasCamera = true;           // 如果之後有物品欄，就由那邊控制
+    public bool hasCamera = true;
 
     void Update()
     {
         if (Input.GetKeyDown(attackKey))
-        {
             TryShoot();
-        }
     }
 
     void TryShoot()
@@ -27,37 +25,42 @@ public class PlayerCameraAttack : MonoBehaviour
             return;
         }
 
-        if (!attackCenter)
-            attackCenter = transform;
+        if (!attackCenter) attackCenter = transform;
 
         Vector2 center = attackCenter.position;
 
-        // 範圍判定：以玩家附近畫一個圓，偵測所有敵人
         Collider2D[] hits = Physics2D.OverlapCircleAll(center, attackRadius, bugLayerMask);
 
-        if (hits.Length == 0)
+        if (hits == null || hits.Length == 0)
         {
             Debug.Log("PlayerCameraAttack: 這一圈沒有蟲蟲被拍到");
             return;
         }
 
-        // 先做最單純的版本：有打到就直接淨化（Destroy）
         foreach (var hit in hits)
         {
-            // 如果怪是用 Tag 管理，也可以再加一層判斷
-            if (hit.CompareTag("Enemy"))
+            if (!hit) continue;
+
+            // 可選：用 Tag 再篩一次
+            if (!hit.CompareTag("Enemy"))
+                continue;
+
+            // 觸發「閃兩次後消失」
+            var blink = hit.GetComponent<EnemyHitBlinkAndVanish2D>();
+            if (blink != null)
             {
-                Debug.Log($"PlayerCameraAttack: 淨化 {hit.name}");
-                Destroy(hit.gameObject);
+                Debug.Log($"PlayerCameraAttack: 淨化(閃爍) {hit.name}");
+                blink.TriggerVanishSequence();
             }
             else
             {
-                // 如果之後有 Health / Photographable，可以在這裡改成扣血或觸發特效
-                Debug.Log($"PlayerCameraAttack: 打到 {hit.name}，但沒有 Enemy Tag，先忽略");
+                // 保底：如果敵人沒掛閃爍腳本，就直接刪掉避免卡住
+                Debug.LogWarning($"PlayerCameraAttack: {hit.name} 沒有 EnemyHitBlinkAndVanish2D，改用 Destroy");
+                Destroy(hit.gameObject);
             }
         }
 
-        // TODO: 在這裡播放拍照動畫 / 相機特效
+        // TODO: 在這裡播放拍照動畫 / 相機閃光特效 / 音效
     }
 
     void OnDrawGizmosSelected()

@@ -818,6 +818,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 518781060}
     m_Modifications:
+    - target: {fileID: 96020171837311726, guid: 859c353f60983c9409705c306e13badb, type: 3}
+      propertyPath: color
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 96020171837311726, guid: 859c353f60983c9409705c306e13badb, type: 3}
+      propertyPath: skinName
+      value: bluewarm
+      objectReference: {fileID: 0}
     - target: {fileID: 7779538120593463533, guid: 859c353f60983c9409705c306e13badb, type: 3}
       propertyPath: m_Name
       value: Databug_Training_pink
@@ -2028,6 +2036,10 @@ PrefabInstance:
     - target: {fileID: 7213333858181023533, guid: 1894404ad9f7a314e9ba3a4a57ed68cc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460189214588678322, guid: 1894404ad9f7a314e9ba3a4a57ed68cc, type: 3}
+      propertyPath: skinName
+      value: bluewarm
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 728143367287486651, guid: 1894404ad9f7a314e9ba3a4a57ed68cc, type: 3}
@@ -3487,8 +3499,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 518781060}
     m_Modifications:
     - target: {fileID: 6662239556311547751, guid: 272163bc67b5b84429bd5428d0785a42, type: 3}
+      propertyPath: color
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6662239556311547751, guid: 272163bc67b5b84429bd5428d0785a42, type: 3}
       propertyPath: skinName
-      value: yellowworm
+      value: yellowwarm
+      objectReference: {fileID: 0}
+    - target: {fileID: 6662239556311547751, guid: 272163bc67b5b84429bd5428d0785a42, type: 3}
+      propertyPath: hitFlashColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6662239556311547751, guid: 272163bc67b5b84429bd5428d0785a42, type: 3}
+      propertyPath: hitFlashColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6662239556311547751, guid: 272163bc67b5b84429bd5428d0785a42, type: 3}
+      propertyPath: hitFlashColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6662239556311547751, guid: 272163bc67b5b84429bd5428d0785a42, type: 3}
       propertyPath: skeletonAnimation
