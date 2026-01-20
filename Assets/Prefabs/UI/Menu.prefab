@@ -4029,6 +4029,21 @@ MonoBehaviour:
     unlockedIcon: {fileID: 21300000, guid: bfe16e5b91efa0544ba6c439ff844467, type: 3}
     detailImage: {fileID: 21300000, guid: 70a0e64fa21ae3f4b8e77795afaf5c31, type: 3}
     isUnlocked: 0
+  - clueID: Lia_clue1
+    uiButton: {fileID: 4496132453357353403}
+    unlockedIcon: {fileID: 21300000, guid: bfe16e5b91efa0544ba6c439ff844467, type: 3}
+    detailImage: {fileID: 21300000, guid: 92f8bc4795e780e43915c0eabb0bb7db, type: 3}
+    isUnlocked: 0
+  - clueID: Lia_clue2
+    uiButton: {fileID: 4469452684546022181}
+    unlockedIcon: {fileID: 21300000, guid: bfe16e5b91efa0544ba6c439ff844467, type: 3}
+    detailImage: {fileID: 21300000, guid: e7c5b2179043a5742a9bb89f1a862ea2, type: 3}
+    isUnlocked: 0
+  - clueID: Lia_clue3
+    uiButton: {fileID: 1242735567326041323}
+    unlockedIcon: {fileID: 21300000, guid: bfe16e5b91efa0544ba6c439ff844467, type: 3}
+    detailImage: {fileID: 21300000, guid: e227b5affb20eee45aee66a2dfa3a2e6, type: 3}
+    isUnlocked: 0
   detailPanel: {fileID: 8534573096705510547}
   detailImageDisplay: {fileID: 949141822434665403}
 --- !u!1 &7317398374348738502
