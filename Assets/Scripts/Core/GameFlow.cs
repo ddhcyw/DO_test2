@@ -61,7 +61,9 @@ public class GameFlow : MonoBehaviour
     [Header("作品集偷偷 - 辯論 Boss 戰")]
     public GameObject debatePanel;      
     public GameObject popupSuccess;    
-    public GameObject popupFail;       
+    public GameObject popupFail;
+    [Header("書本系統")]
+    public BookReader bookReader;
 
     // 用於記錄這一回合的正確答案 (由 Ink 指定)
     private string currentCorrectAnswer = "";
@@ -516,5 +518,18 @@ public class GameFlow : MonoBehaviour
     {
         clues.Clear();
         Debug.Log("All clues cleared");
+    }
+    public void OpenStoryBook(string nextKnotName)
+    {
+        if (bookReader != null)
+        {
+            // 為了避免對話框還留著，我們先暫時把對話關掉，或者直接切換狀態
+            // 這裡假設 DialogueController 會處理這一段
+            bookReader.OpenBook(nextKnotName);
+        }
+        else
+        {
+            Debug.LogError("GameFlow: 尚未指定 BookReader！");
+        }
     }
 }
