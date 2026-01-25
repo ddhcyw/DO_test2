@@ -1331,7 +1331,7 @@ MonoBehaviour:
   objectiveManager: {fileID: 2117173185}
   cameraSceneObject: {fileID: 589669602}
   cameraCloseupUI: {fileID: 43779310}
-  cameraItemAsset: {fileID: 11400000, guid: b2ff2adaf4bdf6747b85d01ddd4f28f1, type: 2}
+  cameraItemAsset: {fileID: 11400000, guid: 116c9554c8e69754b8c89f62252fdfac, type: 2}
   MAIHalpPanel: {fileID: 1630341837}
   trainingFinishKnot: training_finish
   flyerObject: {fileID: 0}
@@ -1345,6 +1345,7 @@ MonoBehaviour:
   debatePanel: {fileID: 0}
   popupSuccess: {fileID: 0}
   popupFail: {fileID: 0}
+  bookReader: {fileID: 0}
 --- !u!4 &594699601
 Transform:
   m_ObjectHideFlags: 0
@@ -1554,6 +1555,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1842560526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &659458158 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3184929443470216669, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
+  m_PrefabInstance: {fileID: 1347781477}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &673119068
 GameObject:
   m_ObjectHideFlags: 0
@@ -2548,8 +2554,8 @@ RectTransform:
   m_Children:
   - {fileID: 43779311}
   - {fileID: 899287164}
-  - {fileID: 1011915361}
   - {fileID: 1886354337}
+  - {fileID: 1011915361}
   - {fileID: 2076806947}
   - {fileID: 1912020197}
   m_Father: {fileID: 0}
@@ -3300,7 +3306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   photoItemToGive: {fileID: 11400000, guid: 91aead8a4672793479501468461c08d2, type: 2}
-  photoEffectSprite: {fileID: 21300000, guid: cae9041f02c3ee04f8d5be5ff897478d, type: 3}
+  photoEffectSprite: {fileID: 21300000, guid: 33f3644a53e43ae409fc012d197c5019, type: 3}
   collectedPhotoSprite: {fileID: 21300000, guid: 331f3c308dc57cf47a4313548b1df606, type: 3}
 --- !u!114 &1119875320
 MonoBehaviour:
@@ -6397,6 +6403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 7611151484918808579, guid: a7105a7a69003144faa71d2245656c92, type: 3}
+      propertyPath: mainToolbarParent
+      value: 
+      objectReference: {fileID: 659458158}
     - target: {fileID: 8654954471855195950, guid: a7105a7a69003144faa71d2245656c92, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

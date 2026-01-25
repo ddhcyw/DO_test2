@@ -38,8 +38,7 @@ public class InventoryManager : MonoBehaviour
 
     // 定義一個事件，當物品欄變更時觸發
     public event Action OnInventoryChanged;
-    
-    
+
     public bool Add(Item item)
     {
         for (int i = 0; i < inventoryItems.Length; i++) 

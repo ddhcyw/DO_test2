@@ -170,9 +170,15 @@ public class DialogueController : MonoBehaviour
             gameFlow.StartCompareMinigame(id);
         });
 
-        // --- 作品集偷偷 (辯論戰) ---
+        // --- 作品集偷偷 ---
         inkStory.BindExternalFunction("start_debate_round", (string id) => {
             gameFlow.StartDebateRound(id);
+        });
+        inkStory.BindExternalFunction("open_book", (string nextKnot) => {
+            // 1. 先關閉目前的對話框 (因為焦點要轉移到書本上了)
+            EndDialogue();
+            // 2. 呼叫 GameFlow 開書
+            gameFlow.OpenStoryBook(nextKnot);
         });
     }
 
@@ -191,7 +197,7 @@ public class DialogueController : MonoBehaviour
         ClearChoices();
 
         string line = null;
-
+        
         while (inkStory.canContinue)
         {
             line = inkStory.Continue();
@@ -205,7 +211,7 @@ public class DialogueController : MonoBehaviour
         // 沒文字且不能繼續：看有沒有選項
         if (string.IsNullOrWhiteSpace(line) && !inkStory.canContinue)
         {
-            if (inkStory.currentChoices.Count > 0)
+            if (inkStory != null && inkStory.currentChoices.Count > 0)
             {
                 RefreshChoicesUI();
                 return;

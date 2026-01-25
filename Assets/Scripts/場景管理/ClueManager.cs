@@ -31,21 +31,33 @@ public class ClueManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // 切換場景時保留線索狀態
+            
         }
     }
     void Start()
     {
-        // 初始化：關閉詳細面板，並將所有按鈕設為不可互動（或鎖定圖示）
+        // 初始化：關閉詳細面板
         detailPanel.SetActive(false);
 
         foreach (var clue in clueList)
         {
-            // 預設按鈕不能按
+            // 先預設鎖住
             clue.uiButton.interactable = false;
+            // 如果您有鎖定圖示，這裡設為 lockedSprite
 
-            // 這裡可以選擇是否要在開始時將圖示設為黑色或問號
-            // clue.uiButton.image.sprite = lockedSprite; 
+            // ★修改重點 2：檢查存檔！
+            // 如果 PlayerPrefs 紀錄這個 ID 是 1，就直接解鎖它
+            if (PlayerPrefs.GetInt("Clue_" + clue.clueID, 0) == 1)
+            {
+                // 手動執行解鎖邏輯 (不需再存檔，純粹更新 UI)
+                clue.isUnlocked = true;
+                clue.uiButton.image.sprite = clue.unlockedIcon;
+                clue.uiButton.interactable = true;
+                clue.uiButton.onClick.RemoveAllListeners();
+                clue.uiButton.onClick.AddListener(() => ShowDetail(clue));
+
+                Debug.Log($"自動恢復線索狀態: {clue.clueID}");
+            }
         }
     }
 

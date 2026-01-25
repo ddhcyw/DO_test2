@@ -1,5 +1,6 @@
 ﻿EXTERNAL add_clue(id)
 EXTERNAL start_debate_round(id)
+EXTERNAL open_book(next_knot_name)
 
 === base_enter ===
 MAI: 「咕！這裡應該就是假利亞的基地了，我們先把證據集齊，把他的偷竊行為揭穿吧！」
@@ -150,5 +151,13 @@ MAI: 「不──！意識要被吞掉了！」
 : 「（進入戰鬥模式）」 
 
 // 這裡接進入戰鬥的指令，例如 ~ start_battle()
+~ open_book("after_reading_plot") 
+-> DONE
+
+=== after_reading_plot ===
+MAI: 「時間不早了，我們快回去告訴莉亞我們的調查結果吧！」
+-> END
+
+
 
 -> END

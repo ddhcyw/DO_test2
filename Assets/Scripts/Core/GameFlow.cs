@@ -61,7 +61,9 @@ public class GameFlow : MonoBehaviour
     [Header("作品集偷偷 - 辯論 Boss 戰")]
     public GameObject debatePanel;      
     public GameObject popupSuccess;    
-    public GameObject popupFail;       
+    public GameObject popupFail;
+    [Header("書本系統")]
+    public BookReader bookReader;
 
     // 用於記錄這一回合的正確答案 (由 Ink 指定)
     private string currentCorrectAnswer = "";
@@ -492,8 +494,15 @@ public class GameFlow : MonoBehaviour
     public void AddClueLocal(string clueID)
     {
         if (string.IsNullOrEmpty(clueID)) return;
-        clues.Add(clueID);
-        Debug.Log($"Clue unlocked: {clueID}");
+
+        // 1. 不只存到暫存 HashSet，還要寫入 PlayerPrefs 永久保存
+        // 我們用 "Clue_" + ID 當作存檔的 Key，值為 1 代表擁有
+        PlayerPrefs.SetInt("Clue_" + clueID, 1);
+        PlayerPrefs.Save(); // 強制存檔
+
+        Debug.Log($"Clue saved & unlocked: {clueID}");
+
+        // 通知 UI 更新
         if (ClueManager.Instance != null)
         {
             ClueManager.Instance.UnlockClue(clueID);
@@ -502,7 +511,11 @@ public class GameFlow : MonoBehaviour
 
     public bool HasClue(string clueID)
     {
-        return !string.IsNullOrEmpty(clueID) && clues.Contains(clueID);
+        if (string.IsNullOrEmpty(clueID)) return false;
+
+        // 2. 檢查時，直接去查 PlayerPrefs 有沒有紀錄
+        // 1 代表有，0 代表沒有
+        return PlayerPrefs.GetInt("Clue_" + clueID, 0) == 1;
     }
 
     // 檢查是否收集齊全基地要的三個線索
@@ -516,5 +529,18 @@ public class GameFlow : MonoBehaviour
     {
         clues.Clear();
         Debug.Log("All clues cleared");
+    }
+    public void OpenStoryBook(string nextKnotName)
+    {
+        if (bookReader != null)
+        {
+            // 為了避免對話框還留著，我們先暫時把對話關掉，或者直接切換狀態
+            // 這裡假設 DialogueController 會處理這一段
+            bookReader.OpenBook(nextKnotName);
+        }
+        else
+        {
+            Debug.LogError("GameFlow: 尚未指定 BookReader！");
+        }
     }
 }
