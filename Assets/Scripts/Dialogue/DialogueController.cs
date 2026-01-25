@@ -32,6 +32,11 @@ public class DialogueController : MonoBehaviour
     public RocketController rocketController;
     public DialogueSequenceRunner sequenceRunner;
 
+    //對話動畫
+    [Header("Portrait")]
+    public DialoguePortraitSpine portrait;
+    public DialogueSpeakerDB speakerDB;
+
     // 內部狀態
     private Story inkStory;
     private Coroutine typingCo;
@@ -80,6 +85,12 @@ public class DialogueController : MonoBehaviour
     public void StartInkDialogue(string knotName)
     {
         Debug.Log($"🟦 DialogueController: 啟動對話節點 '{knotName}'");
+        if (portrait != null)
+        {
+            portrait.speakerDB = speakerDB; // 保險
+            portrait.gameObject.SetActive(true);
+        }
+
 
         if (!panelRoot || !inkJSONAsset)
         {
@@ -229,6 +240,8 @@ public class DialogueController : MonoBehaviour
         currentLineText = text;
 
         if (nameText) nameText.text = who;
+        if (portrait != null) portrait.SetSpeaker(who);
+
         if (bodyText) bodyText.text = "";
 
         if (typewriter)
@@ -248,6 +261,8 @@ public class DialogueController : MonoBehaviour
         {
             RefreshChoicesUI();
         }
+
+
     }
     // ============================================================
     // 暫時隱藏對話框（不結束對話）     
@@ -376,5 +391,7 @@ public class DialogueController : MonoBehaviour
         inkStory = null;
 
         if (gameFlow) gameFlow.OnDialogueFinished();
+        if (portrait != null) portrait.Hide();
+
     }
 }
