@@ -7,13 +7,11 @@ public class DialoguePortraitSpine : MonoBehaviour
     public DialogueSpeakerDB speakerDB;
     public SkeletonGraphic graphic;
 
-    private string currentSpeakerId = "";
+    string currentSpeakerId = "";
 
     void Awake()
     {
-        if (!graphic)
-            graphic = GetComponentInChildren<SkeletonGraphic>(true);
-
+        if (!graphic) graphic = GetComponentInChildren<SkeletonGraphic>(true);
         gameObject.SetActive(false);
     }
 
@@ -25,22 +23,14 @@ public class DialoguePortraitSpine : MonoBehaviour
             return;
         }
 
-        if (speakerId == currentSpeakerId)
-            return;
-
+        // 同一個人就不要重複切換（避免每句都 Initialize）
+        if (speakerId == currentSpeakerId) return;
         currentSpeakerId = speakerId;
 
-        if (speakerDB == null)
-        {
-            Debug.LogWarning("[Portrait] SpeakerDB not assigned");
-            Hide();
-            return;
-        }
-
-        var sp = speakerDB.Get(speakerId);
+        var sp = speakerDB != null ? speakerDB.Get(speakerId) : null;
         if (sp == null || sp.spine == null)
         {
-            Debug.LogWarning($"[Portrait] Speaker not found: {speakerId}");
+            Debug.LogWarning($"[Portrait] Speaker not found in DB: {speakerId}");
             Hide();
             return;
         }
@@ -57,18 +47,19 @@ public class DialoguePortraitSpine : MonoBehaviour
 
         var sk = graphic.Skeleton;
 
+        // skin 可有可無
         if (!string.IsNullOrEmpty(sp.skin))
         {
-            var skin = sk.Data.FindSkin(sp.skin);
-            if (skin != null)
+            var found = sk.Data.FindSkin(sp.skin);
+            if (found != null)
             {
-                sk.SetSkin(skin);
+                sk.SetSkin(found);
                 sk.SetSlotsToSetupPose();
             }
         }
 
-        if (!string.IsNullOrEmpty(sp.anim) &&
-            sk.Data.FindAnimation(sp.anim) != null)
+        // 播動畫（你目前 worm 的案例是用動畫當顏色，這裡也是同理）
+        if (!string.IsNullOrEmpty(sp.anim) && sk.Data.FindAnimation(sp.anim) != null)
         {
             graphic.AnimationState.SetAnimation(0, sp.anim, sp.loop);
         }
