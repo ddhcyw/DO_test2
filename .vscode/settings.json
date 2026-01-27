@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "DO_test2.sln"
+    "dotnet.defaultSolution": "DO_test2.sln",
+    "sarif-viewer.connectToGithubCodeScanning": "off"
 }

@@ -4,6 +4,8 @@ using System.Collections;
 using Ink.Runtime;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Game.Dialogue;
+
 
 public class DialogueController : MonoBehaviour
 {
@@ -247,6 +249,7 @@ public class DialogueController : MonoBehaviour
 
         if (nameText) nameText.text = who;
         if (portrait != null) portrait.SetSpeaker(who);
+        Debug.Log($"[Dialogue] rawLine='{line}', who='{who}'");
 
         if (bodyText) bodyText.text = "";
 

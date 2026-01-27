@@ -1,26 +1,50 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 
-[CreateAssetMenu(menuName = "Dialogue/Speaker DB")]
-public class DialogueSpeakerDB : ScriptableObject
+namespace Game.Dialogue
 {
-    [System.Serializable]
-    public class Speaker
+    [CreateAssetMenu(menuName = "Dialogue/Speaker DB", fileName = "SpeakerDB")]
+    public class DialogueSpeakerDB : ScriptableObject
     {
-        public string id;                 // Ink 的 who，例如 "MAI" "NPC1"
-        public SkeletonDataAsset spine;   // 對應角色 Spine 資料
-        public string skin = "default";   // 沒有 skin 就留 default
-        public string anim = "idle";      // 角色在對話顯示時播的動畫
-        public bool loop = true;
-    }
+        [Serializable]
+        public class Speaker
+        {
+            public string id = "MAI";
 
-    public Speaker[] speakers;
+            [Header("Spine (UI)")]
+            public SkeletonDataAsset spineData;
 
-    public Speaker Get(string id)
-    {
-        if (string.IsNullOrEmpty(id)) return null;
-        foreach (var s in speakers)
-            if (s.id == id) return s;
-        return null;
+            [Header("Optional")]
+            public string skin;          // 留空 = 不換 skin
+            public string anim = "idle"; // 預設動畫
+            public bool loop = true;
+        }
+
+
+        public List<Speaker> speakers = new List<Speaker>();
+
+        public bool TryGet(string id, out Speaker speaker)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                speaker = null;
+                return false;
+            }
+
+            for (int i = 0; i < speakers.Count; i++)
+            {
+                var s = speakers[i];
+                if (s != null && string.Equals(s.id, id, StringComparison.OrdinalIgnoreCase))
+                {
+                    speaker = s;
+                    return true;
+                }
+            }
+
+            speaker = null;
+            return false;
+        }
     }
 }
