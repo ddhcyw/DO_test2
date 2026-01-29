@@ -162,20 +162,17 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     private void CheckTutorialProgress()
     {
-        // 1. 檢查 TutorialManager 是否存在
         if (TutorialManager.Instance == null) return;
-
-        // 2. 只有在「教學正在進行中」才做動作 (避免遊戲後期整理背包時誤觸)
         if (!TutorialManager.Instance.IsTutorialActive) return;
 
-        // 3. 檢查條件：如果這個格子是「工具列」
-        if (slotType == SlotType.HudToolbar || slotType == SlotType.MenuToolbar)
+        
+        if (TutorialManager.Instance.CurrentStepIndex == TutorialManager.Instance.dragStepIndex)
         {
-            // 4. (選填) 也可以再嚴格一點：檢查放進來的東西是不是相機
-            // if (item != null && item.itemName == "Camera") ...
-
-            Debug.Log("物品放入工具列，觸發教學下一步！");
-            TutorialManager.Instance.NextStep();
+            // 檢查是否放入工具列
+            if (slotType == SlotType.HudToolbar || slotType == SlotType.MenuToolbar)
+            {
+                TutorialManager.Instance.NextStep();
+            }
         }
     }
     public void OnPointerClick(PointerEventData eventData)
@@ -183,20 +180,36 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         // 左鍵點擊 + 有物品
         if (eventData.button == PointerEventData.InputButton.Left && item != null)
         {
+            // 檢查是否正在進行教學，且剛好是「點擊道具」的那一步
+            CheckTutorialClick();
+
             // 情況 1: 在主畫面工具列 -> 使用道具
             if (slotType == SlotType.HudToolbar)
             {
                 item.UseItem();
             }
-            // 情況 2: 在背包選單內 -> 顯示道具資訊 (*** 新增這段 ***)
+            // 情況 2: 在背包選單內 -> 顯示道具資訊
             else if (slotType == SlotType.Inventory || slotType == SlotType.MenuToolbar)
             {
-                // 呼叫我們剛剛寫的 UI 腳本來更新畫面
                 if (ItemDescriptionUI.Instance != null)
                 {
                     ItemDescriptionUI.Instance.ShowDescription(item);
                 }
             }
+        }
+    }
+
+    private void CheckTutorialClick()
+    {
+        if (TutorialManager.Instance == null || !TutorialManager.Instance.IsTutorialActive) return;
+
+        int clickStepIndex = 5;
+
+        if (TutorialManager.Instance.CurrentStepIndex == clickStepIndex)
+        {
+
+            Debug.Log("教學：玩家點擊了道具，進入下一步！");
+            TutorialManager.Instance.NextStep();
         }
     }
 }
