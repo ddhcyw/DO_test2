@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9124213198591405686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8118838768946304217}
+  - component: {fileID: 5194394126300528005}
+  - component: {fileID: 9135096944860553560}
+  m_Layer: 0
+  m_Name: DialogueSystemRoot 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8118838768946304217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9124213198591405686}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 924.2346, y: 469.1256, z: -9.890681}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5194394126300528005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9124213198591405686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0e63d31f6a3be4f8da9d4b0e2e965d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameFlow: {fileID: 0}
+  panelRoot: {fileID: 0}
+  nameText: {fileID: 0}
+  bodyText: {fileID: 0}
+  continueHint: {fileID: 0}
+  choicesRoot: {fileID: 0}
+  choiceButtonPrefab: {fileID: 6627600578863492085, guid: 62ecacb5777d3ad47b5e6fdb1c31b3ce, type: 3}
+  typewriter: 1
+  charsPerSecond: 40
+  inkJSONAsset: {fileID: 4900000, guid: c38a26f21f8c50b40888a7dc2add215f, type: 3}
+  rocketController: {fileID: 0}
+  sequenceRunner: {fileID: 9135096944860553560}
+  portrait: {fileID: 0}
+  speakerDB: {fileID: 11400000, guid: 9086e6024d488d541a6b26b541edd5cb, type: 2}
+--- !u!114 &9135096944860553560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9124213198591405686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50783a47b1985564aae21c96ffc0aa76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 5194394126300528005}
+  gameFlow: {fileID: 0}

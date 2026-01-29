@@ -18,3 +18,13 @@ MonoBehaviour:
     skin: 
     anim: idle
     loop: 1
+  - id: "\u6E56\u908A\u614C\u5F35\u7684\u5C45\u6C11"
+    spineData: {fileID: 11400000, guid: 332fecf76251d544eba351c8a3095ce2, type: 2}
+    skin: 
+    anim: blueidle
+    loop: 1
+  - id: "\u6E56\u908A\u64D4\u5FC3\u7684\u5C45\u6C11"
+    spineData: {fileID: 11400000, guid: 8eefde792f39a4f4da9fbc27dbbe815a, type: 2}
+    skin: 
+    anim: greenidle
+    loop: 1
