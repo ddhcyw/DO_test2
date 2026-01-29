@@ -1,6 +1,7 @@
 using UnityEngine;
 using Spine.Unity;
 using Spine;
+using System;
 
 namespace Game.Dialogue
 {
@@ -10,23 +11,43 @@ namespace Game.Dialogue
         public DialogueSpeakerDB speakerDB;
 
         [Header("UI References")]
-        [SerializeField] private GameObject portraitRoot; // 建議指到 PortraitRoot（容器）
-        [SerializeField] private SkeletonGraphic uiSpine; // 指到 PortraitSpine 上的 SkeletonGraphic
-        [SerializeField] private CanvasGroup canvasGroup; // 可選
+        [SerializeField] private GameObject portraitRoot;     // 最外層容器（不縮放）
+        [SerializeField] private RectTransform portraitHolder; // ★只縮放這個
+        [SerializeField] private SkeletonGraphic uiSpine;     // Spine 本體
+        [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private bool hideIfNotFound = true;
 
         [Header("Default")]
         [SerializeField] private string defaultSpeakerId = "MAI";
+        [SerializeField] private float defaultScale = 1f;
+
+        [Serializable]
+        public class CharacterScale
+        {
+            public string speakerId;
+            public float scale = 1f;
+        }
+
+        [Header("Per Speaker Scale")]
+        [SerializeField] private CharacterScale[] characterScales;
 
         private void Awake()
         {
-            if (!uiSpine) uiSpine = GetComponentInChildren<SkeletonGraphic>(true);
+            if (!uiSpine)
+                uiSpine = GetComponentInChildren<SkeletonGraphic>(true);
 
-            // portraitRoot：優先用你手動指定的 PortraitRoot；沒指定才退回用 uiSpine 的 GameObject
-            if (!portraitRoot && uiSpine) portraitRoot = uiSpine.gameObject;
+            if (!portraitRoot && uiSpine)
+                portraitRoot = uiSpine.transform.root.gameObject;
 
-            // CanvasGroup：可選，有就用，沒有也不影響顯示
-            if (!canvasGroup && portraitRoot) canvasGroup = portraitRoot.GetComponentInParent<CanvasGroup>();
+            if (!portraitHolder && uiSpine)
+                portraitHolder = uiSpine.GetComponentInParent<RectTransform>();
+
+            if (!canvasGroup && portraitRoot)
+                canvasGroup = portraitRoot.GetComponentInParent<CanvasGroup>();
+
+            // 保險：避免 Skeleton 本體被亂縮放
+            if (uiSpine)
+                uiSpine.transform.localScale = Vector3.one;
 
             SetVisible(false);
         }
@@ -47,10 +68,11 @@ namespace Game.Dialogue
 
             SetVisible(true);
 
-            // Spine-Unity 3.8：用 skeletonDataAsset 欄位，不是 SkeletonDataAsset 屬性
-            uiSpine.skeletonDataAsset = sp.spineData;
+            // 套用角色 scale（★新增）
+            ApplyCharacterScale(id);
 
-            // 重新初始化
+            // 換 Spine Data
+            uiSpine.skeletonDataAsset = sp.spineData;
             uiSpine.Initialize(true);
 
             // Skin（可選）
@@ -76,17 +98,36 @@ namespace Game.Dialogue
             }
         }
 
+        private void ApplyCharacterScale(string speakerId)
+        {
+            if (!portraitHolder) return;
+
+            float scale = defaultScale;
+
+            if (characterScales != null)
+            {
+                foreach (var cs in characterScales)
+                {
+                    if (string.Equals(cs.speakerId, speakerId, StringComparison.OrdinalIgnoreCase))
+                    {
+                        scale = cs.scale;
+                        break;
+                    }
+                }
+            }
+
+            portraitHolder.localScale = Vector3.one * scale;
+        }
+
         public void ShowDefault() => SetSpeaker(defaultSpeakerId);
 
         public void Hide() => SetVisible(false);
 
         private void SetVisible(bool visible)
         {
-            // 1) 容器永遠保持 active，避免把自己/父物件關掉後無法再被喚醒
             if (portraitRoot && !portraitRoot.activeSelf)
                 portraitRoot.SetActive(true);
 
-            // 2) 用 CanvasGroup 控制顯示
             if (canvasGroup)
             {
                 canvasGroup.alpha = visible ? 1f : 0f;
@@ -94,10 +135,8 @@ namespace Game.Dialogue
                 canvasGroup.blocksRaycasts = visible;
             }
 
-            // 3) 只開關 Spine 物件（被隱藏時就不渲染）
             if (uiSpine)
                 uiSpine.gameObject.SetActive(visible);
         }
-
     }
 }

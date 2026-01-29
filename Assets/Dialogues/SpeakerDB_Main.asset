@@ -33,3 +33,18 @@ MonoBehaviour:
     skin: 
     anim: idle
     loop: 1
+  - id: "\u81BD\u5927\u6A94"
+    spineData: {fileID: 11400000, guid: b6ac16697493c6c4b9e9665cce9905c1, type: 2}
+    skin: 
+    anim: idle
+    loop: 1
+  - id: "\u597D\u4FE1\u798F"
+    spineData: {fileID: 11400000, guid: b42fb6daeb238d348a0de1c0e4e9675f, type: 2}
+    skin: 
+    anim: idle
+    loop: 1
+  - id: "\u8CFC\u4FBF\u5B9C"
+    spineData: {fileID: 11400000, guid: 30c4f540168669248b6b026d94104e0f, type: 2}
+    skin: 
+    anim: idle
+    loop: 1
