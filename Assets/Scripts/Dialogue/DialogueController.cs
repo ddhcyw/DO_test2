@@ -96,7 +96,12 @@ public class DialogueController : MonoBehaviour
 
         if (!panelRoot || !inkJSONAsset)
         {
-            Debug.LogError("DialogueController: 缺少 panelRoot 或 inkJSONAsset 設定！");
+            Debug.LogError(
+    $"DialogueController MISSING refs | go='{gameObject.name}' id={GetInstanceID()} " +
+    $"panelRoot={(panelRoot?panelRoot.name:"NULL")} ink={(inkJSONAsset?inkJSONAsset.name:"NULL")} " +
+    $"scene='{gameObject.scene.name}'"
+);
+
             return;
         }
 

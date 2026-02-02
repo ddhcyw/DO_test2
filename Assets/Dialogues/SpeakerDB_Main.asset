@@ -48,3 +48,8 @@ MonoBehaviour:
     skin: 
     anim: idle
     loop: 1
+  - id: "\u9ED1\u8272\u5229\u4E9E"
+    spineData: {fileID: 11400000, guid: 70c7e94d8952717469a5e8a532797fdb, type: 2}
+    skin: 
+    anim: idle
+    loop: 1
