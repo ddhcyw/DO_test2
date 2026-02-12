@@ -1154,6 +1154,7 @@ GameObject:
   - component: {fileID: 589669605}
   - component: {fileID: 589669604}
   - component: {fileID: 589669607}
+  - component: {fileID: 589669608}
   m_Layer: 0
   m_Name: camera
   m_TagString: Untagged
@@ -1288,6 +1289,19 @@ MonoBehaviour:
   dialogue: {fileID: 1040267700}
   inkKnotName: camera_pickup
   spawnTrainingBugAfterDialogue: 0
+--- !u!114 &589669608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589669602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbea358b2c39664ebf6cab9b17edb6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 116c9554c8e69754b8c89f62252fdfac, type: 2}
 --- !u!1 &594699599
 GameObject:
   m_ObjectHideFlags: 0
