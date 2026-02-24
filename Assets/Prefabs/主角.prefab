@@ -59,7 +59,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,11 +103,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6588b0b2fd58746b94d9a2dff4134a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 3
+  attackKey: 107
+  attackRadius: 1.5
   bugLayerMask:
     serializedVersion: 2
     m_Bits: 16384
-  cameraOrigin: {fileID: 0}
+  attackCenter: {fileID: 0}
   hasCamera: 1
 --- !u!114 &3688204435406166763
 MonoBehaviour:
@@ -138,9 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  blockMask:
-    serializedVersion: 2
-    m_Bits: 2561
+  accel: 20
+  decel: 60
 --- !u!114 &8523170114942213871
 MonoBehaviour:
   m_ObjectHideFlags: 0

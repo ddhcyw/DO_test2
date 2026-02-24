@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,4 +133,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23326b4fa80cd8f47bbc61023ffd4e3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 3
+  skeletonAnimation: {fileID: 0}
+  skinName: blueworm
+  hitAnim: hit
+  deadAnim: dead
+  idleAnim: idle
+  hitFlashColor: {r: 1, g: 1, b: 1, a: 1}
+  hitFlashTime: 0.1
   manager: {fileID: 0}
