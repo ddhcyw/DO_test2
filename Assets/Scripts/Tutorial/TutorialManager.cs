@@ -8,9 +8,10 @@ public class TutorialManager : MonoBehaviour
     [Header("UI 設定")]
     public GameObject tutorialRootPanel; // 整個教學的最上層父物件
     public List<GameObject> tutorialSteps; // Step1, Step2, Step3...
-
+    [Tooltip("點擊相機任務第幾步(要-1)")]
+    public int clickStepIndex = 5;
     [Header("拖曳任務第幾步(要-1)")]
-    public int dragStepIndex = 2;//拖曳任務是第3步 (Index 2)
+    public int dragStepIndex = 7;//拖曳任務是第8步
 
     [Header("狀態")]
     // 公開這個變數，讓其他腳本可以讀取

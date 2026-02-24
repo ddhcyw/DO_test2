@@ -162,15 +162,14 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     private void CheckTutorialProgress()
     {
-        if (TutorialManager.Instance == null) return;
-        if (!TutorialManager.Instance.IsTutorialActive) return;
-
+        if (TutorialManager.Instance == null || !TutorialManager.Instance.IsTutorialActive) return;
         
         if (TutorialManager.Instance.CurrentStepIndex == TutorialManager.Instance.dragStepIndex)
         {
-            // 檢查是否放入工具列
-            if (slotType == SlotType.HudToolbar || slotType == SlotType.MenuToolbar)
+            // 檢查是否放入工具列 (三個鑰匙框)
+            if (slotType == SlotType.MenuToolbar)
             {
+                Debug.Log("教學：成功將道具拖入工具列！準備進入最後一步");
                 TutorialManager.Instance.NextStep();
             }
         }
@@ -203,12 +202,9 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (TutorialManager.Instance == null || !TutorialManager.Instance.IsTutorialActive) return;
 
-        int clickStepIndex = 5;
-
-        if (TutorialManager.Instance.CurrentStepIndex == clickStepIndex)
+        if (TutorialManager.Instance.CurrentStepIndex == TutorialManager.Instance.clickStepIndex)
         {
-
-            Debug.Log("教學：玩家點擊了道具，進入下一步！");
+            Debug.Log("教學：成功點擊道具！準備進入下一步");
             TutorialManager.Instance.NextStep();
         }
     }
