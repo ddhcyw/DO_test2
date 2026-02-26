@@ -58,6 +58,8 @@ public class GameFlow : MonoBehaviour
     public GameObject minigamePanel_GoodFortune; // 好信福的面板
     public GameObject minigamePanel_CheapBuyer;  // 購便宜的面板
 
+    public ClueVisualizer clueVisualizer;
+
     [Header("作品集偷偷 - 辯論 Boss 戰")]
     public GameObject debatePanel;      
     public GameObject popupSuccess;    
@@ -495,14 +497,18 @@ public class GameFlow : MonoBehaviour
     {
         if (string.IsNullOrEmpty(clueID)) return;
 
-        // 1. 不只存到暫存 HashSet，還要寫入 PlayerPrefs 永久保存
-        // 我們用 "Clue_" + ID 當作存檔的 Key，值為 1 代表擁有
         PlayerPrefs.SetInt("Clue_" + clueID, 1);
-        PlayerPrefs.Save(); // 強制存檔
+        PlayerPrefs.Save();
 
         Debug.Log($"Clue saved & unlocked: {clueID}");
 
-        // 通知 UI 更新
+        // --- 新增內容 ---
+        if (clueVisualizer != null)
+        {
+            clueVisualizer.RefreshLights();
+        }
+        // ----------------
+
         if (ClueManager.Instance != null)
         {
             ClueManager.Instance.UnlockClue(clueID);
