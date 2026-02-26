@@ -118,12 +118,14 @@ MAI: 等你學會怎麼使用它，我們就能出發去找能量了！
     ~ hide_mai("rocket")
     -> END
 
-
 === camera_pickup ===
 ~ get_camera_item()
+~ show_objective("相機會出現在背包裡！按E打開背包")
 
-~ show_objective("拿起相機對準蟲蟲按 F 試試！")
 
+-> training_start
+=== training_start ===
+~ show_objective("太好了！你已經學會使用背包了！")
 ~ spawn_wave()
 
 -> END

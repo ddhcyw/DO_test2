@@ -857,6 +857,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 877295374010173537, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
+      propertyPath: defaultScale
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 877295374010173537, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
+      propertyPath: characterScales.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 877295374010173537, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
+      propertyPath: characterScales.Array.data[0].scale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 877295374010173537, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
+      propertyPath: characterScales.Array.data[1].scale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 877295374010173537, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
+      propertyPath: characterScales.Array.data[0].speakerId
+      value: "\u6E56\u908A\u614C\u5F35\u7684\u5C45\u6C11"
+      objectReference: {fileID: 0}
+    - target: {fileID: 877295374010173537, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
+      propertyPath: characterScales.Array.data[1].speakerId
+      value: "\u6E56\u908A\u64D4\u5FC3\u7684\u5C45\u6C11"
+      objectReference: {fileID: 0}
     - target: {fileID: 1655185019453971449, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
       propertyPath: m_Pivot.y
       value: 0
@@ -968,6 +992,10 @@ PrefabInstance:
     - target: {fileID: 6765170205530297095, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
       propertyPath: m_Name
       value: Canvas (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141822669062122645, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -103
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

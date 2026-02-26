@@ -1511,7 +1511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbea358b2c39664ebf6cab9b17edb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 116c9554c8e69754b8c89f62252fdfac, type: 2}
+  item: {fileID: 11400000, guid: b2ff2adaf4bdf6747b85d01ddd4f28f1, type: 2}
 --- !u!1 &594699599
 GameObject:
   m_ObjectHideFlags: 0
@@ -4357,7 +4357,7 @@ GameObject:
   - component: {fileID: 1286449379}
   - component: {fileID: 1286449380}
   - component: {fileID: 1286449381}
-  - component: {fileID: 1286449383}
+  - component: {fileID: 1286449382}
   m_Layer: 0
   m_Name: Mai
   m_TagString: Untagged
@@ -4479,7 +4479,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9512746, y: 1.9456687}
   m_EdgeRadius: 0
---- !u!114 &1286449383
+--- !u!114 &1286449382
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4488,11 +4488,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1286449378}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 160c5e72dc38a16458f56fd5ff57a828, type: 3}
+  m_Script: {fileID: 11500000, guid: c55e653a39426704f9d2026c65034961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: {fileID: 1040267700}
   inkKnotName: bridge_intro
+  player: {fileID: 1119875315}
+  interactDistance: 2
   dimmerObject: {fileID: 1909362468}
 --- !u!1001 &1347781477
 PrefabInstance:
@@ -5872,9 +5874,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1840474035}
   - component: {fileID: 1840474034}
-  - component: {fileID: 1840474033}
-  - component: {fileID: 1840474036}
   - component: {fileID: 1840474032}
+  - component: {fileID: 1840474036}
   m_Layer: 0
   m_Name: Mai (1)
   m_TagString: Untagged
@@ -5927,21 +5928,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8813751, y: 2.4704418}
   m_EdgeRadius: 0
---- !u!114 &1840474033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1840474031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 160c5e72dc38a16458f56fd5ff57a828, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 1040267700}
-  inkKnotName: rocket_scene
-  dimmerObject: {fileID: 0}
 --- !u!212 &1840474034
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6019,12 +6005,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1840474031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f15f0fb60527f49981b2eb6065d68a, type: 3}
+  m_Script: {fileID: 11500000, guid: c55e653a39426704f9d2026c65034961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: {fileID: 1040267700}
   inkKnotName: rocket_scene
-  spawnTrainingBugAfterDialogue: 0
+  player: {fileID: 1119875315}
+  interactDistance: 2
+  dimmerObject: {fileID: 0}
 --- !u!1 &1842560525
 GameObject:
   m_ObjectHideFlags: 0
@@ -7342,6 +7330,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 877295374010173537, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
+      propertyPath: defaultScale
+      value: 0.53
+      objectReference: {fileID: 0}
     - target: {fileID: 5269073461078383744, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -7425,6 +7417,10 @@ PrefabInstance:
     - target: {fileID: 6765170205530297095, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141822669062122645, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
