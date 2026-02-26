@@ -12,7 +12,7 @@ public class NpcClickInteract : MonoBehaviour
 
     [Header("Distance Gate")]
     public Transform player;
-    public float interactDistance = 2.0f;
+    public float interactDistance = 3.0f;
 
     [Header("Optional")]
     public GameObject dimmerObject;
