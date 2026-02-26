@@ -922,6 +922,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 877295374010173537, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
+      propertyPath: defaultScale
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 877295374010173537, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
       propertyPath: characterScales.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2303,7 +2307,8 @@ GameObject:
   - component: {fileID: 833170583}
   - component: {fileID: 833170582}
   - component: {fileID: 833170581}
-  - component: {fileID: 833170580}
+  - component: {fileID: 833170585}
+  - component: {fileID: 833170584}
   m_Layer: 0
   m_Name: "\u5730\u4E0A\u50B3\u55AE"
   m_TagString: Untagged
@@ -2311,21 +2316,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &833170580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 833170579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f15f0fb60527f49981b2eb6065d68a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 0}
-  inkKnotName: plaza_flyer_pickup
-  spawnTrainingBugAfterDialogue: 0
 --- !u!61 &833170581
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2438,6 +2428,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &833170584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833170579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55e653a39426704f9d2026c65034961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 0}
+  inkKnotName: plaza_flyer_pickup
+  player: {fileID: 0}
+  interactDistance: 3
+  dimmerObject: {fileID: 0}
+  triggerOnce: 0
+--- !u!114 &833170585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833170579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbea358b2c39664ebf6cab9b17edb6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 5f2ea8c7868caf8498db3fddd5eeb63e, type: 2}
 --- !u!1 &912543238
 GameObject:
   m_ObjectHideFlags: 0
@@ -4742,9 +4763,9 @@ GameObject:
   - component: {fileID: 2049582896}
   - component: {fileID: 2049582894}
   - component: {fileID: 2049582899}
-  - component: {fileID: 2049582893}
   - component: {fileID: 2049582897}
   - component: {fileID: 2049582898}
+  - component: {fileID: 2049582900}
   m_Layer: 0
   m_Name: Lia
   m_TagString: Untagged
@@ -4752,21 +4773,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2049582893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049582892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 160c5e72dc38a16458f56fd5ff57a828, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 2090023639}
-  inkKnotName: plaza_leah
-  dimmerObject: {fileID: 0}
 --- !u!61 &2049582894
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4907,6 +4913,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOffset: 20
   baseLine: 0
+--- !u!114 &2049582900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049582892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55e653a39426704f9d2026c65034961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 2090023639}
+  inkKnotName: plaza_leah
+  player: {fileID: 21981070}
+  interactDistance: 5
+  dimmerObject: {fileID: 0}
+  triggerOnce: 0
 --- !u!114 &2090023639 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5194394126300528005, guid: a1369cc2d66d6f7449065ed06c11ed66, type: 3}
