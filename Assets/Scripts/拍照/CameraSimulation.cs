@@ -51,6 +51,14 @@ public class CameraSimulation : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     private void OnTakePhotoClick()
     {
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsTutorialActive)
+        {
+            if (TutorialManager.Instance.CurrentStepIndex == TutorialManager.Instance.takePhotoStepIndex)
+            {
+                Debug.Log("教學：玩家成功按下快門！進入下一步");
+                TutorialManager.Instance.NextStep();
+            }
+        }
         // 從 UI 觀景窗的位置，向 2D 世界發射一條射線
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(transform.position), Vector2.zero);
         Sprite spriteToShow;

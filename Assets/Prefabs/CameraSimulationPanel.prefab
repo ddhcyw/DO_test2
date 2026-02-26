@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 3482510241002823503}
   - component: {fileID: 3975576837841129266}
   - component: {fileID: 2191144756519747182}
+  - component: {fileID: 7382047792884448727}
   m_Layer: 5
   m_Name: takePicButton
   m_TagString: Untagged
@@ -172,6 +173,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7382047792884448727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5716736571058043451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b5da1057fc97e349a105853aee056f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetStepIndex: 14
 --- !u!1 &7655914824156494906
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +198,7 @@ GameObject:
   - component: {fileID: 1379173280602996728}
   - component: {fileID: 3765787464307243815}
   - component: {fileID: 2377396786068667615}
+  - component: {fileID: 3175326798764596161}
   m_Layer: 5
   m_Name: photoEffectButton
   m_TagString: Untagged
@@ -292,3 +307,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3175326798764596161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7655914824156494906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b5da1057fc97e349a105853aee056f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetStepIndex: 15

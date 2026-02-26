@@ -11,7 +11,9 @@ public class TutorialManager : MonoBehaviour
     [Tooltip("點擊相機任務第幾步(要-1)")]
     public int clickStepIndex = 5;
     [Header("拖曳任務第幾步(要-1)")]
-    public int dragStepIndex = 7;//拖曳任務是第8步
+    public int dragStepIndex = 7;
+    [Header("拍照任務第幾步(要-1)")]
+    public int takePhotoStepIndex = 13;
 
     [Header("狀態")]
     // 公開這個變數，讓其他腳本可以讀取
