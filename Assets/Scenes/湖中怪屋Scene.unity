@@ -132,7 +132,6 @@ GameObject:
   m_Component:
   - component: {fileID: 54454407}
   - component: {fileID: 54454406}
-  - component: {fileID: 54454405}
   - component: {fileID: 54454404}
   - component: {fileID: 54454403}
   - component: {fileID: 54454402}
@@ -258,28 +257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4786f3a1b8d974cad15ddbb396de72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  accel: 20
-  decel: 60
---- !u!114 &54454405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54454399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e6588b0b2fd58746b94d9a2dff4134a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackKey: 102
-  attackRadius: 1.5
-  bugLayerMask:
-    serializedVersion: 2
-    m_Bits: 16384
-  attackCenter: {fileID: 54454407}
-  hasCamera: 1
+  moveSpeed: 2.5
+  accel: 25
+  decel: 35
 --- !u!212 &54454406
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -486,7 +466,7 @@ GameObject:
   - component: {fileID: 213567703}
   - component: {fileID: 213567702}
   - component: {fileID: 213567701}
-  - component: {fileID: 213567700}
+  - component: {fileID: 213567704}
   m_Layer: 0
   m_Name: LakeHouse
   m_TagString: Untagged
@@ -494,21 +474,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &213567700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 213567699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 160c5e72dc38a16458f56fd5ff57a828, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 947673467}
-  inkKnotName: lake_house
-  dimmerObject: {fileID: 213567699}
 --- !u!61 &213567701
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -615,12 +580,29 @@ Transform:
   m_GameObject: {fileID: 213567699}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.6737, y: 0.6567, z: 0}
+  m_LocalPosition: {x: 5.6737, y: 1.41, z: 0}
   m_LocalScale: {x: 4.1347356, y: 4.75779, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &213567704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213567699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55e653a39426704f9d2026c65034961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 947673467}
+  inkKnotName: lake_house
+  player: {fileID: 54454407}
+  interactDistance: 3
+  dimmerObject: {fileID: 0}
 --- !u!1 &430830469
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,7 +613,7 @@ GameObject:
   m_Component:
   - component: {fileID: 430830470}
   - component: {fileID: 430830472}
-  - component: {fileID: 430830471}
+  - component: {fileID: 430830473}
   m_Layer: 0
   m_Name: TalkZone
   m_TagString: Untagged
@@ -654,20 +636,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2137247989}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &430830471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 430830469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cae88073cc08f34c8b1f219ca09e899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knotName: lake_npc2
-  gameFlow: {fileID: 2010282534}
 --- !u!61 &430830472
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -713,6 +681,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 11.085293, y: 15.248808}
   m_EdgeRadius: 0
+--- !u!114 &430830473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430830469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55e653a39426704f9d2026c65034961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 947673467}
+  inkKnotName: lake_npc2
+  player: {fileID: 54454407}
+  interactDistance: 3
+  dimmerObject: {fileID: 0}
 --- !u!1 &507168565
 GameObject:
   m_ObjectHideFlags: 0
@@ -2637,7 +2622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1726524382}
   - component: {fileID: 1726524384}
-  - component: {fileID: 1726524383}
+  - component: {fileID: 1726524385}
   m_Layer: 0
   m_Name: TalkZone
   m_TagString: Untagged
@@ -2660,20 +2645,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1137885120}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1726524383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1726524381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cae88073cc08f34c8b1f219ca09e899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knotName: lake_npc1
-  gameFlow: {fileID: 2010282534}
 --- !u!61 &1726524384
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2719,6 +2690,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 16.77053, y: 15.248808}
   m_EdgeRadius: 0
+--- !u!114 &1726524385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726524381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55e653a39426704f9d2026c65034961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 947673467}
+  inkKnotName: lake_npc1
+  player: {fileID: 54454407}
+  interactDistance: 3
+  dimmerObject: {fileID: 0}
 --- !u!1 &1875289620 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 420219862354561781, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}

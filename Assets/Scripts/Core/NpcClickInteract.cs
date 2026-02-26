@@ -1,5 +1,5 @@
 using UnityEngine;
-using Game.Dialogue;   
+using Game.Dialogue;
 
 [RequireComponent(typeof(Collider2D))]
 public class NpcClickInteract : MonoBehaviour
@@ -12,16 +12,22 @@ public class NpcClickInteract : MonoBehaviour
 
     [Header("Distance Gate")]
     public Transform player;
-    public float interactDistance = 2.0f;
+    public float interactDistance = 3.0f;
 
     [Header("Optional")]
     public GameObject dimmerObject;
+
+    [Header("Behavior")]
+    public bool triggerOnce = false;
 
     private bool triggered = false;
 
     void OnMouseDown()
     {
-        if (triggered) return;
+        Debug.Log($"OnMouseDown hit: {name}");
+
+        if (triggerOnce && triggered) return;
+
         if (!dialogue)
         {
             Debug.LogError($"{name}: dialogue 沒有指定！");
@@ -31,13 +37,18 @@ public class NpcClickInteract : MonoBehaviour
 
         if (player != null)
         {
-            float d = Vector2.Distance(player.position, transform.position);
+            Vector2 p = player.position;
+            Vector2 n = transform.position;
+            float d = Vector2.Distance(p, n);
+            Debug.Log($"Distance to player = {d}, gate = {interactDistance}");
+
             if (d > interactDistance) return;
         }
 
         if (dimmerObject != null) dimmerObject.SetActive(false);
 
-        triggered = true;
+        if (triggerOnce) triggered = true;
+
         dialogue.StartInkDialogue(inkKnotName);
     }
 }
