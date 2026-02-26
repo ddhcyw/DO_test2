@@ -1,78 +1,82 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class PlayerController : MonoBehaviour
 {
     [Header("移動設定")]
     public float moveSpeed = 3f;
 
     [Header("加速度設定")]
-    [SerializeField] float accel = 20f;   // 加速
-    [SerializeField] float decel = 60f;   // 減速（通常比 accel 大）
+    [SerializeField] float accel = 20f;
+    [SerializeField] float decel = 60f;
 
-    private Rigidbody2D rb;
-    private Vector2 input;
-    private Vector2 currentVel;
+    private Rigidbody rb;
+    private Vector3 input;      
+    private Vector3 currentVel;
 
     private bool canMove = true;
     public bool CanMove => canMove;
 
-    public Vector2 InputVector => input;
+    public Vector3 InputVector => input;
 
     public void EnableMovement(bool active)
     {
         canMove = active;
         if (!active)
         {
-            input = Vector2.zero;
-            currentVel = Vector2.zero;
-            rb.velocity = Vector2.zero;
+            input = Vector3.zero;
+            currentVel = Vector3.zero;
+            rb.velocity = Vector3.zero;
         }
     }
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0f;
-        rb.freezeRotation = true;
+        rb = GetComponent<Rigidbody>();
 
-        // 路線 A 建議這兩個在 Inspector 也設一次（防止被 prefab 覆蓋）
-        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
-        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        rb.useGravity = false;
+        rb.drag = 0f;
+
+        // 鎖定旋轉，防止人倒下或亂轉
+        rb.constraints = RigidbodyConstraints.FreezeRotationX |
+                         RigidbodyConstraints.FreezeRotationY |
+                         RigidbodyConstraints.FreezeRotationZ;
+
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
+        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
     }
 
     void Update()
     {
         if (!canMove)
         {
-            input = Vector2.zero;
+            input = Vector3.zero;
             return;
         }
 
-        input = new Vector2(
-            Input.GetAxisRaw("Horizontal"),
-            Input.GetAxisRaw("Vertical")
-        ).normalized;
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+
+        input = new Vector3(h, 0, v).normalized;
     }
 
     void FixedUpdate()
     {
         if (!canMove)
         {
-            currentVel = Vector2.zero;
-            rb.velocity = Vector2.zero;
+            currentVel = Vector3.zero;
+            rb.velocity = Vector3.zero;
             return;
         }
 
-        Vector2 targetVel = input * moveSpeed;
+        Vector3 targetVel = input * moveSpeed;
         float a = (input.sqrMagnitude > 0f) ? accel : decel;
 
-        currentVel = Vector2.MoveTowards(currentVel, targetVel, a * Time.fixedDeltaTime);
+        currentVel = Vector3.MoveTowards(currentVel, targetVel, a * Time.fixedDeltaTime);
 
-        // 很小的殘速直接歸零，避免尾巴滑行
         if (input.sqrMagnitude == 0f && currentVel.magnitude < 0.05f)
-            currentVel = Vector2.zero;
+            currentVel = Vector3.zero;
 
-        rb.velocity = currentVel;
+        rb.velocity = new Vector3(currentVel.x, rb.velocity.y, currentVel.z);
     }
 }
