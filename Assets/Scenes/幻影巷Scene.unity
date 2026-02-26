@@ -433,8 +433,8 @@ GameObject:
   - component: {fileID: 46287711}
   - component: {fileID: 46287710}
   - component: {fileID: 46287709}
-  - component: {fileID: 46287708}
   - component: {fileID: 46287707}
+  - component: {fileID: 46287712}
   m_Layer: 0
   m_Name: "\u597D\u4FE1\u798F"
   m_TagString: Untagged
@@ -455,21 +455,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: good_fortune
---- !u!114 &46287708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 46287706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f15f0fb60527f49981b2eb6065d68a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 1651844528}
-  inkKnotName: phantom_alley_good_fortune
-  spawnTrainingBugAfterDialogue: 0
 --- !u!61 &46287709
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -583,6 +568,23 @@ Transform:
   - {fileID: 195588498}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &46287712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46287706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55e653a39426704f9d2026c65034961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 1651844528}
+  inkKnotName: phantom_alley_good_fortune
+  player: {fileID: 1916917606}
+  interactDistance: 3
+  dimmerObject: {fileID: 0}
 --- !u!1 &76637850
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,8 +596,8 @@ GameObject:
   - component: {fileID: 76637853}
   - component: {fileID: 76637852}
   - component: {fileID: 76637856}
-  - component: {fileID: 76637855}
   - component: {fileID: 76637854}
+  - component: {fileID: 76637857}
   m_Layer: 0
   m_Name: "\u81BD\u5927\u6A94"
   m_TagString: Untagged
@@ -684,21 +686,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Dandadan
---- !u!114 &76637855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 76637850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f15f0fb60527f49981b2eb6065d68a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 1651844528}
-  inkKnotName: phantom_alley_bold_file
-  spawnTrainingBugAfterDialogue: 0
 --- !u!61 &76637856
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -744,6 +731,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 9.07, y: 10.74}
   m_EdgeRadius: 0
+--- !u!114 &76637857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76637850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55e653a39426704f9d2026c65034961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 1651844528}
+  inkKnotName: phantom_alley_bold_file
+  player: {fileID: 1916917606}
+  interactDistance: 3
+  dimmerObject: {fileID: 0}
 --- !u!1 &79468706
 GameObject:
   m_ObjectHideFlags: 0
@@ -8780,8 +8784,8 @@ GameObject:
   - component: {fileID: 1817624583}
   - component: {fileID: 1817624582}
   - component: {fileID: 1817624581}
-  - component: {fileID: 1817624580}
   - component: {fileID: 1817624579}
+  - component: {fileID: 1817624584}
   m_Layer: 0
   m_Name: "\u8CFC\u4FBF\u5B9C"
   m_TagString: Untagged
@@ -8802,21 +8806,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: cheap_buyer
---- !u!114 &1817624580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1817624578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f15f0fb60527f49981b2eb6065d68a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 1651844528}
-  inkKnotName: phantom_alley_cheap_buyer
-  spawnTrainingBugAfterDialogue: 0
 --- !u!61 &1817624581
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8930,6 +8919,23 @@ Transform:
   - {fileID: 280294759}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1817624584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817624578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55e653a39426704f9d2026c65034961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 1651844528}
+  inkKnotName: phantom_alley_bold_file
+  player: {fileID: 1916917606}
+  interactDistance: 3
+  dimmerObject: {fileID: 0}
 --- !u!1001 &1879155270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10260,6 +10266,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1858228232739582305, guid: e4806a99edbebad418c737602d930fd7, type: 3}
+      propertyPath: defaultScale
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858228232739582305, guid: e4806a99edbebad418c737602d930fd7, type: 3}
+      propertyPath: characterScales.Array.data[0].scale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858228232739582305, guid: e4806a99edbebad418c737602d930fd7, type: 3}
+      propertyPath: characterScales.Array.data[1].scale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858228232739582305, guid: e4806a99edbebad418c737602d930fd7, type: 3}
+      propertyPath: characterScales.Array.data[2].scale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5190312467309505031, guid: e4806a99edbebad418c737602d930fd7, type: 3}
       propertyPath: m_Name
       value: Canvas_scales
@@ -10343,6 +10365,10 @@ PrefabInstance:
     - target: {fileID: 6699814320088343936, guid: e4806a99edbebad418c737602d930fd7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573127616183440789, guid: e4806a99edbebad418c737602d930fd7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -78
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
