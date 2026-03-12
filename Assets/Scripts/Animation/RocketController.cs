@@ -6,8 +6,8 @@ public class RocketController : MonoBehaviour
     public Animator animator;
 
     [Header("Animator Params")]
-    public string igniteTrigger = "Ignite";   // 你 Animator 裡的 Trigger 名稱
-    public string idleStateName = "Idle";     // 可選：用來回到待機
+    public string igniteTrigger = "Ignite";
+    public string idleStateName = "Idle";
 
     public void PlayIgnite()
     {
@@ -17,14 +17,17 @@ public class RocketController : MonoBehaviour
             return;
         }
 
+        Debug.Log("RocketController: PlayIgnite() 被呼叫");
+
         animator.ResetTrigger(igniteTrigger);
         animator.SetTrigger(igniteTrigger);
     }
 
-    // 可選：如果你想強制回 Idle（不用也可以）
     public void BackToIdle()
     {
         if (!animator) return;
+
+        Debug.Log("RocketController: BackToIdle() 被呼叫");
         animator.Play(idleStateName, 0, 0f);
     }
 }
