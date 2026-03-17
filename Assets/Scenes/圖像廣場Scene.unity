@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 21981068}
   - component: {fileID: 21981067}
   - component: {fileID: 21981066}
-  - component: {fileID: 21981065}
   - component: {fileID: 21981064}
   - component: {fileID: 21981063}
   m_Layer: 0
@@ -217,21 +216,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5569963, y: 1.9838495}
   m_EdgeRadius: 0
---- !u!114 &21981065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 21981062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63b01a5cb41fc494babf015b4bdf6bc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  photoItemToGive: {fileID: 11400000, guid: 91aead8a4672793479501468461c08d2, type: 2}
-  photoEffectSprite: {fileID: 21300000, guid: cae9041f02c3ee04f8d5be5ff897478d, type: 3}
-  collectedPhotoSprite: {fileID: 21300000, guid: 331f3c308dc57cf47a4313548b1df606, type: 3}
 --- !u!114 &21981066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4766,6 +4750,7 @@ GameObject:
   - component: {fileID: 2049582897}
   - component: {fileID: 2049582898}
   - component: {fileID: 2049582900}
+  - component: {fileID: 2049582901}
   m_Layer: 0
   m_Name: Lia
   m_TagString: Untagged
@@ -4931,6 +4916,21 @@ MonoBehaviour:
   interactDistance: 5
   dimmerObject: {fileID: 0}
   triggerOnce: 0
+--- !u!114 &2049582901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049582892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b01a5cb41fc494babf015b4bdf6bc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  photoItemToGive: {fileID: 11400000, guid: 91aead8a4672793479501468461c08d2, type: 2}
+  photoEffectSprite: {fileID: 21300000, guid: cae9041f02c3ee04f8d5be5ff897478d, type: 3}
+  collectedPhotoSprite: {fileID: 21300000, guid: 331f3c308dc57cf47a4313548b1df606, type: 3}
 --- !u!114 &2090023639 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5194394126300528005, guid: a1369cc2d66d6f7449065ed06c11ed66, type: 3}
