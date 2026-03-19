@@ -1511,7 +1511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbea358b2c39664ebf6cab9b17edb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 116c9554c8e69754b8c89f62252fdfac, type: 2}
+  item: {fileID: 11400000, guid: b2ff2adaf4bdf6747b85d01ddd4f28f1, type: 2}
 --- !u!1 &594699599
 GameObject:
   m_ObjectHideFlags: 0
@@ -3229,7 +3229,6 @@ RectTransform:
   m_Children:
   - {fileID: 43779311}
   - {fileID: 899287164}
-  - {fileID: 1347781479}
   - {fileID: 1886354337}
   - {fileID: 1011915361}
   - {fileID: 2076806947}
@@ -4505,7 +4504,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1019505274}
+    m_TransformParent: {fileID: 1886354337}
     m_Modifications:
     - target: {fileID: 288130997315968326, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
       propertyPath: m_Pivot.x
@@ -6225,6 +6224,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 907583178}
+  - {fileID: 1347781479}
   m_Father: {fileID: 1019505274}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
