@@ -4169,7 +4169,7 @@ MonoBehaviour:
   mainSpineObject: {fileID: 420213439}
   shotSpineObject: {fileID: 61861667}
   shotSkeletonAnimation: {fileID: 61861669}
-  shotAnimationName: animation
+  shotAnimationName: shot
   faceRightIsNegativeX: 1
 --- !u!114 &1126223011 stripped
 MonoBehaviour:
