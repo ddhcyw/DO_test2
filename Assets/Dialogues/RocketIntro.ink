@@ -52,7 +52,6 @@ MAI: 在這之前，還有一件重要的事...
     MAI: 現在我們先找到一個酷東西，是和麻伊長得有點像的機器，他應該能幫上你！
 
     ~ hide_mai("bridge")
-    ~ start_MAI_help()
     ~ show_objective("找到和麻伊很像的機器！")
     -> END
 
