@@ -5,6 +5,7 @@ using Ink.Runtime;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Game.Dialogue;
+using System;
 
 
 public class DialogueController : MonoBehaviour
@@ -190,6 +191,19 @@ public class DialogueController : MonoBehaviour
     }
 
     // ============================================================
+    // 不要顯示動畫名稱
+    // ============================================================
+    string GetDisplayName(string speakerId)
+    {
+        if (string.IsNullOrWhiteSpace(speakerId))
+            return "";
+
+        if (speakerId.StartsWith("黑色利亞", StringComparison.OrdinalIgnoreCase))
+            return "黑色利亞";
+
+        return speakerId;
+    }
+    // ============================================================
     // 讀取下一句
     // ============================================================
     void ContinueInk()
@@ -252,7 +266,7 @@ public class DialogueController : MonoBehaviour
 
         currentLineText = text;
 
-        if (nameText) nameText.text = who;
+        if (nameText) nameText.text = GetDisplayName(who);
         if (portrait != null) portrait.SetSpeaker(who);
         Debug.Log($"[Dialogue] rawLine='{line}', who='{who}'");
 
