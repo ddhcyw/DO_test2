@@ -12,6 +12,15 @@ public class PlayerCameraAttack : MonoBehaviour
     [Header("相機持有狀態")]
     public bool hasCamera = true;
 
+    private PlayerSpineSwitcher spineSwitcher;
+
+    void Awake()
+    {
+        spineSwitcher = GetComponentInChildren<PlayerSpineSwitcher>();
+        if (spineSwitcher == null)
+            spineSwitcher = GetComponent<PlayerSpineSwitcher>();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(attackKey))
@@ -26,10 +35,12 @@ public class PlayerCameraAttack : MonoBehaviour
             return;
         }
 
+        if (spineSwitcher != null)
+            spineSwitcher.PlayShot();
+
         if (!attackCenter) attackCenter = transform;
 
         Vector2 center = attackCenter.position;
-
         Collider2D[] hits = Physics2D.OverlapCircleAll(center, attackRadius, bugLayerMask);
 
         if (hits == null || hits.Length == 0)
@@ -38,27 +49,25 @@ public class PlayerCameraAttack : MonoBehaviour
             return;
         }
 
-        // 避免同一隻蟲被多個 collider 重複處理
         HashSet<EnemyHitBlinkAndVanish2D> handled = new HashSet<EnemyHitBlinkAndVanish2D>();
 
         foreach (var hit in hits)
         {
             if (!hit) continue;
 
-            // 從 collider 往上找 EnemyHitBlinkAndVanish2D
+            var trainingBug = hit.GetComponentInParent<Core.TrainingBug>();
+            if (trainingBug != null)
+            {
+                trainingBug.HitByCamera();
+                continue;
+            }
+
             var enemy = hit.GetComponentInParent<EnemyHitBlinkAndVanish2D>();
-
-            Debug.Log(
-                $"[CameraAttack] Hit: {hit.name}, " +
-                $"Parent: {hit.transform.parent?.name}, " +
-                $"HasVanishScript: {enemy != null}"
-            );
-
-            if (enemy == null) continue;
-            if (handled.Contains(enemy)) continue;
-
-            handled.Add(enemy);
-            enemy.TriggerVanishSequence();
+            if (enemy != null && !handled.Contains(enemy))
+            {
+                handled.Add(enemy);
+                enemy.TriggerVanishSequence();
+            }
         }
     }
 

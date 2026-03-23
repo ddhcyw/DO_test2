@@ -1,4 +1,4 @@
-EXTERNAL give_camera()
+﻿EXTERNAL give_camera()
 EXTERNAL show_objective(content)
 EXTERNAL spawn_wave()
 EXTERNAL get_camera_item()
@@ -52,7 +52,6 @@ MAI: 在這之前，還有一件重要的事...
     MAI: 現在我們先找到一個酷東西，是和麻伊長得有點像的機器，他應該能幫上你！
 
     ~ hide_mai("bridge")
-    ~ start_MAI_help()
     ~ show_objective("找到和麻伊很像的機器！")
     -> END
 
@@ -74,6 +73,7 @@ MAI: 沒錯！麻伊先試著啟動火箭，稍等一下歐！
 
 ~ show_objective("英特涅號，啟動！")
 ~ play_ignite_anim()
+~ pause_dialogue(3)
 
 旁白: （英特涅號發光，但很快又暗了下去。）
 
@@ -117,12 +117,14 @@ MAI: 等你學會怎麼使用它，我們就能出發去找能量了！
     ~ hide_mai("rocket")
     -> END
 
-
 === camera_pickup ===
 ~ get_camera_item()
+~ show_objective("相機會出現在背包裡！按E打開背包")
 
-~ show_objective("拿起相機對準蟲蟲按 F 試試！")
 
+-> training_start
+=== training_start ===
+~ show_objective("太好了！你已經學會使用背包了！")
 ~ spawn_wave()
 
 -> END
@@ -134,10 +136,10 @@ MAI: 我們到傳送門去！
 
 ~ show_objective("走到傳送門吧！")
 
-
 -> END
 
 === portal_transition ===
+旁白: （一道光芒包圍了你和麻伊——）
 
 ~ change_scene("湖中怪屋Scene")
 

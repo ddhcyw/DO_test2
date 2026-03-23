@@ -48,8 +48,38 @@ MonoBehaviour:
     skin: 
     anim: idle
     loop: 1
-  - id: "\u9ED1\u8272\u5229\u4E9E"
+  - id: "\u9ED1\u8272\u5229\u4E9E_idle"
     spineData: {fileID: 11400000, guid: 70c7e94d8952717469a5e8a532797fdb, type: 2}
     skin: 
     anim: idle
+    loop: 1
+  - id: "\u9ED1\u8272\u5229\u4E9E_win"
+    spineData: {fileID: 11400000, guid: 70c7e94d8952717469a5e8a532797fdb, type: 2}
+    skin: 
+    anim: blackLiawin
+    loop: 1
+  - id: "\u9ED1\u8272\u5229\u4E9E_lose"
+    spineData: {fileID: 11400000, guid: 70c7e94d8952717469a5e8a532797fdb, type: 2}
+    skin: 
+    anim: blackLialose
+    loop: 1
+  - id: "\u9ED1\u8272\u5229\u4E9E_idle2"
+    spineData: {fileID: 11400000, guid: 70c7e94d8952717469a5e8a532797fdb, type: 2}
+    skin: 
+    anim: idle2
+    loop: 1
+  - id: "\u9ED1\u8272\u5229\u4E9E_lose2"
+    spineData: {fileID: 11400000, guid: 70c7e94d8952717469a5e8a532797fdb, type: 2}
+    skin: 
+    anim: blackLialose2
+    loop: 1
+  - id: "\u9ED1\u8272\u5229\u4E9E_idle3"
+    spineData: {fileID: 11400000, guid: 70c7e94d8952717469a5e8a532797fdb, type: 2}
+    skin: 
+    anim: idle3
+    loop: 1
+  - id: "\u9ED1\u8272\u5229\u4E9E_lose3"
+    spineData: {fileID: 11400000, guid: 70c7e94d8952717469a5e8a532797fdb, type: 2}
+    skin: blackLialose3
+    anim: idle3
     loop: 1

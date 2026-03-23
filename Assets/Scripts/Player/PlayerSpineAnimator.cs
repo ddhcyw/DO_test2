@@ -12,18 +12,21 @@ public class PlayerSpineAnimator : MonoBehaviour
     [Tooltip("如果原始動畫裡，角色【面向右邊】時是 X 負數，請勾選")]
     public bool faceRightIsNegativeX = true;
 
+    [Header("切換控制")]
+    public PlayerSpineSwitcher spineSwitcher;
+
     private SkeletonAnimation skeletonAnimation;
     private PlayerController playerController;
 
     private string currentAnimation = "";
     private bool isTalking = false;
     private float baseScaleX = 1f;
+    private float lastFacingX = 1f;
 
     void Awake()
     {
         skeletonAnimation = GetComponent<SkeletonAnimation>();
 
-        // 從自己或父物件抓 PlayerController
         playerController = GetComponent<PlayerController>();
         if (playerController == null)
             playerController = GetComponentInParent<PlayerController>();
@@ -34,13 +37,27 @@ public class PlayerSpineAnimator : MonoBehaviour
             if (Mathf.Approximately(baseScaleX, 0f))
                 baseScaleX = 1f;
         }
+
+        if (spineSwitcher == null)
+            spineSwitcher = GetComponentInParent<PlayerSpineSwitcher>();
+        if (skeletonAnimation != null && skeletonAnimation.Skeleton != null)
+        {
+            float currentScaleX = skeletonAnimation.Skeleton.ScaleX;
+
+            if (faceRightIsNegativeX)
+                lastFacingX = currentScaleX < 0 ? 1f : -1f;
+            else
+                lastFacingX = currentScaleX > 0 ? 1f : -1f;
+        }
     }
 
     void Update()
     {
         if (skeletonAnimation == null) return;
 
-        // 只要不能移動(對話、事件鎖定)、或 isTalking 被外部設定，就全部 idle
+        if (spineSwitcher != null && spineSwitcher.IsPlayingShot())
+            return;
+
         bool movementLocked =
             playerController != null &&
             (!playerController.enabled || !playerController.CanMove);
@@ -51,7 +68,6 @@ public class PlayerSpineAnimator : MonoBehaviour
             return;
         }
 
-        // 正常情況：依照移動輸入切換 idle / walk
         Vector2 input = Vector2.zero;
         if (playerController != null)
         {
@@ -72,15 +88,15 @@ public class PlayerSpineAnimator : MonoBehaviour
         else
             SetAnimation(idleAnimationName, true);
 
-        // 左右翻面
-        if (input.x != 0)
-        {
-            float sign = input.x > 0 ? 1f : -1f;   // 按右 = +1, 按左 = -1
-            if (faceRightIsNegativeX)
-                sign *= -1f;
+        if (input.x > 0.01f)
+            lastFacingX = 1f;
+        else if (input.x < -0.01f)
+            lastFacingX = -1f;
 
-            skeletonAnimation.Skeleton.ScaleX = Mathf.Abs(baseScaleX) * sign;
-        }
+        ApplyFacing(lastFacingX);
+
+        if (spineSwitcher != null)
+            spineSwitcher.SetFacing(lastFacingX);
     }
 
     void SetAnimation(string animationName, bool loop)
@@ -98,7 +114,16 @@ public class PlayerSpineAnimator : MonoBehaviour
         }
     }
 
-    // 如果之後你還是想從對話系統手動控制，也可以用這個
+    void ApplyFacing(float facingX)
+    {
+        float sign = facingX > 0 ? 1f : -1f;
+
+        if (faceRightIsNegativeX)
+            sign *= -1f;
+
+        skeletonAnimation.Skeleton.ScaleX = Mathf.Abs(baseScaleX) * sign;
+    }
+
     public void SetTalking(bool talking)
     {
         isTalking = talking;
