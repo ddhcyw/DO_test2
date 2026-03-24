@@ -88,20 +88,17 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             // =============================================================
             if (slotType == SlotType.HudToolbar)
             {
-                // --- 檢測是否對準場景中的可拍攝物體 (物理射線) ---
                 if (item is CameraItem cameraItem)
                 {
-                    // 將滑鼠位置轉為世界座標
-                    Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    // 發射射線偵測 Collider
-                    RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
-
-                    // 檢查是否打到有 Photographable 腳本的物體
-                    if (hit.collider != null && hit.collider.TryGetComponent<Photographable>(out Photographable target))
+                    Debug.Log("拖曳相機到場景，打開觀景窗準備拍照！");
+                    cameraItem.UseItemAtPosition(Input.mousePosition);
+                }
+                if (TutorialManager.Instance != null && TutorialManager.Instance.IsTutorialActive)
+                {
+                    if (TutorialManager.Instance.CurrentStepIndex == TutorialManager.Instance.takePhotoStepIndex)
                     {
-                        Debug.Log("在工具列拖曳相機，拍到了：" + target.name);
-                        // 在滑鼠位置打開相機觀景窗
-                        cameraItem.UseItemAtPosition(Input.mousePosition);
+                        Debug.Log("教學：相機觀景窗已打開！自動進入快門教學");
+                        TutorialManager.Instance.NextStep();
                     }
                 }
 

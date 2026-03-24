@@ -8,6 +8,8 @@ public class CameraSimulation : MonoBehaviour, IPointerDownHandler, IDragHandler
     [Header("UI 元件設定")]
     public Button takePictureButton;
     public Button photoEffectButton;
+    [Header("預設圖片設定")] 
+    public Sprite emptyPhotoEffectSprite; // 拍到空景時要顯示的全螢幕預覽圖
 
     // === 內部變數 ===
     private Item finalPhotoItemToAdd;
@@ -59,14 +61,12 @@ public class CameraSimulation : MonoBehaviour, IPointerDownHandler, IDragHandler
                 TutorialManager.Instance.NextStep();
             }
         }
-        // 從 UI 觀景窗的位置，向 2D 世界發射一條射線
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(transform.position), Vector2.zero);
         Sprite spriteToShow;
 
-        // 檢查是否射線有打到東西，且該物體有 Photographable 腳本
         if (hit.collider != null && hit.collider.TryGetComponent<Photographable>(out Photographable target))
         {
-            // 拍到了特殊物體！
+            // === 情況 A：成功拍到有能量的物體 ===
             Debug.Log("拍到了：" + target.name);
             finalPhotoItemToAdd = target.photoItemToGive;
             finalCollectedPhotoSpriteToAdd = target.collectedPhotoSprite;
@@ -75,14 +75,26 @@ public class CameraSimulation : MonoBehaviour, IPointerDownHandler, IDragHandler
             if (finalPhotoItemToAdd == null || finalCollectedPhotoSpriteToAdd == null || spriteToShow == null)
             {
                 Debug.LogError("物體 " + target.name + " 上的 Photographable 腳本欄位未設定完整！");
-                return; // 欄位不完整，也取消拍照
+                return;
             }
         }
         else
         {
-            // *** 核心修正：拍到空景 ***
-            Debug.Log("未拍到任何可拍攝物體，取消拍照。");
-            return; // *** 停止執行，不顯示示意圖，也不給照片 ***
+            // === 情況 B：拍到空景 (沒有能量) ===
+            Debug.Log("未拍到特殊物體，顯示空景照片。");
+
+            // 這裡清空原本要加進圖鑑的資料，代表「這張照片沒能量」
+            finalPhotoItemToAdd = null; // 如果你不想放進背包，這行可以保持為 null
+            finalCollectedPhotoSpriteToAdd = null; // 絕對不要加進圖鑑
+
+            // 設定全螢幕要顯示的「無能量照片」
+            spriteToShow = emptyPhotoEffectSprite;
+
+            if (spriteToShow == null)
+            {
+                Debug.LogWarning("你還沒有在 Inspector 設定 emptyPhotoEffectSprite！");
+                return;
+            }
         }
 
         // --- 顯示示意圖 (只有在成功拍到時才會執行到這裡) ---
@@ -116,27 +128,29 @@ public class CameraSimulation : MonoBehaviour, IPointerDownHandler, IDragHandler
     {
         isShowingPhotoEffect = false; // 重設旗標
 
-        if (finalPhotoItemToAdd == null || finalCollectedPhotoSpriteToAdd == null)
+        // 如果玩家拍到的是「有能量」的照片，才執行加入背包和圖鑑的動作
+        if (finalPhotoItemToAdd != null && finalCollectedPhotoSpriteToAdd != null)
         {
-            Debug.LogError("要新增的照片 Item 或 Collected Photo Sprite 是 null！");
-            CloseSimulation();
-            return;
-        }
+            bool wasAdded = InventoryManager.Instance.Add(finalPhotoItemToAdd);
 
-        // 將照片加入背包
-        bool wasAdded = InventoryManager.Instance.Add(finalPhotoItemToAdd);
-
-        if (wasAdded)
-        {
-            Debug.Log("成功拍到照片，已加入背包！");
-            // 呼叫 PhotoGalleryManager 加入彩色照片
-            PhotoGalleryManager.Instance.AddCollectedPhoto(finalCollectedPhotoSpriteToAdd);
+            if (wasAdded)
+            {
+                Debug.Log("成功拍到有能量的照片，已加入背包與圖鑑！");
+                PhotoGalleryManager.Instance.AddCollectedPhoto(finalCollectedPhotoSpriteToAdd);
+            }
+            else
+            {
+                Debug.LogWarning("背包已滿，照片無法加入！");
+            }
         }
         else
         {
-            Debug.LogWarning("背包已滿，照片無法加入！");
+            // 這是拍到空景的狀況
+            Debug.Log("這是一張沒有能量的照片，不加入圖鑑。");
+            // 如果你有設定 emptyPhotoItem，也可以在這裡寫加入背包的邏輯
         }
 
+        // 最後一定要關閉並銷毀相機
         CloseSimulation();
     }
 

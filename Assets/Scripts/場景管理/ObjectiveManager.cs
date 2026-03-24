@@ -1,56 +1,91 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class ObjectiveManager : MonoBehaviour
 {
-    [Header("UI Components")]
-    public GameObject panelRoot;
-    public TMP_Text targetText;
+    [Header("UI 面板切換")]
+    [Tooltip("平常待機時的面板 (沒有任務時顯示這個)")]
+    public GameObject idlePanel;
+
+    [Tooltip("有新任務/提示時，彈出的面板 (Objective Panel Root)")]
+    public GameObject objectivePanel;
+
+    [Header("任務文字")]
+    [Tooltip("任務面板上的文字組件")]
+    public TMP_Text objectiveText;
 
     public static ObjectiveManager Instance { get; private set; }
 
-    // 1. (新增) 用來儲存 Inspector 預設輸入的文字
-    private string defaultHelpMessage = "我在這裡幫助你";
+    // 排隊系統
+    private Queue<string> objectiveQueue = new Queue<string>();
+    private bool isDisplaying = false;
 
     void Awake()
     {
         if (Instance == null) Instance = this;
 
-        // 2. (修改) 在 Awake 時儲存 Inspector 上設定好的預設文字
-        //    (您需要在 Inspector 的 TargetText 元件中輸入 "我在這裡幫助你")
-        if (targetText)
-        {
-            defaultHelpMessage = targetText.text;
-        }
-
-        // 3. (修改) 保持面板根物件是啟用的 (讓它常駐)
-        if (panelRoot)
-        {
-            panelRoot.SetActive(true);
-        }
-
-        // (注意：您需要在 Unity 編輯器中將 ObjectivePanel 預設為 Active(true))
+        // 遊戲一開始，強制顯示待機面板，隱藏任務面板
+        ClearObjective();
     }
 
-    // 顯示新的任務指示
+    // 新增任務到排隊隊列
     public void ShowObjective(string content)
     {
-        // 直接顯示傳入的內容
-        if (targetText) targetText.text = content;
+        objectiveQueue.Enqueue(content);
 
-        // 確保面板開啟
-        if (panelRoot) panelRoot.SetActive(true);
+        if (!isDisplaying)
+        {
+            StartCoroutine(DisplayObjectivesSequence());
+        }
     }
 
-    // 4. (新增) 清除任務並顯示預設幫助訊息
-    //    當玩家完成一個目標後，呼叫這個方法讓 UI 恢復正常
+    // 依序顯示任務的排隊處理器
+    private IEnumerator DisplayObjectivesSequence()
+    {
+        isDisplaying = true;
+
+        // ==========================================
+        // ★★★ 任務來了：隱藏待機，顯示任務面板 ★★★
+        // ==========================================
+        if (idlePanel) idlePanel.SetActive(false);
+        if (objectivePanel) objectivePanel.SetActive(true);
+
+        while (objectiveQueue.Count > 0)
+        {
+            string nextObj = objectiveQueue.Dequeue();
+
+            // 更新任務面板上的文字
+            if (objectiveText) objectiveText.text = nextObj;
+
+            // 停留 2 秒讓玩家看清楚
+            yield return new WaitForSeconds(2f);
+        }
+
+        // 任務全部播完
+        isDisplaying = false;
+
+        // 播完後自動切回待機狀態
+        ClearObjective();
+    }
+
+    // 恢復為預設待機狀態
     public void ClearObjective()
     {
-        // 將文本復原為預設的幫助訊息
-        if (targetText) targetText.text = defaultHelpMessage;
+        objectiveQueue.Clear();
+
+        // ==========================================
+        // ★★★ 任務結束：隱藏任務，顯示待機面板 ★★★
+        // ==========================================
+        if (objectivePanel) objectivePanel.SetActive(false);
+        if (idlePanel) idlePanel.SetActive(true);
     }
+
+    // 完全隱藏所有面板 (例如看動畫或 Boss 戰時使用)
     public void HideObjective()
     {
-        if (panelRoot) panelRoot.SetActive(false);
+        if (idlePanel) idlePanel.SetActive(false);
+        if (objectivePanel) objectivePanel.SetActive(false);
     }
 }

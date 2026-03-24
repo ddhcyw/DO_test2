@@ -3,7 +3,10 @@ guid: 7096a6bf066931c489b93213839194fe
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - takePictureButton: {instanceID: 0}
+  - photoEffectButton: {instanceID: 0}
+  - emptyPhotoEffectSprite: {fileID: 21300000, guid: 33f3644a53e43ae409fc012d197c5019, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

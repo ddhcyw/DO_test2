@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   takePictureButton: {fileID: 2191144756519747182}
   photoEffectButton: {fileID: 2377396786068667615}
+  emptyPhotoEffectSprite: {fileID: 21300000, guid: 33f3644a53e43ae409fc012d197c5019, type: 3}
 --- !u!1 &5716736571058043451
 GameObject:
   m_ObjectHideFlags: 0
