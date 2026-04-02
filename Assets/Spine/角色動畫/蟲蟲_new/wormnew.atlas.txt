@@ -1,0 +1,216 @@
+
+worm.png
+size: 1742,1547
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+blue1
+  rotate: false
+  xy: 2, 694
+  size: 474, 424
+  orig: 3508, 2480
+  offset: 1174, 995
+  index: -1
+blue2
+  rotate: false
+  xy: 478, 529
+  size: 402, 294
+  orig: 3508, 2480
+  offset: 1458, 1003
+  index: -1
+blue3
+  rotate: false
+  xy: 667, 19
+  size: 250, 258
+  orig: 3508, 2480
+  offset: 1688, 1116
+  index: -1
+blue4
+  rotate: false
+  xy: 789, 279
+  size: 258, 248
+  orig: 3508, 2480
+  offset: 1790, 1233
+  index: -1
+blue5
+  rotate: false
+  xy: 1282, 1005
+  size: 253, 244
+  orig: 3508, 2480
+  offset: 1932, 1148
+  index: -1
+blue6
+  rotate: false
+  xy: 462, 279
+  size: 325, 248
+  orig: 3508, 2480
+  offset: 1999, 1057
+  index: -1
+eyes
+  rotate: true
+  xy: 252, 10
+  size: 268, 129
+  orig: 3508, 2480
+  offset: 1254, 1109
+  index: -1
+green1
+  rotate: false
+  xy: 2, 1120
+  size: 474, 425
+  orig: 3508, 2480
+  offset: 1174, 996
+  index: -1
+green2
+  rotate: false
+  xy: 955, 1251
+  size: 408, 294
+  orig: 3508, 2480
+  offset: 1453, 999
+  index: -1
+green3
+  rotate: false
+  xy: 1213, 750
+  size: 254, 253
+  orig: 3508, 2480
+  offset: 1688, 1120
+  index: -1
+green4
+  rotate: false
+  xy: 1174, 26
+  size: 253, 255
+  orig: 3508, 2480
+  offset: 1787, 1227
+  index: -1
+green5
+  rotate: true
+  xy: 1469, 750
+  size: 253, 247
+  orig: 3508, 2480
+  offset: 1929, 1148
+  index: -1
+green6
+  rotate: false
+  xy: 955, 1011
+  size: 325, 238
+  orig: 3508, 2480
+  offset: 1997, 1067
+  index: -1
+mouth
+  rotate: true
+  xy: 886, 1055
+  size: 68, 48
+  orig: 3508, 2480
+  offset: 1357, 1132
+  index: -1
+red1
+  rotate: false
+  xy: 478, 1125
+  size: 475, 420
+  orig: 3508, 2480
+  offset: 1173, 994
+  index: -1
+red2
+  rotate: false
+  xy: 478, 825
+  size: 406, 298
+  orig: 3508, 2480
+  offset: 1453, 996
+  index: -1
+red3
+  rotate: true
+  xy: 919, 19
+  size: 258, 253
+  orig: 3508, 2480
+  offset: 1680, 1118
+  index: -1
+red4
+  rotate: true
+  xy: 1049, 283
+  size: 257, 249
+  orig: 3508, 2480
+  offset: 1786, 1229
+  index: -1
+red5
+  rotate: false
+  xy: 1300, 503
+  size: 254, 245
+  orig: 3508, 2480
+  offset: 1930, 1148
+  index: -1
+red6
+  rotate: false
+  xy: 886, 766
+  size: 325, 243
+  orig: 3508, 2480
+  offset: 1999, 1064
+  index: -1
+warring
+  rotate: false
+  xy: 383, 26
+  size: 282, 251
+  orig: 3508, 2480
+  offset: 1220, 1227
+  index: -1
+whitewarm_0000s_0001_eyes
+  rotate: true
+  xy: 1537, 1026
+  size: 244, 107
+  orig: 244, 107
+  offset: 0, 0
+  index: -1
+whitewarm_0000s_0002_warning
+  rotate: true
+  xy: 2, 2
+  size: 276, 248
+  orig: 276, 248
+  offset: 0, 0
+  index: -1
+whitewarm_0000s_0003_white6
+  rotate: false
+  xy: 882, 542
+  size: 307, 222
+  orig: 307, 222
+  offset: 0, 0
+  index: -1
+whitewarm_0000s_0004_white5
+  rotate: false
+  xy: 1429, 19
+  size: 231, 231
+  orig: 231, 231
+  offset: 0, 0
+  index: -1
+whitewarm_0000s_0005_white4
+  rotate: true
+  xy: 1429, 252
+  size: 249, 245
+  orig: 249, 245
+  offset: 0, 0
+  index: -1
+whitewarm_0000s_0006_white3
+  rotate: true
+  xy: 1429, 252
+  size: 249, 245
+  orig: 249, 245
+  offset: 0, 0
+  index: -1
+whitewarm_0000s_0007_white2
+  rotate: false
+  xy: 1365, 1272
+  size: 375, 273
+  orig: 375, 273
+  offset: 0, 0
+  index: -1
+whitewarm_0000s_0008_white1
+  rotate: false
+  xy: 2, 280
+  size: 458, 412
+  orig: 458, 412
+  offset: 0, 0
+  index: -1
+whitewarm_mouth
+  rotate: false
+  xy: 1646, 1226
+  size: 59, 44
+  orig: 59, 44
+  offset: 0, 0
+  index: -1
