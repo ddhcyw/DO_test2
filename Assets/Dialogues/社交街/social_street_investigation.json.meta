@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 226c818bee8fb6c44b22917ae6e7aa27
+=======
+guid: 719777a9dd9705a4a95b2883f929c72b
+>>>>>>> 1221972 (update ink)
 TextScriptImporter:
   externalObjects: {}
   userData: 
