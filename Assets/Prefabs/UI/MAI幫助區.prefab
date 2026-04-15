@@ -1634,9 +1634,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8496df02e824584bbee5aee2342fe01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idlePanel: {fileID: 6001802656347399694}
-  objectivePanel: {fileID: 5055719117082891886}
-  objectiveText: {fileID: 3415629040770279613}
+  idlePanel: {fileID: 5055719117082891886}
+  objectivePanel: {fileID: 6001802656347399694}
+  objectiveText: {fileID: 6423084635874216433}
 --- !u!1 &5064527297015081151
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,9 +1984,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8496df02e824584bbee5aee2342fe01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idlePanel: {fileID: 6001802656347399694}
-  objectivePanel: {fileID: 5055719117082891886}
-  objectiveText: {fileID: 3415629040770279613}
+  idlePanel: {fileID: 5055719117082891886}
+  objectivePanel: {fileID: 6001802656347399694}
+  objectiveText: {fileID: 6423084635874216433}
 --- !u!1 &6024790825491593214
 GameObject:
   m_ObjectHideFlags: 0
@@ -3452,8 +3452,8 @@ RectTransform:
   - {fileID: 7683150350716271953}
   - {fileID: 400763548351857446}
   - {fileID: 7231410759224063731}
-  - {fileID: 3206394994724768646}
   - {fileID: 3184929443470216669}
+  - {fileID: 3206394994724768646}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

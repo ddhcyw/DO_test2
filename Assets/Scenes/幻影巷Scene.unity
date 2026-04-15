@@ -585,6 +585,7 @@ MonoBehaviour:
   player: {fileID: 1916917606}
   interactDistance: 3
   dimmerObject: {fileID: 0}
+  triggerOnce: 0
 --- !u!1 &76637850
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,6 +749,7 @@ MonoBehaviour:
   player: {fileID: 1916917606}
   interactDistance: 3
   dimmerObject: {fileID: 0}
+  triggerOnce: 0
 --- !u!1 &79468706
 GameObject:
   m_ObjectHideFlags: 0
@@ -4911,6 +4913,86 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 857086625}
   m_CullTransparentMesh: 1
+--- !u!1001 &866467368
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5558524663135892961, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.953394
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558524663135892961, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.6017637
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558524663135892961, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.692333
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558524663135892961, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558524663135892961, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558524663135892961, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558524663135892961, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558524663135892961, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558524663135892961, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558524663135892961, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5682305784869586690, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+      propertyPath: idlePanel
+      value: 
+      objectReference: {fileID: 1207661195}
+    - target: {fileID: 5682305784869586690, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+      propertyPath: objectiveText
+      value: 
+      objectReference: {fileID: 1207661193}
+    - target: {fileID: 5682305784869586690, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+      propertyPath: objectivePanel
+      value: 
+      objectReference: {fileID: 1207661194}
+    - target: {fileID: 9089594819597015104, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+      propertyPath: m_Name
+      value: ObjectiveManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+--- !u!114 &866467369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5682305784869586690, guid: fbb5619ec4cf8a34b936f20be4bd3759, type: 3}
+  m_PrefabInstance: {fileID: 866467368}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8496df02e824584bbee5aee2342fe01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &875390730
 GameObject:
   m_ObjectHideFlags: 0
@@ -6753,6 +6835,27 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8306442549217216340, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
   m_PrefabInstance: {fileID: 1207661189}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1207661193 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6423084635874216433, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
+  m_PrefabInstance: {fileID: 1207661189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1207661194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6001802656347399694, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
+  m_PrefabInstance: {fileID: 1207661189}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1207661195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5055719117082891886, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
+  m_PrefabInstance: {fileID: 1207661189}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1293208021
 GameObject:
   m_ObjectHideFlags: 0
@@ -7219,17 +7322,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1481412360 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6425201152596684732, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
-  m_PrefabInstance: {fileID: 1207661189}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8496df02e824584bbee5aee2342fe01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1498268095
 GameObject:
   m_ObjectHideFlags: 0
@@ -8936,6 +9028,7 @@ MonoBehaviour:
   player: {fileID: 1916917606}
   interactDistance: 3
   dimmerObject: {fileID: 0}
+  triggerOnce: 0
 --- !u!1001 &1879155270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8999,7 +9092,7 @@ PrefabInstance:
     - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
       propertyPath: objectiveManager
       value: 
-      objectReference: {fileID: 1481412360}
+      objectReference: {fileID: 866467369}
     - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
       propertyPath: compareMinigamePanel
       value: 
@@ -9774,6 +9867,7 @@ MonoBehaviour:
   idleAnimationName: idle
   walkAnimationName: walk
   faceRightIsNegativeX: 1
+  spineSwitcher: {fileID: 0}
 --- !u!33 &2053850974
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10393,3 +10487,4 @@ SceneRoots:
   - {fileID: 1743109371}
   - {fileID: 1651844527}
   - {fileID: 3386552208144201675}
+  - {fileID: 866467368}
