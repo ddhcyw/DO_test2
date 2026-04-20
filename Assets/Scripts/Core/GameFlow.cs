@@ -19,6 +19,7 @@ public class GameFlow : MonoBehaviour
     [Header("角色控制")]
     public PlayerController playerMove;
     public PlayerControllerFight playerFight;
+    public PlayerSpineAnimator playerSpineAnimator;
 
     [Header("新手區 MAI 物件")]
     public GameObject bridgeMai;      // 橋邊那隻
@@ -227,6 +228,7 @@ public class GameFlow : MonoBehaviour
         {
             Debug.LogError("GameFlow: cameraSceneObject 沒有指定！");
         }
+
     }
 
     // ~ add_clue("id")
@@ -243,6 +245,9 @@ public class GameFlow : MonoBehaviour
             if (cameraCloseupUI != null) cameraCloseupUI.SetActive(true);
             if (cameraSceneObject != null) cameraSceneObject.SetActive(false);
         }
+
+        if (playerSpineAnimator != null)
+            playerSpineAnimator.hasCamera = true;
     }
 
     // ~ spawn_wave()

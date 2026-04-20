@@ -1047,7 +1047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 2fa1b644bc0409c4089dc1a27d3c6099, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 83e24dff8bf6266449ed35308f7d16b9, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -1069,7 +1069,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: idle
+  _animationName: idle(nocamera)
   loop: 1
   timeScale: 1
 --- !u!23 &420213441
@@ -1092,7 +1092,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c044b3bd97d68944c9cf093e68792f5d, type: 2}
+  - {fileID: 2100000, guid: 5aaa43043ee133f4b85778d4dd87d441, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1151,6 +1151,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleAnimationName: idle
   walkAnimationName: walk
+  idleNoCameraName: idle(nocamera)
+  walkNoCameraName: walk(nocamera)
+  hasCamera: 0
   faceRightIsNegativeX: 1
   spineSwitcher: {fileID: 1119875322}
 --- !u!1001 &437775840
@@ -1802,6 +1805,7 @@ MonoBehaviour:
   startDialogueOnceKey: 
   playerMove: {fileID: 1119875316}
   playerFight: {fileID: 0}
+  playerSpineAnimator: {fileID: 420213444}
   bridgeMai: {fileID: 1286449378}
   rocketMai: {fileID: 1840474031}
   dialogue: {fileID: 1040267700}

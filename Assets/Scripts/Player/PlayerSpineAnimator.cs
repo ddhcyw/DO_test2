@@ -4,9 +4,16 @@ using Spine.Unity;
 [RequireComponent(typeof(SkeletonAnimation))]
 public class PlayerSpineAnimator : MonoBehaviour
 {
-    [Header("Spine 動畫名稱")]
+    [Header("Spine 動畫名稱（有相機）")]
     public string idleAnimationName = "idle";
     public string walkAnimationName = "walk";
+
+    [Header("Spine 動畫名稱（無相機）")]
+    public string idleNoCameraName = "idle(nocamera)";
+    public string walkNoCameraName = "walk(nocamera)";
+
+    [Header("相機狀態")]
+    public bool hasCamera = false;
 
     [Header("朝向設定")]
     [Tooltip("如果原始動畫裡，角色【面向右邊】時是 X 負數，請勾選")]
@@ -64,7 +71,7 @@ public class PlayerSpineAnimator : MonoBehaviour
 
         if (movementLocked || isTalking)
         {
-            SetAnimation(idleAnimationName, true);
+            SetAnimation(hasCamera ? idleAnimationName : idleNoCameraName, true);
             return;
         }
 
@@ -84,9 +91,9 @@ public class PlayerSpineAnimator : MonoBehaviour
         bool isMoving = input.sqrMagnitude > 0.01f;
 
         if (isMoving)
-            SetAnimation(walkAnimationName, true);
+            SetAnimation(hasCamera ? walkAnimationName : walkNoCameraName, true);
         else
-            SetAnimation(idleAnimationName, true);
+            SetAnimation(hasCamera ? idleAnimationName : idleNoCameraName, true);
 
         if (input.x > 0.01f)
             lastFacingX = 1f;
@@ -129,7 +136,7 @@ public class PlayerSpineAnimator : MonoBehaviour
         isTalking = talking;
         if (talking)
         {
-            SetAnimation(idleAnimationName, true);
+            SetAnimation(hasCamera ? idleAnimationName : idleNoCameraName, true);
         }
     }
 }
