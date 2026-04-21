@@ -90,6 +90,7 @@ public class GameFlow : MonoBehaviour
     void Start()
     {
         Debug.Log("GameFlow.Start() fired: " + gameObject.name);
+        if (rocketMai != null) rocketMai.SetActive(false);
         PlayerPrefs.SetString("SavedScene", SceneManager.GetActiveScene().name);
         PlayerPrefs.Save();
         if (!playStartDialogueOnSceneStart) return;
@@ -392,6 +393,7 @@ public class GameFlow : MonoBehaviour
         {
             case "bridge":
                 if (bridgeMai != null) bridgeMai.SetActive(false);
+                if (rocketMai != null) rocketMai.SetActive(true);
                 break;
             case "rocket":
                 if (rocketMai != null) rocketMai.SetActive(false);
