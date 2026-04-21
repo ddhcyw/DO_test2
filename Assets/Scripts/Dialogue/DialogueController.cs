@@ -44,6 +44,8 @@ public class DialogueController : MonoBehaviour
     private Story inkStory;
     private Coroutine typingCo;
     private string currentLineText = "";
+    public bool pauseRequested = false;
+    private string pendingLine = "";
 
     void Awake()
     {
@@ -222,6 +224,13 @@ public class DialogueController : MonoBehaviour
         while (inkStory.canContinue)
         {
             line = inkStory.Continue();
+            if (pauseRequested)
+            {
+                pauseRequested = false;
+                if (!string.IsNullOrWhiteSpace(line))
+                    pendingLine = line.Trim();
+                return;
+            }
             if (!string.IsNullOrWhiteSpace(line))
             {
                 line = line.Trim();
@@ -248,49 +257,14 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        // 解析「名字: 台詞」
-        string who = "";
-        string text = line;
-
-        int colonIndex = line.IndexOf(':');
-        if (colonIndex > 0)
-        {
-            who = line.Substring(0, colonIndex).Trim();
-            text = line.Substring(colonIndex + 1).Trim();
-        }
-        else if ((colonIndex = line.IndexOf('：')) > 0)
-        {
-            who = line.Substring(0, colonIndex).Trim();
-            text = line.Substring(colonIndex + 1).Trim();
-        }
-
-        currentLineText = text;
-
-        if (nameText) nameText.text = GetDisplayName(who);
-        if (portrait != null) portrait.SetSpeaker(who);
-        Debug.Log($"[Dialogue] rawLine='{line}', who='{who}'");
-
-        if (bodyText) bodyText.text = "";
-
-        if (typewriter)
-        {
-            if (continueHint) continueHint.SetActive(false);
-            if (typingCo != null) StopCoroutine(typingCo);
-            typingCo = StartCoroutine(TypeText(text));
-        }
-        else
-        {
-            if (bodyText) bodyText.text = text;
-            if (continueHint) continueHint.SetActive(true);
-        }
+        Debug.Log($"[Dialogue] rawLine='{line}'");
+        DisplayLine(line);
 
         // 這句之後如果有選項，顯示選項
-        if (inkStory.currentChoices.Count > 0)
+        if (inkStory != null && inkStory.currentChoices.Count > 0)
         {
             RefreshChoicesUI();
         }
-
-
     }
     // ============================================================
     // 暫時隱藏對話框（不結束對話）     
@@ -310,9 +284,60 @@ public class DialogueController : MonoBehaviour
     {
         if (panelRoot) panelRoot.SetActive(true);
         tempHidden = false;
-        ContinueInk();
+        if (!string.IsNullOrEmpty(pendingLine))
+        {
+            string line = pendingLine;
+            pendingLine = "";
+            DisplayLine(line);
+        }
+        else
+        {
+            ContinueInk();
+        }
     }
     
+    // ============================================================
+    // 顯示單行對話（解析說話者 + 打字機）
+    // ============================================================
+    void DisplayLine(string line)
+    {
+        ClearChoices();
+
+        string who = "";
+        string text = line;
+
+        int colonIndex = line.IndexOf(':');
+        if (colonIndex > 0)
+        {
+            who = line.Substring(0, colonIndex).Trim();
+            text = line.Substring(colonIndex + 1).Trim();
+        }
+        else if ((colonIndex = line.IndexOf('：')) > 0)
+        {
+            who = line.Substring(0, colonIndex).Trim();
+            text = line.Substring(colonIndex + 1).Trim();
+        }
+
+        currentLineText = text;
+
+        if (nameText) nameText.text = GetDisplayName(who);
+        if (portrait != null) portrait.SetSpeaker(who);
+
+        if (bodyText) bodyText.text = "";
+
+        if (typewriter)
+        {
+            if (continueHint) continueHint.SetActive(false);
+            if (typingCo != null) StopCoroutine(typingCo);
+            typingCo = StartCoroutine(TypeText(text));
+        }
+        else
+        {
+            if (bodyText) bodyText.text = text;
+            if (continueHint) continueHint.SetActive(true);
+        }
+    }
+
     // ============================================================
     // 選項 UI
     // ============================================================

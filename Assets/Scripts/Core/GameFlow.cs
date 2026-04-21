@@ -355,6 +355,12 @@ public class GameFlow : MonoBehaviour
         else Debug.LogError("MAIHalpPanel 未設定！");
     }
 
+    public void HideMAIHelp()
+    {
+        Debug.Log("幫助區消失");
+        if (MAIHalpPanel != null) MAIHalpPanel.SetActive(false);
+    }
+
     public void StartCompareMinigame(string id)
     {
         Debug.Log($"開啟找碴小遊戲，ID: {id}");

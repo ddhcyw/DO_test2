@@ -11,6 +11,7 @@ public class DialogueSequenceRunner : MonoBehaviour
     public void PauseDialogue(float seconds)
     {
         if (running) return;
+        if (dialogue) dialogue.pauseRequested = true;
         StartCoroutine(CoPauseDialogue(seconds));
     }
 
@@ -24,13 +25,11 @@ public class DialogueSequenceRunner : MonoBehaviour
         // 2. 讓場景 MAI 消失（橋邊）
         if (gameFlow) gameFlow.HideMai("bridge");
 
-        // 3. 開右下角 MAI 幫助區
-        if (gameFlow) gameFlow.StartMAIHelp();
-
-        // 4. 等待
+        // 3. 等待
         yield return new WaitForSeconds(seconds);
 
-        // 5. 回到對話繼續
+        // 4. 隱藏幫助區，再回到對話繼續
+        if (gameFlow) gameFlow.HideMAIHelp();
         if (dialogue) dialogue.TempShowAndContinue();
 
         running = false;

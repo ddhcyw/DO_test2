@@ -1814,7 +1814,7 @@ MonoBehaviour:
   rocketMai: {fileID: 1840474031}
   dialogue: {fileID: 1040267700}
   panelToHideDuringDialogue: {fileID: 1886354336}
-  maiHelpArea: {fileID: 0}
+  maiHelpArea: {fileID: 1630341837}
   enemiesRoot: {fileID: 518781059}
   objectiveManager: {fileID: 2117173185}
   cameraSceneObject: {fileID: 589669602}
@@ -3561,6 +3561,7 @@ RectTransform:
   m_Children:
   - {fileID: 43779311}
   - {fileID: 899287164}
+  - {fileID: 1347781479}
   - {fileID: 1886354337}
   - {fileID: 1011915361}
   - {fileID: 2076806947}
@@ -5113,7 +5114,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1886354337}
+    m_TransformParent: {fileID: 1019505274}
     m_Modifications:
     - target: {fileID: 288130997315968326, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
       propertyPath: m_Pivot.x
@@ -6948,7 +6949,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 907583178}
-  - {fileID: 1347781479}
   m_Father: {fileID: 1019505274}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
