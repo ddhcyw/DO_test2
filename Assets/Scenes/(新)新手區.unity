@@ -1229,6 +1229,7 @@ MonoBehaviour:
   startDialogueOnceKey: 
   playerMove: {fileID: 855523015}
   playerFight: {fileID: 0}
+  playerSpineAnimator: {fileID: 0}
   bridgeMai: {fileID: 823274514}
   rocketMai: {fileID: 1400278432}
   dialogue: {fileID: 1282113058}
@@ -1609,6 +1610,12 @@ MonoBehaviour:
   animator: {fileID: 428412170}
   igniteTrigger: Ignite
   idleStateName: Idle
+  spriteRenderer: {fileID: 0}
+  openEyesSpriteRenderer: {fileID: 0}
+  glowColor: {r: 1, g: 0.95, b: 0.7, a: 1}
+  glowInDuration: 0.5
+  shakeDuration: 3.5
+  glowOutDuration: 1
 --- !u!95 &428412170
 Animator:
   serializedVersion: 5
@@ -3046,7 +3053,7 @@ Transform:
   m_GameObject: {fileID: 820480598}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 1.1, y: -2, z: 31.1}
+  m_LocalPosition: {x: 1.1, y: -1, z: 31.1}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3195,7 +3202,7 @@ Transform:
   m_GameObject: {fileID: 823274514}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.5, y: -1.4, z: 0}
+  m_LocalPosition: {x: -7.69, y: 0, z: 10}
   m_LocalScale: {x: 1.0501084, y: 1.0490586, z: 1.0501084}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3548,7 +3555,7 @@ Transform:
   m_GameObject: {fileID: 855523014}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.43, y: -0.07, z: 7.62}
+  m_LocalPosition: {x: -1.43, y: 1.5, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4179,7 +4186,7 @@ Transform:
   m_GameObject: {fileID: 1010365639}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: -1.7, y: -2, z: 14.7}
+  m_LocalPosition: {x: -1.7, y: -1, z: 14.7}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4891,7 +4898,7 @@ Transform:
   m_GameObject: {fileID: 1400278432}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.03, y: 3.2, z: 0}
+  m_LocalPosition: {x: -19.4, y: 0, z: 19.7}
   m_LocalScale: {x: 1.0501084, y: 1.0490586, z: 1.0501084}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5956,7 +5963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 855523023}
   smoothSpeed: 5
-  offset: {x: 0, y: 0, z: -10}
+  offset: {x: 0, y: 30, z: -30}
   useBounds: 0
   minBounds: {x: 0, y: 0}
   maxBounds: {x: 0, y: 0}
@@ -5978,6 +5985,7 @@ GameObject:
   - component: {fileID: 1612880982}
   - component: {fileID: 1612880981}
   - component: {fileID: 1612880980}
+  - component: {fileID: 1612880985}
   m_Layer: 0
   m_Name: PlayerSpine
   m_TagString: Untagged
@@ -6078,6 +6086,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleAnimationName: idle
   walkAnimationName: walk
+  idleNoCameraName: idle(nocamera)
+  walkNoCameraName: walk(nocamera)
+  hasCamera: 1
   faceRightIsNegativeX: 1
   spineSwitcher: {fileID: 855523020}
 --- !u!33 &1612880983
@@ -6103,6 +6114,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 855523023}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1612880985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612880979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e826d00bb73da0740955efcef550f857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOffset: 200
+  baseLine: -0.6
 --- !u!1001 &1670836454
 PrefabInstance:
   m_ObjectHideFlags: 0

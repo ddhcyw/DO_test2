@@ -9,14 +9,18 @@ public class SpineYSort : MonoBehaviour
     public float baseLine = 0f;
 
     private SkeletonAnimation skeleton;
+    private MeshRenderer meshRenderer;
 
     void Awake()
     {
         skeleton = GetComponent<SkeletonAnimation>();
+        meshRenderer = GetComponent<MeshRenderer>();
     }
 
     void LateUpdate()
     {
+        if (meshRenderer == null) return;
+
         // 用父物件的世界Y座標排序（因為SpineYSort通常掛在子物件）
         float worldY = transform.parent != null
             ? transform.parent.position.y
@@ -24,6 +28,6 @@ public class SpineYSort : MonoBehaviour
 
         float sortValue = worldY + baseLine;
         int order = sortingOffset - Mathf.RoundToInt(sortValue * 100f);
-        skeleton.GetComponent<MeshRenderer>().sortingOrder = order;
+        meshRenderer.sortingOrder = order;
     }
 }
