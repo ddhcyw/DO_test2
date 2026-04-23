@@ -22,9 +22,17 @@ public class NpcClickInteract : MonoBehaviour
 
     private bool triggered = false;
 
-    void OnMouseDown()
+    void Update()
     {
-        Debug.Log($"OnMouseDown hit: {name}");
+        if (!Input.GetMouseButtonDown(0)) return;
+
+        // 3D 透視相機下，用 GetRayIntersection 打 2D Collider
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
+
+        if (hit.collider == null || hit.collider.gameObject != gameObject) return;
+
+        Debug.Log($"NpcClickInteract hit: {name}");
 
         if (triggerOnce && triggered) return;
 
