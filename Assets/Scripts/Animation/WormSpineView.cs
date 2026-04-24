@@ -34,6 +34,6 @@ public class WormSpineView : MonoBehaviour
 
     public void PlayDead()
     {
-        skeleton.AnimationState.SetAnimation(0, "dead", false);
+        skeleton.AnimationState.SetAnimation(0, "RIP", false);
     }
 }
