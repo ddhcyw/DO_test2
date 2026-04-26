@@ -1,36 +1,31 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // ¤Á´«³õ´º¥²³Æªº¨ç¦¡®w
 
 public class TeleportDoor : MonoBehaviour
 {
-    [Header("¶Ç°e³]©w")]
-    public string targetSceneName; // ¥Øªº¦a³õ´ºªº¦WºÙ
+    [Header("å‚³é€è¨­å®š")]
+    public string targetSceneName;
 
-    [Header("ª¬ºA³]©w")]
-    public bool isUnlocked = false; // ¹w³]¬° false (Âê¦íª¬ºA)
+    [Header("é–å®šç‹€æ…‹")]
+    public bool isUnlocked = false;
 
-    // ³o­Ó¨ç¦¡·Ç³Æµ¹¡u¹ï¸Ü¨t²Î¡v¦b¹ï¸Üµ²§ô®É©I¥s
     public void UnlockDoor()
     {
         isUnlocked = true;
-        Debug.Log("¶Ç°eªù¤w¸ÑÂê¡I");
+        Debug.Log("å‚³é€é–€å·²è§£é–ï¼");
     }
 
-    // ·íª±®a¨«¶iªùªº¸I¼²½d³ò®ÉÄ²µo
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // ÀË¬d¸I¨ìªùªº¬O¤£¬Oª±®a
-        if (collision.CompareTag("Player"))
+        if (!collision.CompareTag("Player")) return;
+
+        if (isUnlocked)
         {
-            if (isUnlocked)
-            {
-                Debug.Log($"·Ç³Æ¶Ç°e¨ì¡G{targetSceneName}");
-                SceneManager.LoadScene(targetSceneName); // ¸ü¤J·s³õ´º
-            }
-            else
-            {
-                Debug.Log("ªù¥Ø«e¬OÂê¤Wªº¡I");
-            }
+            Debug.Log($"æº–å‚™å‚³é€è‡³ï¼š{targetSceneName}");
+            SceneTransitionManager.Instance.TransitionToScene(targetSceneName);
+        }
+        else
+        {
+            Debug.Log("æ­¤å‚³é€é–€å°šæœªè§£é–ï¼");
         }
     }
 }

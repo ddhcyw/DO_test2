@@ -5057,7 +5057,7 @@ MonoBehaviour:
   dialogue: {fileID: 1040267700}
   inkKnotName: bridge_intro
   player: {fileID: 1119875315}
-  interactDistance: 2
+  interactDistance: 6
   dimmerObject: {fileID: 1909362468}
   triggerOnce: 0
 --- !u!1 &1320351005
@@ -6881,7 +6881,7 @@ MonoBehaviour:
   dialogue: {fileID: 1040267700}
   inkKnotName: rocket_scene
   player: {fileID: 1119875315}
-  interactDistance: 2
+  interactDistance: 6
   dimmerObject: {fileID: 0}
   triggerOnce: 0
 --- !u!1 &1842560525
