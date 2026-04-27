@@ -1129,7 +1129,7 @@ MonoBehaviour:
   interactDistance: 5
   dimmerObject: {fileID: 0}
   triggerOnce: 0
-  repeatKnotName: 
+  repeatKnotName: lake_npc2_repeat
   dialogueCompleted: 0
 --- !u!1001 &881821941
 PrefabInstance:
@@ -2099,10 +2099,10 @@ MonoBehaviour:
   dialogue: {fileID: 947673467}
   inkKnotName: lake_npc1
   player: {fileID: 1206905711}
-  interactDistance: 5
+  interactDistance: 10
   dimmerObject: {fileID: 0}
   triggerOnce: 0
-  repeatKnotName: 
+  repeatKnotName: lake_npc1_repeat
   dialogueCompleted: 0
 --- !u!70 &1228336398
 CapsuleCollider2D:
@@ -2299,6 +2299,10 @@ PrefabInstance:
     - target: {fileID: 4470770170971611433, guid: 10de2f29d4b628e4a8f361320ffe22d7, type: 3}
       propertyPath: m_Offset.y
       value: 1.4165124
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538117094214428977, guid: 10de2f29d4b628e4a8f361320ffe22d7, type: 3}
+      propertyPath: moveSpeed
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
