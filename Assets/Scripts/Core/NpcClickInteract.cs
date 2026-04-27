@@ -20,13 +20,15 @@ public class NpcClickInteract : MonoBehaviour
     [Header("Behavior")]
     public bool triggerOnce = false;
 
+    [Header("Repeat Dialogue")]
+    public string repeatKnotName;
+    [HideInInspector] public bool dialogueCompleted = false;
+
     private bool triggered = false;
 
     void OnMouseDown()
     {
         Debug.Log($"OnMouseDown hit: {name}");
-
-        if (triggerOnce && triggered) return;
 
         if (!dialogue)
         {
@@ -47,8 +49,15 @@ public class NpcClickInteract : MonoBehaviour
 
         if (dimmerObject != null) dimmerObject.SetActive(false);
 
-        if (triggerOnce) triggered = true;
-
-        dialogue.StartInkDialogue(inkKnotName);
+        if (dialogueCompleted && !string.IsNullOrEmpty(repeatKnotName))
+        {
+            dialogue.StartInkDialogue(repeatKnotName);
+        }
+        else
+        {
+            if (triggerOnce && triggered) return;
+            if (triggerOnce) triggered = true;
+            dialogue.StartInkDialogue(inkKnotName);
+        }
     }
 }

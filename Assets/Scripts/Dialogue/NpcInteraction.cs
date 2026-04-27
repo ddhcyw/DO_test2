@@ -6,62 +6,68 @@ public class NpcInteraction : MonoBehaviour
 {
     public string npcName = "Lia";
 
-    // ¤Þ¥Î±zªº DialogueController (°²³]±z¦³¤@­Ó³æ¨Ò©Î¥i¥H³z¹L FindObject §ä¨ì)
+    // ï¿½Þ¥Î±zï¿½ï¿½ DialogueController (ï¿½ï¿½ï¿½]ï¿½zï¿½ï¿½ï¿½@ï¿½Ó³ï¿½Ò©Î¥iï¿½Hï¿½zï¿½L FindObject ï¿½ï¿½ï¿½)
     private DialogueController dialogueController;
 
     void Start()
     {
-        dialogueController = FindObjectOfType<DialogueController>(); // ¦Û°Ê´M§ä
+        dialogueController = FindObjectOfType<DialogueController>(); // ï¿½Û°Ê´Mï¿½ï¿½
     }
 
     public void OnItemDropped(Item item)
     {
-        if (item.name == "¶Ç³æ")
+        if (item.name == "ï¿½Ç³ï¿½")
         {
-            Debug.Log($"¦b {npcName} ¨­¤W¨Ï¥Î¤F {item.name}¡I");
+            Debug.Log($"ï¿½b {npcName} ï¿½ï¿½ï¿½Wï¿½Ï¥Î¤F {item.name}ï¿½I");
 
             if (dialogueController != null)
             {
-                // ±Ò°Ê¯S©wªº Ink ¹ï¸Ü¸`ÂI
-                // ¹ïÀ³ ImagePlaza.ink ¤¤ªº === plaza_leah_flyer ===
+                // ï¿½Ò°Ê¯Sï¿½wï¿½ï¿½ Ink ï¿½ï¿½Ü¸`ï¿½I
+                // ï¿½ï¿½ï¿½ï¿½ ImagePlaza.ink ï¿½ï¿½ï¿½ï¿½ === plaza_leah_flyer ===
                 dialogueController.StartInkDialogue("plaza_leah_flyer");
             }
 
-            // ²¾°£ª««~ (¦pªG»Ý­n)
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ (ï¿½pï¿½Gï¿½Ý­n)
             InventoryManager.Instance.Remove(item);
         }
-        else if (item.name == "²ú¨Èªº§@«~¶°" && npcName == "Dandadan")
+        else if (item.name == "ï¿½ï¿½ï¿½Èªï¿½ï¿½@ï¿½~ï¿½ï¿½" && npcName == "Dandadan")
         {
-            Debug.Log($"±N§@«~¶°¥æµ¹¤F {npcName}");
+            Debug.Log($"ï¿½Nï¿½@ï¿½~ï¿½ï¿½ï¿½æµ¹ï¿½F {npcName}");
 
             if (dialogueController != null)
             {
-                // ¼½©ñÁx¤jÄÒªº¹ï¸Ü
+                // ï¿½ï¿½ï¿½ï¿½ï¿½xï¿½jï¿½Òªï¿½ï¿½ï¿½ï¿½
                 dialogueController.StartInkDialogue("dandadan_portfolio");
             }
+            NpcClickInteract clickInteract = GetComponent<NpcClickInteract>();
+            if (clickInteract != null) clickInteract.dialogueCompleted = true;
         }
-        else if (item.name == "²ú¨Èªº§@«~¶°" && npcName == "good_fortune")
+        else if (item.name == "ï¿½ï¿½ï¿½Èªï¿½ï¿½@ï¿½~ï¿½ï¿½" && npcName == "good_fortune")
         {
-            Debug.Log($"±N§@«~¶°¥æµ¹¤F {npcName}");
+            Debug.Log($"ï¿½Nï¿½@ï¿½~ï¿½ï¿½ï¿½æµ¹ï¿½F {npcName}");
 
             if (dialogueController != null)
             {
                 dialogueController.StartInkDialogue("good_fortune_portfolio");
             }
+            NpcClickInteract clickInteract = GetComponent<NpcClickInteract>();
+            if (clickInteract != null) clickInteract.dialogueCompleted = true;
         }
-        else if (item.name == "²ú¨Èªº§@«~¶°" && npcName == "cheap_buyer")
+        else if (item.name == "ï¿½ï¿½ï¿½Èªï¿½ï¿½@ï¿½~ï¿½ï¿½" && npcName == "cheap_buyer")
         {
-            Debug.Log($"±N§@«~¶°¥æµ¹¤F {npcName}");
+            Debug.Log($"ï¿½Nï¿½@ï¿½~ï¿½ï¿½ï¿½æµ¹ï¿½F {npcName}");
 
             if (dialogueController != null)
             {
                 dialogueController.StartInkDialogue("cheap_buyer_portfolio");
             }
+            NpcClickInteract clickInteract = GetComponent<NpcClickInteract>();
+            if (clickInteract != null) clickInteract.dialogueCompleted = true;
         }
         else
         {
-            Debug.Log($"{npcName} ¹ï {item.name} ¨S¦³¿³½ì¡C");
-            // ¥i¥H¼½©ñ¤@­Ó³q¥Îªº "¤£»Ý­n" ¹ï¸Ü
+            Debug.Log($"{npcName} ï¿½ï¿½ {item.name} ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½C");
+            // ï¿½iï¿½Hï¿½ï¿½ï¿½ï¿½@ï¿½Ó³qï¿½Îªï¿½ "ï¿½ï¿½ï¿½Ý­n" ï¿½ï¿½ï¿½
         }
     }
 }
