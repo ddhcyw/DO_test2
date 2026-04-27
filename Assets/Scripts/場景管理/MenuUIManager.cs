@@ -7,9 +7,7 @@ public class MenuUIManager : MonoBehaviour
     public GameObject defaultPanel; // 這是您按下 E 會開啟的那個面板 (背包)
 
     private bool isMenuOpen = false;
-
-    // 記錄是否已經教過
-    private bool hasShownTutorial = false;
+    private bool hasShownTutorial = false; // 記錄是否已經教過
 
     void Start()
     {
@@ -20,6 +18,13 @@ public class MenuUIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            if (InventoryManager.Instance != null && !InventoryManager.Instance.isUnlocked)
+            {
+                Debug.Log("劇情還沒到，不能開啟背包！");
+                return; // 直接擋下來，不執行後面的開關動作
+            }
+
+            // 下面是原本正常的開關邏輯
             if (isMenuOpen)
             {
                 HideAllPanels();
@@ -31,7 +36,6 @@ public class MenuUIManager : MonoBehaviour
         }
     }
 
-    // 顯示預設的 Panel (背包)
     public void ShowDefaultPanel()
     {
         HideAllPanels();
@@ -42,20 +46,18 @@ public class MenuUIManager : MonoBehaviour
             isMenuOpen = true;
 
             // 觸發教學邏輯
-            // 如果還沒教過，就呼叫 TutorialManager
             if (!hasShownTutorial)
             {
                 if (TutorialManager.Instance != null)
                 {
                     Debug.Log("第一次打開背包，觸發教學！");
-                    hasShownTutorial = true; // 標記為已教過
+                    hasShownTutorial = true;
                     TutorialManager.Instance.OpenTutorial();
                 }
             }
         }
     }
 
-    // 切換面板
     public void SwitchToPanel(GameObject panelToShow)
     {
         HideAllPanels();
@@ -66,7 +68,6 @@ public class MenuUIManager : MonoBehaviour
         }
     }
 
-    // 關閉所有介面
     public void HideAllPanels()
     {
         foreach (GameObject panel in menuPanels)

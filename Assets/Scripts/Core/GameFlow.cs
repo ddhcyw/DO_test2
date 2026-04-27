@@ -249,6 +249,11 @@ public class GameFlow : MonoBehaviour
 
         if (playerSpineAnimator != null)
             playerSpineAnimator.hasCamera = true;
+        if (InventoryManager.Instance != null)
+        {
+            InventoryManager.Instance.isUnlocked = true;
+            Debug.Log("背包系統已解鎖！現在可以按 E 了");
+        }
     }
 
     // ~ spawn_wave()
