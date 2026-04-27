@@ -29,7 +29,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
     #endregion
-
+    public bool isUnlocked = false; // 按E能否打開背包
     public Item[] inventoryItems; // 主背包 (9格)
     public Item[] toolbarItems;   // 工具列 (3格)
 
