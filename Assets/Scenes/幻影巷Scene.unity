@@ -4445,6 +4445,10 @@ PrefabInstance:
       value: InventoryManager
       objectReference: {fileID: 0}
     - target: {fileID: 4232446030516664091, guid: 5de30f64e527eb84cbe25dd7edbc0608, type: 3}
+      propertyPath: isUnlocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232446030516664091, guid: 5de30f64e527eb84cbe25dd7edbc0608, type: 3}
       propertyPath: toolbarItems.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -4459,7 +4463,7 @@ PrefabInstance:
     - target: {fileID: 4232446030516664091, guid: 5de30f64e527eb84cbe25dd7edbc0608, type: 3}
       propertyPath: inventoryItems.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 80ce69ff7e51e5b499a1882d262626ff, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4232446030516664091, guid: 5de30f64e527eb84cbe25dd7edbc0608, type: 3}
       propertyPath: inventoryItems.Array.data[1]
       value: 
