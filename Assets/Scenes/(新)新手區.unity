@@ -1978,6 +1978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f7ca36fd806df4f9951e625a884ff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isUnlocked: 0
   inventoryItems: []
   toolbarItems: []
   inventorySpace: 9
@@ -3096,6 +3097,8 @@ MonoBehaviour:
   interactDistance: 2
   dimmerObject: {fileID: 1709281762}
   triggerOnce: 0
+  repeatKnotName: 
+  dialogueCompleted: 0
 --- !u!61 &823274516
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3493,6 +3496,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   attackCenter: {fileID: 855523023}
+  playerController: {fileID: 0}
+  facingDotThreshold: 0
   hasCamera: 1
 --- !u!212 &855523022
 SpriteRenderer:
@@ -4792,6 +4797,8 @@ MonoBehaviour:
   interactDistance: 2
   dimmerObject: {fileID: 0}
   triggerOnce: 0
+  repeatKnotName: 
+  dialogueCompleted: 0
 --- !u!61 &1400278434
 BoxCollider2D:
   m_ObjectHideFlags: 0
