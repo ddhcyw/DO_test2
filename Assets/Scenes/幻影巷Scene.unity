@@ -9155,7 +9155,7 @@ MonoBehaviour:
   interactDistance: 5
   dimmerObject: {fileID: 0}
   triggerOnce: 0
-  repeatKnotName: "\tcheap_buyer_repeat"
+  repeatKnotName: cheap_buyer_repeat
   dialogueCompleted: 0
 --- !u!1001 &1879155270
 PrefabInstance:
