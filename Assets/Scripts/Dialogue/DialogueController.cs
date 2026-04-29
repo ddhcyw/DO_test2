@@ -319,8 +319,18 @@ public class DialogueController : MonoBehaviour
         }
 
         currentLineText = text;
+        string displayName = GetDisplayName(who);
+        if (nameText) nameText.text = displayName;
+        if (portrait != null) portrait.SetSpeaker(who);
 
-        if (nameText) nameText.text = GetDisplayName(who);
+        //  新增邏輯：控制愛心容器顯示
+        if (gameFlow != null && gameFlow.portraitHeartsContainer != null)
+        {
+            // 判斷目前說話的人是不是黑色利亞
+            bool isBlackLia = (displayName == "黑色利亞");
+            gameFlow.portraitHeartsContainer.SetActive(isBlackLia);
+        }
+
         if (portrait != null) portrait.SetSpeaker(who);
 
         if (bodyText) bodyText.text = "";
@@ -439,6 +449,11 @@ public class DialogueController : MonoBehaviour
 
         if (panelRoot) panelRoot.SetActive(false);
         if (continueHint) continueHint.SetActive(false);
+
+        if (gameFlow != null && gameFlow.portraitHeartsContainer != null)
+        {
+            gameFlow.portraitHeartsContainer.SetActive(false);
+        }
 
         ClearChoices();
         inkStory = null;

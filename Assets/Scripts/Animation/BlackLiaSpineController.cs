@@ -13,9 +13,9 @@ public class BlackLiaSpineController : MonoBehaviour
 
     public string winAnim   = "blackLia_win";
 
-    public string loseAnim  = "blackLia_lose";
-    public string lose2Anim = "blackLia_lose2";
-    public string lose3Anim = "blackLia_lose3";
+    public string loseAnim  = "blackLialose";
+    public string lose2Anim = "blackLialose2";
+    public string lose3Anim = "blackLialose3";
 
     void Reset()
     {

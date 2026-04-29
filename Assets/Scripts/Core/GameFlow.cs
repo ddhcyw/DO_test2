@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using Spine.Unity;
 
 public class GameFlow : MonoBehaviour
 {
@@ -60,6 +61,17 @@ public class GameFlow : MonoBehaviour
     public GameObject minigamePanel_CheapBuyer;  // 購便宜的面板
 
     public ClueVisualizer clueVisualizer;
+
+    [Header("對話框愛心容器")]
+    public GameObject portraitHeartsContainer; // 拖入您在對話 UI 建立的 HeartsContainer 物件
+    [Header("辯論血條與動畫")]
+    public BlackLiaSpineController blackLiaController; // 拖入掛有 BlackLiaSpineController 的物件
+    public UnityEngine.UI.Image[] liaHearts;            // 放入利亞頭上的三顆愛心 Image
+    public Sprite redHeartSprite;
+    public Sprite blackHeartSprite;                    // 準備好的黑色愛心圖片
+    private int debateSuccessCount = 0;                // 追蹤成功次數
+
+  
 
     [Header("作品集偷偷 - 辯論 Boss 戰")]
     public GameObject debatePanel;      
@@ -161,7 +173,7 @@ public class GameFlow : MonoBehaviour
     // 由 DialogueController 呼叫
     public void OnDialogueFinished()
     {
-        Debug.Log("🟥 對話結束");
+        Debug.Log("對話結束");
 
         // 1. 優先檢查：是否有要切換場景？
         if (!string.IsNullOrEmpty(sceneToLoadAfterDialogue))
@@ -423,12 +435,17 @@ public class GameFlow : MonoBehaviour
         Debug.Log($"辯論回合開始，正確答案是: {answerID}");
         currentCorrectAnswer = answerID;
 
-        // 凍結對話 (不讓玩家點擊背景觸發下一句)，並開啟面板
-        if (dialogue) dialogue.enabled = false;
+        // 如果是第一回合（成功次數為 0），就把所有愛心重設為紅色
+        if (debateSuccessCount == 0)
+        {
+            foreach (var heart in liaHearts)
+            {
+                if (heart != null) heart.sprite = redHeartSprite;
+            }
+        }
 
+        if (dialogue) dialogue.enabled = false;
         if (debatePanel) debatePanel.SetActive(true);
-        if (popupSuccess) popupSuccess.SetActive(false);
-        if (popupFail) popupFail.SetActive(false);
 
         CurrentState = GameState.Talking;
     }
@@ -451,33 +468,33 @@ public class GameFlow : MonoBehaviour
     // 3. 答對確認
     public void OnDebateSuccessConfirm()
     {
+        // 1. 根據目前的成功進度，呼叫控制器播放對應的 Lose 動畫
+        if (blackLiaController != null)
+        {
+            if (debateSuccessCount == 0) blackLiaController.PlayLose();   // 播放 blackLia_lose
+            else if (debateSuccessCount == 1) blackLiaController.PlayLose2(); // 播放 blackLia_lose2
+            else if (debateSuccessCount == 2) blackLiaController.PlayLose3(); // 播放 blackLia_lose3[cite: 6]
+        }
+
+        // 2. 更新 UI 愛心：將對應序號的愛心換成黑色圖片[cite: 4]
+        if (debateSuccessCount < liaHearts.Length)
+        {
+            if (liaHearts[debateSuccessCount] != null && blackHeartSprite != null)
+            {
+                liaHearts[debateSuccessCount].sprite = blackHeartSprite;
+            }
+            debateSuccessCount++; // 成功次數加 1[cite: 4]
+        }
+
         CloseDebateUI();
+
+        // 3. 恢復對話並跳轉至對應的成功劇情節點[cite: 4, 5]
         if (dialogue)
         {
             dialogue.enabled = true;
-
-            // 判斷剛才的正確答案是什麼，決定劇情去向
-            // 這樣就不怕 Ink 變數被重置了
-            if (currentCorrectAnswer == "copy_machine")
-            {
-                // 剛才解的是影印機 -> 去第一回合成功劇情
-                dialogue.StartInkDialogue("debate_success_1");
-            }
-            else if (currentCorrectAnswer == "canvas")
-            {
-                // 剛才解的是畫布 -> 去第二回合成功劇情
-                dialogue.StartInkDialogue("debate_success_2");
-            }
-            else if (currentCorrectAnswer == "pc")
-            {
-                // 剛才解的是電腦 -> 去第三回合成功劇情
-                dialogue.StartInkDialogue("debate_success_3");
-            }
-            else
-            {
-                Debug.LogWarning("未知的辯論進度，預設跳轉");
-                dialogue.StartInkDialogue("debate_success_1");
-            }
+            if (currentCorrectAnswer == "copy_machine") dialogue.StartInkDialogue("debate_success_1"); 
+            else if (currentCorrectAnswer == "canvas") dialogue.StartInkDialogue("debate_success_2");   
+            else if (currentCorrectAnswer == "pc") dialogue.StartInkDialogue("debate_success_3");       
         }
     }
 
@@ -486,12 +503,12 @@ public class GameFlow : MonoBehaviour
     {
         CloseDebateUI();
         ClearAllClues();
+        debateSuccessCount = 0; // 失敗了，下次進辯論要從第一顆心開始
 
         if (dialogue)
         {
             dialogue.enabled = true;
             SetSceneToLoad("幻影巷Scene");
-            Debug.Log("播放失敗劇情...");
             dialogue.StartInkDialogue("debate_failed");
         }
         else
