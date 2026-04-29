@@ -58,6 +58,8 @@ public class NpcClickInteract : MonoBehaviour
             if (triggerOnce && triggered) return;
             if (triggerOnce) triggered = true;
             dialogue.StartInkDialogue(inkKnotName);
+            if (!string.IsNullOrEmpty(repeatKnotName) && GetComponent<NpcInteraction>() == null)
+                dialogueCompleted = true;
         }
     }
 }
