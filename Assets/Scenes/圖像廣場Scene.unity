@@ -1345,14 +1345,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4232446030516664091, guid: 5de30f64e527eb84cbe25dd7edbc0608, type: 3}
-      propertyPath: inventoryItems.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4232446030516664091, guid: 5de30f64e527eb84cbe25dd7edbc0608, type: 3}
-      propertyPath: inventoryItems.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 116c9554c8e69754b8c89f62252fdfac, type: 2}
     - target: {fileID: 5892117087591276458, guid: 5de30f64e527eb84cbe25dd7edbc0608, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.9539795
@@ -1394,8 +1386,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 8846126340139229108, guid: 5de30f64e527eb84cbe25dd7edbc0608, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5de30f64e527eb84cbe25dd7edbc0608, type: 3}
@@ -4785,7 +4776,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 16.198963, y: 16.907427}
+  m_Offset: {x: 15.959025, y: 16.711813}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4796,7 +4787,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.126572, y: 13.980183}
+  m_Size: {x: 9.52434, y: 12.173504}
   m_EdgeRadius: 0
 --- !u!4 &2049582896
 Transform:

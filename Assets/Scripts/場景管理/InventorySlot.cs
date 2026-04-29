@@ -74,66 +74,61 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        // 銷毀拖曳時的暫存圖示
-        if (dragIcon != null)
-        {
-            Destroy(dragIcon);
-        }
+        if (dragIcon != null) Destroy(dragIcon);
 
-        // 檢查條件：(1) 沒有放入其他格子 (2) 手上有物品
-        if (!dropSuccessful && item != null)
+        // --- 強制偵測：不論如何都會印出這行，用來確認有沒有跑這段 ---
+        Debug.Log($"【拖曳結束】物品: {(item != null ? item.name : "空")}, 來源格子類型: {slotType}");
+
+        // 修改條件：讓大背包 (Inventory) 和 快捷列 (HudToolbar) 拖出來都有效
+        if (!dropSuccessful && item != null && (slotType == SlotType.HudToolbar || slotType == SlotType.Inventory))
         {
-            // =============================================================
-            // 限制：只有從「主畫面工具列 (HudToolbar)」拖曳才有效
-            // =============================================================
-            if (slotType == SlotType.HudToolbar)
+            // --- 1. 處理相機功能 ---
+            if (item is CameraItem cameraItem)
             {
-                if (item is CameraItem cameraItem)
-                {
-                    Debug.Log("拖曳相機到場景，打開觀景窗準備拍照！");
-                    cameraItem.UseItemAtPosition(Input.mousePosition);
-                }
-                if (TutorialManager.Instance != null && TutorialManager.Instance.IsTutorialActive)
-                {
-                    if (TutorialManager.Instance.CurrentStepIndex == TutorialManager.Instance.takePhotoStepIndex)
-                    {
-                        Debug.Log("教學：相機觀景窗已打開！自動進入快門教學");
-                        TutorialManager.Instance.NextStep();
-                    }
-                }
+                cameraItem.UseItemAtPosition(Input.mousePosition);
+            }
 
-                // --- 檢測是否對準 NPC (UI 射線) ---
-                PointerEventData pointerData = new PointerEventData(EventSystem.current)
-                {
-                    position = Input.mousePosition
-                };
-                List<RaycastResult> results = new List<RaycastResult>();
-                EventSystem.current.RaycastAll(pointerData, results);
+            // --- 2. 物理偵測 (針對場景中的 2D NPC) ---
+            Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
 
-                foreach (RaycastResult result in results)
+            if (hit.collider != null)
+            {
+                Debug.Log("【物理碰撞】碰到了物體: " + hit.collider.gameObject.name);
+                if (hit.collider.TryGetComponent<NpcInteraction>(out NpcInteraction npcWorld))
                 {
-                    NpcInteraction npc = result.gameObject.GetComponent<NpcInteraction>();
-                    if (npc != null)
-                    {
-                        npc.OnItemDropped(item);
-                        // 如果是一次性道具，可以在這裡移除：
-                        // InventoryManager.Instance.Remove(item); 
-                        break;
-                    }
+                    Debug.Log("【成功】交給了場景 NPC: " + npcWorld.name);
+                    npcWorld.OnItemDropped(item);
+                    ResetSlotVisuals();
+                    return;
+                }
+            }
+
+            // --- 3. UI 偵測 (針對 UI 上的 NPC，原本的邏輯保留備用) ---
+            PointerEventData pointerData = new PointerEventData(EventSystem.current) { position = Input.mousePosition };
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerData, results);
+
+            foreach (RaycastResult result in results)
+            {
+                if (result.gameObject.TryGetComponent<NpcInteraction>(out NpcInteraction npcUI))
+                {
+                    Debug.Log("【成功】交給了 UI NPC: " + npcUI.name);
+                    npcUI.OnItemDropped(item);
+                    break;
                 }
             }
         }
 
-        // 恢復原本格子的圖示顯示
-        if (this.item != null)
-        {
-            icon.enabled = (item.icon != null);
-        }
+        ResetSlotVisuals();
+    }
 
+    private void ResetSlotVisuals()
+    {
+        if (this.item != null) icon.enabled = (item.icon != null);
         dragIcon = null;
         dropSuccessful = false;
     }
-
     public void OnDrop(PointerEventData eventData)
     {
         GameObject draggedObject = eventData.pointerDrag;

@@ -22,17 +22,10 @@ public class InventoryManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject); // 跨場景保留
 
-            // 處理主背包 (9格)
-            if (inventoryItems == null || inventoryItems.Length == 0)
-                inventoryItems = new Item[inventorySpace];
-            else
-                Array.Resize(ref inventoryItems, inventorySpace); // 保留原本塞的物品
-
-            // 處理工具列 (3格)
-            if (toolbarItems == null || toolbarItems.Length == 0)
-                toolbarItems = new Item[toolbarSpace];
-            else
-                Array.Resize(ref toolbarItems, toolbarSpace); // 保留原本塞的物品
+            // *** 在這裡初始化我們的物品陣列 ***
+            // 建立一個有 inventorySpace (9) 個空格 (null) 的陣列
+            inventoryItems = new Item[inventorySpace];
+            toolbarItems = new Item[toolbarSpace];
         }
     }
     #endregion

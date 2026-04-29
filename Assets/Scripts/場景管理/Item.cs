@@ -4,12 +4,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class Item : ScriptableObject
 {
+    public string itemID;
     public Sprite icon = null;
     public string description = "Item Description";
     public virtual void UseItem()
     {
-        // 預設行為 (例如一個石頭、一個鑰匙)
-        Debug.Log("使用了 " + name);
+        Debug.Log("使用了 " + itemID); // 改為印出 ID
     }
     //public int maxStack = 64; // 最大堆疊數量
 
