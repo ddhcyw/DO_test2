@@ -190,6 +190,9 @@ public class DialogueController : MonoBehaviour
             // 2. 呼叫 GameFlow 開書
             gameFlow.OpenStoryBook(nextKnot);
         });
+        inkStory.BindExternalFunction("start_fail_vignette", () => {
+            gameFlow.StartFailVignette();
+        });
     }
 
     // ============================================================

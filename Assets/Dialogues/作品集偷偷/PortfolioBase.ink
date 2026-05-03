@@ -1,6 +1,7 @@
 ﻿EXTERNAL add_clue(id)
 EXTERNAL start_debate_round(id)
 EXTERNAL open_book(next_knot_name)
+EXTERNAL start_fail_vignette()
 
 === base_enter ===
 MAI: 咕！這裡應該就是假利亞的基地了，我們先把證據集齊，把他的偷竊行為揭穿吧！
@@ -125,6 +126,7 @@ MAI: 你偷、你印、你改，還敢說是自己做的？
 MAI: 不好！有奇怪的黑霧正在干擾我！
 MAI: 快醒醒！妳的記憶正在被侵蝕！
 MAI: 不──！意識要被吞掉了！
+~ start_fail_vignette()
 -> END
 
 // 戰鬥劇情

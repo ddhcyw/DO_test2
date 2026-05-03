@@ -81,6 +81,10 @@ public class GameFlow : MonoBehaviour
     [Header("書本系統")]
     public BookReader bookReader;
 
+    [Header("失敗演出")]
+    public UnityEngine.UI.Image vignetteOverlay;
+    public UnityEngine.UI.Image blackOverlay;
+
     // 用於記錄這一回合的正確答案 (由 Ink 指定)
     private string currentCorrectAnswer = "";
 
@@ -106,6 +110,13 @@ public class GameFlow : MonoBehaviour
         if (rocketMai != null) rocketMai.SetActive(false);
         PlayerPrefs.SetString("SavedScene", SceneManager.GetActiveScene().name);
         PlayerPrefs.Save();
+
+        if (PlayerPrefs.GetInt("DebateFailReturn", 0) == 1)
+        {
+            PlayerPrefs.DeleteKey("DebateFailReturn");
+            if (objectiveManager) objectiveManager.ShowObjective("「奇怪...剛剛發生了什麼…」");
+        }
+
         if (!playStartDialogueOnSceneStart) return;
         if (string.IsNullOrEmpty(startDialogueKnot)) return;
 
@@ -462,7 +473,7 @@ public class GameFlow : MonoBehaviour
         else
         {
             Debug.Log("答錯了... (被黑霧吞噬)");
-            if (popupFail) popupFail.SetActive(true);
+            OnDebateFailConfirm();
         }
     }
 
@@ -550,13 +561,58 @@ public class GameFlow : MonoBehaviour
         if (dialogue)
         {
             dialogue.enabled = true;
-            SetSceneToLoad("幻影巷Scene");
             dialogue.StartInkDialogue("debate_failed");
         }
         else
         {
-            SceneManager.LoadScene("幻影巷Scene");
+            // fallback：無對話時直接演出
+            StartFailVignette();
         }
+    }
+
+    // 5. Ink 呼叫此方法啟動失敗演出
+    public void StartFailVignette()
+    {
+        StartCoroutine(FailTransition());
+    }
+
+    IEnumerator FailTransition()
+    {
+        // 初始化兩層 overlay
+        if (vignetteOverlay)
+        {
+            vignetteOverlay.gameObject.SetActive(true);
+            var c = vignetteOverlay.color; c.a = 0f; vignetteOverlay.color = c;
+        }
+        if (blackOverlay)
+        {
+            blackOverlay.gameObject.SetActive(true);
+            var c = blackOverlay.color; c.a = 0f; blackOverlay.color = c;
+        }
+
+        // 第一階段：Vignette 淡入（四周漸暗）
+        float elapsed = 0f;
+        while (elapsed < 0.8f)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / 0.8f);
+            if (vignetteOverlay) { var c = vignetteOverlay.color; c.a = t; vignetteOverlay.color = c; }
+            yield return null;
+        }
+
+        // 第二階段：全黑淡入
+        elapsed = 0f;
+        while (elapsed < 0.7f)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / 0.7f);
+            if (blackOverlay) { var c = blackOverlay.color; c.a = t; blackOverlay.color = c; }
+            yield return null;
+        }
+
+        PlayerPrefs.SetInt("DebateFailReturn", 1);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("幻影巷Scene");
     }
 
     void CloseDebateUI()
