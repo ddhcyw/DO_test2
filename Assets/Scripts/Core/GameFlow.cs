@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 using System.Collections.Generic;
 using Spine.Unity;
 
@@ -456,13 +457,54 @@ public class GameFlow : MonoBehaviour
         if (clickedID == currentCorrectAnswer)
         {
             Debug.Log("答對了！(駁回)");
-            if (popupSuccess) popupSuccess.SetActive(true);
+            if (popupSuccess) StartCoroutine(SlideInFromLeft(popupSuccess));
         }
         else
         {
             Debug.Log("答錯了... (被黑霧吞噬)");
             if (popupFail) popupFail.SetActive(true);
         }
+    }
+
+    IEnumerator SlideInFromLeft(GameObject target)
+    {
+        target.SetActive(true);
+        RectTransform rt = target.GetComponent<RectTransform>();
+        Vector2 endPos = rt.anchoredPosition;
+        Vector2 startPos = new Vector2(endPos.x - 1300f, endPos.y);
+
+        // 階段一：X 滑入，Ease Out Cubic（不 overshoot，左邊不露縫）
+        float slideDuration = 0.4f;
+        float elapsed = 0f;
+        rt.anchoredPosition = startPos;
+
+        while (elapsed < slideDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / slideDuration);
+            float eased = 1f - Mathf.Pow(1f - t, 3f);
+            rt.anchoredPosition = Vector2.Lerp(startPos, endPos, eased);
+            yield return null;
+        }
+        rt.anchoredPosition = endPos;
+
+        // 階段二：到位後 Scale 彈跳（1.0 → 1.06 → 1.0）
+        float bounceDuration = 0.25f;
+        elapsed = 0f;
+
+        while (elapsed < bounceDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / bounceDuration);
+            float scale = 1f + 0.06f * Mathf.Sin(t * Mathf.PI);
+            rt.localScale = new Vector3(scale, scale, 1f);
+            yield return null;
+        }
+        rt.localScale = Vector3.one;
+
+        // 動畫結束後自動往下播，不需玩家點擊
+        yield return new WaitForSeconds(0.8f);
+        OnDebateSuccessConfirm();
     }
 
     // 3. 答對確認
