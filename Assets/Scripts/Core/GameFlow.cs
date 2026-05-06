@@ -72,12 +72,22 @@ public class GameFlow : MonoBehaviour
     public Sprite blackHeartSprite;                    // 準備好的黑色愛心圖片
     private int debateSuccessCount = 0;                // 追蹤成功次數
 
-  
+
 
     [Header("作品集偷偷 - 辯論 Boss 戰")]
-    public GameObject debatePanel;      
-    public GameObject popupSuccess;    
+    public GameObject debatePanel;
+    public GameObject popupSuccess;
     public GameObject popupFail;
+    [Header("辯論判定保險")]
+    private bool isDebateProcessing = false;   // 防止連點導致扣兩顆心的開關
+
+    [Header("檢查用道具數據")]
+    public Item scrollItem;
+    public Item fragmentItem;
+    [Header("辯論獎勵物件")]
+    public GameObject caseScrollSceneObject;   
+    public GameObject thiefFragmentSceneObject; 
+
     [Header("書本系統")]
     public BookReader bookReader;
 
@@ -209,7 +219,7 @@ public class GameFlow : MonoBehaviour
         CurrentState = GameState.Exploring;
         var pc = FindObjectOfType<PlayerController>();
         if (pc != null) pc.EnableMovement(true);
-        
+
         if (playerMove) playerMove.enabled = true;
         if (playerFight) playerFight.enabled = false;
 
@@ -465,9 +475,13 @@ public class GameFlow : MonoBehaviour
     // 2. UI 按鈕呼叫這個 (每個按鈕固定傳自己的 ID)
     public void OnClickDebateButton(string clickedID)
     {
+        // 如果正在處理上一次的成功動畫，則不允許再次觸發
+        if (isDebateProcessing) return;
+
         if (clickedID == currentCorrectAnswer)
         {
             Debug.Log("答對了！(駁回)");
+            isDebateProcessing = true; // 鎖定判定
             if (popupSuccess) StartCoroutine(SlideInFromLeft(popupSuccess));
         }
         else
@@ -521,35 +535,44 @@ public class GameFlow : MonoBehaviour
     // 3. 答對確認
     public void OnDebateSuccessConfirm()
     {
-        // 1. 根據目前的成功進度，呼叫控制器播放對應的 Lose 動畫
         if (blackLiaController != null)
         {
-            if (debateSuccessCount == 0) blackLiaController.PlayLose();   // 播放 blackLia_lose
-            else if (debateSuccessCount == 1) blackLiaController.PlayLose2(); // 播放 blackLia_lose2
-            else if (debateSuccessCount == 2) blackLiaController.PlayLose3(); // 播放 blackLia_lose3[cite: 6]
+            if (debateSuccessCount == 0) blackLiaController.PlayLose();
+            else if (debateSuccessCount == 1) blackLiaController.PlayLose2();
+            else if (debateSuccessCount == 2) blackLiaController.PlayLose3();
         }
 
-        // 2. 更新 UI 愛心：將對應序號的愛心換成黑色圖片[cite: 4]
         if (debateSuccessCount < liaHearts.Length)
         {
             if (liaHearts[debateSuccessCount] != null && blackHeartSprite != null)
             {
                 liaHearts[debateSuccessCount].sprite = blackHeartSprite;
             }
-            debateSuccessCount++; // 成功次數加 1[cite: 4]
+            debateSuccessCount++; // 成功次數加 1
+        }
+
+        // 3. 解決辯論三次成功後出現道具
+        if (debateSuccessCount >= 3)
+        {
+            if (caseScrollSceneObject) caseScrollSceneObject.SetActive(true);
+            if (thiefFragmentSceneObject) thiefFragmentSceneObject.SetActive(true);
+            Debug.Log("辯論全勝！證據已出現在場景中");
         }
 
         CloseDebateUI();
 
-        // 3. 恢復對話並跳轉至對應的成功劇情節點[cite: 4, 5]
+        // 恢復對話並解鎖判定開關
         if (dialogue)
         {
             dialogue.enabled = true;
-            if (currentCorrectAnswer == "copy_machine") dialogue.StartInkDialogue("debate_success_1"); 
-            else if (currentCorrectAnswer == "canvas") dialogue.StartInkDialogue("debate_success_2");   
-            else if (currentCorrectAnswer == "pc") dialogue.StartInkDialogue("debate_success_3");       
+            if (currentCorrectAnswer == "copy_machine") dialogue.StartInkDialogue("debate_success_1");
+            else if (currentCorrectAnswer == "canvas") dialogue.StartInkDialogue("debate_success_2");
+            else if (currentCorrectAnswer == "pc") dialogue.StartInkDialogue("debate_success_3");
         }
+
+        isDebateProcessing = false; // 解鎖，準備下一回合
     }
+
 
     // 4. 答錯確認
     public void OnDebateFailConfirm()
@@ -671,15 +694,36 @@ public class GameFlow : MonoBehaviour
     }
     public void OpenStoryBook(string nextKnotName)
     {
-        if (bookReader != null)
+        // 1. 檢查背包中是否有這兩個道具
+        bool hasScroll = InventoryManager.Instance.HasItem(scrollItem);
+        bool hasFragment = InventoryManager.Instance.HasItem(fragmentItem);
+
+        if (hasScroll && hasFragment)
         {
-            // 為了避免對話框還留著，我們先暫時把對話關掉，或者直接切換狀態
-            // 這裡假設 DialogueController 會處理這一段
-            bookReader.OpenBook(nextKnotName);
+            // 條件達成：開啟書本
+            if (bookReader != null)
+            {
+                bookReader.OpenBook(nextKnotName);
+            }
+            else
+            {
+                Debug.LogError("GameFlow: 尚未指定 BookReader！");
+            }
         }
         else
         {
-            Debug.LogError("GameFlow: 尚未指定 BookReader！");
+            // 條件未達成：提示玩家並恢復對話
+            Debug.LogWarning("道具不足，無法開啟卷軸。");
+
+            if (objectiveManager)
+                objectiveManager.ShowObjective("還缺少「案件卷軸」或「大盜碎片」...");
+
+            // 這裡建議彈回一段對話告訴玩家，或是重新顯示對話框
+            if (dialogue)
+            {
+                dialogue.panelRoot.SetActive(true);
+                dialogue.StartInkDialogue("need_items_hint"); // 在 Ink 裡加一個提示節點
+            }
         }
     }
 }

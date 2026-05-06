@@ -1516,7 +1516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbea358b2c39664ebf6cab9b17edb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: b2ff2adaf4bdf6747b85d01ddd4f28f1, type: 2}
+  item: {fileID: 11400000, guid: 116c9554c8e69754b8c89f62252fdfac, type: 2}
 --- !u!1 &594699599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,6 +1581,10 @@ MonoBehaviour:
   debatePanel: {fileID: 0}
   popupSuccess: {fileID: 0}
   popupFail: {fileID: 0}
+  scrollItem: {fileID: 0}
+  fragmentItem: {fileID: 0}
+  caseScrollSceneObject: {fileID: 0}
+  thiefFragmentSceneObject: {fileID: 0}
   bookReader: {fileID: 0}
   vignetteOverlay: {fileID: 0}
   blackOverlay: {fileID: 0}

@@ -39,6 +39,8 @@ public class InventoryManager : MonoBehaviour
     // 定義一個事件，當物品欄變更時觸發
     public event Action OnInventoryChanged;
 
+    
+
     public bool Add(Item item)
     {
         for (int i = 0; i < inventoryItems.Length; i++) 
@@ -102,5 +104,23 @@ public class InventoryManager : MonoBehaviour
 
         // 通知所有 UI 更新！
         OnInventoryChanged?.Invoke();
+    }
+    public bool HasItem(Item item)
+    {
+        if (item == null) return false;
+
+        // 1. 檢查主背包陣列
+        foreach (Item i in inventoryItems)
+        {
+            if (i == item) return true;
+        }
+
+        // 2. 檢查工具列陣列
+        foreach (Item i in toolbarItems)
+        {
+            if (i == item) return true;
+        }
+
+        return false; // 兩邊都沒找到
     }
 }
