@@ -7,6 +7,7 @@ public class Item : ScriptableObject
     public string itemID;
     public Sprite icon = null;
     public string description = "Item Description";
+    public GameObject specialGotPanel;
     public virtual void UseItem()
     {
         Debug.Log("使用了 " + itemID); // 改為印出 ID

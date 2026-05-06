@@ -12,23 +12,27 @@ public class ItemPickup : MonoBehaviour
             Pickup();
         }
     }
-   
+
 
     private void Pickup()
     {
         if (item == null)
         {
-            Debug.LogWarning("�a�W�����~ " + gameObject.name + " �S���]�w Item ��ơI");
+            Debug.LogWarning("場景中的道具 " + gameObject.name + " 沒有指派 Item 數據！");
             return;
         }
 
-        
         bool wasAdded = InventoryManager.Instance.Add(item);
 
         if (wasAdded)
         {
+            if (GameFlow.Instance != null)
+            {
+                GameFlow.Instance.ShowSpecialItemGotUI(item);
+            }
+
+            // 3. 讓地上的道具消失
             Destroy(gameObject);
         }
-        
     }
 }

@@ -20,9 +20,9 @@ public class ClueVisualizer : MonoBehaviour
         if (GameFlow.Instance == null) return;
 
         // 檢查順序與 HasAllBaseClues 的邏輯對應
-        UpdateLight(0, "clue_pc");
+        UpdateLight(0, "clue_canvas");
         UpdateLight(1, "clue_copy_machine");
-        UpdateLight(2, "clue_canvas");
+        UpdateLight(2, "clue_pc");
     }
 
     private void UpdateLight(int index, string clueID)

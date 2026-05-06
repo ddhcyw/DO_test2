@@ -43,6 +43,9 @@ public class GameFlow : MonoBehaviour
     public GameObject cameraCloseupUI;
     public Item cameraItemAsset;
 
+    [Header("道具獲得面板")]
+    public GameObject itemGotPanel;
+
     [Header("MAI幫助區設定")]
     public GameObject MAIHalpPanel;
 
@@ -237,6 +240,22 @@ public class GameFlow : MonoBehaviour
     {
         sceneToLoadAfterDialogue = sceneName;
         Debug.Log($"已預約對話結束後前往: {sceneName}");
+    }
+
+    //蒐集到道具
+    public void ShowSpecialItemGotUI(Item item)
+    {
+        if (item == null || item.specialGotPanel == null)
+        {
+            Debug.LogWarning($"{item.itemID} 沒有設定專屬面板 Prefab！");
+            return;
+        }
+
+        GameObject newPopup = Instantiate(item.specialGotPanel, dialogue.panelRoot.transform.parent);
+
+        // 確保它在畫面上是正中心
+        RectTransform rt = newPopup.GetComponent<RectTransform>();
+        if (rt != null) rt.anchoredPosition = Vector2.zero;
     }
 
     // ============================================================
