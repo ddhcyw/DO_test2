@@ -3353,6 +3353,7 @@ GameObject:
   - component: {fileID: 781105638}
   - component: {fileID: 781105637}
   - component: {fileID: 781105639}
+  - component: {fileID: 781105640}
   m_Layer: 0
   m_Name: BlackLia
   m_TagString: Untagged
@@ -3436,6 +3437,18 @@ MonoBehaviour:
   gameFlow: {fileID: 1907980400}
   knotBeforeClue: talk_blacklia_before_clue
   knotAfterClue: talk_blacklia_after_clue
+--- !u!114 &781105640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781105636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eab510a059baae44096c8f4043472d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &784720617
 GameObject:
   m_ObjectHideFlags: 0
@@ -3742,6 +3755,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u4E3B\u89D2"
       objectReference: {fileID: 0}
+    - target: {fileID: 1160785700121703557, guid: 10de2f29d4b628e4a8f361320ffe22d7, type: 3}
+      propertyPath: purifyTarget
+      value: 
+      objectReference: {fileID: 781105640}
     - target: {fileID: 1160785700121703557, guid: 10de2f29d4b628e4a8f361320ffe22d7, type: 3}
       propertyPath: playerController
       value: 
@@ -6775,6 +6792,10 @@ PrefabInstance:
       propertyPath: playerSpineAnimator
       value: 
       objectReference: {fileID: 937102522}
+    - target: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: blackLiaPurifyTarget
+      value: 
+      objectReference: {fileID: 781105640}
     - target: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
       propertyPath: liaHearts.Array.size
       value: 3

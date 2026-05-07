@@ -1,6 +1,7 @@
 ﻿EXTERNAL add_clue(id)
 EXTERNAL start_debate_round(id)
 EXTERNAL open_book(next_knot_name)
+EXTERNAL start_purify_phase()
 EXTERNAL start_fail_vignette()
 EXTERNAL show_objective(content)
 
@@ -121,7 +122,11 @@ MAI: 你偷、你印、你改，還敢說是自己做的？
 : （黑色利亞的身體開始逐漸消失...）
 
 MAI: 就是現在！我們快點用相機師開始淨化！
+~ show_objective("按F淨化黑色利亞！")
+~ start_purify_phase()
+-> DONE
 
+=== after_purify ===
 MAI: 呼～剛才真是驚險！
 MAI: 在回去之前，剛剛似乎撿到了一份卷軸，不介意的話我們一起來看看吧！
 

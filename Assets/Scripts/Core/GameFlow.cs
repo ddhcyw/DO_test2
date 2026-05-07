@@ -77,6 +77,9 @@ public class GameFlow : MonoBehaviour
 
 
 
+    [Header("作品集偷偷 - 淨化階段")]
+    public BlackLiaPurifyTarget blackLiaPurifyTarget;
+
     [Header("作品集偷偷 - 辯論 Boss 戰")]
     public GameObject debatePanel;
     public GameObject popupSuccess;
@@ -711,6 +714,43 @@ public class GameFlow : MonoBehaviour
         clues.Clear();
         Debug.Log("All clues cleared");
     }
+    public void StartPurifyPhase()
+    {
+        CurrentState = GameState.Exploring;
+
+        var pc = FindObjectOfType<PlayerController>();
+        if (pc != null) pc.EnableMovement(true);
+        if (playerMove) playerMove.enabled = true;
+
+        var camAttack = FindObjectOfType<PlayerCameraAttack>();
+        if (camAttack != null)
+        {
+            camAttack.enabled = true;
+            if (blackLiaPurifyTarget != null)
+                camAttack.purifyTarget = blackLiaPurifyTarget;
+        }
+
+        if (blackLiaPurifyTarget != null) blackLiaPurifyTarget.Activate();
+
+        if (panelToHideDuringDialogue != null) panelToHideDuringDialogue.SetActive(true);
+    }
+
+    public void OnPurifyComplete()
+    {
+        var pc = FindObjectOfType<PlayerController>();
+        if (pc != null) pc.EnableMovement(false);
+        if (playerMove) playerMove.enabled = false;
+
+        var camAttack = FindObjectOfType<PlayerCameraAttack>();
+        if (camAttack != null) camAttack.purifyTarget = null;
+
+        if (dialogue)
+        {
+            dialogue.enabled = true;
+            dialogue.StartInkDialogue("after_purify");
+        }
+    }
+
     public void OpenStoryBook(string nextKnotName)
     {
         // 1. 檢查背包中是否有這兩個道具

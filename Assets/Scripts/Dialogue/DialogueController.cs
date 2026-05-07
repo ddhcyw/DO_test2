@@ -193,6 +193,10 @@ public class DialogueController : MonoBehaviour
         inkStory.BindExternalFunction("start_fail_vignette", () => {
             gameFlow.StartFailVignette();
         });
+        inkStory.BindExternalFunction("start_purify_phase", () => {
+            EndDialogue();
+            gameFlow.StartPurifyPhase();
+        });
     }
 
     // ============================================================
