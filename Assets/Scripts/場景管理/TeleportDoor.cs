@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TeleportDoor : MonoBehaviour
 {
@@ -8,24 +9,47 @@ public class TeleportDoor : MonoBehaviour
     [Header("鎖定狀態")]
     public bool isUnlocked = false;
 
+    private Collider2D doorCollider;
+    private bool isTransitioning = false;
+
+    void Awake()
+    {
+        doorCollider = GetComponent<Collider2D>();
+    }
+
+    void Update()
+    {
+        if (!isUnlocked || isTransitioning) return;
+
+        if (doorCollider == null)
+        {
+            Debug.LogError("[TeleportDoor] doorCollider 是 null！");
+            return;
+        }
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogError("[TeleportDoor] 找不到 Tag=Player 的物件！");
+            return;
+        }
+
+        if (doorCollider.OverlapPoint(player.transform.position))
+        {
+            isTransitioning = true;
+            Debug.Log($"[TeleportDoor] 準備傳送至：{targetSceneName}");
+            var stm = SceneTransitionManager.Instance
+                      ?? FindObjectOfType<SceneTransitionManager>();
+            if (stm != null)
+                stm.TransitionToScene(targetSceneName);
+            else
+                SceneManager.LoadScene(targetSceneName);
+        }
+    }
+
     public void UnlockDoor()
     {
         isUnlocked = true;
         Debug.Log("傳送門已解鎖！");
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!collision.CompareTag("Player")) return;
-
-        if (isUnlocked)
-        {
-            Debug.Log($"準備傳送至：{targetSceneName}");
-            SceneTransitionManager.Instance.TransitionToScene(targetSceneName);
-        }
-        else
-        {
-            Debug.Log("此傳送門尚未解鎖！");
-        }
     }
 }

@@ -80,6 +80,9 @@ public class GameFlow : MonoBehaviour
     [Header("作品集偷偷 - 淨化階段")]
     public BlackLiaPurifyTarget blackLiaPurifyTarget;
 
+    [Header("作品集偷偷 - 出口傳送門")]
+    public TeleportDoor exitDoor;
+
     [Header("作品集偷偷 - 辯論 Boss 戰")]
     public GameObject debatePanel;
     public GameObject popupSuccess;
@@ -744,6 +747,11 @@ public class GameFlow : MonoBehaviour
         var camAttack = FindObjectOfType<PlayerCameraAttack>();
         if (camAttack != null) camAttack.purifyTarget = null;
 
+        // 淨化完成即任務結束，直接解鎖出口門
+        PlayerPrefs.SetInt("PortfolioQuestDone", 1);
+        PlayerPrefs.Save();
+        if (exitDoor != null) exitDoor.UnlockDoor();
+
         if (dialogue)
         {
             dialogue.enabled = true;
@@ -759,7 +767,6 @@ public class GameFlow : MonoBehaviour
 
         if (hasScroll && hasFragment)
         {
-            // 條件達成：開啟書本
             if (bookReader != null)
             {
                 bookReader.OpenBook(nextKnotName);

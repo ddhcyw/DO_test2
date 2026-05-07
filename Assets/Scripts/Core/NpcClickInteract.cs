@@ -24,7 +24,17 @@ public class NpcClickInteract : MonoBehaviour
     public string repeatKnotName;
     [HideInInspector] public bool dialogueCompleted = false;
 
+    [Header("Quest Flag（填入 PlayerPrefs key，完成時自動切換到 repeatKnotName）")]
+    public string questCompletedFlag;
+
     private bool triggered = false;
+
+    void Start()
+    {
+        if (!string.IsNullOrEmpty(questCompletedFlag))
+            if (PlayerPrefs.GetInt(questCompletedFlag, 0) == 1)
+                dialogueCompleted = true;
+    }
 
     void OnMouseDown()
     {

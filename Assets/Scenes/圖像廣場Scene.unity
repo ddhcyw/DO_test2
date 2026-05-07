@@ -2428,6 +2428,7 @@ MonoBehaviour:
   triggerOnce: 0
   repeatKnotName: 
   dialogueCompleted: 0
+  questCompletedFlag: 
 --- !u!114 &833170585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4915,8 +4916,9 @@ MonoBehaviour:
   interactDistance: 5
   dimmerObject: {fileID: 0}
   triggerOnce: 0
-  repeatKnotName: 
+  repeatKnotName: plaza_lia_return
   dialogueCompleted: 0
+  questCompletedFlag: PortfolioQuestDone
 --- !u!114 &2049582901
 MonoBehaviour:
   m_ObjectHideFlags: 0
