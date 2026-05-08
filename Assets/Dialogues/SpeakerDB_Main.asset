@@ -83,3 +83,8 @@ MonoBehaviour:
     skin: blackLialose3
     anim: idle3
     loop: 1
+  - id: "\u7BA1\u7406\u54E1"
+    spineData: {fileID: 11400000, guid: 139eac217da8c3b458ce863ec97f507f, type: 2}
+    skin:
+    anim: guardidle
+    loop: 1

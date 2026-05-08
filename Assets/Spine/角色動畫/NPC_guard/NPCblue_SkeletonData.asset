@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
-  m_Name: NPC2_SkeletonData
+  m_Name: NPCblue_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: bedba5f97c8b323468d74d748fa706f4, type: 2}
+  - {fileID: 11400000, guid: 5b6f8fdb9b9fef241af34c5261aabf1f, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: cb4f3a788fb66e34dace76fd7d74fbf6, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 3537ea690f525ea48b406b91f54183b8, type: 3}
   isUpgradingBlendModeMaterials: 0
   blendModeMaterials:
     requiresBlendModeMaterials: 0

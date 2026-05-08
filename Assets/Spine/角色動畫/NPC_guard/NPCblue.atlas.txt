@@ -1,0 +1,62 @@
+
+NPCblue.png
+size: 1542,1129
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+小藍1
+  rotate: true
+  xy: 629, 45
+  size: 301, 526
+  orig: 3508, 2480
+  offset: 1810, 974
+  index: -1
+小藍2
+  rotate: false
+  xy: 1234, 603
+  size: 306, 524
+  orig: 3508, 2480
+  offset: 1399, 978
+  index: -1
+小藍3
+  rotate: false
+  xy: 420, 5
+  size: 156, 266
+  orig: 3508, 2480
+  offset: 1358, 1831
+  index: -1
+小藍4
+  rotate: false
+  xy: 2, 2
+  size: 416, 269
+  orig: 3508, 2480
+  offset: 1554, 1444
+  index: -1
+小藍5
+  rotate: true
+  xy: 2, 273
+  size: 854, 625
+  orig: 3508, 2480
+  offset: 1329, 1309
+  index: -1
+小藍6
+  rotate: true
+  xy: 629, 348
+  size: 351, 528
+  orig: 3508, 2480
+  offset: 1806, 384
+  index: -1
+小藍7
+  rotate: false
+  xy: 1159, 77
+  size: 347, 524
+  orig: 3508, 2480
+  offset: 1376, 378
+  index: -1
+小藍8
+  rotate: true
+  xy: 629, 701
+  size: 426, 603
+  orig: 3508, 2480
+  offset: 1544, 763
+  index: -1
