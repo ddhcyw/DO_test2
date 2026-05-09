@@ -228,9 +228,10 @@ public class DialogueController : MonoBehaviour
 
         string line = null;
         
-        while (inkStory.canContinue)
+        while (inkStory != null && inkStory.canContinue)
         {
             line = inkStory.Continue();
+            if (inkStory == null) return;
             if (pauseRequested)
             {
                 pauseRequested = false;

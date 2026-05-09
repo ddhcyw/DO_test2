@@ -28,7 +28,10 @@ public class SceneTransitionManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        transitionCanvas.gameObject.SetActive(false);
+        if (transitionCanvas != null)
+            transitionCanvas.gameObject.SetActive(false);
+        else
+            Debug.LogError("[SceneTransitionManager] transitionCanvas 未指定，請在 Inspector 拖入！");
     }
 
     public void TransitionToScene(string sceneName)
@@ -40,6 +43,13 @@ public class SceneTransitionManager : MonoBehaviour
     private IEnumerator DoTransition(string sceneName)
     {
         isTransitioning = true;
+        if (transitionCanvas == null)
+        {
+            Debug.LogError("[SceneTransitionManager] transitionCanvas 是 null，請在 Inspector 拖入 Canvas！直接載入場景。");
+            yield return SceneManager.LoadSceneAsync(sceneName);
+            isTransitioning = false;
+            yield break;
+        }
         transitionCanvas.gameObject.SetActive(true);
 
         // 離開：正向播放 0→4
