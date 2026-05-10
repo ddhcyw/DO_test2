@@ -120,7 +120,7 @@ public class CameraSimulation : MonoBehaviour, IPointerDownHandler, IDragHandler
             //隱藏原本的「觀景窗」UI (但不要銷毀，CloseSimulation 會處理)
             //我們透過禁用 Image 和 Button 來隱藏它，而不是 SetActive(false)
             takePictureButton.gameObject.SetActive(false);
-            GetComponent<Image>().enabled = false; // 隱藏觀景窗背景
+            this.gameObject.SetActive(false);
         }
     }
 
