@@ -9,14 +9,14 @@ public class CameraItem : Item
 
     public override void UseItem()
     {
-        if (cameraSimulationPrefab == null)
-        {
-            Debug.LogError("CameraItem 上的 " + name + " 沒有設定 'cameraSimulationPrefab'！");
-            return;
-        }
+        //if (cameraSimulationPrefab == null)
+        //{
+        //    Debug.LogError("CameraItem 上的 " + name + " 沒有設定 'cameraSimulationPrefab'！");
+        //    return;
+        //}
 
-        Canvas mainCanvas = FindObjectOfType<Canvas>();
-        CameraSimulation uiInstance = Instantiate(cameraSimulationPrefab, mainCanvas.transform);
+        //Canvas mainCanvas = FindObjectOfType<Canvas>();
+        //CameraSimulation uiInstance = Instantiate(cameraSimulationPrefab, mainCanvas.transform);
 
         
     }

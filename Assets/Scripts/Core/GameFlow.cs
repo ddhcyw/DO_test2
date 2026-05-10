@@ -18,6 +18,10 @@ public class GameFlow : MonoBehaviour
     public string startDialogueKnot = "";
     public string startDialogueOnceKey = ""; // 可留空，不留空就只播一次
 
+    [Header("音訊控制")]
+    public MusicFader sceneMusicFader;
+    
+
     [Header("角色控制")]
     public PlayerController playerMove;
     public PlayerControllerFight playerFight;
@@ -222,6 +226,11 @@ public class GameFlow : MonoBehaviour
             pendingActionAfterDialogue = "";
             SpawnTrainingBug();
             return; // 如果是戰鬥，就從這裡離開，不執行下面的恢復邏輯
+        }
+        
+        if (sceneMusicFader != null)
+        {
+            sceneMusicFader.StartFadeIn();
         }
 
         // 3. 其他普通對話：回到 Exploring

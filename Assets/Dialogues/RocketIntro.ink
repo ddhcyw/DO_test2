@@ -1,4 +1,5 @@
-﻿EXTERNAL give_camera()
+﻿EXTERNAL play_bgm()
+EXTERNAL give_camera()
 EXTERNAL show_objective(content)
 EXTERNAL spawn_wave()
 EXTERNAL get_camera_item()
@@ -10,6 +11,7 @@ EXTERNAL pause_dialogue(seconds)
 
 
 === bridge_intro ===
+~ play_bgm()
 MAI: 哈囉！我是AI嚮導麻伊！
 MAI: 歡迎來到 英特涅城 AI 區，請問有什麼需要幫忙的嗎？
 

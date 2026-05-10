@@ -46,9 +46,7 @@ public class ObjectiveManager : MonoBehaviour
     {
         isDisplaying = true;
 
-        // ==========================================
-        // ★★★ 任務來了：隱藏待機，顯示任務面板 ★★★
-        // ==========================================
+        //任務來了：隱藏待機，顯示任務面板
         if (idlePanel) idlePanel.SetActive(false);
         if (objectivePanel) objectivePanel.SetActive(true);
 
@@ -60,7 +58,7 @@ public class ObjectiveManager : MonoBehaviour
             if (objectiveText) objectiveText.text = nextObj;
 
             // 停留 2 秒讓玩家看清楚
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(5f);
         }
 
         // 任務全部播完
@@ -75,9 +73,7 @@ public class ObjectiveManager : MonoBehaviour
     {
         objectiveQueue.Clear();
 
-        // ==========================================
-        // ★★★ 任務結束：隱藏任務，顯示待機面板 ★★★
-        // ==========================================
+        //任務結束：隱藏任務，顯示待機面板
         if (objectivePanel) objectivePanel.SetActive(false);
         if (idlePanel) idlePanel.SetActive(true);
     }

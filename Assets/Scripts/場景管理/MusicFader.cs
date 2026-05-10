@@ -7,20 +7,19 @@ public class MusicFader : MonoBehaviour
     public float fadeDuration = 3.0f; // 淡入需要幾秒
     public float targetVolume = 0.5f; // 目標音量 (0~1)
 
-    void Start()
+    public void StartFadeIn()
     {
-        // 如果沒有手動指定 AudioSource，就抓取自己身上的
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
 
-        // 1. 先把音量設為 0
+        // 保險檢查：如果還是沒有 AudioSource 就跳過
+        if (audioSource == null) return;
+
+        // 如果音樂已經在播了，就不要重複觸發淡入，否則音量會突然變回 0
+        if (audioSource.isPlaying) return;
+
         audioSource.volume = 0;
-
-        // 2. 開始播放音樂 (如果還沒播的話)
-        if (!audioSource.isPlaying)
-            audioSource.Play();
-
-        // 3. 啟動淡入功能的協程
+        audioSource.Play();
         StartCoroutine(FadeInRoutine());
     }
 

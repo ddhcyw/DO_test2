@@ -150,6 +150,7 @@ public class DialogueController : MonoBehaviour
         }
 
         // 新手區
+        inkStory.BindExternalFunction("play_bgm", () => gameFlow.sceneMusicFader.StartFadeIn());
         inkStory.BindExternalFunction("give_camera", () => gameFlow.GiveCamera());
         inkStory.BindExternalFunction("get_camera_item", () => gameFlow.GetCameraItem());
         inkStory.BindExternalFunction("show_objective", (string content) => gameFlow.ShowObjectiveUI(content));
