@@ -12,6 +12,7 @@ public class Item : ScriptableObject
     {
         Debug.Log("使用了 " + itemID); // 改為印出 ID
     }
+
     //public int maxStack = 64; // 最大堆疊數量
 
     // 添加更多屬性
