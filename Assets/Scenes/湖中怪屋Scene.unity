@@ -1131,6 +1131,7 @@ MonoBehaviour:
   triggerOnce: 0
   repeatKnotName: lake_npc2_repeat
   dialogueCompleted: 0
+  questCompletedFlag: 
 --- !u!1001 &881821941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2104,6 +2105,7 @@ MonoBehaviour:
   triggerOnce: 0
   repeatKnotName: lake_npc1_repeat
   dialogueCompleted: 0
+  questCompletedFlag: 
 --- !u!70 &1228336398
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2515,8 +2517,8 @@ SceneRoots:
   - {fileID: 1181216966}
   - {fileID: 1927348137}
   - {fileID: 1220811690}
-  - {fileID: 554556457}
   - {fileID: 213567703}
+  - {fileID: 554556457}
   - {fileID: 635675824}
   - {fileID: 788783238}
   - {fileID: 881821941}
