@@ -171,6 +171,7 @@ public class DialogueController : MonoBehaviour
 
 
         // 圖像廣場
+        inkStory.BindExternalFunction("unlock_plaza_door", () => gameFlow.UnlockPlazaDoor());
         inkStory.BindExternalFunction("show_flyer", () => gameFlow.ShowFlyerInScene());
         inkStory.BindExternalFunction("get_flyer", () => gameFlow.GetFlyerItem());
         inkStory.BindExternalFunction("destroy_flyer", () => gameFlow.DestroyFlyerObject());

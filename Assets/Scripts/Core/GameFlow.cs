@@ -34,6 +34,9 @@ public class GameFlow : MonoBehaviour
     [Header("新手區傳送門")]
     public TeleportDoor trainingExitDoor;
 
+    [Header("圖像廣場傳送門（前往幻影巷）")]
+    public TeleportDoor plazaExitDoor;
+
     [Header("對話系統")]
     public DialogueController dialogue;
 
@@ -372,6 +375,14 @@ public class GameFlow : MonoBehaviour
             trainingExitDoor.UnlockDoor();
         else
             Debug.LogWarning("[GameFlow] trainingExitDoor 未設定，請在 Inspector 拖入！");
+    }
+
+    public void UnlockPlazaDoor()
+    {
+        if (plazaExitDoor != null)
+            plazaExitDoor.UnlockDoor();
+        else
+            Debug.LogWarning("[GameFlow] plazaExitDoor 未設定，請在 Inspector 拖入！");
     }
 
     void OnTrainingFinished()

@@ -5696,6 +5696,7 @@ MonoBehaviour:
   bridgeMai: {fileID: 581511316}
   rocketMai: {fileID: 278966133}
   trainingExitDoor: {fileID: 1473975165}
+  plazaExitDoor: {fileID: 0}
   dialogue: {fileID: 1491342454}
   panelToHideDuringDialogue: {fileID: 1907150893}
   maiHelpArea: {fileID: 529501743}
@@ -7202,7 +7203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c69b3c9643e7b243999af96be9fcdcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: "(2D)\u6E56\u4E2D\u602A\u5C4B 1"
+  targetSceneName: "\u6E56\u4E2D\u602A\u5C4BScene"
   isUnlocked: 0
 --- !u!61 &1473975166
 BoxCollider2D:
