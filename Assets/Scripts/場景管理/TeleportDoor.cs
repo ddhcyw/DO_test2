@@ -38,12 +38,19 @@ public class TeleportDoor : MonoBehaviour
         {
             isTransitioning = true;
             Debug.Log($"[TeleportDoor] 準備傳送至：{targetSceneName}");
-            var stm = SceneTransitionManager.Instance
-                      ?? FindObjectOfType<SceneTransitionManager>();
+
+            var stm = SceneTransitionManager.Instance;
+            Debug.Log($"[TeleportDoor] Instance={stm}");
+            if (stm == null) stm = FindObjectOfType<SceneTransitionManager>();
+            Debug.Log($"[TeleportDoor] FindObjectOfType={stm}");
+
             if (stm != null)
                 stm.TransitionToScene(targetSceneName);
             else
+            {
+                Debug.LogWarning("[TeleportDoor] SceneTransitionManager 找不到，直接跳場");
                 SceneManager.LoadScene(targetSceneName);
+            }
         }
     }
 

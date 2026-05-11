@@ -31,6 +31,9 @@ public class GameFlow : MonoBehaviour
     public GameObject bridgeMai;      // 橋邊那隻
     public GameObject rocketMai;      // 火箭那隻
 
+    [Header("新手區傳送門")]
+    public TeleportDoor trainingExitDoor;
+
     [Header("對話系統")]
     public DialogueController dialogue;
 
@@ -362,6 +365,14 @@ public class GameFlow : MonoBehaviour
         if (maiHelpArea) maiHelpArea.SetActive(true);
     }
 
+
+    public void UnlockTrainingDoor()
+    {
+        if (trainingExitDoor != null)
+            trainingExitDoor.UnlockDoor();
+        else
+            Debug.LogWarning("[GameFlow] trainingExitDoor 未設定，請在 Inspector 拖入！");
+    }
 
     void OnTrainingFinished()
     {

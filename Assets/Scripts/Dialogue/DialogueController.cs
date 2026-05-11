@@ -161,6 +161,7 @@ public class DialogueController : MonoBehaviour
             if (sequenceRunner != null) sequenceRunner.PauseDialogue(seconds);
             else Debug.LogError("DialogueController: sequenceRunner 沒有指定！");
         });
+        inkStory.BindExternalFunction("unlock_door", () => gameFlow.UnlockTrainingDoor());
 
         // 通用
         inkStory.BindExternalFunction("change_scene", (string sceneName) => gameFlow.SetSceneToLoad(sceneName));

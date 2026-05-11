@@ -36,6 +36,7 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void TransitionToScene(string sceneName)
     {
+        Debug.Log($"[STM] TransitionToScene called: {sceneName}, isTransitioning={isTransitioning}");
         if (isTransitioning) return;
         StartCoroutine(DoTransition(sceneName));
     }
@@ -43,6 +44,7 @@ public class SceneTransitionManager : MonoBehaviour
     private IEnumerator DoTransition(string sceneName)
     {
         isTransitioning = true;
+        Debug.Log($"[STM] DoTransition 開始, canvas={transitionCanvas}, frames={frames?.Length}");
         if (transitionCanvas == null)
         {
             Debug.LogError("[SceneTransitionManager] transitionCanvas 是 null，請在 Inspector 拖入 Canvas！直接載入場景。");
@@ -51,6 +53,7 @@ public class SceneTransitionManager : MonoBehaviour
             yield break;
         }
         transitionCanvas.gameObject.SetActive(true);
+        Debug.Log("[STM] Canvas 已啟用，開始播放影格");
 
         // 離開：正向播放 0→4
         yield return StartCoroutine(PlayFrames(forward: true));

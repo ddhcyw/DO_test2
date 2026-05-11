@@ -8,6 +8,7 @@ EXTERNAL hide_mai(id)
 EXTERNAL start_MAI_help()
 EXTERNAL play_ignite_anim()
 EXTERNAL pause_dialogue(seconds)
+EXTERNAL unlock_door()
 
 
 === bridge_intro ===
@@ -139,13 +140,7 @@ MAI: 準備好了嗎？讓我們一起出發前往城鎮吧！
 MAI: 我們到傳送門去！
 
 ~ show_objective("走到傳送門吧！")
-
--> END
-
-=== portal_transition ===
-旁白: （一道光芒包圍了你和麻伊——）
-
-~ change_scene("湖中怪屋Scene")
+~ unlock_door()
 
 -> END
 
