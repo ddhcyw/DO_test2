@@ -5,47 +5,35 @@ using System.Collections;
 
 public class SecretEntrance : MonoBehaviour
 {
-    [Header("UI ¤¶­±³]©w")]
-    public GameObject puzzlePanel;       // ¨º­Ó·|¸õ¥X¨Óªº Panel
-    public Image leverImage;             // ©Ô±ì­ì¥»ªº¹Ï¤ù (UI Image)
-    public Image leverDownSprite;       // ©Ô±ì¡u©Ô¤U¨Ó¡v«áªº¹Ï¤ù
+    [Header("UI è¨­å®š")]
+    public GameObject puzzlePanel;
+    public Image leverImage;
+    public Image leverDownSprite;
 
-    [Header("³õ´º³]©w")]
-    public string baseSceneName = "§@«~¶°°½°½°ò¦aScene"; 
+    [Header("å ´æ™¯è¨­å®š")]
+    public string baseSceneName = "(2D)ä½œå“é›†å·å·çš„åŸºåœ° 1";
 
-    // =================================================
-    // 1. µ¹¡u·tªùª«¥ó¡v¥Îªº¥\¯à (±¾¦b³õ´ºª«¥ó¤W)
-    // =================================================
     void OnMouseDown()
     {
-        // ¬°¤FÁ×§K»~Ä²¡AÀË¬d¬O§_¦b¹ï¸Ü¤¤
         if (GameFlow.Instance != null && GameFlow.Instance.CurrentState == GameFlow.GameState.Talking)
             return;
 
         OpenPanel();
     }
 
-    // ¦pªG§Aªº·tªù¬O UI «ö¶s¡A¤]¥i¥H¥Î³o­Ó
     public void OpenPanel()
     {
         if (puzzlePanel != null)
-        {
             puzzlePanel.SetActive(true);
-        }
     }
 
-    // =================================================
-    // 2. µ¹¡u¥¿½T©Ô±ì (UI Button)¡v¥Îªº¥\¯à
-    // =================================================
     public void OnClickCorrectLever()
     {
         StartCoroutine(PullLeverProcess());
     }
 
-    // ³B²z©Ô±ì°Êµe»PÂà³õªº¨óµ{
     IEnumerator PullLeverProcess()
     {
-        // 1. ´«¹Ï¡GÅÜ¦¨©Ô¤U¨Óªº¼Ë¤l
         if (leverImage != null && leverDownSprite != null)
         {
             leverImage.sprite = leverDownSprite.sprite;
@@ -53,22 +41,21 @@ public class SecretEntrance : MonoBehaviour
             leverImage.rectTransform.anchoredPosition += new Vector2(0, -105f);
         }
 
-        // 2. ¼½©ñ­µ®Ä (¦pªG¦³³]©wªº¸Ü¡A¥i¦b¦¹¥[¤J)
-        // AudioSource.PlayClipAtPoint(...);
+        Debug.Log("ç¹©å­å·²æ‹‰ä¸‹ï¼æº–å‚™å‚³é€...");
 
-        Debug.Log("©Ô±ì¤w©Ô¤U¡I·Ç³Æ¶Ç°e...");
-
-        // 3. µ¥«İ 0.5 ~ 1 ¬í¡AÅıª±®a¬İ²M·¡©Ô±ì°Ê¤F
         yield return new WaitForSeconds(0.8f);
 
-        // 4. ¤Á´«³õ´º
-        SceneManager.LoadScene(baseSceneName);
+        var stm = SceneTransitionManager.Instance;
+        if (stm == null) stm = FindObjectOfType<SceneTransitionManager>();
+
+        if (stm != null)
+            stm.TransitionToScene(baseSceneName);
+        else
+            SceneManager.LoadScene(baseSceneName);
     }
 
-    // (¿ï¥Î) µ¹¿ù»~©Ô±ì¥Îªº¡A©Ô¤F¥u·|®Ì¤@¤U©Î¨S¤ÏÀ³
     public void OnClickWrongLever()
     {
-        Debug.Log("³o­Ó©Ô±ì¦n¹³¥d¦í¤F...");
-        // ³o¸Ì¥i¥H°µ¤@ÂIÅı«ö¶s¥ª¥k·n®Ìªº°Êµe
+        Debug.Log("é€™æ¢ç¹©å­æ‹‰ä¸‹å»ä»€éº¼éƒ½æ²’ç™¼ç”Ÿ...");
     }
 }

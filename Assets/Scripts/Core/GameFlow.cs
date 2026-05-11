@@ -691,7 +691,7 @@ public class GameFlow : MonoBehaviour
 
         PlayerPrefs.SetInt("DebateFailReturn", 1);
         PlayerPrefs.Save();
-        SceneManager.LoadScene("幻影巷Scene");
+        SceneManager.LoadScene("(2D)幻影巷 1");
     }
 
     void CloseDebateUI()
