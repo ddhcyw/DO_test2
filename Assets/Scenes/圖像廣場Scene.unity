@@ -451,6 +451,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 574672351}
     - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
+      propertyPath: cameraItemAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 116c9554c8e69754b8c89f62252fdfac, type: 2}
+    - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
       propertyPath: objectiveManager
       value: 
       objectReference: {fileID: 20087411}
@@ -4940,7 +4944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   photoItemToGive: {fileID: 11400000, guid: 91aead8a4672793479501468461c08d2, type: 2}
-  photoEffectSprite: {fileID: 21300000, guid: cae9041f02c3ee04f8d5be5ff897478d, type: 3}
+  photoEffectSprite: {fileID: 21300000, guid: ce942d900f4df5745b6dd540e6a6c67c, type: 3}
   collectedPhotoSprite: {fileID: 21300000, guid: 331f3c308dc57cf47a4313548b1df606, type: 3}
 --- !u!114 &2088340230 stripped
 MonoBehaviour:

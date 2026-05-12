@@ -1339,7 +1339,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.3145841, y: 1.3737869}
+  m_Offset: {x: -0.49800923, y: 1.1442779}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -1350,7 +1350,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8813751, y: 2.4704418}
+  m_Size: {x: 2.0647912, y: 2.3786328}
   m_EdgeRadius: 0
 --- !u!212 &278966136
 SpriteRenderer:
@@ -1413,7 +1413,7 @@ Transform:
   m_GameObject: {fileID: 278966133}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.47, y: 18.89, z: 0}
+  m_LocalPosition: {x: -20, y: 18.1, z: 0}
   m_LocalScale: {x: 1.0501084, y: 1.0490586, z: 1.0501084}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4085,7 +4085,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press E
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -9226,7 +9226,7 @@ Transform:
   m_GameObject: {fileID: 1852768235}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.09, y: -0.39, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0.2, z: 0}
   m_LocalScale: {x: 0.11624513, y: 0.11624708, z: 0.11624513}
   m_ConstrainProportionsScale: 0
   m_Children: []
