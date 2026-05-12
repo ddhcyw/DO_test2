@@ -109,18 +109,19 @@ public class InventoryManager : MonoBehaviour
     {
         if (item == null) return false;
 
-        // 1. 檢查主背包陣列
+        // 檢查主背包：比對 itemID 字串
         foreach (Item i in inventoryItems)
         {
-            if (i == item) return true;
+            // 改用 i.itemID == item.itemID
+            if (i != null && i.itemID == item.itemID) return true;
         }
 
-        // 2. 檢查工具列陣列
+        // 檢查工具列
         foreach (Item i in toolbarItems)
         {
-            if (i == item) return true;
+            if (i != null && i.itemID == item.itemID) return true;
         }
 
-        return false; // 兩邊都沒找到
+        return false;
     }
 }

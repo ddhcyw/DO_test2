@@ -128,7 +128,7 @@ MAI: 等你學會怎麼使用它，我們就能出發去找能量了！
 -> training_start
 === training_start ===
 ~ show_objective("太好了！你已經學會使用背包了！")
-~ show_objective("接下來我們來學習相機的功能吧！")
+
 
 ~ spawn_wave()
 

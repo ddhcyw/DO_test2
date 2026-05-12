@@ -795,32 +795,43 @@ public class GameFlow : MonoBehaviour
         // 1. 檢查背包中是否有這兩個道具
         bool hasScroll = InventoryManager.Instance.HasItem(scrollItem);
         bool hasFragment = InventoryManager.Instance.HasItem(fragmentItem);
-
-        if (hasScroll && hasFragment)
+        if (bookReader != null)
         {
-            if (bookReader != null)
-            {
-                bookReader.OpenBook(nextKnotName);
-            }
-            else
-            {
-                Debug.LogError("GameFlow: 尚未指定 BookReader！");
-            }
+            Debug.Log($"[Debug] 強制開啟書本，節點: {nextKnotName}");
+            bookReader.OpenBook(nextKnotName);
         }
         else
         {
-            // 條件未達成：提示玩家並恢復對話
-            Debug.LogWarning("道具不足，無法開啟卷軸。");
+            Debug.LogError("GameFlow: 尚未指定 BookReader！");
 
-            if (objectiveManager)
-                objectiveManager.ShowObjective("還缺少「案件卷軸」或「大盜碎片」...");
-
-            // 這裡建議彈回一段對話告訴玩家，或是重新顯示對話框
-            if (dialogue)
-            {
-                dialogue.panelRoot.SetActive(true);
-                dialogue.StartInkDialogue("need_items_hint"); // 在 Ink 裡加一個提示節點
-            }
+            // 保險起見：如果書開不了，至少把對話框關掉，不要卡住玩家
+            if (dialogue) dialogue.panelRoot.SetActive(false);
         }
+        //if (hasScroll && hasFragment)
+        //{
+        //    if (bookReader != null)
+        //    {
+        //        bookReader.OpenBook(nextKnotName);
+        //    }
+        //    else
+        //    {
+        //        Debug.LogError("GameFlow: 尚未指定 BookReader！");
+        //    }
+        //}
+        //else
+        //{
+        //    // 條件未達成：提示玩家並恢復對話
+        //    Debug.LogWarning("道具不足，無法開啟卷軸。");
+
+        //    if (objectiveManager)
+        //        objectiveManager.ShowObjective("還缺少「案件卷軸」或「大盜碎片」...");
+
+        //    // 這裡建議彈回一段對話告訴玩家，或是重新顯示對話框
+        //    if (dialogue)
+        //    {
+        //        dialogue.panelRoot.SetActive(true);
+        //        dialogue.StartInkDialogue("need_items_hint"); // 在 Ink 裡加一個提示節點
+        //    }
+        //}
     }
 }

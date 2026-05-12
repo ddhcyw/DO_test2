@@ -143,9 +143,16 @@ public class DialogueController : MonoBehaviour
 
         if (inkStory == null) return;
 
+        // 新增：如果 Inspector 沒拉，就去抓全域唯一的那個 GameFlow 實例
+        if (gameFlow == null && GameFlow.Instance != null)
+        {
+            gameFlow = GameFlow.Instance;
+        }
+
+        // 保險：如果還是抓不到，才報錯
         if (gameFlow == null)
         {
-            Debug.LogWarning("DialogueController: GameFlow 未指定，外部指令會失效。");
+            Debug.LogError($"【場景錯誤】{gameObject.name} 找不到 GameFlow！請確認場景中有放置 GameFlow 物件。");
             return;
         }
 
@@ -200,6 +207,7 @@ public class DialogueController : MonoBehaviour
             EndDialogue();
             gameFlow.StartPurifyPhase();
         });
+        
     }
 
     // ============================================================
