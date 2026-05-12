@@ -1085,6 +1085,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1369cc2d66d6f7449065ed06c11ed66, type: 3}
+--- !u!223 &288680621 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 4863087823036451530, guid: 8c9626e9352737744bf8070eeeaad9da, type: 3}
+  m_PrefabInstance: {fileID: 1835155674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &304751612
 GameObject:
   m_ObjectHideFlags: 0
@@ -2851,6 +2856,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708280854}
   m_CullTransparentMesh: 1
+--- !u!114 &709081319 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8922679906346749126, guid: 8c9626e9352737744bf8070eeeaad9da, type: 3}
+  m_PrefabInstance: {fileID: 1835155674}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &715545780
 GameObject:
   m_ObjectHideFlags: 0
@@ -7165,8 +7181,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frames: []
-  transitionCanvas: {fileID: 0}
-  transitionImage: {fileID: 0}
+  transitionCanvas: {fileID: 288680621}
+  transitionImage: {fileID: 709081319}
   frameInterval: 1
 --- !u!1 &1910658293
 GameObject:
