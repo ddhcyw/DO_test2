@@ -466,6 +466,10 @@ PrefabInstance:
       propertyPath: playerSpineAnimator
       value: 
       objectReference: {fileID: 1723156190}
+    - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
+      propertyPath: panelToHideDuringDialogue
+      value: 
+      objectReference: {fileID: 1604779381}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1359,12 +1363,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4232446030516664091, guid: 5de30f64e527eb84cbe25dd7edbc0608, type: 3}
       propertyPath: inventoryItems.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4232446030516664091, guid: 5de30f64e527eb84cbe25dd7edbc0608, type: 3}
       propertyPath: inventoryItems.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 5f2ea8c7868caf8498db3fddd5eeb63e, type: 2}
+      objectReference: {fileID: 11400000, guid: 116c9554c8e69754b8c89f62252fdfac, type: 2}
     - target: {fileID: 5892117087591276458, guid: 5de30f64e527eb84cbe25dd7edbc0608, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.9539795
@@ -2429,7 +2433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: {fileID: 0}
-  inkKnotName: plaza_flyer_pickup
+  inkKnotName: plaza_leah
   player: {fileID: 0}
   interactDistance: 3
   dimmerObject: {fileID: 0}

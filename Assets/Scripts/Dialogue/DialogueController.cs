@@ -10,6 +10,7 @@ using System;
 
 public class DialogueController : MonoBehaviour
 {
+    public static DialogueController Instance;
     [Header("GameFlow Reference")]
     public GameFlow gameFlow; // 用來呼叫外部指令
     public bool IsPlaying => panelRoot != null && panelRoot.activeSelf;
@@ -49,6 +50,8 @@ public class DialogueController : MonoBehaviour
 
     void Awake()
     {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
         if (panelRoot) panelRoot.SetActive(false);
         if (continueHint) continueHint.SetActive(false);
         ClearChoices();
@@ -83,7 +86,15 @@ public class DialogueController : MonoBehaviour
         }
         if (tempHidden) return;
     }
-
+    void Start()
+    {
+        // 新增這段：如果全域有 GameFlow，就把自己交給它
+        if (GameFlow.Instance != null)
+        {
+            GameFlow.Instance.dialogue = this;
+            Debug.Log("對話系統已重新與全域 GameFlow 連線！");
+        }
+    }
     // ============================================================
     // 啟動對話
     // ============================================================

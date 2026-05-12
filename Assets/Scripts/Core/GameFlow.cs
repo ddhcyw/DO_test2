@@ -132,7 +132,16 @@ public class GameFlow : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
+    //void OnEnable()
+    //{
+    //    SceneManager.sceneLoaded += OnSceneLoaded;
+    //}
 
+    //void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    // 每換一個新場景，就重新去抓一次對話系統
+    //    dialogue = FindObjectOfType<DialogueController>();
+    //}
     void Start()
     {
         Debug.Log("GameFlow.Start() fired: " + gameObject.name);
@@ -691,7 +700,7 @@ public class GameFlow : MonoBehaviour
 
         PlayerPrefs.SetInt("DebateFailReturn", 1);
         PlayerPrefs.Save();
-        SceneManager.LoadScene("(2D)幻影巷 1");
+        SceneManager.LoadScene("幻影巷Scene");
     }
 
     void CloseDebateUI()

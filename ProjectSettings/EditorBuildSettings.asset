@@ -12,20 +12,20 @@ EditorBuildSettings:
     path: "Assets/Scenes/(2D)\u65B0\u624B\u5340 1.unity"
     guid: fb0c6ca4c271acd49872a7b68c390512
   - enabled: 1
+    path: "Assets/Scenes/\u4F5C\u54C1\u96C6\u5077\u5077\u57FA\u5730Scene.unity"
+    guid: 61162a9783883394b94f57deba5de4d8
+  - enabled: 1
+    path: "Assets/Scenes/\u5716\u50CF\u5EE3\u5834Scene.unity"
+    guid: d0a18ab4fcf82444280e18a02cc2fdbb
+  - enabled: 1
     path: Assets/Scenes/MainScene good.unity
     guid: d51b389f65f112e408d496e27ffd2b79
   - enabled: 1
     path: "Assets/Scenes/\u6E56\u4E2D\u602A\u5C4BScene.unity"
     guid: 14c40e4b351dad64589d3842523302df
   - enabled: 1
-    path: "Assets/Scenes/\u5716\u50CF\u5EE3\u5834Scene.unity"
-    guid: d0a18ab4fcf82444280e18a02cc2fdbb
-  - enabled: 1
     path: "Assets/Scenes/\u5E7B\u5F71\u5DF7Scene.unity"
     guid: 16fffedbeb574ed48ab58c86c22063d7
-  - enabled: 1
-    path: "Assets/Scenes/\u4F5C\u54C1\u96C6\u5077\u5077\u57FA\u5730Scene.unity"
-    guid: 61162a9783883394b94f57deba5de4d8
   - enabled: 1
     path: "Assets/Scenes/(2D)\u4F5C\u54C1\u96C6\u5077\u5077\u7684\u57FA\u5730 1.unity"
     guid: b2a672dcb5da5f24c8ed34b33d36f825
