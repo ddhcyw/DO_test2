@@ -470,6 +470,10 @@ PrefabInstance:
       propertyPath: panelToHideDuringDialogue
       value: 
       objectReference: {fileID: 1604779381}
+    - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
+      propertyPath: playStartDialogueOnSceneStart
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

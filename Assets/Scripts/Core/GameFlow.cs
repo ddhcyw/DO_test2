@@ -166,7 +166,8 @@ public class GameFlow : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        StartDialogue(startDialogueKnot);
+        // 等一幀，確保 DialogueController.Start() 已跑完並完成 dialogue 連線
+        StartCoroutine(DelayedStartDialogue(startDialogueKnot));
     }
 
     void Update()
@@ -231,7 +232,11 @@ public class GameFlow : MonoBehaviour
             string targetScene = sceneToLoadAfterDialogue;
             sceneToLoadAfterDialogue = "";
             Debug.Log($"切換場景至: {targetScene}");
-            SceneManager.LoadScene(targetScene);
+            var stm = SceneTransitionManager.Instance;
+            if (stm != null)
+                stm.TransitionToScene(targetScene);
+            else
+                SceneManager.LoadScene(targetScene);
             return;
         }
 
@@ -797,6 +802,12 @@ public class GameFlow : MonoBehaviour
             dialogue.enabled = true;
             dialogue.StartInkDialogue("after_purify");
         }
+    }
+
+    IEnumerator DelayedStartDialogue(string knot)
+    {
+        yield return null; // 等一幀讓 DialogueController.Start() 完成連線
+        StartDialogue(knot);
     }
 
     public void OpenStoryBook(string nextKnotName)

@@ -7012,7 +7012,7 @@ PrefabInstance:
     - target: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
       propertyPath: playerMove
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 937102523}
     - target: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
       propertyPath: scrollItem
       value: 
