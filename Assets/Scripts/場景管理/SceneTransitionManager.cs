@@ -29,7 +29,12 @@ public class SceneTransitionManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         if (transitionCanvas != null)
+        {
+            // If canvas is not a child of this object, reparent it so DontDestroyOnLoad covers it
+            if (transitionCanvas.transform.parent != transform)
+                transitionCanvas.transform.SetParent(transform, false);
             transitionCanvas.gameObject.SetActive(false);
+        }
         else
             Debug.LogError("[SceneTransitionManager] transitionCanvas 未指定，請在 Inspector 拖入！");
     }

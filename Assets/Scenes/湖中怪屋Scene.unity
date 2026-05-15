@@ -936,7 +936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed6a82c730ed5c47b71cae9865b7c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 1205295151}
+  skeletonAnimation: {fileID: 744368131}
   idleAnimationName: greenidle
 --- !u!114 &744368131
 MonoBehaviour:
