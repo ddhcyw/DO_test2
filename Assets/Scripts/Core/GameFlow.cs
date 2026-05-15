@@ -129,8 +129,7 @@ public class GameFlow : MonoBehaviour
     // ============================================================
     void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        Instance = this; // 每個場景都有自己的 GameFlow，直接覆蓋舊引用
     }
     //void OnEnable()
     //{

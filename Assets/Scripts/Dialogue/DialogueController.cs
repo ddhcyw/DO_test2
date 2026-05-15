@@ -50,8 +50,7 @@ public class DialogueController : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        Instance = this; // 每個場景都有自己的 DC，直接覆蓋舊引用
         if (panelRoot) panelRoot.SetActive(false);
         if (continueHint) continueHint.SetActive(false);
         ClearChoices();
