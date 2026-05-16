@@ -2681,6 +2681,7 @@ Transform:
   m_Children:
   - {fileID: 458571202}
   - {fileID: 222926015}
+  - {fileID: 2107332731}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &513594770
@@ -3230,8 +3231,8 @@ Transform:
   m_GameObject: {fileID: 581511316}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.26, y: 15.2, z: 0}
-  m_LocalScale: {x: 1.0501084, y: 1.0490586, z: 1.0501084}
+  m_LocalPosition: {x: 8.4609, y: 15.2, z: 0}
+  m_LocalScale: {x: 1.1922932, y: 1.1911012, z: 1.1922932}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1678279890}
@@ -3573,6 +3574,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: b2ff2adaf4bdf6747b85d01ddd4f28f1, type: 2}
+  onPickup:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &721188507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6029,6 +6033,10 @@ MonoBehaviour:
   cameraItemAsset: {fileID: 0}
   itemGotPanel: {fileID: 0}
   MAIHalpPanel: {fileID: 529501743}
+  cameraFollow: {fileID: 1596326746}
+  rocketCameraTarget: {fileID: 2107332731}
+  rocketPanDuration: 1
+  rocketStayDuration: 3
   trainingFinishKnot: training_finish
   flyerObject: {fileID: 0}
   flyerItemData: {fileID: 0}
@@ -9226,8 +9234,8 @@ Transform:
   m_GameObject: {fileID: 1852768235}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.2, z: 0}
-  m_LocalScale: {x: 0.11624513, y: 0.11624708, z: 0.11624513}
+  m_LocalPosition: {x: -0.3258, y: 0.1962, z: 0}
+  m_LocalScale: {x: 0.13361216, y: 0.13361439, z: 0.13361216}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278966137}
@@ -9481,19 +9489,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 971986804763171979, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.4
+      value: 1.2529999
       objectReference: {fileID: 0}
     - target: {fileID: 971986804763171979, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4
+      value: 1.2529999
       objectReference: {fileID: 0}
     - target: {fileID: 971986804763171979, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.4
+      value: 1.2529999
       objectReference: {fileID: 0}
     - target: {fileID: 971986804763171979, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.74
+      value: 5.5626
       objectReference: {fileID: 0}
     - target: {fileID: 971986804763171979, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9965,6 +9973,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2107332730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2107332731}
+  m_Layer: 0
+  m_Name: RocketCameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2107332731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107332730}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.54, y: 2.43, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 513594769}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -173,7 +173,10 @@ public class DialogueController : MonoBehaviour
         inkStory.BindExternalFunction("show_objective", (string content) => gameFlow.ShowObjectiveUI(content));
         inkStory.BindExternalFunction("spawn_wave", () => gameFlow.SetSpawnTrainingBugAfterDialogue());
         inkStory.BindExternalFunction("hide_mai", (string id) => gameFlow.HideMai(id));
-        inkStory.BindExternalFunction("play_ignite_anim", () => rocketController.PlayIgnite());
+        inkStory.BindExternalFunction("play_ignite_anim", () => {
+            rocketController.PlayIgnite();
+            gameFlow.PanCameraToRocket();
+        });
         inkStory.BindExternalFunction("pause_dialogue", (float seconds) => {
             if (sequenceRunner != null) sequenceRunner.PauseDialogue(seconds);
             else Debug.LogError("DialogueController: sequenceRunner 沒有指定！");

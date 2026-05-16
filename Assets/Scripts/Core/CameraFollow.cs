@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -14,15 +15,16 @@ public class CameraFollow : MonoBehaviour
     public Vector2 minBounds;   // 左下邊界
     public Vector2 maxBounds;   // 右上邊界
 
+    private bool isPanning = false;
+
     void LateUpdate()
     {
         if (!target) return;
 
-        // ✅ 透過 GameFlow.Instance 存取 CurrentState
-        if (GameFlow.Instance != null &&
+        // 對話中鏡頭不跟玩家，但 cinematic pan 期間需要繼續跟蹤
+        if (!isPanning && GameFlow.Instance != null &&
             GameFlow.Instance.CurrentState == GameFlow.GameState.Talking)
         {
-            // 對話中鏡頭不要跟玩家一起晃
             return;
         }
 
@@ -40,5 +42,20 @@ public class CameraFollow : MonoBehaviour
         }
 
         transform.position = smoothedPosition;
+    }
+
+    public void PanToTarget(Transform panTarget, float travelTime, float stayTime)
+    {
+        StartCoroutine(PanCoroutine(panTarget, travelTime, stayTime));
+    }
+
+    IEnumerator PanCoroutine(Transform panTarget, float travelTime, float stayTime)
+    {
+        isPanning = true;
+        Transform savedTarget = target;
+        target = panTarget;
+        yield return new WaitForSeconds(travelTime + stayTime);
+        target = savedTarget;
+        isPanning = false;
     }
 }

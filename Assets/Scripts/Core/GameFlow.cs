@@ -59,6 +59,12 @@ public class GameFlow : MonoBehaviour
     [Header("MAI幫助區設定")]
     public GameObject MAIHalpPanel;
 
+    [Header("火箭動畫鏡頭")]
+    public CameraFollow cameraFollow;
+    public Transform rocketCameraTarget;  // 火箭上的錨點空物件
+    public float rocketPanDuration = 1f;
+    public float rocketStayDuration = 3f;
+
     [Header("練習場流程")]
     public string trainingFinishKnot = "training_finish";  // 練習結束後要播的 Ink 節點名
 
@@ -302,6 +308,14 @@ public class GameFlow : MonoBehaviour
         Debug.Log($"Setting Objective: {content}");
         if (objectiveManager)
             objectiveManager.ShowObjective(content);
+    }
+
+    public void PanCameraToRocket()
+    {
+        if (cameraFollow != null && rocketCameraTarget != null)
+            cameraFollow.PanToTarget(rocketCameraTarget, rocketPanDuration, rocketStayDuration);
+        else
+            Debug.LogWarning("[GameFlow] PanCameraToRocket: cameraFollow 或 rocketCameraTarget 未設定！");
     }
 
     // ~ give_camera()
