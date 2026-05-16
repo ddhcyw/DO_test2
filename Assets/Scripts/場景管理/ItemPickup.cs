@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public class ItemPickup : MonoBehaviour
 {
     public Item item;
-   
+    public UnityEvent onPickup;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -31,7 +33,9 @@ public class ItemPickup : MonoBehaviour
                 GameFlow.Instance.ShowSpecialItemGotUI(item);
             }
 
-            // 3. 讓地上的道具消失
+            onPickup?.Invoke();
+
+            // 讓地上的道具消失
             Destroy(gameObject);
         }
     }
