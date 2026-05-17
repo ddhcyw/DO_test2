@@ -36,9 +36,22 @@ public class EnemyHitBlinkAndVanish2D : MonoBehaviour
         StartCoroutine(BlinkAndVanish());
     }
 
+    // 受傷但未死亡時呼叫：快速閃爍一次，不銷毀物件
+    public void TriggerHitFlash()
+    {
+        if (isVanishing) return;
+        StartCoroutine(HitFlash());
+    }
+
+    IEnumerator HitFlash()
+    {
+        SetRenderers(false);
+        yield return new WaitForSeconds(blinkInterval);
+        SetRenderers(true);
+    }
+
     IEnumerator BlinkAndVanish()
     {
-        // 確保 Spine 已初始化（避免 renderer 還沒 ready）
         if (skeletonAnimation != null) skeletonAnimation.Initialize(true);
 
         for (int i = 0; i < blinkCount; i++)

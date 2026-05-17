@@ -3,67 +3,58 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [Header("攻擊設定")]
-    public float attackRange = 1.2f;       // 攻擊距離
-    public int attackDamage = 1;           // 每次傷害
-    public float attackCooldown = 0.35f;   // 攻擊冷卻秒數
-    public LayerMask enemyMask;            // 敵人層（請勾選 "Enemy" 或你的 DataBug Layer）
+    public float attackRange = 1.2f;
+    public int attackDamage = 1;
+    public float attackCooldown = 0.35f;
+    public LayerMask enemyMask;
+
+    [Header("攻擊原點（拖入手部位置的空物件）")]
+    [SerializeField] Transform handPoint;  // 手部攻擊點，未指定則自動找 HandPoint / AttackPoint
 
     private float lastAttackTime = 0f;
-    private Transform attackPoint;
 
     void Start()
     {
-        // 假設 AttackPoint 是 Player 的子物件（可設在角色前方）
-        attackPoint = transform.Find("AttackPoint");
-        if (!attackPoint)
-        {
-            Debug.LogWarning("Player 沒有 AttackPoint 子物件，請手動建立。");
-        }
+        if (!handPoint) handPoint = transform.Find("HandPoint");
+        if (!handPoint) handPoint = transform.Find("AttackPoint");
+        if (!handPoint)
+            Debug.LogWarning("[PlayerAttack] 找不到 HandPoint 或 AttackPoint 子物件，請在 Inspector 拖入手部空物件。");
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            TryAttack();
-        }
+        if (Input.GetKeyDown(KeyCode.E)) TryAttack();
     }
 
     void TryAttack()
     {
         if (Time.time - lastAttackTime < attackCooldown) return;
         lastAttackTime = Time.time;
-
-        // 攻擊動畫或特效可在這裡觸發
         Attack();
     }
 
     void Attack()
     {
-        if (!attackPoint) return;
+        if (!handPoint) return;
 
-        // 檢查範圍內的敵人
-        Collider2D[] hits = Physics2D.OverlapCircleAll(
-            attackPoint.position, attackRange, enemyMask
-        );
-
+        Collider2D[] hits = Physics2D.OverlapCircleAll(handPoint.position, attackRange, enemyMask);
         foreach (var hit in hits)
         {
             var hp = hit.GetComponent<Health>();
             if (hp != null)
             {
                 hp.TakeDamage(attackDamage);
-                Debug.Log($"🗡️ 攻擊到 {hit.name}，造成 {attackDamage} 傷害！");
+                Debug.Log($"[PlayerAttack] 攻擊到 {hit.name}，造成 {attackDamage} 傷害！");
             }
         }
     }
 
     void OnDrawGizmosSelected()
     {
-        if (attackPoint)
+        if (handPoint)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+            Gizmos.DrawWireSphere(handPoint.position, attackRange);
         }
     }
 }

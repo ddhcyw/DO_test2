@@ -152,23 +152,24 @@ namespace Core
 
         IEnumerator HitFeedback()
         {
-            // 如果你之後真的有 hit 動畫再填 hitAnim
             if (!string.IsNullOrEmpty(hitAnim) && HasAnimation(hitAnim))
             {
                 SetAnimationSafe(0, hitAnim, false);
-
-                // 回到原本 loop
                 string loopAnim = GetLoopAnimName(color);
                 AddAnimationSafe(0, loopAnim, true, 0f);
             }
 
-            // 閃白
             if (skeletonAnimation && skeletonAnimation.Skeleton != null)
             {
                 var sk = skeletonAnimation.Skeleton;
                 float or = sk.R, og = sk.G, ob = sk.B, oa = sk.A;
 
-                sk.R = hitFlashColor.r; sk.G = hitFlashColor.g; sk.B = hitFlashColor.b; sk.A = hitFlashColor.a;
+                // 白色等同未設定，改用深紅確保看得見
+                Color flash = (hitFlashColor == Color.white)
+                    ? new Color(1f, 0.25f, 0.25f, 1f)
+                    : hitFlashColor;
+
+                sk.R = flash.r; sk.G = flash.g; sk.B = flash.b; sk.A = flash.a;
                 yield return new WaitForSeconds(hitFlashTime);
                 sk.R = or; sk.G = og; sk.B = ob; sk.A = oa;
             }

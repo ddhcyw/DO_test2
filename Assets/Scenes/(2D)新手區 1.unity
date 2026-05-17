@@ -532,6 +532,49 @@ MonoBehaviour:
   blinkCount: 2
   blinkInterval: 1
   disableColliderOnHit: 1
+--- !u!114 &166808514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166808503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba79e7b7d2d141499b0b45565395414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 3
+  onHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 166808508}
+        m_TargetAssemblyTypeName: WormSpineView, Assembly-CSharp
+        m_MethodName: PlayHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 166808512}
+        m_TargetAssemblyTypeName: EnemyHitBlinkAndVanish2D, Assembly-CSharp
+        m_MethodName: TriggerVanishSequence
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &176563346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,6 +1310,49 @@ MonoBehaviour:
   blinkCount: 2
   blinkInterval: 0.08
   disableColliderOnHit: 1
+--- !u!114 &239912966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239912956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba79e7b7d2d141499b0b45565395414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 3
+  onHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 239912961}
+        m_TargetAssemblyTypeName: WormSpineView, Assembly-CSharp
+        m_MethodName: PlayHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 239912964}
+        m_TargetAssemblyTypeName: EnemyHitBlinkAndVanish2D, Assembly-CSharp
+        m_MethodName: TriggerVanishSequence
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &278966133
 GameObject:
   m_ObjectHideFlags: 0
@@ -5465,6 +5551,49 @@ MonoBehaviour:
   blinkCount: 2
   blinkInterval: 0.08
   disableColliderOnHit: 1
+--- !u!114 &1019564242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019564232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba79e7b7d2d141499b0b45565395414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 3
+  onHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1019564236}
+        m_TargetAssemblyTypeName: WormSpineView, Assembly-CSharp
+        m_MethodName: PlayHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1019564240}
+        m_TargetAssemblyTypeName: EnemyHitBlinkAndVanish2D, Assembly-CSharp
+        m_MethodName: TriggerVanishSequence
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1024948295
 GameObject:
   m_ObjectHideFlags: 0
@@ -5677,6 +5806,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 865294819504003553, guid: 1894404ad9f7a314e9ba3a4a57ed68cc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 239912958}
+    - targetCorrespondingSourceObject: {fileID: 865294819504003553, guid: 1894404ad9f7a314e9ba3a4a57ed68cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 239912966}
   m_SourcePrefab: {fileID: 100100000, guid: 1894404ad9f7a314e9ba3a4a57ed68cc, type: 3}
 --- !u!1 &1053650743
 GameObject:
@@ -5907,6 +6039,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8075682468231158651, guid: 272163bc67b5b84429bd5428d0785a42, type: 3}
       insertIndex: -1
       addedObject: {fileID: 166808505}
+    - targetCorrespondingSourceObject: {fileID: 8075682468231158651, guid: 272163bc67b5b84429bd5428d0785a42, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 166808514}
   m_SourcePrefab: {fileID: 100100000, guid: 272163bc67b5b84429bd5428d0785a42, type: 3}
 --- !u!1 &1096122055
 GameObject:
@@ -8364,6 +8499,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7779538120593463533, guid: 859c353f60983c9409705c306e13badb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1019564234}
+    - targetCorrespondingSourceObject: {fileID: 7779538120593463533, guid: 859c353f60983c9409705c306e13badb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1019564242}
   m_SourcePrefab: {fileID: 100100000, guid: 859c353f60983c9409705c306e13badb, type: 3}
 --- !u!1001 &1610166070
 PrefabInstance:
@@ -8606,6 +8744,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1660057120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1660057121}
+  m_Layer: 7
+  m_Name: HandPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1660057121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660057120}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.15, y: 1.13, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 14685604}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1667947882
 GameObject:
   m_ObjectHideFlags: 0
@@ -9501,11 +9670,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 971986804763171979, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.5626
+      value: 7.7
       objectReference: {fileID: 0}
     - target: {fileID: 971986804763171979, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.2
+      value: 8.74
       objectReference: {fileID: 0}
     - target: {fileID: 971986804763171979, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9551,6 +9720,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5630633400952251665, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7174412065216435599, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_SortingOrder
       value: 20
@@ -9565,7 +9738,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 971986804763171979, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1660057121}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
 --- !u!1 &1968319097

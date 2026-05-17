@@ -14,6 +14,9 @@ public class PlayerCameraAttack : MonoBehaviour
     [Tooltip("0 = ±90°（正前方半圓）, 0.5 = ±60°, 負值=更寬")]
     public float facingDotThreshold = 0f;
 
+    [Header("攻擊時鎖定移動")]
+    public float attackLockTime = 0.4f;   // 攻擊動作持續鎖定秒數
+
     [Header("相機持有狀態")]
     public bool hasCamera = true;
 
@@ -53,6 +56,9 @@ public class PlayerCameraAttack : MonoBehaviour
 
         if (spineSwitcher != null)
             spineSwitcher.PlayShot();
+
+        if (playerController != null)
+            StartCoroutine(LockMovement());
 
         if (!attackCenter) attackCenter = transform;
 
@@ -95,6 +101,13 @@ public class PlayerCameraAttack : MonoBehaviour
         // 淨化黑色利亞（按 F 直接觸發，不判距離）
         if (purifyTarget != null && purifyTarget.IsActive)
             purifyTarget.TriggerPurify();
+    }
+
+    IEnumerator LockMovement()
+    {
+        playerController.EnableMovement(false);
+        yield return new WaitForSeconds(attackLockTime);
+        playerController.EnableMovement(true);
     }
 
     void OnDrawGizmosSelected()
