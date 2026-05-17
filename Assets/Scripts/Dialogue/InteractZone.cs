@@ -15,11 +15,17 @@ public class InteractZone : MonoBehaviour
 
     bool triggered = false;
 
+    void Awake()
+    {
+        if (dialogue == null) dialogue = DialogueController.Instance;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (triggered) return;
         if (!other.CompareTag("Player")) return;
 
+        if (dialogue == null) dialogue = DialogueController.Instance;
         if (!dialogue)
         {
             Debug.LogError("InteractZone: dialogue 沒有指定！");

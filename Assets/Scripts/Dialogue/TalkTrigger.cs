@@ -16,11 +16,17 @@ public class TalkTrigger : MonoBehaviour
 
     bool triggered = false;
 
+    void Awake()
+    {
+        if (dialogue == null) dialogue = DialogueController.Instance;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (triggered) return;
         if (!other.CompareTag("Player")) return;
 
+        if (dialogue == null) dialogue = DialogueController.Instance;
         if (!dialogue)
         {
             Debug.LogError("TalkTrigger: DialogueController 沒有指定！");

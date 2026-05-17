@@ -472,7 +472,7 @@ PrefabInstance:
       objectReference: {fileID: 1604779381}
     - target: {fileID: 6921837743894175365, guid: 83e06427aaa298d48a29885a38f147bb, type: 3}
       propertyPath: playStartDialogueOnSceneStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2458,6 +2458,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 5f2ea8c7868caf8498db3fddd5eeb63e, type: 2}
+  onPickup:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &912543238
 GameObject:
   m_ObjectHideFlags: 0

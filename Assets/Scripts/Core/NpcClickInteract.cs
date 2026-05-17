@@ -32,6 +32,8 @@ public class NpcClickInteract : MonoBehaviour
 
     void Start()
     {
+        if (dialogue == null) dialogue = DialogueController.Instance;
+
         if (!string.IsNullOrEmpty(questCompletedFlag))
             if (PlayerPrefs.GetInt(questCompletedFlag, 0) == 1)
                 dialogueCompleted = true;
@@ -45,6 +47,7 @@ public class NpcClickInteract : MonoBehaviour
         }
         Debug.Log($"OnMouseDown hit: {name}");
 
+        if (dialogue == null) dialogue = DialogueController.Instance;
         if (!dialogue)
         {
             Debug.LogError($"{name}: dialogue 沒有指定！");
