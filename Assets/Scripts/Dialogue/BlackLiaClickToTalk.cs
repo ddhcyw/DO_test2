@@ -17,6 +17,12 @@ public class BlackLiaClickToTalk : MonoBehaviour
         if (gameFlow == null) gameFlow = GameFlow.Instance;
         if (gameFlow == null) return;
 
+        // 對話進行中或戰鬥中不插隊
+        if (gameFlow.CurrentState != GameFlow.GameState.Exploring) return;
+
+        var dc = DialogueController.Instance;
+        if (dc != null && dc.IsPlaying) return;
+
         bool all = gameFlow.HasAllBaseClues();
         gameFlow.StartDialogue(all ? knotAfterClue : knotBeforeClue);
     }

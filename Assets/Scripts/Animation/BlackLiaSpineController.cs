@@ -29,6 +29,11 @@ public class BlackLiaSpineController : MonoBehaviour
             skeleton = GetComponent<SkeletonAnimation>();
     }
 
+    void Start()
+    {
+        PlayIdle();
+    }
+
     // 給外部直接呼叫的函式 ----------------------------------
 
     public void PlayIdle()  => PlayLoop(idleAnim);

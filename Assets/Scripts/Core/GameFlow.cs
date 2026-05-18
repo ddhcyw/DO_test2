@@ -160,6 +160,9 @@ public class GameFlow : MonoBehaviour
             if (objectiveManager) objectiveManager.ShowObjective("「奇怪...剛剛發生了什麼…」");
         }
 
+        // 確保 MAI 幫助區在場景開始時就顯示，不依賴對話完成
+        if (maiHelpArea) maiHelpArea.SetActive(true);
+
         if (!playStartDialogueOnSceneStart) return;
         if (string.IsNullOrEmpty(startDialogueKnot)) return;
 
@@ -820,6 +823,11 @@ public class GameFlow : MonoBehaviour
     IEnumerator DelayedStartDialogue(string knot)
     {
         yield return null; // 等一幀讓 DialogueController.Start() 完成連線
+
+        // 等過場動畫結束後再播，避免玩家在黑畫面時就進入 Talking 狀態
+        if (SceneTransitionManager.Instance != null)
+            yield return new WaitUntil(() => !SceneTransitionManager.Instance.IsTransitioning);
+
         StartDialogue(knot);
     }
 

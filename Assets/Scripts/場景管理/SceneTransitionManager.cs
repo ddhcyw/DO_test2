@@ -18,6 +18,7 @@ public class SceneTransitionManager : MonoBehaviour
     [SerializeField] private float frameInterval = 1f;
 
     private bool isTransitioning = false;
+    public bool IsTransitioning => isTransitioning;
 
     void Awake()
     {

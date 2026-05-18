@@ -69,8 +69,8 @@ public class DialogueController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
-            if (EventSystem.current.IsPointerOverGameObject())
-                return;
+            // 選項由各自的 Button.onClick 處理，此處不需再擋
+            // 移除 IsPointerOverGameObject 檢查，讓點對話框本身也能推進對話
             if (typingCo != null)
             {
                 StopCoroutine(typingCo);
