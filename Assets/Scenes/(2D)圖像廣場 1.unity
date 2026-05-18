@@ -1224,8 +1224,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 5
   m_Points:
-  - {x: -5.86948, y: 11.156979}
-  - {x: 3.1018543, y: 0.6821284}
+  - {x: -5.9141335, y: 11.737481}
+  - {x: 3.1241827, y: 1.3072841}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -3225,8 +3225,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 5
   m_Points:
-  - {x: -3.4311342, y: 0.58492327}
-  - {x: 6.188526, y: 11.614511}
+  - {x: -3.6041782, y: 1.0348394}
+  - {x: 5.9462643, y: 12.168253}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -4582,7 +4582,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1690306973
   m_SortingLayer: 1
-  m_SortingOrder: 9999
+  m_SortingOrder: 9
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &974575327
 MeshFilter:
@@ -6983,8 +6983,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 5
   m_Points:
-  - {x: -8.936948, y: 0.3203776}
-  - {x: 10.667314, y: 0.3227782}
+  - {x: -8.883703, y: 0.8552418}
+  - {x: 10.667315, y: 0.8891053}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -10389,9 +10389,13 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5965086431412651788, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7174412065216435599, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_SortingOrder
-      value: 9999
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12143,6 +12147,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 5f2ea8c7868caf8498db3fddd5eeb63e, type: 2}
+  onPickup:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &2137803037
 BoxCollider2D:
   m_ObjectHideFlags: 0
