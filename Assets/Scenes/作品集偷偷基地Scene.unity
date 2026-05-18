@@ -1103,11 +1103,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1369cc2d66d6f7449065ed06c11ed66, type: 3}
---- !u!223 &288680621 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 4863087823036451530, guid: 8c9626e9352737744bf8070eeeaad9da, type: 3}
-  m_PrefabInstance: {fileID: 1835155674}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &304751612
 GameObject:
   m_ObjectHideFlags: 0
@@ -2874,17 +2869,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708280854}
   m_CullTransparentMesh: 1
---- !u!114 &709081319 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8922679906346749126, guid: 8c9626e9352737744bf8070eeeaad9da, type: 3}
-  m_PrefabInstance: {fileID: 1835155674}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &715545780
 GameObject:
   m_ObjectHideFlags: 0
@@ -3716,7 +3700,7 @@ MonoBehaviour:
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
   _animationName: idle
-  loop: 0
+  loop: 1
   timeScale: 1
 --- !u!23 &827384353
 MeshRenderer:
@@ -3796,10 +3780,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeleton: {fileID: 827384352}
-  idleAnim: blackLia_idle
-  idle2Anim: blackLia_idle2
-  idle3Anim: blackLia_idle3
-  winAnim: blackLia_win
+  idleAnim: idle
+  idle2Anim: idle2
+  idle3Anim: idle3
+  winAnim: blackLiawin
   loseAnim: blackLialose
   lose2Anim: blackLialose2
   lose3Anim: blackLialose3
@@ -5554,11 +5538,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7105a7a69003144faa71d2245656c92, type: 3}
---- !u!1 &1375278552 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5862354696706050562, guid: 125eee708dc97bf409561264b132aa76, type: 3}
-  m_PrefabInstance: {fileID: 1907980399}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1401402013
 GameObject:
   m_ObjectHideFlags: 0
@@ -7170,38 +7149,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5862354696706050562, guid: 125eee708dc97bf409561264b132aa76, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1907980402}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125eee708dc97bf409561264b132aa76, type: 3}
 --- !u!114 &1907980400 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
   m_PrefabInstance: {fileID: 1907980399}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375278552}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3b70d3120fcbb14faedda21a4bec5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1907980402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375278552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d288f4a1437d17543af0d2dcd7ab4f8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frames: []
-  transitionCanvas: {fileID: 288680621}
-  transitionImage: {fileID: 709081319}
-  frameInterval: 1
 --- !u!1 &1910658293
 GameObject:
   m_ObjectHideFlags: 0
