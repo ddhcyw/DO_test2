@@ -1,6 +1,5 @@
 using UnityEngine;
 using Game.Dialogue;
-using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Collider2D))]
 public class NpcClickInteract : MonoBehaviour
@@ -41,10 +40,10 @@ public class NpcClickInteract : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
-        {
+        // 對話進行中或戰鬥中不插隊（與 BlackLiaClickToTalk 一致）
+        if (GameFlow.Instance != null && GameFlow.Instance.CurrentState != GameFlow.GameState.Exploring)
             return;
-        }
+
         Debug.Log($"OnMouseDown hit: {name}");
 
         if (dialogue == null) dialogue = DialogueController.Instance;
