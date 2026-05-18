@@ -7,11 +7,11 @@ public class BlackLiaSpineController : MonoBehaviour
     public SkeletonAnimation skeleton;
 
     [Header("動畫名稱（對應 Spine 裡的 animation 名稱）")]
-    public string idleAnim  = "blackLia_idle";
-    public string idle2Anim = "blackLia_idle2";
-    public string idle3Anim = "blackLia_idle3";
+    public string idleAnim  = "idle";
+    public string idle2Anim = "idle2";
+    public string idle3Anim = "idle3";
 
-    public string winAnim   = "blackLia_win";
+    public string winAnim   = "blackLiawin";
 
     public string loseAnim  = "blackLialose";
     public string lose2Anim = "blackLialose2";

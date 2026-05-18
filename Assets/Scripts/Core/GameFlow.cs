@@ -163,6 +163,15 @@ public class GameFlow : MonoBehaviour
         // 確保 MAI 幫助區在場景開始時就顯示，不依賴對話完成
         if (maiHelpArea) maiHelpArea.SetActive(true);
 
+        // 如果此 GameFlow 有連結 DialogueController，代表它是場景的主要 GameFlow。
+        // 強制宣告為 Instance，並讓 DC 也指回此物件（解決場景有多個 GameFlow 的問題）。
+        if (dialogue != null)
+        {
+            Instance = this;
+            dialogue.gameFlow = this;
+            Debug.Log($"[GameFlow] {gameObject.name} 宣告為主要 Instance，已連線至 {dialogue.gameObject.name}");
+        }
+
         if (!playStartDialogueOnSceneStart) return;
         if (string.IsNullOrEmpty(startDialogueKnot)) return;
 
@@ -825,8 +834,14 @@ public class GameFlow : MonoBehaviour
         yield return null; // 等一幀讓 DialogueController.Start() 完成連線
 
         // 等過場動畫結束後再播，避免玩家在黑畫面時就進入 Talking 狀態
+        // 設 15 秒逾時保險，防止 isTransitioning 因異常永遠不歸零而卡死
         if (SceneTransitionManager.Instance != null)
-            yield return new WaitUntil(() => !SceneTransitionManager.Instance.IsTransitioning);
+        {
+            float waitStart = Time.unscaledTime;
+            yield return new WaitUntil(() =>
+                !SceneTransitionManager.Instance.IsTransitioning ||
+                Time.unscaledTime - waitStart > 15f);
+        }
 
         StartDialogue(knot);
     }
