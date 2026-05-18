@@ -103,7 +103,7 @@ public class PlayerCameraAttack : MonoBehaviour
             purifyTarget.TriggerPurify();
     }
 
-    IEnumerator LockMovement()
+    System.Collections.IEnumerator LockMovement()
     {
         playerController.EnableMovement(false);
         yield return new WaitForSeconds(attackLockTime);

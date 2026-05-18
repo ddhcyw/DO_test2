@@ -819,7 +819,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &133788916
 Transform:
   m_ObjectHideFlags: 0
@@ -1744,7 +1744,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!68 &401494474
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -2153,7 +2153,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!68 &415174930
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -3152,7 +3152,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!68 &554536812
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -3754,7 +3754,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &675181135
 Transform:
   m_ObjectHideFlags: 0
@@ -4080,7 +4080,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!68 &708372528
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -4210,7 +4210,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!68 &758970506
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -4662,7 +4662,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &827296271
 Transform:
   m_ObjectHideFlags: 0
@@ -5248,7 +5248,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &897707960
 Transform:
   m_ObjectHideFlags: 0
@@ -5452,7 +5452,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &985651115
 Transform:
   m_ObjectHideFlags: 0
@@ -5501,10 +5501,10 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 2.5
+  m_EdgeRadius: 1.5
   m_Points:
-  - {x: -5.319375, y: 1.9903483}
-  - {x: 5.527662, y: 0.7192708}
+  - {x: -5.1148705, y: 3.9058082}
+  - {x: 5.620474, y: 2.6669884}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -5578,7 +5578,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &1003194042
 Transform:
   m_ObjectHideFlags: 0
@@ -5626,7 +5626,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 4.196636}
+  m_Offset: {x: 0, y: 4.025887}
   m_SpriteTilingProperty:
     border: {x: 0, y: 2.3799999, z: 0, w: 0}
     pivot: {x: 0.49927914, y: 0.22446488}
@@ -5637,7 +5637,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 40, y: 6}
+  m_Size: {x: 40, y: 6.3414984}
   m_EdgeRadius: 0
 --- !u!1 &1003890192
 GameObject:
@@ -5898,7 +5898,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &1073909826
 Transform:
   m_ObjectHideFlags: 0
@@ -5949,8 +5949,11 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 3
   m_Points:
-  - {x: -2.8131285, y: 1.8884857}
-  - {x: 2.186894, y: 1.0364869}
+  - {x: -2.5768547, y: 3.2116203}
+  - {x: 1.9506199, y: 2.5486414}
+  - {x: 1.9506199, y: 2.5486414}
+  - {x: 1.9506199, y: 2.5486414}
+  - {x: 1.9506198, y: 2.5486417}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -6174,7 +6177,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &1101024101
 Transform:
   m_ObjectHideFlags: 0
@@ -6502,7 +6505,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &1244328480
 Transform:
   m_ObjectHideFlags: 0
@@ -6721,7 +6724,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!68 &1298514440
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -6831,7 +6834,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &1323063227
 Transform:
   m_ObjectHideFlags: 0
@@ -6931,7 +6934,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!68 &1329456327
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -7060,7 +7063,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!68 &1330452810
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -7307,7 +7310,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &1395371880
 Transform:
   m_ObjectHideFlags: 0
@@ -7433,7 +7436,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &1395487967
 Transform:
   m_ObjectHideFlags: 0
@@ -7735,7 +7738,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &1461252939
 Transform:
   m_ObjectHideFlags: 0
@@ -8073,7 +8076,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &1493998408
 Transform:
   m_ObjectHideFlags: 0
@@ -8214,7 +8217,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!68 &1523968822
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -8479,7 +8482,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &1562719226
 Transform:
   m_ObjectHideFlags: 0
@@ -8835,7 +8838,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!68 &1598098568
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -9757,7 +9760,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &1755158019
 Transform:
   m_ObjectHideFlags: 0
@@ -9808,9 +9811,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 3
   m_Points:
-  - {x: -2.7016566, y: 0.5290656}
-  - {x: -0.46191216, y: 0.48512554}
-  - {x: 1.9986397, y: 1.9790345}
+  - {x: -2.8368614, y: 1.5025396}
+  - {x: -0.48895395, y: 1.6208452}
+  - {x: 1.9715992, y: 3.0065908}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -10299,7 +10302,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!68 &1826582304
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -10534,7 +10537,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!68 &1848144797
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -10988,7 +10991,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &1941386129
 Transform:
   m_ObjectHideFlags: 0
@@ -11106,6 +11109,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2242662729450650738, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242662729450650738, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: purifyTarget
       value: 
       objectReference: {fileID: 298714654}
@@ -11125,9 +11132,25 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5965086431412651788, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174412065216435599, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174412065216435599, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7262289630787141711, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_Size.y
       value: 1.7891997
+      objectReference: {fileID: 0}
+    - target: {fileID: 7262289630787141711, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7262289630787141711, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_Offset.y
@@ -11136,6 +11159,10 @@ PrefabInstance:
     - target: {fileID: 7262289630787141711, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013659089923513773, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11301,7 +11328,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!68 &1965816760
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -11411,7 +11438,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &1976524238
 Transform:
   m_ObjectHideFlags: 0
@@ -11756,7 +11783,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &2039698194
 Transform:
   m_ObjectHideFlags: 0
@@ -11907,7 +11934,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!68 &2063220002
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -12576,7 +12603,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!68 &2127174808
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -12762,7 +12789,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &2137034912
 Transform:
   m_ObjectHideFlags: 0
@@ -12814,7 +12841,7 @@ EdgeCollider2D:
   m_EdgeRadius: 1.5
   m_Points:
   - {x: 1.2172699, y: 1.8965733}
-  - {x: 0.80121803, y: 0.56937045}
+  - {x: 1.1529262, y: 1.6865599}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
