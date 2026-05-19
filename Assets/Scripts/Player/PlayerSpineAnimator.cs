@@ -19,6 +19,10 @@ public class PlayerSpineAnimator : MonoBehaviour
     [Tooltip("如果原始動畫裡，角色【面向右邊】時是 X 負數，請勾選")]
     public bool faceRightIsNegativeX = true;
 
+    [Header("動畫速度設定")]
+    [Tooltip("走路動畫設計時對應的移動速度，動畫速度會依 moveSpeed / referenceSpeed 自動縮放")]
+    public float referenceSpeed = 3f;
+
     [Header("切換控制")]
     public PlayerSpineSwitcher spineSwitcher;
 
@@ -91,9 +95,16 @@ public class PlayerSpineAnimator : MonoBehaviour
         bool isMoving = input.sqrMagnitude > 0.01f;
 
         if (isMoving)
+        {
+            float speed = playerController != null ? playerController.moveSpeed : referenceSpeed;
+            skeletonAnimation.AnimationState.TimeScale = speed / referenceSpeed;
             SetAnimation(hasCamera ? walkAnimationName : walkNoCameraName, true);
+        }
         else
+        {
+            skeletonAnimation.AnimationState.TimeScale = 1f;
             SetAnimation(hasCamera ? idleAnimationName : idleNoCameraName, true);
+        }
 
         if (input.x > 0.01f)
             lastFacingX = 1f;
