@@ -1,21 +1,20 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ClueObjectInteract : MonoBehaviour
 {
-    [Header("­n¼½©ñªº Ink ¸`ÂI¦WºÙ")]
+    [Header("è¦æ’­æ”¾çš„ Ink ç¯€é»åç¨±")]
     public string inkKnotName;
 
     void OnMouseDown()
     {
-        // 1. ¦pªG¤w¸g¦b¹ï¸Ü¤¤¡A¤£­n­«½ÆÄ²µo
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+
+        if (GameFlow.Instance == null) return;
         if (GameFlow.Instance.CurrentState == GameFlow.GameState.Talking) return;
 
-        Debug.Log($"ÂIÀ»¤F½u¯Áª«¥ó¡A¼½©ñ¼@±¡: {inkKnotName}");
+        Debug.Log($"é»æ“Šäº†ç·šç´¢ç‰©ä»¶ï¼Œè§¸ç™¼ç¯€é»: {inkKnotName}");
 
-        // 2. ©I¥s GameFlow ¶}©l¹ï¸Ü
-        if (GameFlow.Instance != null)
-        {
-            GameFlow.Instance.StartDialogue(inkKnotName);
-        }
+        GameFlow.Instance.StartDialogue(inkKnotName);
     }
 }

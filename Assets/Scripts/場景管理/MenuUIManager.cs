@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class MenuUIManager : MonoBehaviour
 {
-    [Header("UI ­±ªO³]©w")]
+    [Header("UI ï¿½ï¿½ï¿½Oï¿½]ï¿½w")]
     public GameObject[] menuPanels;
-    public GameObject defaultPanel; // ³o¬O±z«ö¤U E ·|¶}±Òªº¨º­Ó­±ªO (­I¥])
+    public GameObject defaultPanel; // ï¿½oï¿½Oï¿½zï¿½ï¿½ï¿½U E ï¿½|ï¿½}ï¿½Òªï¿½ï¿½ï¿½ï¿½Ó­ï¿½ï¿½O (ï¿½Iï¿½])
 
     private bool isMenuOpen = false;
-    private bool hasShownTutorial = false; // °O¿ý¬O§_¤w¸g±Ð¹L
+    private bool hasShownTutorial = false; // ï¿½Oï¿½ï¿½ï¿½Oï¿½_ï¿½wï¿½gï¿½Ð¹L
 
     void Start()
     {
@@ -18,13 +18,15 @@ public class MenuUIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            if (DialogueController.Instance != null && DialogueController.Instance.IsPlaying) return;
+
             if (InventoryManager.Instance != null && !InventoryManager.Instance.isUnlocked)
             {
-                Debug.Log("¼@±¡ÁÙ¨S¨ì¡A¤£¯à¶}±Ò­I¥]¡I");
-                return; // ª½±µ¾×¤U¨Ó¡A¤£°õ¦æ«á­±ªº¶}Ãö°Ê§@
+                Debug.Log("ï¿½@ï¿½ï¿½ï¿½Ù¨Sï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½}ï¿½Ò­Iï¿½]ï¿½I");
+                return; // ï¿½ï¿½ï¿½ï¿½ï¿½×¤Uï¿½Ó¡Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á­±ï¿½ï¿½ï¿½}ï¿½ï¿½ï¿½Ê§@
             }
 
-            // ¤U­±¬O­ì¥»¥¿±`ªº¶}ÃöÅÞ¿è
+            // ï¿½Uï¿½ï¿½ï¿½Oï¿½ì¥»ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½}ï¿½ï¿½ï¿½Þ¿ï¿½
             if (isMenuOpen)
             {
                 HideAllPanels();
@@ -45,12 +47,12 @@ public class MenuUIManager : MonoBehaviour
             defaultPanel.SetActive(true);
             isMenuOpen = true;
 
-            // Ä²µo±Ð¾ÇÅÞ¿è
+            // Ä²ï¿½oï¿½Ð¾ï¿½ï¿½Þ¿ï¿½
             if (!hasShownTutorial)
             {
                 if (TutorialManager.Instance != null)
                 {
-                    Debug.Log("²Ä¤@¦¸¥´¶}­I¥]¡AÄ²µo±Ð¾Ç¡I");
+                    Debug.Log("ï¿½Ä¤@ï¿½ï¿½ï¿½ï¿½ï¿½}ï¿½Iï¿½]ï¿½AÄ²ï¿½oï¿½Ð¾Ç¡I");
                     hasShownTutorial = true;
                     TutorialManager.Instance.OpenTutorial();
                 }

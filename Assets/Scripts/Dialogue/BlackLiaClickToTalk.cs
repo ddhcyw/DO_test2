@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BlackLiaClickToTalk : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class BlackLiaClickToTalk : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+
         if (gameFlow == null) gameFlow = GameFlow.Instance;
         if (gameFlow == null) return;
 
