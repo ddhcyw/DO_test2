@@ -148,7 +148,7 @@ Material:
     - _Refraction_XY_Scale: {r: 0, g: 0, b: 0, a: 0}
     - _Shallow_Color: {r: 0.59655464, g: 0.82737964, b: 0.8742138, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _WaveColor: {r: 0.08098963, g: 0.2830189, b: 0.18150471, a: 0}
+    - _WaveColor: {r: 0.06378301, g: 0.27044016, b: 0.16508552, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1032398979664312449
 MonoBehaviour:
