@@ -58,6 +58,8 @@ public class GameFlow : MonoBehaviour
 
     [Header("MAI幫助區設定")]
     public GameObject MAIHalpPanel;
+    [Tooltip("勾選後幫助區在 start_MAI_help() 被呼叫前不會顯示（新手區請勾選）")]
+    public bool maiHelpStartsHidden = false;
 
     [Header("火箭動畫鏡頭")]
     public CameraFollow cameraFollow;
@@ -125,6 +127,7 @@ public class GameFlow : MonoBehaviour
 
     // 用於追蹤怪物是否已生成且未被清除
     bool practiceStarted = false;
+    bool maiHelpUnlocked = false;
     string pendingActionAfterDialogue = "";  // 對話結束後要做的動作
 
     // 線索資料庫 (使用 HashSet 避免重複)
@@ -160,8 +163,8 @@ public class GameFlow : MonoBehaviour
             if (objectiveManager) objectiveManager.ShowObjective("「奇怪...剛剛發生了什麼…」");
         }
 
-        // 確保 MAI 幫助區在場景開始時就顯示，不依賴對話完成
-        if (maiHelpArea) maiHelpArea.SetActive(true);
+        maiHelpUnlocked = !maiHelpStartsHidden;
+        if (maiHelpArea) maiHelpArea.SetActive(maiHelpUnlocked);
 
         // 如果此 GameFlow 有連結 DialogueController，代表它是場景的主要 GameFlow。
         // 強制宣告為 Instance，並讓 DC 也指回此物件（解決場景有多個 GameFlow 的問題）。
@@ -278,8 +281,7 @@ public class GameFlow : MonoBehaviour
         if (playerMove) playerMove.enabled = true;
         if (playerFight) playerFight.enabled = false;
 
-        // 恢復顯示常駐幫助區
-        if (maiHelpArea) maiHelpArea.SetActive(true);
+        if (maiHelpUnlocked && maiHelpArea) maiHelpArea.SetActive(true);
 
         if (panelToHideDuringDialogue != null)
         {
@@ -404,7 +406,7 @@ public class GameFlow : MonoBehaviour
 
         // 3) 若對話 UI / 面板還開著，也順便關掉（避免擋 input）
         if (panelToHideDuringDialogue != null) panelToHideDuringDialogue.SetActive(true);
-        if (maiHelpArea) maiHelpArea.SetActive(true);
+        if (maiHelpUnlocked && maiHelpArea) maiHelpArea.SetActive(true);
     }
 
 
@@ -486,6 +488,7 @@ public class GameFlow : MonoBehaviour
     public void StartMAIHelp()
     {
         Debug.Log("幫助區出現");
+        maiHelpUnlocked = true;
         if (MAIHalpPanel != null) MAIHalpPanel.SetActive(true);
         else Debug.LogError("MAIHalpPanel 未設定！");
     }

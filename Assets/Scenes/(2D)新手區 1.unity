@@ -6168,6 +6168,7 @@ MonoBehaviour:
   cameraItemAsset: {fileID: 0}
   itemGotPanel: {fileID: 0}
   MAIHalpPanel: {fileID: 529501743}
+  maiHelpStartsHidden: 1
   cameraFollow: {fileID: 1596326746}
   rocketCameraTarget: {fileID: 2107332731}
   rocketPanDuration: 1
@@ -9716,6 +9717,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u4E3B\u89D2(\u65B0)"
       objectReference: {fileID: 0}
+    - target: {fileID: 3247599441624047292, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
+      propertyPath: moveSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3351278054431112545, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -9735,6 +9740,10 @@ PrefabInstance:
     - target: {fileID: 7262289630787141711, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_Offset.y
       value: 1.2584901
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013659089923513773, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
+      propertyPath: referenceSpeed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
