@@ -734,6 +734,10 @@ PrefabInstance:
       propertyPath: referenceSpeed
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8013659089923513773, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
+      propertyPath: faceRightIsNegativeX
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

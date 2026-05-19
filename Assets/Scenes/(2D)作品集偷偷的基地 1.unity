@@ -9323,10 +9323,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeleton: {fileID: 1678207256}
-  idleAnim: blackLia_idle
-  idle2Anim: blackLia_idle2
-  idle3Anim: blackLia_idle3
-  winAnim: blackLia_win
+  idleAnim: idle
+  idle2Anim: idle2
+  idle3Anim: idle3
+  winAnim: blackLiawin
   loseAnim: blackLialose
   lose2Anim: blackLialose2
   lose3Anim: blackLialose3
