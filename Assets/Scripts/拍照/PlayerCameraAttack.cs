@@ -23,6 +23,16 @@ public class PlayerCameraAttack : MonoBehaviour
     [Header("淨化目標")]
     public BlackLiaPurifyTarget purifyTarget;
 
+    [Header("攻擊範圍指示器")]
+    [SerializeField] Transform rangeIndicatorPivot;
+    [SerializeField] SpriteRenderer rangeIndicator;
+    [SerializeField] Sprite facingLeftSprite;   // 面朝左的扇形素材（目前已正確的那張）
+    [SerializeField] Sprite facingRightSprite;  // 面朝右的扇形素材（Ellipse 24）
+    [Tooltip("面朝右時的扇形角度")]
+    [SerializeField] float facingRightAngle = 0f;
+    [Tooltip("面朝左時的扇形角度")]
+    [SerializeField] float facingLeftAngle = 0f;
+
     private PlayerSpineSwitcher spineSwitcher;
     private Vector2 lastFacingDir = Vector2.right;
 
@@ -34,6 +44,9 @@ public class PlayerCameraAttack : MonoBehaviour
 
         if (playerController == null)
             playerController = GetComponent<PlayerController>();
+
+        if (rangeIndicator != null)
+            rangeIndicator.gameObject.SetActive(false);
     }
 
     void Update()
@@ -59,6 +72,8 @@ public class PlayerCameraAttack : MonoBehaviour
 
         if (playerController != null)
             StartCoroutine(LockMovement());
+
+        ShowRangeIndicator();
 
         if (!attackCenter) attackCenter = transform;
 
@@ -101,6 +116,32 @@ public class PlayerCameraAttack : MonoBehaviour
         // 淨化黑色利亞（按 F 直接觸發，不判距離）
         if (purifyTarget != null && purifyTarget.IsActive)
             purifyTarget.TriggerPurify();
+    }
+
+    void ShowRangeIndicator()
+    {
+        if (rangeIndicator == null) return;
+
+        float facing = spineSwitcher != null ? spineSwitcher.GetFacing() : (lastFacingDir.x >= 0 ? 1f : -1f);
+
+        if (facing > 0 && facingRightSprite != null)
+            rangeIndicator.sprite = facingRightSprite;
+        else if (facing <= 0 && facingLeftSprite != null)
+            rangeIndicator.sprite = facingLeftSprite;
+
+        float angle = facing > 0 ? facingRightAngle : facingLeftAngle;
+        Transform pivot = rangeIndicatorPivot != null ? rangeIndicatorPivot : rangeIndicator.transform;
+        pivot.localRotation = Quaternion.Euler(0f, 0f, angle);
+
+        rangeIndicator.gameObject.SetActive(true);
+        StartCoroutine(HideRangeAfter(attackLockTime));
+    }
+
+    System.Collections.IEnumerator HideRangeAfter(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (rangeIndicator != null)
+            rangeIndicator.gameObject.SetActive(false);
     }
 
     System.Collections.IEnumerator LockMovement()
