@@ -105,6 +105,8 @@ public class GameFlow : MonoBehaviour
     public GameObject debatePanel;
     public GameObject popupSuccess;
     public GameObject popupFail;
+    [Header("辯論UI文字")]
+    public TMPro.TextMeshProUGUI debateQuestionText;
     [Header("辯論判定保險")]
     private bool isDebateProcessing = false;   // 防止連點導致扣兩顆心的開關
 
@@ -564,12 +566,35 @@ public class GameFlow : MonoBehaviour
             }
         }
 
+        // 根據不同的正確答案（或者是 debateSuccessCount），強行抽換面板上的文字！
+        if (debateQuestionText != null)
+        {
+            switch (answerID)
+            {
+                case "copy_machine":
+                    debateQuestionText.text = "看看這些作品，多漂亮又清楚，這種品質可不是隨便畫得出來的喔～";
+                    break;
+
+                case "canvas":
+                    debateQuestionText.text = "我們每一幅作品都不一樣，都是我指導員工親手創作的！";
+                    break;
+
+                case "pc":
+                    debateQuestionText.text = "我們一切都靠自己完成，沒有從網路上抓圖，懂嗎！";
+                    break;
+
+            }
+        }
+        else
+        {
+            Debug.LogWarning("【提示】GameFlow 上的 debateQuestionText 欄位還沒有拖入文字物件喔！");
+        }
+
         if (dialogue) dialogue.enabled = false;
         if (debatePanel) debatePanel.SetActive(true);
 
         CurrentState = GameState.Talking;
     }
-
     // 2. UI 按鈕呼叫這個 (每個按鈕固定傳自己的 ID)
     public void OnClickDebateButton(string clickedID)
     {
