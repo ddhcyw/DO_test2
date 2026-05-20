@@ -1133,9 +1133,9 @@ Transform:
   - {fileID: 1665151492}
   - {fileID: 1314283450}
   - {fileID: 104742748}
+  - {fileID: 1248990712}
   - {fileID: 83436133}
   - {fileID: 1538062595}
-  - {fileID: 1248990712}
   - {fileID: 1450635850}
   - {fileID: 767796092}
   - {fileID: 839653772}
@@ -6104,7 +6104,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.4
+    m_Strength: 0.5
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -8700,11 +8700,13 @@ EdgeCollider2D:
   - {x: 2.762239, y: 13.376047}
   - {x: -0.6425034, y: 15.026092}
   - {x: -2.0068176, y: 14.787461}
-  - {x: 0.050297797, y: 13.747144}
+  - {x: -0.9758405, y: 13.266143}
   - {x: 0.027524047, y: 12.393114}
   - {x: -3.3826299, y: 7.947207}
-  - {x: -1.3503593, y: 4.409671}
-  - {x: -1.2453285, y: 2.2001274}
+  - {x: -1.5890538, y: 4.6483655}
+  - {x: -1.6576196, y: 2.3737228}
+  - {x: -0.5297439, y: 1.4781693}
+  - {x: 1.0874745, y: 0.5678885}
   - {x: 2.4822116, y: 0.29140803}
   - {x: 8.570435, y: 3.4039469}
   m_AdjacentStartPoint: {x: 0, y: 0}
@@ -13239,19 +13241,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4470770170971611433, guid: 10de2f29d4b628e4a8f361320ffe22d7, type: 3}
       propertyPath: m_Size.x
-      value: 0.7503564
+      value: 0.8999742
       objectReference: {fileID: 0}
     - target: {fileID: 4470770170971611433, guid: 10de2f29d4b628e4a8f361320ffe22d7, type: 3}
       propertyPath: m_Size.y
-      value: 1.6750016
+      value: 2.052044
       objectReference: {fileID: 0}
     - target: {fileID: 4470770170971611433, guid: 10de2f29d4b628e4a8f361320ffe22d7, type: 3}
       propertyPath: m_Offset.x
-      value: -0.07651743
+      value: -0.011058584
       objectReference: {fileID: 0}
     - target: {fileID: 4470770170971611433, guid: 10de2f29d4b628e4a8f361320ffe22d7, type: 3}
       propertyPath: m_Offset.y
-      value: 1.1466148
+      value: 1.3351359
       objectReference: {fileID: 0}
     - target: {fileID: 6442089172993978860, guid: 10de2f29d4b628e4a8f361320ffe22d7, type: 3}
       propertyPath: m_SortingOrder
