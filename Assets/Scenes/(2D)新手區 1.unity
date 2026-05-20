@@ -3742,7 +3742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbea358b2c39664ebf6cab9b17edb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: b2ff2adaf4bdf6747b85d01ddd4f28f1, type: 2}
+  item: {fileID: 11400000, guid: 116c9554c8e69754b8c89f62252fdfac, type: 2}
   onPickup:
     m_PersistentCalls:
       m_Calls: []
@@ -5284,6 +5284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1010365641}
   - component: {fileID: 1010365640}
+  - component: {fileID: 1010365643}
   m_Layer: 0
   m_Name: "\u50B3\u9001\u9580"
   m_TagString: Untagged
@@ -5358,6 +5359,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1133879164}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1010365643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010365639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a152f812d08db344892e6747e13099a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverCursorIcon: {fileID: 2800000, guid: ff959655d47a326408738dce24400e74, type: 3}
+  hotSpot: {x: 0, y: 0}
 --- !u!1 &1014350011
 GameObject:
   m_ObjectHideFlags: 0
@@ -8892,9 +8907,14 @@ MonoBehaviour:
   uiRoot: {fileID: 519022202}
   storyImageDisplay: {fileID: 80156970}
   storySprites:
-  - {fileID: 21300000, guid: ec4a7859d045a954ca9ce9f004f4890a, type: 3}
-  - {fileID: 21300000, guid: 05084f5934d8362419f54b0ebeb4c1b9, type: 3}
-  - {fileID: 21300000, guid: fec6bcf70be4498408c99bc3fd0d9c5a, type: 3}
+  - {fileID: 21300000, guid: 5af0e5f91bad21548bdc728685d343dd, type: 3}
+  - {fileID: 21300000, guid: 5af0e5f91bad21548bdc728685d343dd, type: 3}
+  - {fileID: 21300000, guid: 07defb3058372de4a8893c910b3540bb, type: 3}
+  - {fileID: 21300000, guid: d90d11aa1e018ed458cbe35b2a49dfd8, type: 3}
+  - {fileID: 21300000, guid: 96ddfcadc214c554db47371e3d07ac4c, type: 3}
+  - {fileID: 21300000, guid: 01f15a3147f0f0d4c91782c37f46f138, type: 3}
+  - {fileID: 21300000, guid: 8b626d26dccb87a44bf63109ae7b40a5, type: 3}
+  - {fileID: 21300000, guid: 15f7967ebfa94d24fa75bf6599273b96, type: 3}
   storyPanel: {fileID: 195337564}
   tutorialPanels:
   - {fileID: 139140415}
