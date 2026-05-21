@@ -127,10 +127,8 @@ MAI: 等你學會怎麼使用它，我們就能出發去找能量了！
 
 -> training_start
 === training_start ===
-~ show_objective("太好了！你已經學會使用背包了！")
-
-
 ~ spawn_wave()
+~ show_objective("按F淨化蟲蟲！")
 
 -> END
 
