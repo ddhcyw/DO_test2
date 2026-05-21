@@ -192,6 +192,9 @@ public class DialogueController : MonoBehaviour
 
 
 
+        // 湖中怪屋
+        inkStory.BindExternalFunction("unlock_lake_exit", () => gameFlow.UnlockLakeDoor());
+
         // 圖像廣場
         inkStory.BindExternalFunction("unlock_plaza_door", () => gameFlow.UnlockPlazaDoor());
         inkStory.BindExternalFunction("show_flyer", () => gameFlow.ShowFlyerInScene());

@@ -2,6 +2,7 @@
 EXTERNAL change_scene(sceneName)
 EXTERNAL show_objective(content)
 EXTERNAL show_exit_icon()
+EXTERNAL unlock_lake_exit()
 
 
 
@@ -66,10 +67,10 @@ MAI: 你覺得呢？
     主角: 這是要直接住下來的意思吧？！
     主角: 既然都這麼說了...好吧。還是試試看好了。
     MAI: 那我們就先到處走走，看看有誰需要幫助吧！
+    ~ show_objective("走到傳送門！前往下一個區域")
     -> lake_end_prepare_help
-
 
 === lake_end_prepare_help ===
 ~ show_exit_icon()
-~ change_scene("圖像廣場Scene")
+~ unlock_lake_exit()
 -> END

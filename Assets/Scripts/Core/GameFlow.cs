@@ -101,6 +101,9 @@ public class GameFlow : MonoBehaviour
     [Header("作品集偷偷 - 淨化階段")]
     public BlackLiaPurifyTarget blackLiaPurifyTarget;
 
+    [Header("湖中怪屋出口傳送門")]
+    public TeleportDoor lakeExitDoor;
+
     [Header("作品集偷偷 - 出口傳送門")]
     public TeleportDoor exitDoor;
 
@@ -442,6 +445,14 @@ public class GameFlow : MonoBehaviour
             plazaExitDoor.UnlockDoor();
         else
             Debug.LogWarning("[GameFlow] plazaExitDoor 未設定，請在 Inspector 拖入！");
+    }
+
+    public void UnlockLakeDoor()
+    {
+        if (lakeExitDoor != null)
+            lakeExitDoor.UnlockDoor();
+        else
+            Debug.LogWarning("[GameFlow] lakeExitDoor 未設定，請在 Inspector 拖入！");
     }
 
     void OnTrainingFinished()
