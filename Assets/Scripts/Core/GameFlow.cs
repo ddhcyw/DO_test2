@@ -31,6 +31,9 @@ public class GameFlow : MonoBehaviour
     public GameObject bridgeMai;      // 橋邊那隻
     public GameObject rocketMai;      // 火箭那隻
 
+    [Header("出口提示Icon")]
+    public GameObject exitIconObject;
+
     [Header("新手區傳送門")]
     public TeleportDoor trainingExitDoor;
 
@@ -324,6 +327,19 @@ public class GameFlow : MonoBehaviour
         Debug.Log($"Setting Objective: {content}");
         if (objectiveManager)
             objectiveManager.ShowObjective(content);
+    }
+    // ~ show_exit_icon()
+    public void ShowExitIcon()
+    {
+        if (exitIconObject != null)
+        {
+            exitIconObject.SetActive(true);
+            Debug.Log("出口離開 Icon 已出現！");
+        }
+        else
+        {
+            Debug.LogWarning("【提示】GameFlow 上的 exitIconObject 還沒有拖入物件喔！");
+        }
     }
 
     public void PanCameraToRocket()

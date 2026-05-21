@@ -187,7 +187,9 @@ public class DialogueController : MonoBehaviour
         inkStory.BindExternalFunction("change_scene", (string sceneName) => gameFlow.SetSceneToLoad(sceneName));
         inkStory.BindExternalFunction("add_clue", (string id) => {
             gameFlow.AddClue(id);
+        inkStory.BindExternalFunction("show_exit_icon", () => gameFlow.ShowExitIcon());
         });
+
 
 
         // 圖像廣場

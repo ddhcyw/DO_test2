@@ -1,6 +1,7 @@
 ﻿// LakeArea.ink
 EXTERNAL change_scene(sceneName)
 EXTERNAL show_objective(content)
+EXTERNAL show_exit_icon()
 
 
 
@@ -69,5 +70,6 @@ MAI: 你覺得呢？
 
 
 === lake_end_prepare_help ===
+~ show_exit_icon()
 ~ change_scene("圖像廣場Scene")
 -> END

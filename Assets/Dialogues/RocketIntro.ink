@@ -9,7 +9,7 @@ EXTERNAL start_MAI_help()
 EXTERNAL play_ignite_anim()
 EXTERNAL pause_dialogue(seconds)
 EXTERNAL unlock_door()
-
+EXTERNAL show_exit_icon()
 
 === bridge_intro ===
 ~ play_bgm()
@@ -139,6 +139,7 @@ MAI: 我們到傳送門去！
 
 ~ show_objective("走到傳送門吧！")
 ~ unlock_door()
+~ show_exit_icon()
 
 -> END
 
