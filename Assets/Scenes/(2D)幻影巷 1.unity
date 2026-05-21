@@ -13774,7 +13774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6538117094214428977, guid: 10de2f29d4b628e4a8f361320ffe22d7, type: 3}
       propertyPath: moveSpeed
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8802840950493470018, guid: 10de2f29d4b628e4a8f361320ffe22d7, type: 3}
       propertyPath: m_SortingOrder
@@ -13852,6 +13852,8 @@ MonoBehaviour:
     scale: 0.8
   - speakerId: "\u81BD\u5927\u6A94"
     scale: 0.8
+  - speakerId: "\u7BA1\u7406\u54E1"
+    scale: 0.4
 --- !u!1 &2107125854 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6001802656347399694, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
