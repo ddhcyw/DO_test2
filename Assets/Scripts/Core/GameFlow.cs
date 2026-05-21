@@ -521,8 +521,10 @@ public class GameFlow : MonoBehaviour
     {
         Debug.Log("幫助區出現");
         maiHelpUnlocked = true;
-        if (MAIHalpPanel != null) MAIHalpPanel.SetActive(true);
-        else Debug.LogError("MAIHalpPanel 未設定！");
+        if (MAIHalpPanel == null) { Debug.LogError("MAIHalpPanel 未設定！"); return; }
+        var appear = MAIHalpPanel.GetComponent<MAIHelpPanelAppear>();
+        if (appear) appear.PlayAppear();
+        else MAIHalpPanel.SetActive(true);
     }
 
     public void HideMAIHelp()
