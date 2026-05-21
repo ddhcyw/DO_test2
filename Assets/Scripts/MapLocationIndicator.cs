@@ -14,7 +14,7 @@ public class MapLocationIndicator : MonoBehaviour
     public string sceneTutorial = "(2D)新手區 1";
     public string scenePlaza = "(2D)圖像廣場 1";
     public string scenePhantom = "(2D)幻影巷 1";
-    public string sceneLake = "湖中怪屋Scene";
+    public string sceneLake = "(2D)湖中怪屋 1";
     public string sceneBase = "(2D)作品集偷偷的基地 1";
 
     // 使用 OnEnable 而不是 Start，這樣玩家每次「打開」地圖時都會重新偵測一次
