@@ -1299,6 +1299,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7797576037674669640}
+  - {fileID: 7614240607272004053}
   - {fileID: 5500989385161098932}
   - {fileID: 7695571904191929078}
   - {fileID: 7526439055707964578}
@@ -1527,7 +1528,6 @@ RectTransform:
   - {fileID: 4166407299596889726}
   - {fileID: 2247515125457541522}
   - {fileID: 6182344713718271225}
-  - {fileID: 7614240607272004053}
   - {fileID: 599857332736226988}
   - {fileID: 1994179317733073192}
   - {fileID: 8040859016617985336}
@@ -3596,12 +3596,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6014432753950585350}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7695571904191929078}
+  m_Father: {fileID: 8654954471855195950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3624,6 +3624,7 @@ MonoBehaviour:
   inventoryToolbarParent: {fileID: 6182344713718271225}
   mainToolbarParent: {fileID: 0}
   inventorySlotPrefab: {fileID: 3068575622055250510, guid: fe6eb4e046b14f246a455445c6ef3862, type: 3}
+  inventoryPanel: {fileID: 0}
 --- !u!1 &6024967567036732641
 GameObject:
   m_ObjectHideFlags: 0
