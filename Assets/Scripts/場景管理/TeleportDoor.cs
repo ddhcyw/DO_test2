@@ -34,12 +34,13 @@ public class TeleportDoor : MonoBehaviour
             return;
         }
 
-        if (doorCollider.OverlapPoint(player.transform.position))
+        bool playerInZone = doorCollider.OverlapPoint(player.transform.position);
+
+        if (playerInZone && Input.GetMouseButtonDown(0))
         {
             var stm = SceneTransitionManager.Instance;
             if (stm == null) stm = FindObjectOfType<SceneTransitionManager>();
 
-            // 若 STM 還在播過場動畫，等下一幀再試，不要鎖死 isTransitioning
             if (stm != null && stm.IsTransitioning) return;
 
             isTransitioning = true;
