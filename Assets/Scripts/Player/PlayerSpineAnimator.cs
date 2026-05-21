@@ -20,8 +20,10 @@ public class PlayerSpineAnimator : MonoBehaviour
     public bool faceRightIsNegativeX = true;
 
     [Header("動畫速度設定")]
-    [Tooltip("走路動畫設計時對應的移動速度，動畫速度會依 moveSpeed / referenceSpeed 自動縮放")]
+    [Tooltip("無相機走路動畫對應的移動速度")]
     public float referenceSpeed = 3f;
+    [Tooltip("有相機走路動畫對應的移動速度（與 referenceSpeed 分開設定）")]
+    public float referenceCameraSpeed = 3f;
 
     [Header("切換控制")]
     public PlayerSpineSwitcher spineSwitcher;
@@ -33,6 +35,12 @@ public class PlayerSpineAnimator : MonoBehaviour
     private bool isTalking = false;
     private float baseScaleX = 1f;
     private float lastFacingX = 1f;
+
+    void Start()
+    {
+        if (PlayerPrefs.GetInt("HasCamera", 0) == 1)
+            hasCamera = true;
+    }
 
     void Awake()
     {
@@ -97,7 +105,8 @@ public class PlayerSpineAnimator : MonoBehaviour
         if (isMoving)
         {
             float speed = playerController != null ? playerController.moveSpeed : referenceSpeed;
-            skeletonAnimation.AnimationState.TimeScale = speed / referenceSpeed;
+            float refSpeed = hasCamera ? referenceCameraSpeed : referenceSpeed;
+            skeletonAnimation.AnimationState.TimeScale = speed / refSpeed;
             SetAnimation(hasCamera ? walkAnimationName : walkNoCameraName, true);
         }
         else

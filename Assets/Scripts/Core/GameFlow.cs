@@ -383,6 +383,9 @@ public class GameFlow : MonoBehaviour
             if (cameraSceneObject != null) cameraSceneObject.SetActive(false);
         }
 
+        PlayerPrefs.SetInt("HasCamera", 1);
+        PlayerPrefs.Save();
+
         if (playerSpineAnimator != null)
             playerSpineAnimator.hasCamera = true;
         if (InventoryManager.Instance != null)

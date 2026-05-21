@@ -6584,6 +6584,7 @@ MonoBehaviour:
   redHeartSprite: {fileID: 0}
   blackHeartSprite: {fileID: 0}
   blackLiaPurifyTarget: {fileID: 0}
+  lakeExitDoor: {fileID: 0}
   exitDoor: {fileID: 1473975165}
   debatePanel: {fileID: 0}
   popupSuccess: {fileID: 0}
@@ -8151,7 +8152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c69b3c9643e7b243999af96be9fcdcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: "\u6E56\u4E2D\u602A\u5C4BScene"
+  targetSceneName: "(2D)\u6E56\u4E2D\u602A\u5C4B 1"
   isUnlocked: 0
 --- !u!61 &1473975166
 BoxCollider2D:
@@ -10205,7 +10206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3247599441624047292, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: moveSpeed
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3351278054431112545, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_Mesh
@@ -10229,7 +10230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8013659089923513773, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: referenceSpeed
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
