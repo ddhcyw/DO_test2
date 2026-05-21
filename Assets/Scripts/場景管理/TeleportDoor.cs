@@ -36,13 +36,14 @@ public class TeleportDoor : MonoBehaviour
 
         if (doorCollider.OverlapPoint(player.transform.position))
         {
+            var stm = SceneTransitionManager.Instance;
+            if (stm == null) stm = FindObjectOfType<SceneTransitionManager>();
+
+            // 若 STM 還在播過場動畫，等下一幀再試，不要鎖死 isTransitioning
+            if (stm != null && stm.IsTransitioning) return;
+
             isTransitioning = true;
             Debug.Log($"[TeleportDoor] 準備傳送至：{targetSceneName}");
-
-            var stm = SceneTransitionManager.Instance;
-            Debug.Log($"[TeleportDoor] Instance={stm}");
-            if (stm == null) stm = FindObjectOfType<SceneTransitionManager>();
-            Debug.Log($"[TeleportDoor] FindObjectOfType={stm}");
 
             if (stm != null)
                 stm.TransitionToScene(targetSceneName);

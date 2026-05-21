@@ -1824,15 +1824,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 877295374010173537, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
       propertyPath: characterScales.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 877295374010173537, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
       propertyPath: characterScales.Array.data[0].scale
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 877295374010173537, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
+      propertyPath: characterScales.Array.data[1].scale
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 877295374010173537, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
       propertyPath: characterScales.Array.data[0].speakerId
       value: "\u8389\u4E9E"
+      objectReference: {fileID: 0}
+    - target: {fileID: 877295374010173537, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
+      propertyPath: characterScales.Array.data[1].speakerId
+      value: Mai
       objectReference: {fileID: 0}
     - target: {fileID: 5269073461078383744, guid: 457253ecfd6a5a34aa7647177beb5072, type: 3}
       propertyPath: m_Pivot.x
