@@ -144,8 +144,8 @@ MAI: 準備好了嗎？讓我們一起出發前往城鎮吧！
 MAI: 我們到傳送門去！
 
 ~ show_objective("走到傳送門吧！")
-~ unlock_door()
 ~ show_exit_icon()
+~ unlock_door()
 
 -> END
 

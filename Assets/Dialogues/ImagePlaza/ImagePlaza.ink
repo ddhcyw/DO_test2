@@ -8,6 +8,8 @@ EXTERNAL change_scene(sceneName)
 EXTERNAL unlock_plaza_door()
 EXTERNAL add_clue(id)
 EXTERNAL get_camera_item()
+EXTERNAL show_exit_icon()
+
 ~ show_objective("探索地圖，找到需要幫助的人吧！")
 
 // 1. 第一次與莉亞對話
@@ -55,7 +57,9 @@ MAI: 莉亞小姐，不用擔心，我們會去幫你看看，把這件事調查
 
 MAI: 那我們現在就前往幻影巷吧！
 ~ show_objective("走到傳送門吧！")
+~ show_exit_icon()
 ~ unlock_plaza_door()
+
 
 -> END
 

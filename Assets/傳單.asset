@@ -15,3 +15,4 @@ MonoBehaviour:
   itemID: flyer_leah
   icon: {fileID: 21300000, guid: 716b1123174b134429445e427ae9f6de, type: 3}
   description: "\u9019\u662F\u4E00\u5F35\u5947\u602A\u7684\u50B3\u55AE..."
+  specialGotPanel: {fileID: 8083773325990548943, guid: 5ea2e8402afa04b47bcd4536ebf6e688, type: 3}
