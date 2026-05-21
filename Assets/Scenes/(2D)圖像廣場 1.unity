@@ -6274,7 +6274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 811210108}
   smoothSpeed: 5
-  offset: {x: 0, y: 10, z: -10}
+  offset: {x: 0, y: 4, z: -10}
   useBounds: 0
   minBounds: {x: 0, y: 0}
   maxBounds: {x: 0, y: 0}
