@@ -7624,7 +7624,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1693976196400002410, guid: 8c9626e9352737744bf8070eeeaad9da, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6600340717842207568, guid: 8c9626e9352737744bf8070eeeaad9da, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12865,7 +12865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c69b3c9643e7b243999af96be9fcdcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: "\u5716\u50CF\u5EE3\u5834Scene"
+  targetSceneName: "(2D)\u5716\u50CF\u5EE3\u5834 1"
   isUnlocked: 0
 --- !u!61 &2107024296
 BoxCollider2D:
