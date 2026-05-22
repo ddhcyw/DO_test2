@@ -6,7 +6,7 @@ public class MainMenuOverlay : MonoBehaviour
 {
     [Header("UI設定")]
     public Button continueButton; // 繼續遊戲按鈕
-    public string firstLevelName = "MainScene good"; // 預設第一關名稱
+    public string firstLevelName = "(2D)新手區 1"; // 預設第一關名稱
 
     void Start()
     {
