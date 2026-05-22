@@ -11,32 +11,32 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        // ³o¬O Singleton ³æ¨Ò¼Ò¦¡ªºÀË¬d
+        // ï¿½oï¿½O Singleton ï¿½ï¿½Ò¼Ò¦ï¿½ï¿½ï¿½ï¿½Ë¬d
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            // ¦pªG Instance ¬OªÅªº¡A´N§â¦Û¤v«ü¬£¤W¥h
+            // ï¿½pï¿½G Instance ï¿½Oï¿½Åªï¿½ï¿½Aï¿½Nï¿½ï¿½Û¤vï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½h
             Instance = this;
-            DontDestroyOnLoad(gameObject); // ¸ó³õ´º«O¯d
+            DontDestroyOnLoad(gameObject); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½d
 
-            // *** ¦b³o¸Ìªì©l¤Æ§Ú­Ìªºª««~°}¦C ***
-            // «Ø¥ß¤@­Ó¦³ inventorySpace (9) ­ÓªÅ®æ (null) ªº°}¦C
+            // *** ï¿½bï¿½oï¿½Ìªï¿½lï¿½Æ§Ú­Ìªï¿½ï¿½ï¿½ï¿½~ï¿½}ï¿½C ***
+            // ï¿½Ø¥ß¤@ï¿½Ó¦ï¿½ inventorySpace (9) ï¿½ÓªÅ®ï¿½ (null) ï¿½ï¿½ï¿½}ï¿½C
             inventoryItems = new Item[inventorySpace];
             toolbarItems = new Item[toolbarSpace];
         }
     }
     #endregion
-    public bool isUnlocked = false; // «öE¯à§_¥´¶}­I¥]
-    public Item[] inventoryItems; // ¥D­I¥] (9®æ)
-    public Item[] toolbarItems;   // ¤u¨ã¦C (3®æ)
+    public bool isUnlocked = false; // ï¿½ï¿½Eï¿½ï¿½_ï¿½ï¿½ï¿½}ï¿½Iï¿½]
+    public Item[] inventoryItems; // ï¿½Dï¿½Iï¿½] (9ï¿½ï¿½)
+    public Item[] toolbarItems;   // ï¿½uï¿½ï¿½C (3ï¿½ï¿½)
 
     public int inventorySpace = 9;
     public int toolbarSpace = 3;
 
-    // ©w¸q¤@­Ó¨Æ¥ó¡A·íª««~ÄæÅÜ§ó®ÉÄ²µo
+    // ï¿½wï¿½qï¿½@ï¿½Ó¨Æ¥ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½Ü§ï¿½ï¿½Ä²ï¿½o
     public event Action OnInventoryChanged;
 
     
@@ -52,7 +52,7 @@ public class InventoryManager : MonoBehaviour
                 return true;
             }
         }
-        Debug.Log("­I¥]¤wº¡¡C");
+        Debug.Log("ï¿½Iï¿½]ï¿½wï¿½ï¿½ï¿½C");
         return false;
     }
 
@@ -62,9 +62,9 @@ public class InventoryManager : MonoBehaviour
         {
             if (inventoryItems[i] == item)
             {
-                inventoryItems[i] = null; // ²MªÅ®æ¤l
-                OnInventoryChanged?.Invoke(); // ³qª¾ UI
-                return; // ¥u²¾°£²Ä¤@­Ó§ä¨ìªº
+                inventoryItems[i] = null; // ï¿½Mï¿½Å®ï¿½l
+                OnInventoryChanged?.Invoke(); // ï¿½qï¿½ï¿½ UI
+                return; // ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½Ä¤@ï¿½Ó§ï¿½ìªº
             }
         }
     }
@@ -76,47 +76,55 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            // MenuToolbar ©M HudToolbar ³£¨Ï¥Î¦P¤@­Ó toolbarItems ¼Æ¾Ú
+            // MenuToolbar ï¿½M HudToolbar ï¿½ï¿½ï¿½Ï¥Î¦Pï¿½@ï¿½ï¿½ toolbarItems ï¿½Æ¾ï¿½
             return toolbarItems;
         }
     }
 
     public void MoveItem(SlotType fromType, int fromIndex, SlotType toType, int toIndex)
     {
-        // ¨M©w­n¾Þ§@­þ­Ó°}¦C
+        // ï¿½Mï¿½wï¿½nï¿½Þ§@ï¿½ï¿½ï¿½Ó°}ï¿½C
         Item[] fromArray = GetArrayFromType(fromType);
         Item[] toArray = GetArrayFromType(toType);
 
-        // ¨ú±o¯Á¤ÞÃä¬É
+        // ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (fromIndex < 0 || fromIndex >= fromArray.Length || toIndex < 0 || toIndex >= toArray.Length)
         {
-            Debug.LogError("µL®Äªº¯Á¤Þ");
+            Debug.LogError("ï¿½Lï¿½Äªï¿½ï¿½ï¿½ï¿½ï¿½");
             return;
         }
 
-        // ¨ú±o¨â­Ó¦ì¸m¤Wªºª««~
+        // ï¿½ï¿½ï¿½oï¿½ï¿½Ó¦ï¿½mï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½~
         Item fromItem = fromArray[fromIndex];
         Item toItem = toArray[toIndex];
 
-        // ¥æ´«¥¦­Ì
+        // ï¿½æ´«ï¿½ï¿½ï¿½ï¿½
         fromArray[fromIndex] = toItem;
         toArray[toIndex] = fromItem;
 
-        // ³qª¾©Ò¦³ UI §ó·s¡I
+        // ï¿½qï¿½ï¿½ï¿½Ò¦ï¿½ UI ï¿½ï¿½sï¿½I
         OnInventoryChanged?.Invoke();
     }
+    public void ClearAll()
+    {
+        for (int i = 0; i < inventoryItems.Length; i++) inventoryItems[i] = null;
+        for (int i = 0; i < toolbarItems.Length; i++) toolbarItems[i] = null;
+        isUnlocked = false;
+        OnInventoryChanged?.Invoke();
+    }
+
     public bool HasItem(Item item)
     {
         if (item == null) return false;
 
-        // ÀË¬d¥D­I¥]¡G¤ñ¹ï itemID ¦r¦ê
+        // ï¿½Ë¬dï¿½Dï¿½Iï¿½]ï¿½Gï¿½ï¿½ï¿½ itemID ï¿½rï¿½ï¿½
         foreach (Item i in inventoryItems)
         {
-            // §ï¥Î i.itemID == item.itemID
+            // ï¿½ï¿½ï¿½ i.itemID == item.itemID
             if (i != null && i.itemID == item.itemID) return true;
         }
 
-        // ÀË¬d¤u¨ã¦C
+        // ï¿½Ë¬dï¿½uï¿½ï¿½C
         foreach (Item i in toolbarItems)
         {
             if (i != null && i.itemID == item.itemID) return true;

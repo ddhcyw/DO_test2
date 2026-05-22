@@ -953,6 +953,7 @@ GameObject:
   - component: {fileID: 5129905670648197392}
   - component: {fileID: 275205715108067121}
   - component: {fileID: 496171378102277888}
+  - component: {fileID: 5861762369135449054}
   m_Layer: 5
   m_Name: "\u8FD4\u56DE\u4E3B\u9078\u55AE"
   m_TagString: Untagged
@@ -1058,6 +1059,34 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7547742683952342863}
+          m_TargetAssemblyTypeName: ReturnToMenuButton, Assembly-CSharp
+          m_MethodName: OnClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+--- !u!114 &5861762369135449054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265787042397474921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5d1f6e65089fe4a8907efad7b0df1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1501464786407461407
 GameObject:
   m_ObjectHideFlags: 0
@@ -2924,6 +2953,7 @@ GameObject:
   - component: {fileID: 2051496630280034815}
   - component: {fileID: 5920613146793228479}
   - component: {fileID: 1491732086860144229}
+  - component: {fileID: 7547742683952342863}
   m_Layer: 5
   m_Name: "\u8FD4\u56DE\u4E3B\u9078\u55AE (1)"
   m_TagString: Untagged
@@ -3033,10 +3063,10 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6145645998521027497, guid: 060059e3b21b58f46b8c2c786e587c3f, type: 3}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 7547742683952342863}
+          m_TargetAssemblyTypeName: ReturnToMenuButton, Assembly-CSharp
+          m_MethodName: OnClick
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3045,6 +3075,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+--- !u!114 &7547742683952342863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6705367201520635550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5d1f6e65089fe4a8907efad7b0df1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7203979704242346931
 GameObject:
   m_ObjectHideFlags: 0

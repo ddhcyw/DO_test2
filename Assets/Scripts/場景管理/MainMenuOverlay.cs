@@ -10,40 +10,47 @@ public class MainMenuOverlay : MonoBehaviour
 
     void Start()
     {
+        // 新遊戲重載場景後直接進遊戲，不顯示選單
+        if (PlayerPrefs.GetInt("_StartNewGame", 0) == 1)
+        {
+            PlayerPrefs.DeleteKey("_StartNewGame");
+            PlayerPrefs.Save();
+            StartGame();
+            return;
+        }
+
         // 1. 遊戲開始時，先暫停時間，以免怪跑來跑去
         Time.timeScale = 0f;
 
         // 2. 檢查存檔，決定「繼續遊戲」能不能按
         if (continueButton != null)
         {
-            // 如果沒有存檔紀錄，就鎖住按鈕
             if (!PlayerPrefs.HasKey("SavedScene"))
-            {
                 continueButton.interactable = false;
-            }
             else
-            {
                 continueButton.interactable = true;
-            }
         }
     }
 
     // --- 按鈕：新遊戲 ---
     public void OnClickNewGame()
     {
-        // 1. 清除舊進度
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("_StartNewGame", 1); // 場景重載後直接進遊戲
         PlayerPrefs.Save();
 
-        // 2. 重置記憶體中的相機狀態（Awake 已讀過舊值，需手動歸零）
-        var camAttack = FindObjectOfType<PlayerCameraAttack>();
-        if (camAttack != null) camAttack.hasCamera = false;
+        if (InventoryManager.Instance != null)
+            InventoryManager.Instance.ClearAll();
 
-        var spineAnim = FindObjectOfType<PlayerSpineAnimator>();
-        if (spineAnim != null) spineAnim.hasCamera = false;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(firstLevelName);
+    }
 
-        // 3. 因為我們現在就在第一關，所以直接開始
-        StartGame();
+    // --- 任何場景皆可呼叫：返回主選單 ---
+    public static void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("(2D)新手區 1");
     }
 
     // --- 按鈕：繼續遊戲 ---

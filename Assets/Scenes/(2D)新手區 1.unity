@@ -3251,7 +3251,11 @@ PrefabInstance:
     - target: {fileID: 1491732086860144229, guid: 63b28fa077e9cdb45bc1dc594d7435ec, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1793904011}
+      objectReference: {fileID: 1097353581}
+    - target: {fileID: 1491732086860144229, guid: 63b28fa077e9cdb45bc1dc594d7435ec, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClick
+      objectReference: {fileID: 0}
     - target: {fileID: 2003815805491092989, guid: 63b28fa077e9cdb45bc1dc594d7435ec, type: 3}
       propertyPath: m_Name
       value: Setting
@@ -6396,6 +6400,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1096122055}
   m_CullTransparentMesh: 1
+--- !u!114 &1097353581 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7547742683952342863, guid: 63b28fa077e9cdb45bc1dc594d7435ec, type: 3}
+  m_PrefabInstance: {fileID: 558966449}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5d1f6e65089fe4a8907efad7b0df1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1114060573
 GameObject:
   m_ObjectHideFlags: 0
@@ -9673,11 +9688,6 @@ MonoBehaviour:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5055719117082891886, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
   m_PrefabInstance: {fileID: 1522404861}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1793904011 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6145645998521027497, guid: 060059e3b21b58f46b8c2c786e587c3f, type: 3}
-  m_PrefabInstance: {fileID: 6967207649060354869}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &1793904012 stripped
 RectTransform:
