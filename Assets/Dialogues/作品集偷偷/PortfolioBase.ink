@@ -6,6 +6,7 @@ EXTERNAL start_fail_vignette()
 EXTERNAL show_objective(content)
 EXTERNAL get_camera_item()
 EXTERNAL show_exit_icon()
+VAR is_blacklia_defeated = false
 
 === base_enter ===
 MAI: 咕！這裡應該就是假利亞的基地了，我們先把證據集齊，把他的偷竊行為揭穿吧！
@@ -33,6 +34,14 @@ MAI: 咕！這裡應該就是假利亞的基地了，我們先把證據集齊，
     -> END
 
 === talk_blacklia_after_clue ===
+{is_blacklia_defeated:
+    // 如果已經打敗了，就顯示這段
+    （黑色利亞看起來非常虛弱，已經沒有力氣反駁你了。）
+    MAI: 咕！假利亞已經沒有威脅了，我們快點完成剩下的調查吧！
+    -> END
+}
+
+// 如果還沒打敗，就走原本的辯論流程
 黑色利亞_idle: ……
 （黑色利亞連正眼都不想看你，忙著數自己的鈔票）
 
@@ -121,6 +130,7 @@ MAI: 你偷、你印、你改，還敢說是自己做的？
 黑色利亞_lose3: 不、不可能！那只是……
 
 （黑色利亞的身體開始逐漸消失...）
+~ is_blacklia_defeated = true
 
 MAI: 就是現在！我們快點用相機開始淨化！
 ~ show_objective("按F淨化黑色利亞！")
