@@ -2,46 +2,43 @@ using UnityEngine;
 
 public class ProjectorSwitch : MonoBehaviour
 {
-    [Header("­n®ø¥¢ªºª«¥ó (­ì¥»ªº§ë¼vµe­±)")]
+    [Header("ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ì¥»ï¿½ï¿½ï¿½ï¿½vï¿½eï¿½ï¿½)")]
     public GameObject objectToHide;
 
-    [Header("­n¥X²{ªºª«¥ó (·tªù/¤J¤f)")]
+    [Header("ï¿½nï¿½Xï¿½{ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½tï¿½ï¿½/ï¿½Jï¿½f)")]
     public GameObject objectToShow;
 
-    [Header("­µ®Ä")]
-    public AudioSource audioSource; // ¦pªG¦³¶}ÃöÁn­µ¥i¥H±¾¤W¥h
+    [Header("ï¿½ï¿½ï¿½ï¿½")]
+    public AudioSource audioSource;
 
-    // ³õ´º¤¤ªºª«¥ó¾a Collider ÂIÀ»
+    [Header("é¡é ­å¹³ç§»è¨­å®š")]
+    public CameraFollow cameraFollow;
+    public float panTravelTime = 1.2f;  // ç§»å‹•åˆ°æš—é–€æ‰€éœ€ç§’æ•¸
+    public float panStayTime  = 2.0f;  // åœç•™åœ¨æš—é–€çš„ç§’æ•¸
+
     void OnMouseDown()
     {
-        // ÀË¬d¬O§_¦b¹ï¸Ü¤¤¡AÁ×§K»~Ä²
         if (GameFlow.Instance != null && GameFlow.Instance.CurrentState == GameFlow.GameState.Talking)
             return;
 
         PerformSwitch();
     }
 
-    
     void PerformSwitch()
     {
-        // 1. Åı­ì¥»ªºªF¦è®ø¥¢
         if (objectToHide != null)
-        {
             objectToHide.SetActive(false);
-        }
 
-        // 2. Åı·sªºªF¦è¥X²{
         if (objectToShow != null)
-        {
             objectToShow.SetActive(true);
-        }
 
-        // 3. ¼½©ñ­µ®Ä
         if (audioSource != null)
-        {
             audioSource.Play();
-        }
 
-        Debug.Log("§ë¼v¾÷¤wÃö³¬¡A·tªù¥X²{¡I");
+        // é¡é ­å¹³ç§»ï¼šç§»åˆ°æš—é–€åœç•™å¾Œè‡ªå‹•å›åˆ°ä¸»è§’
+        if (cameraFollow != null && objectToShow != null)
+            cameraFollow.PanToTarget(objectToShow.transform, panTravelTime, panStayTime);
+
+        Debug.Log("æŠ•å½±æ©Ÿå·²é—œé–‰ï¼Œæš—é–€å‡ºç¾ï¼");
     }
 }

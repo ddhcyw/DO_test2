@@ -79,6 +79,7 @@ public class MenuUIManager : MonoBehaviour
                 panel.SetActive(false);
             }
         }
+
         isMenuOpen = false;
     }
 }
