@@ -2992,7 +2992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: {fileID: 2014723983}
   inkKnotName: lake_npc1
-  player: {fileID: 0}
+  player: {fileID: 168786724}
   interactDistance: 10
   dimmerObject: {fileID: 0}
   triggerOnce: 0
@@ -4493,7 +4493,7 @@ MonoBehaviour:
   dialogue: {fileID: 2014723983}
   inkKnotName: lake_npc2
   player: {fileID: 168786724}
-  interactDistance: 5
+  interactDistance: 30
   dimmerObject: {fileID: 0}
   triggerOnce: 0
   repeatKnotName: lake_npc2_repeat
