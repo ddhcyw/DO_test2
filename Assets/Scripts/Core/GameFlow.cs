@@ -619,7 +619,7 @@ public class GameFlow : MonoBehaviour
                     break;
 
                 case "canvas":
-                    debateQuestionText.text = "我們每一幅作品都不一樣，都是我指導員工「親手創作」的！";
+                    debateQuestionText.text = "我們「每一幅作品都不一樣」，都是我指導員工親手創作的！";
                     break;
 
                 case "pc":
