@@ -615,15 +615,15 @@ public class GameFlow : MonoBehaviour
             switch (answerID)
             {
                 case "copy_machine":
-                    debateQuestionText.text = "看看這些作品，多漂亮又清楚，這種品質可不是隨便畫得出來的喔～";
+                    debateQuestionText.text = "看看這些作品，多「漂亮又清楚」，這種品質可不是隨便畫得出來的喔～";
                     break;
 
                 case "canvas":
-                    debateQuestionText.text = "我們每一幅作品都不一樣，都是我指導員工親手創作的！";
+                    debateQuestionText.text = "我們每一幅作品都不一樣，都是我指導員工「親手創作」的！";
                     break;
 
                 case "pc":
-                    debateQuestionText.text = "我們一切都靠自己完成，沒有從網路上抓圖，懂嗎！";
+                    debateQuestionText.text = "我們一切都靠自己完成，「沒有從網路上抓圖」，懂嗎！";
                     break;
 
             }
