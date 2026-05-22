@@ -66,16 +66,31 @@ public class CameraSimulation : MonoBehaviour, IPointerDownHandler, IDragHandler
 
         if (hit.collider != null && hit.collider.TryGetComponent<Photographable>(out Photographable target))
         {
-            // === 情況 A：成功拍到有能量的物體 ===
-            Debug.Log("拍到了：" + target.name);
-            finalPhotoItemToAdd = target.photoItemToGive;
-            finalCollectedPhotoSpriteToAdd = target.collectedPhotoSprite;
-            spriteToShow = target.photoEffectSprite;
-
-            if (finalPhotoItemToAdd == null || finalCollectedPhotoSpriteToAdd == null || spriteToShow == null)
+            // 檢查劇情鎖！如果鎖著，就強制當作拍到空景！
+            if (!target.IsUnlocked())
             {
-                Debug.LogError("物體 " + target.name + " 上的 Photographable 腳本欄位未設定完整！");
-                return;
+                Debug.Log($"【劇情鎖定】{target.name} 的拍攝條件未達成，強制顯示空景。");
+
+                finalPhotoItemToAdd = null;
+                finalCollectedPhotoSpriteToAdd = null;
+                spriteToShow = emptyPhotoEffectSprite; // 顯示空景圖
+
+                if (spriteToShow == null)
+                    Debug.LogWarning("你還沒有在 Inspector 設定 emptyPhotoEffectSprite！");
+            }
+            else
+            {
+                // === 情況 A：成功拍到有能量的物體（且條件已達成） ===
+                Debug.Log("拍到了：" + target.name);
+                finalPhotoItemToAdd = target.photoItemToGive;
+                finalCollectedPhotoSpriteToAdd = target.collectedPhotoSprite;
+                spriteToShow = target.photoEffectSprite;
+
+                if (finalPhotoItemToAdd == null || finalCollectedPhotoSpriteToAdd == null || spriteToShow == null)
+                {
+                    Debug.LogError("物體 " + target.name + " 上的 Photographable 腳本欄位未設定完整！");
+                    return;
+                }
             }
         }
         else

@@ -10400,6 +10400,8 @@ MonoBehaviour:
   photoItemToGive: {fileID: 11400000, guid: 91aead8a4672793479501468461c08d2, type: 2}
   photoEffectSprite: {fileID: 21300000, guid: ce942d900f4df5745b6dd540e6a6c67c, type: 3}
   collectedPhotoSprite: {fileID: 21300000, guid: 331f3c308dc57cf47a4313548b1df606, type: 3}
+  requireQuest: 1
+  questKey: LeahPhotoUnlocked
 --- !u!114 &1456725182
 MonoBehaviour:
   m_ObjectHideFlags: 0
