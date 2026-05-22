@@ -130,8 +130,8 @@ MAI: 等你學會怎麼使用它，我們就能出發去找能量了！
 ~ get_camera_item()
 ~ show_objective("相機會出現在背包裡！按E打開背包")
 
+-> END
 
--> training_start
 === training_start ===
 ~ spawn_wave()
 ~ show_objective("按F淨化蟲蟲！")

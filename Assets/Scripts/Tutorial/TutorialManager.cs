@@ -5,21 +5,21 @@ public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager Instance { get; private set; }
 
-    [Header("UI ³]©w")]
-    public GameObject tutorialRootPanel; // ¾ã­Ó±Ð¾Çªº³Ì¤W¼h¤÷ª«¥ó
+    [Header("UI ï¿½]ï¿½w")]
+    public GameObject tutorialRootPanel; // ï¿½ï¿½Ó±Ð¾Çªï¿½ï¿½Ì¤Wï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public List<GameObject> tutorialSteps; // Step1, Step2, Step3...
-    [Tooltip("ÂIÀ»¬Û¾÷¥ô°È²Ä´X¨B(­n-1)")]
+    [Tooltip("ï¿½Iï¿½ï¿½ï¿½Û¾ï¿½ï¿½ï¿½ï¿½È²Ä´Xï¿½B(ï¿½n-1)")]
     public int clickStepIndex = 5;
-    [Header("©ì¦²¥ô°È²Ä´X¨B(­n-1)")]
+    [Header("ï¿½ì¦²ï¿½ï¿½ï¿½È²Ä´Xï¿½B(ï¿½n-1)")]
     public int dragStepIndex = 7;
-    [Header("©ç·Ó¥ô°È²Ä´X¨B(­n-1)")]
+    [Header("ï¿½ï¿½Ó¥ï¿½ï¿½È²Ä´Xï¿½B(ï¿½n-1)")]
     public int takePhotoStepIndex = 13;
 
-    [Header("ª¬ºA")]
-    // ¤½¶}³o­ÓÅÜ¼Æ¡AÅý¨ä¥L¸}¥»¥i¥HÅª¨ú
+    [Header("ï¿½ï¿½ï¿½A")]
+    // ï¿½ï¿½ï¿½}ï¿½oï¿½ï¿½ï¿½Ü¼Æ¡Aï¿½ï¿½ï¿½ï¿½Lï¿½}ï¿½ï¿½ï¿½iï¿½HÅªï¿½ï¿½
     public int CurrentStepIndex = 0;
 
-    // §PÂ_±Ð¾Ç¬O§_¥¿¦b¶i¦æ¤¤
+    // ï¿½Pï¿½_ï¿½Ð¾Ç¬Oï¿½_ï¿½ï¿½ï¿½bï¿½iï¿½æ¤¤
     public bool IsTutorialActive => tutorialRootPanel != null && tutorialRootPanel.activeSelf;
 
     void Awake()
@@ -40,7 +40,7 @@ public class TutorialManager : MonoBehaviour
         if (CurrentStepIndex < tutorialSteps.Count - 1)
         {
             CurrentStepIndex++;
-            Debug.Log($"±Ð¾Ç¶i¤J²Ä {CurrentStepIndex + 1} ¨B");
+            Debug.Log($"ï¿½Ð¾Ç¶iï¿½Jï¿½ï¿½ {CurrentStepIndex + 1} ï¿½B");
             UpdateStepVisuals();
         }
         else
@@ -60,7 +60,10 @@ public class TutorialManager : MonoBehaviour
 
     private void CompleteTutorial()
     {
-        Debug.Log("±Ð¾Ç§¹¦¨¡I");
+        Debug.Log("ï¿½Ð¾Ç§ï¿½ï¿½ï¿½ï¿½I");
         if (tutorialRootPanel != null) tutorialRootPanel.SetActive(false);
+
+        if (DialogueController.Instance != null)
+            DialogueController.Instance.StartInkDialogue("training_start");
     }
 }

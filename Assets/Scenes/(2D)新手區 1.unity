@@ -132,7 +132,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3247599441624047292, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
   m_PrefabInstance: {fileID: 1937930320}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 387553835}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a4786f3a1b8d974cad15ddbb396de72, type: 3}
@@ -1800,6 +1800,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380187876}
   m_CullTransparentMesh: 1
+--- !u!1 &387553835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2392621025428297759, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
+  m_PrefabInstance: {fileID: 1937930320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &387553842
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387553835}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06239622, y: 1.5642596}
+  m_Size: {x: 0.8276383, y: 1.7308468}
+  m_Direction: 0
 --- !u!1 &392124496
 GameObject:
   m_ObjectHideFlags: 0
@@ -4370,7 +4410,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 23.91632, y: 0}
+  m_AnchoredPosition: {x: 23.91626, y: 0}
   m_SizeDelta: {x: 47.8325, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &780240371
@@ -10083,17 +10123,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7262289630787141711, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_Size.y
-      value: 1.7010543
+      value: 1.3703548
+      objectReference: {fileID: 0}
+    - target: {fileID: 7262289630787141711, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7262289630787141711, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_Offset.y
-      value: 1.1534199
+      value: 1.3187697
       objectReference: {fileID: 0}
     - target: {fileID: 8013659089923513773, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: referenceSpeed
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7262289630787141711, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 971986804763171979, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
@@ -10102,7 +10147,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 971986804763171979, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1859247041}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2392621025428297759, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 387553842}
   m_SourcePrefab: {fileID: 100100000, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
 --- !u!1 &1968319097
 GameObject:
@@ -10631,10 +10679,6 @@ PrefabInstance:
     - target: {fileID: 7099131008231508156, guid: 060059e3b21b58f46b8c2c786e587c3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8514795413459834234, guid: 060059e3b21b58f46b8c2c786e587c3f, type: 3}
-      propertyPath: firstLevelName
-      value: "(2D)\u65B0\u624B\u5340 1"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
