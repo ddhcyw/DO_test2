@@ -21,7 +21,14 @@ public class ObjectiveManager : MonoBehaviour
     // 排隊系統
     private Queue<string> objectiveQueue = new Queue<string>();
     private bool isDisplaying = false;
-
+    void Start()
+    {
+        // 換場景時，自動把這個任務面板重新綁定給當前新場景的 GameFlow
+        if (GameFlow.Instance != null)
+        {
+            GameFlow.Instance.objectiveManager = this;
+        }
+    }
     void Awake()
     {
         if (Instance == null) Instance = this;
