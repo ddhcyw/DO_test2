@@ -6,7 +6,7 @@ public class MainMenuOverlay : MonoBehaviour
 {
     [Header("UI設定")]
     public Button continueButton; // 繼續遊戲按鈕
-    public string firstLevelName = "MainScene good"; // 預設第一關名稱
+    public string firstLevelName = "(2D)新手區 1"; // 預設第一關名稱
 
     void Start()
     {
@@ -38,7 +38,7 @@ public class MainMenuOverlay : MonoBehaviour
         StartGame();
 
         // 如果新遊戲需要重置主角位置或變數，可以在這裡呼叫 GameFlow 重置
-        // GameFlow.Instance.ResetGame(); 
+        //GameFlow.Instance.ResetGame(); 
     }
 
     // --- 按鈕：繼續遊戲 ---
