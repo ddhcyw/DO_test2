@@ -1,20 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections; // ¥²¶·¤Ş¥Î³o­Ó¤~¯à¥Î Coroutine
+using System.Collections; // ï¿½ï¿½ï¿½ï¿½ï¿½Ş¥Î³oï¿½Ó¤~ï¿½ï¿½ï¿½ Coroutine
 
 public class MiniGame_SpotDifference : MonoBehaviour
 {
-    [Header("¹CÀ¸³]©w")]
+    [Header("ï¿½Cï¿½ï¿½ï¿½]ï¿½w")]
     public Button[] targetButtons;
     public GameObject[] scoreIcons;
 
-    [Header("Àò³Ó«á³]©w")]
+    [Header("ï¿½ï¿½Ó«ï¿½]ï¿½w")]
     public bool closeOnWin = true;
-    public float winDelay = 1.5f; // ·s¼W¡GÀò³Ó«á©µ¿ğ´X¬í¤~Ãö³¬
+    public float winDelay = 1.5f; // ï¿½sï¿½Wï¿½Gï¿½ï¿½Ó«á©µï¿½ï¿½Xï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½ï¿½
     public string winInkKnot = "minigame_success";
 
     private int currentScore = 0;
-    private bool isGameFinished = false; // ¨¾¤î¦b©µ¿ğ´Á¶¡­«½ÆÄ²µo
+    private bool isGameFinished = false; // ï¿½ï¿½ï¿½ï¿½bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½o
 
     void OnEnable()
     {
@@ -45,12 +45,12 @@ public class MiniGame_SpotDifference : MonoBehaviour
 
     void OnCorrectButtonClicked(Button clickedBtn)
     {
-        // ¦pªG¹CÀ¸¤w¸gµ²§ô(¥¿¦b¶]©µ¿ğ)¡A´N¤£³B²zÂIÀ»
+        // ï¿½pï¿½Gï¿½Cï¿½ï¿½ï¿½wï¿½gï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½bï¿½]ï¿½ï¿½ï¿½ï¿½)ï¿½Aï¿½Nï¿½ï¿½ï¿½Bï¿½zï¿½Iï¿½ï¿½
         if (isGameFinished) return;
 
         clickedBtn.interactable = false;
 
-        // Åã¥Ü¿n¤À¹Ï¥Ü
+        // ï¿½ï¿½Ü¿nï¿½ï¿½ï¿½Ï¥ï¿½
         if (currentScore < scoreIcons.Length)
         {
             if (scoreIcons[currentScore] != null)
@@ -61,30 +61,34 @@ public class MiniGame_SpotDifference : MonoBehaviour
 
         currentScore++;
 
-        // ÀË¬d¬O§_¹LÃö
+        // ï¿½Ë¬dï¿½Oï¿½_ï¿½Lï¿½ï¿½
         if (currentScore >= targetButtons.Length)
         {
-            // ±Ò°ÊÀò³Ó¬yµ{
+            // ï¿½Ò°ï¿½ï¿½ï¿½Ó¬yï¿½{
             StartCoroutine(WinSequence());
         }
     }
 
-    // ·s¼W¡G³B²z©µ¿ğªº¨óµ{
     IEnumerator WinSequence()
     {
-        isGameFinished = true; // Âê©wª¬ºA
-        Debug.Log("¹LÃö¡Iµ¥«İ©µ¿ğ...");
+        isGameFinished = true;
+        Debug.Log("å°éŠæˆ²å‹åˆ©ï¼ç­‰å¾…å¾Œç¹¼çºŒå°è©±...");
 
-        // ³o¸Ì´N¬O©µ¿ğªº¦a¤è (µ¥«İ winDelay ¬í)
         yield return new WaitForSeconds(winDelay);
 
-        // ©µ¿ğµ²§ô¡A°õ¦æ­ì¥»ªºÀò³ÓÅŞ¿è
-
-       
-        // Ãö³¬­±ªO
         if (closeOnWin)
         {
             gameObject.SetActive(false);
+        }
+
+        // é€šçŸ¥å°è©±ç³»çµ±ç¹¼çºŒæ’­æ”¾å°éŠæˆ²å¾Œçš„å°è©±
+        if (DialogueController.Instance != null)
+        {
+            DialogueController.Instance.TempShowAndContinue();
+        }
+        else
+        {
+            Debug.LogWarning("MiniGame_SpotDifference: æ‰¾ä¸åˆ° DialogueController.Instanceï¼Œå°è©±ç„¡æ³•ç¹¼çºŒï¼");
         }
     }
 }

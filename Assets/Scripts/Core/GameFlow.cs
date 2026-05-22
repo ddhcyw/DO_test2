@@ -556,6 +556,13 @@ public class GameFlow : MonoBehaviour
                 Debug.LogError($"GameFlow: 找不到 ID 為 '{id}' 的小遊戲面板！");
                 break;
         }
+
+        // 暫停對話，等待小遊戲完成後再繼續
+        if (dialogue != null)
+        {
+            dialogue.pauseRequested = true;
+            dialogue.TempHide();
+        }
     }
 
     public void HideMai(string id)
