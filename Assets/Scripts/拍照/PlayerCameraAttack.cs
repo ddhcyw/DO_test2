@@ -18,7 +18,7 @@ public class PlayerCameraAttack : MonoBehaviour
     public float attackLockTime = 0.4f;   // 攻擊動作持續鎖定秒數
 
     [Header("相機持有狀態")]
-    public bool hasCamera = true;
+    [System.NonSerialized] public bool hasCamera = false;
 
     [Header("淨化目標")]
     public BlackLiaPurifyTarget purifyTarget;
@@ -38,6 +38,8 @@ public class PlayerCameraAttack : MonoBehaviour
 
     void Awake()
     {
+        hasCamera = PlayerPrefs.GetInt("HasCamera", 0) == 1;
+
         spineSwitcher = GetComponentInChildren<PlayerSpineSwitcher>();
         if (spineSwitcher == null)
             spineSwitcher = GetComponent<PlayerSpineSwitcher>();

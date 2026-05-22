@@ -388,6 +388,10 @@ public class GameFlow : MonoBehaviour
 
         if (playerSpineAnimator != null)
             playerSpineAnimator.hasCamera = true;
+
+        var camAttack = FindObjectOfType<PlayerCameraAttack>();
+        if (camAttack != null) camAttack.hasCamera = true;
+
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.isUnlocked = true;

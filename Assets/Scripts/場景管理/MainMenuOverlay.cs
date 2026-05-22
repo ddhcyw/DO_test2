@@ -4,19 +4,19 @@ using UnityEngine.UI;
 
 public class MainMenuOverlay : MonoBehaviour
 {
-    [Header("UI³]©w")]
-    public Button continueButton; // Ä~Äò¹CÀ¸«ö¶s
-    public string firstLevelName = "MainScene good"; // ¹w³]²Ä¤@Ãö¦WºÙ
+    [Header("UIè¨­å®š")]
+    public Button continueButton; // ç¹¼çºŒéŠæˆ²æŒ‰éˆ•
+    public string firstLevelName = "MainScene good"; // é è¨­ç¬¬ä¸€é—œåç¨±
 
     void Start()
     {
-        // 1. ¹CÀ¸¶}©l®É¡A¥ı¼È°±®É¶¡¡A¥H§K©Ç¶]¨Ó¶]¥h
+        // 1. éŠæˆ²é–‹å§‹æ™‚ï¼Œå…ˆæš«åœæ™‚é–“ï¼Œä»¥å…æ€ªè·‘ä¾†è·‘å»
         Time.timeScale = 0f;
 
-        // 2. ÀË¬d¦sÀÉ¡A¨M©w¡uÄ~Äò¹CÀ¸¡v¯à¤£¯à«ö
+        // 2. æª¢æŸ¥å­˜æª”ï¼Œæ±ºå®šã€Œç¹¼çºŒéŠæˆ²ã€èƒ½ä¸èƒ½æŒ‰
         if (continueButton != null)
         {
-            // ¦pªG¨S¦³¦sÀÉ¬ö¿ı¡A´NÂê¦í«ö¶s
+            // å¦‚æœæ²’æœ‰å­˜æª”ç´€éŒ„ï¼Œå°±é–ä½æŒ‰éˆ•
             if (!PlayerPrefs.HasKey("SavedScene"))
             {
                 continueButton.interactable = false;
@@ -28,47 +28,52 @@ public class MainMenuOverlay : MonoBehaviour
         }
     }
 
-    // --- «ö¶s¡G·s¹CÀ¸ ---
+    // --- æŒ‰éˆ•ï¼šæ–°éŠæˆ² ---
     public void OnClickNewGame()
     {
-        // 1. ²M°£ÂÂ¶i«×
+        // 1. æ¸…é™¤èˆŠé€²åº¦
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
 
-        // 2. ¦]¬°§Ú­Ì²{¦b´N¦b²Ä¤@Ãö¡A©Ò¥Hª½±µ¶}©l
+        // 2. é‡ç½®è¨˜æ†¶é«”ä¸­çš„ç›¸æ©Ÿç‹€æ…‹ï¼ˆAwake å·²è®€éèˆŠå€¼ï¼Œéœ€æ‰‹å‹•æ­¸é›¶ï¼‰
+        var camAttack = FindObjectOfType<PlayerCameraAttack>();
+        if (camAttack != null) camAttack.hasCamera = false;
+
+        var spineAnim = FindObjectOfType<PlayerSpineAnimator>();
+        if (spineAnim != null) spineAnim.hasCamera = false;
+
+        // 3. å› ç‚ºæˆ‘å€‘ç¾åœ¨å°±åœ¨ç¬¬ä¸€é—œï¼Œæ‰€ä»¥ç›´æ¥é–‹å§‹
         StartGame();
-
-        // ¦pªG·s¹CÀ¸»İ­n­«¸m¥D¨¤¦ì¸m©ÎÅÜ¼Æ¡A¥i¥H¦b³o¸Ì©I¥s GameFlow ­«¸m
-        // GameFlow.Instance.ResetGame(); 
     }
 
-    // --- «ö¶s¡GÄ~Äò¹CÀ¸ ---
+    // --- æŒ‰éˆ•ï¼šç¹¼çºŒéŠæˆ² ---
     public void OnClickContinue()
     {
-        // Åª¨ú¦sÀÉªº³õ´º
+        // è®€å–å­˜æª”çš„å ´æ™¯
         string savedScene = PlayerPrefs.GetString("SavedScene", firstLevelName);
         string currentScene = SceneManager.GetActiveScene().name;
 
-        // ¦pªG¦sÀÉªº³õ´º ´N¬O ²{¦b³o­Ó³õ´º
+        // å¦‚æœå­˜æª”çš„å ´æ™¯ å°±æ˜¯ ç¾åœ¨é€™å€‹å ´æ™¯
         if (savedScene == currentScene)
         {
-            // ª½±µ¶}©l
+            // ç›´æ¥é–‹å§‹
             StartGame();
         }
         else
         {
-            // ¦pªG¦sÀÉ¦b§OÃö¡]¨Ò¦p°ò¦a¡^¡A´N¸õÂà¹L¥h
-            Time.timeScale = 1f; // ¤Á³õ´º«e°O±o«ì´_®É¶¡
+            // å¦‚æœå­˜æª”åœ¨åˆ¥é—œï¼ˆä¾‹å¦‚åŸºåœ°ï¼‰ï¼Œå°±è·³è½‰éå»
+            Time.timeScale = 1f; // åˆ‡å ´æ™¯å‰è¨˜å¾—æ¢å¾©æ™‚é–“
             SceneManager.LoadScene(savedScene);
         }
     }
 
-    // --- ¦@¥ÎÅŞ¿è¡G¶}©l¹CÀ¸ ---
+    // --- å…±ç”¨é‚è¼¯ï¼šé–‹å§‹éŠæˆ² ---
     void StartGame()
     {
-        // 1. «ì´_®É¶¡¬y°Ê
+        // 1. æ¢å¾©æ™‚é–“æµå‹•
         Time.timeScale = 1f;
 
-        // 2. Ãö³¬¦Û¤v (ÁôÂÃ¥D¿ï³æ)
+        // 2. é—œé–‰è‡ªå·± (éš±è—ä¸»é¸å–®)
         gameObject.SetActive(false);
     }
 }

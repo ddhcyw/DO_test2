@@ -11,6 +11,8 @@ EXTERNAL get_camera_item()
 EXTERNAL show_exit_icon()
 
 ~ show_objective("探索地圖，找到需要幫助的人吧！")
+~ show_objective("往左邊走看看")
+
 
 // 1. 第一次與莉亞對話
 === plaza_leah ===
