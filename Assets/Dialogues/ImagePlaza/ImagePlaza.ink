@@ -9,6 +9,7 @@ EXTERNAL unlock_plaza_door()
 EXTERNAL add_clue(id)
 EXTERNAL get_camera_item()
 EXTERNAL show_exit_icon()
+EXTERNAL unlock_leah_photo()
 
 ~ show_objective("探索地圖，找到需要幫助的人吧！")
 
@@ -78,6 +79,7 @@ MAI: （MAI把事件的來龍去脈全部都告訴莉亞...）
 莉亞: 但這麼困難的問題你們真的解決了！真的好感謝你們兩個幫助我！
 莉亞: （莉亞露出燦爛的笑容）
 莉亞: 為了報答你們，你有什麼想拍的都可以找我喔！我能幫你們拍出多漂亮的照片！
+~ unlock_leah_photo()
 
 + [莉亞小姐可以和我一起拍一張合照嗎？]
     莉亞: 當然可以呀！相機交給我，我幫你拍一張角度最好的照片！

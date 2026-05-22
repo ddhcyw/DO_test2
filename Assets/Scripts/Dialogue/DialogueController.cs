@@ -201,6 +201,11 @@ public class DialogueController : MonoBehaviour
         inkStory.BindExternalFunction("get_flyer", () => gameFlow.GetFlyerItem());
         inkStory.BindExternalFunction("destroy_flyer", () => gameFlow.DestroyFlyerObject());
         inkStory.BindExternalFunction("get_portfolio", () => gameFlow.GetPortfolioItem());
+        inkStory.BindExternalFunction("unlock_leah_photo", () => {
+            PlayerPrefs.SetInt("LeahPhotoUnlocked", 1); // 存入解鎖暗號
+            PlayerPrefs.Save();
+            Debug.Log("<color=lime>【劇情解鎖】莉亞合照功能已開啟！</color>");
+        });
 
         // 幻影巷
         inkStory.BindExternalFunction("start_MAI_help", () => gameFlow.StartMAIHelp());
