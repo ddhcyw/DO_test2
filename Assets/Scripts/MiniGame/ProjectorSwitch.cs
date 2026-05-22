@@ -39,6 +39,7 @@ public class ProjectorSwitch : MonoBehaviour
         if (cameraFollow != null && objectToShow != null)
             cameraFollow.PanToTarget(objectToShow.transform, panTravelTime, panStayTime);
 
+        gameObject.SetActive(false);
         Debug.Log("投影機已關閉，暗門出現！");
     }
 }
