@@ -328,6 +328,22 @@ public class GameFlow : MonoBehaviour
     public void ShowObjectiveUI(string content)
     {
         Debug.Log($"Setting Objective: {content}");
+
+        // 確保 MAI幫助區（場景物件）可見
+        if (maiHelpArea != null && !maiHelpArea.activeSelf)
+        {
+            maiHelpArea.SetActive(true);
+            maiHelpUnlocked = true;
+        }
+
+        // 確保 MAIHalpPanel（UI面板）可見，帶出場動畫
+        if (MAIHalpPanel != null && !MAIHalpPanel.activeSelf)
+        {
+            var appear = MAIHalpPanel.GetComponent<MAIHelpPanelAppear>();
+            if (appear) appear.PlayAppear();
+            else MAIHalpPanel.SetActive(true);
+        }
+
         if (objectiveManager)
             objectiveManager.ShowObjective(content);
     }

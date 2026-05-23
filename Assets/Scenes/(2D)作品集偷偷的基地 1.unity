@@ -2054,7 +2054,7 @@ PrefabInstance:
     - target: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
       propertyPath: objectiveManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2022909291}
     - target: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
       propertyPath: cameraSceneObject
       value: 
@@ -2071,6 +2071,10 @@ PrefabInstance:
       propertyPath: debateQuestionText
       value: 
       objectReference: {fileID: 906666784}
+    - target: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
+      propertyPath: maiHelpStartsHidden
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9122506708480603023, guid: 125eee708dc97bf409561264b132aa76, type: 3}
       propertyPath: playerSpineAnimator
       value: 
@@ -11769,7 +11773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3247599441624047292, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: moveSpeed
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3351278054431112545, guid: fcd7bf58a8166ac43b672bd01f5d9afb, type: 3}
       propertyPath: m_Mesh
@@ -12437,6 +12441,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8306442549217216340, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
   m_PrefabInstance: {fileID: 2022909286}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2022909291 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6425201152596684732, guid: 6d9c1fc05a8b8604899f45f65f3d2e8e, type: 3}
+  m_PrefabInstance: {fileID: 2022909286}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022909289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8496df02e824584bbee5aee2342fe01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2039698192
 GameObject:
   m_ObjectHideFlags: 0

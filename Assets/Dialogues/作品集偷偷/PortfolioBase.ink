@@ -10,6 +10,7 @@ VAR is_blacklia_defeated = false
 
 === base_enter ===
 MAI: 咕！這裡應該就是假利亞的基地了，我們先把證據集齊，把他的偷竊行為揭穿吧！
+~ show_objective("蒐集三個線索揭穿假利亞！")
 -> END
 
 // --- 電腦 ---
