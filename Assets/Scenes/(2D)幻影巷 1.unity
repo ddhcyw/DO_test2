@@ -2803,7 +2803,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3e0068132afdc8d4181d3ba9f81890c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c7dede4c1d000645886160b8f9aa2b7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14120,7 +14120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4470770170971611433, guid: 10de2f29d4b628e4a8f361320ffe22d7, type: 3}
       propertyPath: m_Size.y
-      value: 1.6144716
+      value: 1.885103
       objectReference: {fileID: 0}
     - target: {fileID: 4470770170971611433, guid: 10de2f29d4b628e4a8f361320ffe22d7, type: 3}
       propertyPath: m_Offset.x
@@ -14128,7 +14128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4470770170971611433, guid: 10de2f29d4b628e4a8f361320ffe22d7, type: 3}
       propertyPath: m_Offset.y
-      value: 1.1163497
+      value: 1.4256436
       objectReference: {fileID: 0}
     - target: {fileID: 6442089172993978860, guid: 10de2f29d4b628e4a8f361320ffe22d7, type: 3}
       propertyPath: m_SortingOrder
